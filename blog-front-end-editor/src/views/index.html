@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% import "../includes/blog_sidebar.njk" as s %}
+    {% import "../includes/editor_includes.njk" as i %}
+    {% import "../includes/admin_toolbar.njk" as a %}
+    {% import "../includes/header.njk" as h %}
+    {% import "../includes/footer.njk" as f %}
+    {% import "../includes/meta.njk" as m %}
+
+    {{ m.eta() }}
+    {{ i.ncludes() }}
+</head>
+<body>
+    {{ a.dmin_toolbar() }}
+    {{ h.eader() }}
+
+    <div id = 'editorjs'></div>
+    <script src="/editor.js"></script>
+    
+    {{ s.idebar() }}
+    {{ f.ooter() }}
+</body>
+</html>
