@@ -1,0 +1,15 @@
+.admin-toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #303030;
+    color: seashell;
+    padding: 0.25rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    overflow: hidden;
+    height: 1rem;
+}
