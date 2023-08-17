@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% import "../includes/editor_includes.njk" as i %}
+    {% import "../includes/meta.njk" as m %}
+    {{ i.ncludes("login") }}
+    {{ m.eta()}}
+</head>
+
+<body>
+    <div class="login-card">
+        <div class="login-card-header">
+            <div class="img-container">
+                <img src="/src/assets/logo.png" alt="Logo" class="square">
+            </div>
+            <h1>Log into OKCSS blog portal</h1>
+            </div>
+
+    <div class="login-card-content">
+        <form>
+            <div class="login-field">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="user@example.com" required>
+            </div>
+            <div class="login-field">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <button type="submit" class="ocean fullwidth">Log in</button>
+        </form>
+    </div>
+
+    </div>
+</body>
+
+</html>

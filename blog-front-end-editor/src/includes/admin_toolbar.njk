@@ -1,4 +1,4 @@
-{% macro dmin_toolbar() %}
+{% macro dmin_toolbar(t) %}
 {% import "../includes/lucide.njk" as lu %}
 <link rel="stylesheet" href="/admin_toolbar.css" />
 <link rel="stylesheet" href="/icons/style.css">
@@ -15,12 +15,16 @@
             <div class="toolbar-tool seashell" id="user-dropdown">
                 {{ lu.i("chevron-down", 2, ["va-2"]) }}
             </div>
+            <div class="toolbar-tool seashell hidden" id="dropdown-close">
+                {{ lu.i("chevron-up", 2, ["va-2"]) }}
+            </div>
         </div>
     </div>
     <div class="toolbar-container" id="admin-toolbar-center">
-        <p>Blog Post</p>
+        <p id = "current-task">Blog Post</p>
     </div>
     <div class="toolbar-container" id="admin-toolbar-right">
+        {% if t == "editor" %}
         <div class="toolbar-tool seashell" id="save">
             {{ lu.i("save", 2) }}
         </div>
@@ -39,7 +43,20 @@
         </div>
         <div class="toolbar-tool seashell hidden" id="sidebar-open">
             {{ lu.i("panel-right-open", 2) }}
+            {% endif %}
+            {% if t == "dashboard" %}
+            <div class="toolbar-tool seashell" id="dashboard-add-blog">
+            {{ lu.i("plus", 2) }}
+            </div>
+            <div class="toolbar-tool seashell" id="dashboard-review-comments">
+            {{ lu.i("messages-square", 2) }}
+        </div>
+        <div class="toolbar-tool seashell" id="dashboard-schedule">
+            {{ lu.i("calendar-days", 2) }}
+        </div>
+            {% endif %}
         </div>
     </div>
 </div>
+<script src="/admin_toolbar.js"></script>
 {% endmacro %}

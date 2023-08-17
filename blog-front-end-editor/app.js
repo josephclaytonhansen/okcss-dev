@@ -8,17 +8,40 @@ nunjucks.configure(['src/views', 'src/includes', 'src/assets'] , {
     watch: true
 })
 
-app.get('/', (req, res) => {
-    res.render('index.html', { root: '.' })})
+app.get('/editor', (req, res) => {
+    res.render('editor.html', { root: '.' })})
 
 app.get('/editor.js', (req, res) => {
     res.type('js')
-    res.sendFile("/src/views/js/editor.js", { root: '.' })
+    res.sendFile("/src/views/js/editor.min.js", { root: '.' })
 })
 
 app.get('/editor.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/views/css/editor.min.css", { root: '.' })
+})
+
+app.get('/login', (req, res) => {
+    res.render('login.html', { root: '.' })
+})
+
+app.get('/login.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/views/css/login.min.css", { root: '.' })
+})
+
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard.html', { root: '.' })
+})
+
+app.get('/dashboard.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/views/css/dashboard.min.css", { root: '.' })
+})
+
+app.get('/dashboard.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/views/js/dashboard.min.js", { root: '.' })
 })
 
 app.get('/app.css', (req, res) => {
@@ -29,6 +52,21 @@ app.get('/app.css', (req, res) => {
 app.get('/admin_toolbar.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/includes/css/admin_toolbar.min.css", { root: '.' })
+})
+
+app.get('/admin_toolbar.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/includes/js/admin_toolbar.min.js", { root: '.' })
+})
+
+app.get('/sidebar.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/includes/css/sidebar.min.css", { root: '.' })
+})
+
+app.get('/word_count.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/includes/css/word_count.min.css", { root: '.' })
 })
 
 app.get('/header.css', (req, res) => {

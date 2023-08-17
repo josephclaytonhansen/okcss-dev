@@ -12,10 +12,10 @@
     top: 0;
     left: 0;
     width: 96vw;
-    z-index: 1000;
+    z-index: 700;
     overflow: hidden;
     height: 1rem;
-    font-family: Helvetica, sans-serif;
+    font-family: 'PT Sans', Helvetica, sans-serif;
     border-bottom: 4px solid #303030;
     border-top: 4px solid #303030;
     font-size: 80%;
@@ -24,17 +24,16 @@
 .toolbar-container{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 1rem;
 }
 
 .toolbar-container:hover .toolbar-tool:not(:hover){
-    opacity: 0.5;
+    opacity: 0.65;
 }
 
 .toolbar-dropdown{
     padding: 0.5rem;
     background-color: #404040;
-    border-radius:100%;
 }
 
 .toolbar-tool, .toolbar-tool span{
@@ -45,4 +44,20 @@
 .spacer{
     padding-left:1rem;
     padding-right:1rem;
+}
+
+#user-dropdown, #dropdown-close{
+    margin-left: -1rem;
+}
+
+.dropdown-item{
+    font-size: 80%;
+    color: seashell;
+    padding: 0.65rem;
+    transition: all .2s;
+}
+
+.dropdown-item:hover{
+    background-color: rgb(49, 152, 196);
+    cursor: pointer;
 }

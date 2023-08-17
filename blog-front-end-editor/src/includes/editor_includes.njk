@@ -1,5 +1,7 @@
-{% macro ncludes() %}
-<script src ='https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest'></script>
+{% macro ncludes(page_type) %}
+{% if page_type == "editor" %}
+
+    <script src ='https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest'></script>
     <script src ='https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest'></script>
     <script src="https://cdn.jsdelivr.net/npm/editorjs-header-with-alignment@1.0.1/dist/bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/nested-list@latest"></script>
@@ -15,6 +17,28 @@
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
     <script src="https://cdn.jsdelivr.net/gh/trinhtam/editorjs-hyperlink@master/dist/bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/editorjs-drag-drop"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href = '/editor.css'>
-    <link rel="stylesheet" href = '/app.css'>
+
+{% endif %}
+
+{% if page_type == "login" %}
+    <link rel="stylesheet" href = '/login.css'>
+{% endif %}
+
+{% if page_type == "dashboard" %}
+    <link rel="stylesheet" href = '/dashboard.css'>
+{% endif %}
+
+<link rel="stylesheet" href = '/app.css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" href = '/editor.css'>
+<link rel="stylesheet" href = '/app.css'>
+
 {% endmacro %}

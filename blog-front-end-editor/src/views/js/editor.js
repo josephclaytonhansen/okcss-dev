@@ -1,3 +1,5 @@
+
+
 const editor = new EditorJS({
     holder: 'editorjs',
     data: {},
@@ -79,3 +81,28 @@ function parseToHTML(data) {
     html = html.join('')
     sessionStorage.setItem('current-blog-data', html)
 }
+
+let sidebar_open = true
+const sidebar = $('.blog-editor-sidebar')
+const sidebar_button_open = document.querySelector('#sidebar-open').querySelector('span')
+const sidebar_button_close = document.querySelector('#sidebar-close').querySelector('span')
+const sidebar_open_div = document.querySelector('#sidebar-open')
+const sidebar_close_div = document.querySelector('#sidebar-close')
+
+sidebar_button_open.addEventListener('click', () => {
+    //sidebar.classList.remove('hidden')
+    sidebar_open_div.classList.add('hidden')
+    sidebar_close_div.classList.remove('hidden')
+    sidebar_open = true
+    $("#editor-grid").css("grid-template-columns", "80vw 20vw")
+    $("#editor-left").css("margin-right", "2vw")
+})
+
+sidebar_button_close.addEventListener('click', () => {
+    //sidebar.classList.add('hidden')
+    sidebar_open_div.classList.remove('hidden')
+    sidebar_close_div.classList.add('hidden')
+    sidebar_open = false
+    $("#editor-grid").css("grid-template-columns", "100vw 0vw")
+    $("#editor-left").css("margin-right", "2rem")
+})
