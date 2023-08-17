@@ -29,6 +29,20 @@ body{
     flex-basis: 50%;
 }
 
+@media screen and (max-width: 1000px){
+    
+    .grid, .bottomright .wrapper{
+        display: block!important;
+        overflow-y: scroll!important;
+        
+    }
+
+    .bottomright .wrapper div{
+        height: 50%!important;
+    }
+
+}
+
 .right{
     height: calc(100vh - 6rem);
     padding: 0;
