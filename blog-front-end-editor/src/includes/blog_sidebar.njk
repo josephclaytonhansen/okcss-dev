@@ -1,5 +1,6 @@
 {% macro idebar(
     blog_title,
+    meta_title,
     content,
     meta_description,
     meta_keywords,
@@ -9,8 +10,7 @@
     slug,
     categories=[],
     all_categories=["category1", "category2", "category3"],
-    blog_tags=[],
-    all_tags=["tag1", "tag2", "tag3"],
+    blog_tags,
     author,
     all_authors=["author1", "author2", "author3"]
 ) %}
@@ -22,6 +22,11 @@
         <div class="sidebar-tool" id="sidebar-tool-title">
             <label for="blog-title">Title</label>
             <input type="text" id="blog-title" value="{{ blog_title }}" />
+        </div>
+
+        <div class="sidebar-tool" id="sidebar-tool-meta-title">
+            <label for="blog-title">Meta Title</label>
+            <input type="text" id="blog-meta-title" value="{{ meta_title }}" />
         </div>
 
         <div class="sidebar-tool" id="sidebar-tool-meta-description">
@@ -60,11 +65,7 @@
 
         <div class="sidebar-tool" id="sidebar-tool-blog-tags">
             <label for="blog-tags">Blog Tags</label>
-            <select id="blog-tags" multiple>
-                {% for tag in all_tags %}
-                <option value="{{ tag }}" {% if tag in blog_tags %} selected {% endif %}>{{ tag }}</option>
-                {% endfor %}
-            </select>
+            <input type="text" id="blog-tags" value="{{ blog_tags }}" />
         </div>
 
         <div class="sidebar-tool" id="sidebar-tool-author">
