@@ -135,6 +135,10 @@ button.ocean:hover .lucide{
     object-fit: cover;
 }
 
+.img-container:has(img.rounded){
+    border-radius:8px;
+}
+
 .fullwidth{
     width: 100%;
 }

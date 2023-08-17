@@ -31,7 +31,7 @@ function showDropdown(target){
     //add dropdown to the body
     document.body.appendChild(dropdown)
     //add dropdown items
-    let dropdown_items = ['Profile', 'Log out']
+    let dropdown_items = ['Account settings', 'Log out']
     dropdown_items.forEach((item) => {
         let dropdown_item = document.createElement('div')
         dropdown_item.classList.add('dropdown-item')

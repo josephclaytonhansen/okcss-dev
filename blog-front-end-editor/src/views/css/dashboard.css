@@ -74,7 +74,7 @@ body{
     background-color: white;
 }
 
-.left div, .topright div{
+.left .c, .topright .c{
     margin-top:-1rem;
 }
 
@@ -111,4 +111,17 @@ hr{
 
 .bottomright div div, .topright .wrapper{
     padding: 2rem;
+    padding-top: 1rem;
+}
+
+.gallery{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: .5rem;
+    flex-wrap: wrap;
+    top: 2rem;
+    position: relative;
+    height: auto;
+    width: 100%;
 }
