@@ -30,6 +30,20 @@ app.get('/login.css', (req, res) => {
     res.sendFile("/src/views/css/login.min.css", { root: '.' })
 })
 
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard.html', { root: '.' })
+})
+
+app.get('/dashboard.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/views/css/dashboard.min.css", { root: '.' })
+})
+
+app.get('/dashboard.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/views/js/dashboard.min.js", { root: '.' })
+})
+
 app.get('/app.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/assets/css/app.min.css", { root: '.' })

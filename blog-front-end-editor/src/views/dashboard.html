@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% import "../includes/editor_includes.njk" as i %}
+    {% import "../includes/meta.njk" as m %}
+    {% import "../includes/admin_toolbar.njk" as a %}
+    {{ i.ncludes("dashboard") }}
+    {{ m.eta()}}
+</head>
+
+<body>
+    {{ a.dmin_toolbar("dashboard") }}
+    <script src="/dashboard.js"></script>
+</body>
+
+</html>
