@@ -125,3 +125,14 @@ hr{
     height: auto;
     width: 100%;
 }
+
+.gallery-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gallery-top button{
+    max-height:70%;
+}
