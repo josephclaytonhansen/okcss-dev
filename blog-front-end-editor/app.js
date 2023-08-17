@@ -31,6 +31,17 @@ app.get('/header.css', (req, res) => {
     res.sendFile("/src/includes/css/header.css", { root: '.' })
 })
 
+app.get('/icons/style.css', (req, res) => {
+    res.type('text/css')
+    res.sendFile('src/assets/lucide/css/l.min.css', {root: '.'})
+})
+
+app.get('/icons/:icon', (req, res) => {
+    res.type('image/svg+xml')
+    const icon = req.params.icon
+    res.sendFile('src/assets/lucide/icons/'+icon+'.svg', {root: '.'})
+})
+
 app.listen(5920, () => {
     console.log('Server is running on port 5920')
 })

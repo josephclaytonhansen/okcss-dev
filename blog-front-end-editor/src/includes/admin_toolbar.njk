@@ -1,7 +1,12 @@
 {% macro dmin_toolbar() %}
+{% import "../includes/lucide.njk" as lu %}
 <link rel="stylesheet" href="/admin_toolbar.css"/>
+<link rel="stylesheet" href="/icons/style.css">
 <div class = "admin-toolbar">
     <div class = "toolbar-container" id = "admin-toolbar-left">
+        <div class = "toolbar-tool seashell"  id = "home">
+            {{ lu.i("home", 2) }}
+        </div>
 
     </div>
     <div class = "toolbar-container" id = "admin-toolbar-center">
