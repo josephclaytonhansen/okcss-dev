@@ -18,17 +18,22 @@ app.get('/editor.js', (req, res) => {
 
 app.get('/editor.css', (req, res) => {
     res.type('css')
-    res.sendFile("/src/views/css/editor.css", { root: '.' })
+    res.sendFile("/src/views/css/editor.min.css", { root: '.' })
+})
+
+app.get('/app.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/assets/css/app.min.css", { root: '.' })
 })
 
 app.get('/admin_toolbar.css', (req, res) => {
     res.type('css')
-    res.sendFile("/src/includes/css/admin_toolbar.css", { root: '.' })
+    res.sendFile("/src/includes/css/admin_toolbar.min.css", { root: '.' })
 })
 
 app.get('/header.css', (req, res) => {
     res.type('css')
-    res.sendFile("/src/includes/css/header.css", { root: '.' })
+    res.sendFile("/src/includes/css/header.min.css", { root: '.' })
 })
 
 app.get('/icons/style.css', (req, res) => {

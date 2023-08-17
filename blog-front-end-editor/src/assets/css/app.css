@@ -1,0 +1,43 @@
+.hidden{
+    display: none;
+}
+
+.seashell{
+    color: seashell;
+}
+
+.seashell .lucide{
+    background-color: seashell;
+}
+
+.lucide-seashell{
+    background-color: seashell;
+}
+
+.seashell:hover{
+    color: rgb(205, 231, 242);
+}
+
+.seashell:hover .lucide{
+    background-color: rgb(205, 231, 242);
+}
+
+.ocean{
+    color: rgb(49, 152, 196);
+}
+
+.ocean .lucide{
+    background-color: rgb(49, 152, 196);
+}
+
+.lucide-ocean{
+    background-color: rgb(49, 152, 196);
+}
+
+.ocean:hover{
+    color: rgb(107, 176, 206);
+}
+
+.ocean:hover .lucide{
+    background-color: rgb(107, 176, 206);
+}

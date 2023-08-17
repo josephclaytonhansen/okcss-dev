@@ -1,19 +1,45 @@
 {% macro dmin_toolbar() %}
 {% import "../includes/lucide.njk" as lu %}
-<link rel="stylesheet" href="/admin_toolbar.css"/>
+<link rel="stylesheet" href="/admin_toolbar.css" />
 <link rel="stylesheet" href="/icons/style.css">
-<div class = "admin-toolbar">
-    <div class = "toolbar-container" id = "admin-toolbar-left">
-        <div class = "toolbar-tool seashell"  id = "home">
+<div class="admin-toolbar">
+    <div class="toolbar-container" id="admin-toolbar-left">
+        <div class="toolbar-tool seashell" id="home">
             {{ lu.i("home", 2) }}
         </div>
-
+        <div class="toolbar-tool seashell" id="posts">
+            {{ lu.i("gallery-horizontal-end", 2) }}
+        </div>
+        <div class="toolbar-container toolbar-dropdown">
+            <p id="user">example@example.com</p>
+            <div class="toolbar-tool seashell" id="user-dropdown">
+                {{ lu.i("chevron-down", 2, ["va-2"]) }}
+            </div>
+        </div>
     </div>
-    <div class = "toolbar-container" id = "admin-toolbar-center">
-
+    <div class="toolbar-container" id="admin-toolbar-center">
+        <p>Blog Post</p>
     </div>
-    <div class = "toolbar-container" id = "admin-toolbar-right">
-        
+    <div class="toolbar-container" id="admin-toolbar-right">
+        <div class="toolbar-tool seashell" id="save">
+            {{ lu.i("save", 2) }}
+        </div>
+        <div class="toolbar-tool seashell" id="preview">
+            {{ lu.i("eye", 2) }}
+        </div>
+        <div class="toolbar-tool ocean" id="publish">
+            {{ lu.i("check", 2) }}
+        </div>
+        <div class="toolbar-tool ocean" id="schedule">
+            {{ lu.i("calendar-check", 2) }}
+        </div>
+        <div class = "spacer"></div>
+        <div class="toolbar-tool seashell" id="sidebar-close">
+            {{ lu.i("panel-right-close", 2) }}
+        </div>
+        <div class="toolbar-tool seashell hidden" id="sidebar-open">
+            {{ lu.i("panel-right-open", 2) }}
+        </div>
     </div>
 </div>
 {% endmacro %}
