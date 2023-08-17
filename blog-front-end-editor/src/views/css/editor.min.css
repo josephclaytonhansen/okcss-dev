@@ -1,1 +1,1 @@
-#editorjs{border:solid 1px #d6d6d6;border-radius:4px;padding:2vw}.ce-block{max-width:50vw;margin:auto}
+body{padding:0;overflow-x:hidden;font-size:100%;font-family:'PT Sans',Helvetica,sans-serif}#editorjs{border:solid 1px #d6d6d6;border-radius:4px;padding:2vw}#editor-left{margin-top:2rem;padding:min(1vw,12px);margin-right:2rem}#editor-grid{overflow-x:hidden;height:calc(100vh - 5.2rem);transition:.3s;display:grid;grid-template-columns:80vw 20vw;padding:0;margin:0;width:100vw}

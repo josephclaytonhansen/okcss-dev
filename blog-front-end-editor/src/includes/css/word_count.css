@@ -1,0 +1,15 @@
+#word-count{
+    position: absolute;
+    bottom: 2vh;
+    left: 2vw;
+    padding: 5px;
+    background-color: rgb(255, 255, 255);
+    border: solid 1px rgb(214, 214, 214);
+    border-radius: 4px;
+    font-size: .75rem;
+    font-family: 'PT Sans', Helvetica, sans-serif;
+    color: #303030;
+    z-index: 999;
+    pointer-events: none;
+    opacity: .75;
+}

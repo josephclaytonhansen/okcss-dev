@@ -15,7 +15,7 @@
     z-index: 1000;
     overflow: hidden;
     height: 1rem;
-    font-family: Helvetica, sans-serif;
+    font-family: 'PT Sans', Helvetica, sans-serif;
     border-bottom: 4px solid #303030;
     border-top: 4px solid #303030;
     font-size: 80%;
@@ -24,11 +24,11 @@
 .toolbar-container{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 1rem;
 }
 
 .toolbar-container:hover .toolbar-tool:not(:hover){
-    opacity: 0.5;
+    opacity: 0.65;
 }
 
 .toolbar-dropdown{
@@ -45,4 +45,8 @@
 .spacer{
     padding-left:1rem;
     padding-right:1rem;
+}
+
+#user-dropdown{
+    margin-left: -1rem;
 }

@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    {% import "../includes/blog_sidebar.njk" as s %}
     {% import "../includes/editor_includes.njk" as i %}
+    {% import "../includes/blog_sidebar.njk" as s %}
     {% import "../includes/admin_toolbar.njk" as a %}
     {% import "../includes/header.njk" as h %}
-    {% import "../includes/footer.njk" as f %}
     {% import "../includes/meta.njk" as m %}
+    {% import "../includes/word_count.njk" as w %}
 
     {{ m.eta() }}
     {{ i.ncludes() }}
 </head>
+
 <body>
     {{ a.dmin_toolbar() }}
     {{ h.eader() }}
+    <div id="editor-grid">
+        <div id="editor-left">
+            <div id='editorjs'></div>
+        </div>
+        <div id="editor-right">
+            {{ s.idebar() }}
+        </div>
+    </div>
 
-    <div id = 'editorjs'></div>
+    {{ w.ord_count() }}
+
     <script src="/editor.js"></script>
-    
-    {{ s.idebar() }}
-    {{ f.ooter() }}
 </body>
+
 </html>

@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 app.get('/editor.js', (req, res) => {
     res.type('js')
-    res.sendFile("/src/views/js/editor.js", { root: '.' })
+    res.sendFile("/src/views/js/editor.min.js", { root: '.' })
 })
 
 app.get('/editor.css', (req, res) => {
@@ -29,6 +29,16 @@ app.get('/app.css', (req, res) => {
 app.get('/admin_toolbar.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/includes/css/admin_toolbar.min.css", { root: '.' })
+})
+
+app.get('/sidebar.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/includes/css/sidebar.min.css", { root: '.' })
+})
+
+app.get('/word_count.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/includes/css/word_count.min.css", { root: '.' })
 })
 
 app.get('/header.css', (req, res) => {

@@ -41,3 +41,79 @@
 .ocean:hover .lucide{
     background-color: rgb(107, 176, 206);
 }
+
+.danger{
+    color: rgb(223, 75, 42);
+}
+
+.danger .lucide{
+    background-color: rgb(223, 75, 42);
+}
+
+.lucide-danger{
+    background-color: rgb(223, 75, 42);
+}
+
+.danger:hover{
+    color: rgb(255, 107, 107);;
+}
+
+.danger:hover .lucide{
+    background-color: rgb(255, 107, 107);;
+}
+
+button{
+    border-radius:4px;
+    border: none;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+button.danger{
+    background-color: rgb(223, 75, 42);
+}
+
+button.danger:hover{
+    background-color: rgb(255, 107, 107);
+    color: seashell;
+}
+
+button.danger .lucide{
+    background-color: seashell;
+}
+
+button.danger{
+    color: seashell;
+}
+
+button.danger:hover .lucide{
+    background-color: seashell;
+}
+
+button.ocean{
+    background-color: rgb(49, 152, 196);
+}
+
+button.ocean:hover{
+    background-color: rgb(107, 176, 206);
+    color: seashell;
+}
+
+button.ocean .lucide{
+    background-color: seashell;
+}
+
+button.ocean{
+    color: seashell;
+}
+
+button.ocean:hover .lucide{
+    background-color: seashell;
+}
