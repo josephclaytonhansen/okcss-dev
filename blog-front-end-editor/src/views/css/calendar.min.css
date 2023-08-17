@@ -1,0 +1,1 @@
+#calendar-container{width:60vw;height:60vh;position:absolute;left:20vw;top:20vh;z-index:855;border-radius:25px;}#calendar{display:grid;grid-template-columns:1fr 3fr;height:60vh;border-radius:25px;}#calendar .calendar-left{background-color:rgb(49,152,196);border-radius:25px 0 0 25px;}#calendar .calendar-right{background-color:#eee;border-radius:0 25px 25px 0;}
