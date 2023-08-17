@@ -15,6 +15,9 @@
             <div class="toolbar-tool seashell" id="user-dropdown">
                 {{ lu.i("chevron-down", 2, ["va-2"]) }}
             </div>
+            <div class="toolbar-tool seashell hidden" id="dropdown-close">
+                {{ lu.i("chevron-up", 2, ["va-2"]) }}
+            </div>
         </div>
     </div>
     <div class="toolbar-container" id="admin-toolbar-center">
@@ -55,4 +58,5 @@
         </div>
     </div>
 </div>
+<script src="/admin_toolbar.js"></script>
 {% endmacro %}

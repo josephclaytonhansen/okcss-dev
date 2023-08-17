@@ -54,6 +54,11 @@ app.get('/admin_toolbar.css', (req, res) => {
     res.sendFile("/src/includes/css/admin_toolbar.min.css", { root: '.' })
 })
 
+app.get('/admin_toolbar.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/includes/js/admin_toolbar.min.js", { root: '.' })
+})
+
 app.get('/sidebar.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/includes/css/sidebar.min.css", { root: '.' })
