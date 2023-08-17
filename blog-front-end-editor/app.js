@@ -39,6 +39,11 @@ app.get('/dashboard.css', (req, res) => {
     res.sendFile("/src/views/css/dashboard.min.css", { root: '.' })
 })
 
+app.get('/calendar.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/views/css/calendar.min.css", { root: '.' })
+})
+
 app.get('/dashboard.js', (req, res) => {
     res.type('js')
     res.sendFile("/src/views/js/dashboard.min.js", { root: '.' })
