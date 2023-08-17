@@ -8,8 +8,8 @@ nunjucks.configure(['src/views', 'src/includes', 'src/assets'] , {
     watch: true
 })
 
-app.get('/', (req, res) => {
-    res.render('index.html', { root: '.' })})
+app.get('/editor', (req, res) => {
+    res.render('editor.html', { root: '.' })})
 
 app.get('/editor.js', (req, res) => {
     res.type('js')
@@ -19,6 +19,15 @@ app.get('/editor.js', (req, res) => {
 app.get('/editor.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/views/css/editor.min.css", { root: '.' })
+})
+
+app.get('/login', (req, res) => {
+    res.render('login.html', { root: '.' })
+})
+
+app.get('/login.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/views/css/login.min.css", { root: '.' })
 })
 
 app.get('/app.css', (req, res) => {
