@@ -74,9 +74,13 @@ app.get('/dashboard.js', (req, res) => {
     res.sendFile("/src/views/js/dashboard.min.js", { root: '.' })
 })
 
-app.get('/dashboard/gallery.js', (req, res) => {
+app.get('/img/gallery.js', (req, res) => {
     res.type('js')
-    res.sendFile("/src/views/js/utils/gallery.min.js", { root: '.' })
+    res.sendFile("/src/views/js/utils/imgs/gallery.min.js", { root: '.' })
+})
+app.get('/img/list.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/views/js/utils/imgs/img_list.min.js", { root: '.' })
 })
 
 app.get('/app.css', (req, res) => {
@@ -87,6 +91,11 @@ app.get('/app.css', (req, res) => {
 app.get('/lightbox-modal.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/assets/css/lightbox-modal.min.css", { root: '.' })
+})
+
+app.get('/image/gallery.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/assets/css/img-gallery-list-view.min.css", { root: '.' })
 })
 
 app.get('/admin_toolbar.css', (req, res) => {

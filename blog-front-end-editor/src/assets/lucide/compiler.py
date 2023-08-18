@@ -18,8 +18,8 @@ for path in paths:
                     data = f.read()
                     used_icons += re.findall(r'lu\.i\("(.+?)"\)', data)
                     used_icons += re.findall(r'lu\.i\("(.+?)"', data)
-            except IsADirectoryError:
-                pass
+            except Exception as e:
+                print(e)
 
 used_icons = sorted(list(set(used_icons)))
 
