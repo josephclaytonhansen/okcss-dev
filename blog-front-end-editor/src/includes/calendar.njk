@@ -1,13 +1,43 @@
-{% macro alendar(container, month, day, year) %}
+{% macro alendar(container, month="August", day=17, year) %}
 
-<link rel="stylesheet" href = '/calendar.css'>
-<div id="{{ container }}">
-    <div id = "calendar">
-        <div class = "calendar-left">
+<link rel="stylesheet" href='/calendar.css'>
+<div id="{{ container }}" class="hidden">
+    <div id="calendar">
+        <div class="calendar-left">
+            <div class="today">
+                <div class="today-day">{{day}}</div>
+                <div class="today-month">{{month}}</div>
+            </div>
+            <div class="upcoming">
+                <ul>
+                    <li>
+                        <div class="upcoming-schedule">
+                            <p>8/18</p>
+                            <p>Blog post about stuff</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="upcoming-schedule">
+                            <p>8/19</p>
+                            <p>Blog post about stuff</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="upcoming-schedule">
+                            <p>8/20</p>
+                            <p>Blog post about stuff</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class = "calendar-right">
+
+        <div class="calendar-right">
+            <div id="month-and-year"></div>
+            <div id="calendar-body"></div>
         </div>
-    </div>
 </div>
+</div>
+<script src="/calendar.js"></script>
 
 {% endmacro %}
