@@ -74,6 +74,11 @@ app.get('/dashboard.js', (req, res) => {
     res.sendFile("/src/views/js/dashboard.min.js", { root: '.' })
 })
 
+app.get('/dashboard/gallery.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/views/js/utils/gallery.min.js", { root: '.' })
+})
+
 app.get('/app.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/assets/css/app.min.css", { root: '.' })

@@ -32,9 +32,10 @@
             <div class="topright">
                 <div class='wrapper'>
                     <section class="gallery-top">
-                        <h2>Gallery</h2>
+                        <h2>Images</h2>
                         <section class="gallery-top">
-                            <span>{{ lu.i("folder-tree")}}</span>
+                            <span id = "list-view">{{ lu.i("folder-tree")}}</span>
+                            <span id = "gallery-view" class="hidden">{{ lu.i("layout-grid")}}</span>
                             <span>{{ lu.i("plus")}}</span>
                         </section>
                     </section>
@@ -61,6 +62,7 @@
         </div>
     </div>
     <script src="/dashboard.js"></script>
+    <script src="/dashboard/gallery.js"></script>
 </body>
 
 </html>
