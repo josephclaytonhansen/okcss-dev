@@ -46,6 +46,13 @@
     padding: 0.5rem;
 }
 
+.lightbox-modal-src{
+    word-wrap: break-word;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 80%;
+}
 .lightbox-modal-table td:first-child{
     font-weight: 600;
 }
@@ -77,4 +84,11 @@
 
 .lightbox-modal-close:hover .lucide{
     background-color: rgb(49, 152, 196);
+}
+
+.lightbox-modal-delete{
+    z-index:12;
+    position: relative;
+    top: 1rem;
+    right: -3rem;
 }

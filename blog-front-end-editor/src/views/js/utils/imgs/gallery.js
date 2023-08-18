@@ -98,6 +98,16 @@ function lightboxModal(image){
     type.append(typeValue)
     table.append(type)
 
+    let src = $('<tr>')
+    let srcLabel = $('<td>')
+    srcLabel.text('Slug')
+    src.append(srcLabel)
+    let srcValue = $('<td>')
+    srcValue.addClass('lightbox-modal-src')
+    srcValue.text(image['src'])
+    src.append(srcValue)
+    table.append(src)
+
     let alt = $('<tr>')
     let altLabel = $('<td>')
     altLabel.text('Alt')
@@ -109,6 +119,7 @@ function lightboxModal(image){
     altValue.attr('contenteditable', 'true')
 
     let close = $('<div>')
+
     close.addClass('lightbox-modal-close')
     let close_icon = $('<span>')
     close_icon.addClass('lucide lucide-4 lucide-va-1 icon-x')
@@ -123,8 +134,23 @@ function lightboxModal(image){
     close.append(close_icon)
     modal.append(close)
 
-    $('body').append(modal)
-    modal.on('click', ()=>{
+    let del = $('<button>')
 
+    del.addClass('lightbox-modal-delete danger')
+    let delete_icon = $('<span>')
+    delete_icon.addClass('lucide lucide-4 lucide-va-1 icon-trash-2')
+    delete_icon.css('-webkit-mask-image', 'url(/icons/trash-2)')
+    delete_icon.css('mask-image', 'url(/icons/trash-2)')
+    delete_icon.css('mask-size', 'cover')
+    delete_icon.css('-webkit-mask-size', 'cover')
+
+    delete_icon.on('click', ()=>{
+        modal.remove()
     })
+    del.text = 'Delete'
+    del.append(delete_icon)
+    modal.append(del)
+
+
+    $('body').append(modal)
 }
