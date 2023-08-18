@@ -1,4 +1,4 @@
-import os, re, shutil
+import os, re, zipfile
 src_path = os.path.join(os.getcwd(), "blog-front-end-editor")
 dist_path = os.path.join(os.getcwd(), "blog-front-end-editor", "dist")
 
@@ -26,8 +26,7 @@ def copy_all():
     os.system("rm -rf " + os.path.join(dist_path, "node_modules"))
     #remove dist 
     os.system("rm -rf " + os.path.join(dist_path, "dist"))
-    #remove src
-    os.system("rm -rf " + os.path.join(dist_path, "src"))
+    
     # remove package-lock.json
     os.system("rm -rf " + os.path.join(dist_path, "package-lock.json"))
     # change package.json "start" script from "cd .. && python3 blog-front-end-editor/dist_compiler.py && python3 blog-front-end-editor/src/assets/lucide/compiler.py && cd blog-front-end-editor && nodemon app.min.js" to "npm i && node start app.min.js"
@@ -36,9 +35,15 @@ def copy_all():
     with open(os.path.join(dist_path, "package.json"), "w") as f:
         f.write(re.sub(r'"start": "cd .. && python3 blog-front-end-editor/dist_compiler.py && python3 blog-front-end-editor/src/assets/lucide/compiler.py && cd blog-front-end-editor && nodemon app.min.js"', '"start": "npm i && node app.min.js"', file))
 
+
+
 def zip_dist():
     global dist_path
-    shutil.make_archive(os.path.join(os.getcwd(), "blog-front-end-editor", "dist"), 'zip', dist_path)
+    # zip dist folder recursively
+    with zipfile.ZipFile(os.path.join(os.getcwd(), "blog-front-end-editor", "dist.zip"), "w", zipfile.ZIP_DEFLATED) as zip:
+        for root, dirs, files in os.walk(dist_path):
+            for file in files:
+                zip.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(dist_path, '..')))
     # remove dist folder
     os.system("rm -rf " + dist_path)
     
