@@ -31,7 +31,12 @@ app.get('/login.css', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-    res.render('dashboard.html', { root: '.' })
+    res.render('dashboard.html', { root: '.', date: {
+        day: new Date().getDate(),
+        month: new Date().getMonth(),
+        monthName: new Date().toLocaleString('default', { month: 'long' }),
+        year: new Date().getFullYear()
+    }})
 })
 
 app.get('/dashboard.css', (req, res) => {
