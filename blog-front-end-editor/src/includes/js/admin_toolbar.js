@@ -32,9 +32,15 @@ function showDropdown(target){
     document.body.appendChild(dropdown)
     //add dropdown items
     let dropdown_items = ['Account settings', 'Log out']
+    let dropdown_links = ['/account', '/logout']
     dropdown_items.forEach((item) => {
         let dropdown_item = document.createElement('div')
         dropdown_item.classList.add('dropdown-item')
+        //add click event listener
+        dropdown_item.addEventListener('click', (e) => {
+            link = dropdown_links[dropdown_items.indexOf(item)]
+            document.location.href = link
+        })
         dropdown_item.innerHTML = item
         dropdown.appendChild(dropdown_item)
     })
