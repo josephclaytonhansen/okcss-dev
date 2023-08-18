@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% import "../includes/editor_includes.njk" as i %}
+    {% import "../includes/meta.njk" as m %}
+    {% import "../includes/admin_toolbar.njk" as a %}
+    {% import "../includes/lucide.njk" as lu %}
+    {% import "../includes/calendar.njk" as c%}
+    <link rel="stylesheet" href="/icons/style.css">
+    {{ i.ncludes("account") }}
+    {{ m.eta()}}
+</head>
+
+<body>
+    {{ c.alendar("calendar-container", month=date.monthName, day=date.day, year=date.year) }}
+    {{ a.dmin_toolbar("account", "", user) }}
+    <div class="grid">
+        <div class="section left thin">
+            <div class="profile">
+                <div class="flex-center gap-1">
+                    <div class="img-container profile-picture">
+                        <img src="{{ user.picture }}" alt="profile picture" class="square rounded">
+                    </div>
+                    {{lu.i("pencil", 2)}}
+                </div>
+                <div class="flex-center gap-1">
+                    <h1 contenteditable="true">{{user.display_name}}</h1>
+                </div>
+                <hr width="50%" />
+                <div class="flex-center gap-1" id = "bio">
+                    <p contenteditable="true"><i >{{user.bio}}</i></p>
+                </div>
+                <div class="flex-center gap-1 baseline-down squish">
+                    <p><strong>Email:</strong></p><p >{{user.email}}</p>
+                </div>
+                <div class="flex-center gap-1 baseline-down squish">
+                    <p><strong>Username:</strong></p><p>{{user.username}}</p>
+                </div>
+                <div class="flex-center gap-1 baseline-down" style = "margin-top:2rem;">
+                    <button class="ocean">{{lu.i("key-round")}} Change password</button>
+                    <button class="ocean">{{lu.i("fingerprint")}} Edit MFA</button>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="section left">
+            <div class='c' id="pages">
+                <h2>Pages</h2>
+                <hr />
+                <section></section>
+            </div>
+            <div class='c' id="posts">
+                <h2>Posts</h2>
+                <hr />
+                <section></section>
+            </div>
+            <div class='c' id="comments">
+                <h2>Comments</h2>
+                <hr />
+                <section></section>
+            </div>
+        </div>
+    </div>
+</body>

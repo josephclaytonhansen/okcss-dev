@@ -2,6 +2,7 @@
     width: 100vw;
     height: 110vh;
     position: absolute;
+    top: 0;
     z-index:600;
     overflow: hidden;
     background-color: #505050;

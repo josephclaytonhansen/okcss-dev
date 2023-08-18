@@ -23,6 +23,10 @@ body{
     width: calc(100vw - 4rem);
 }
 
+.grid h2{
+    font-weight: 400;
+}
+
 .grid .section{
     flex-grow: 1;
     flex-shrink: 1;

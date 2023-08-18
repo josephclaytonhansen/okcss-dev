@@ -139,6 +139,38 @@ button.ocean:hover .lucide{
     border-radius:8px;
 }
 
+img.rounded{
+    border-radius:8px;
+}
+
 .fullwidth{
     width: 100%;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.baseline-down{
+    vertical-align: baseline;
+    align-items: baseline;
+}
+
+.squish{
+    margin-top:-.75rem;
+    margin-bottom:-.75rem;
+}
+
+.gap-1{
+    gap: 0.5rem;
+}
+
+.gap-2{
+    gap: 1rem;
+}
+
+.gap-3{
+    gap: 1.5rem;
 }

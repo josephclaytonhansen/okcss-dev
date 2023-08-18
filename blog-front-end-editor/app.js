@@ -54,6 +54,31 @@ app.get('/dashboard', (req, res) => {
     }, user:user})
 })
 
+app.get('/account', (req, res) => {
+    //eventually, get this from the database
+    const user = {
+        email: 'served_from@express.app',
+        username: 'served_from_express',
+        password: 'password',
+        picture: 'https://unsplash.it/1000/450/?random?',
+        bio: 'I am a user served from express. This is my bio. As a placeholder, I have little else to say.',
+        display_name: 'Served F. Express',
+    }
+    const date = {
+        day: new Date().getDate(),
+        month: new Date().getMonth(),
+        monthName: new Date().toLocaleString('default', { month: 'long' }),
+        year: new Date().getFullYear()
+    }
+    res.render('account.html', { root: '.', user:user, date:date })
+
+})
+
+app.get('/account.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/views/css/account.min.css", { root: '.' })
+})
+
 app.get('/dashboard.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/views/css/dashboard.min.css", { root: '.' })

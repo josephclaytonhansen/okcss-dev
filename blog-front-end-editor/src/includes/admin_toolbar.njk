@@ -30,6 +30,9 @@
             {% if t == "dashboard" %}
             Dashboard
             {% endif %}
+            {% if t == "account" %}
+            Account
+            {% endif %}
         </p>
     </div>
     <div class="toolbar-container" id="admin-toolbar-right">
@@ -53,7 +56,7 @@
         <div class="toolbar-tool seashell hidden" id="sidebar-open">
             {{ lu.i("panel-right-open", 2) }}
             {% endif %}
-            {% if t == "dashboard" %}
+            {% if t == "dashboard" or t=="account" %}
             <div class="toolbar-tool seashell" id="dashboard-add-blog">
             {{ lu.i("plus", 2) }}
             </div>
