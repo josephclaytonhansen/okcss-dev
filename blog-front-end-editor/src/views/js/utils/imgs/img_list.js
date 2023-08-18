@@ -12,26 +12,44 @@ function populateListView(){
 
     let container = $('.list-view .list')
     for(let i = 0; i < images.length; i++){
-        let row = $('<div class="row"></div>')
-        let img = $('<img class="img-thumbnail" src="'+images[i].src+'" alt="'+images[i].metadata.alt+'">')
-        let name = $('<div class="name">'+images[i].name+'</div>')
-        let size = $('<div class="size">'+(images[i].metadata.size/1024).toFixed(2)+'KB</div>')
-        let type = $('<div class="type">'+images[i].metadata.type+'</div>')
-        let width = $('<div class="width">'+images[i].metadata.width+'px</div>')
-        let height = $('<div class="height">'+images[i].metadata.height+'px</div>')
-        let date = $('<div class="date">'+images[i].metadata.createdAt.toLocaleDateString()+'</div>')
-        let time = $('<div class="time">'+images[i].metadata.createdAt.toLocaleTimeString()+'</div>')
+        let row = $('<div class="img-list-row"></div>')
+        let img_container = $('<div class="img-container"></div>')
+        let img = $('<img class="img-thumbnail square" src="'+images[i].src+'" alt="'+images[i].metadata.alt+'">')
+        img_container.append(img)
+        img.on('click', ()=>{
+            lightboxModal(images[i])
+        })
+        let name = $('<div id="name">'+images[i].name+'</div>')
+        let slug = $('<div id="slug'+'-'+i.toString()+'" class="slug">Copy slug</div>')
+
+        let type = $('<div id="type">'+images[i].metadata.type+'</div>')
+        let dimensions = $('<div id="dimensions">'+images[i].metadata.width+'x'+images[i].metadata.height+'</div>')
+        let date = $('<div id="date">'+images[i].metadata.createdAt.toLocaleDateString()+'</div>')
         let rowColor = i % 2 == 0 ? 'row-even' : 'row-odd'
         row.addClass(rowColor)
-        row.append(img)
+        row.append(img_container)
         row.append(name)
-        row.append(size)
+        row.append(slug)
         row.append(type)
-        row.append(width)
-        row.append(height)
+        row.append(dimensions)
         row.append(date)
-        row.append(time)
         container.append(row)
+
+        let slugs = document.getElementsByClassName('slug')
+        slugs = Array.from(slugs)
+        slugs.forEach((slug)=>{
+            slug.addEventListener('click', (e)=>{
+                let count = parseInt(slug.id.split('-')[1])
+                let s = images[count].src
+                navigator.clipboard.writeText(s)
+                slug.innerHTML = 'Copied!'
+                setTimeout(()=>{
+                    slug.innerHTML = 'Copy slug'
+                }, 1000)
+            })
+        })
+
+
     }
 }
 
