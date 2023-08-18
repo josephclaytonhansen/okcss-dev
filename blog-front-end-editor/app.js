@@ -8,8 +8,18 @@ nunjucks.configure(['src/views', 'src/includes', 'src/assets'] , {
     watch: true
 })
 
-app.get('/editor', (req, res) => {
-    res.render('editor.html', { root: '.' })})
+app.get('/:slug/edit', (req, res) => {
+    const slug = req.params.slug
+    //eventually, get this from the database
+    const user = {
+        email: 'served_from@express.app',
+        username: 'served_from_express',
+    }
+    const post = {
+        title: 'Served from Express',
+        slug: slug,
+    }
+    res.render('editor.html', { root: '.', post:post, user:user })})
 
 app.get('/editor.js', (req, res) => {
     res.type('js')
@@ -31,12 +41,17 @@ app.get('/login.css', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
+        //eventually, get this from the database
+        const user = {
+            email: 'served_from@express.app',
+            username: 'served_from_express',
+        }
     res.render('dashboard.html', { root: '.', date: {
         day: new Date().getDate(),
         month: new Date().getMonth(),
         monthName: new Date().toLocaleString('default', { month: 'long' }),
         year: new Date().getFullYear()
-    }})
+    }, user:user})
 })
 
 app.get('/dashboard.css', (req, res) => {

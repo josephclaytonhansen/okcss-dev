@@ -1,4 +1,4 @@
-{% macro dmin_toolbar(t) %}
+{% macro dmin_toolbar(t, post, user) %}
 {% import "../includes/lucide.njk" as lu %}
 <link rel="stylesheet" href="/admin_toolbar.css" />
 <link rel="stylesheet" href="/icons/style.css">
@@ -11,7 +11,9 @@
             {{ lu.i("gallery-horizontal-end", 2) }}
         </div>
         <div class="toolbar-container toolbar-dropdown">
-            <p id="user">example@example.com</p>
+            <p id="user">
+                Hey, {{ user.username }} :) 
+            </p>
             <div class="toolbar-tool seashell" id="user-dropdown">
                 {{ lu.i("chevron-down", 2, ["va-2"]) }}
             </div>
@@ -21,7 +23,14 @@
         </div>
     </div>
     <div class="toolbar-container" id="admin-toolbar-center">
-        <p id = "current-task">Blog Post</p>
+        <p id = "current-task">
+            {% if t == "editor" %}
+            {{ post.title }}
+            {% endif %}
+            {% if t == "dashboard" %}
+            Dashboard
+            {% endif %}
+        </p>
     </div>
     <div class="toolbar-container" id="admin-toolbar-right">
         {% if t == "editor" %}

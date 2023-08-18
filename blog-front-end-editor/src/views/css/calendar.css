@@ -8,14 +8,15 @@
 }
 
 #calendar{
-    width: 60vw;
+    width: 50vw;
+    min-width: 500px;
     position: absolute;
     border-radius:25px;
     display: grid;
     grid-template-columns: 1fr 3fr;
     height:auto;
     border-radius:25px;
-    left: 20vw;
+    left: 25vw;
     top: 20vh;
 }
 
@@ -80,6 +81,7 @@
     margin-bottom:0;
     padding-top:0;
     padding-bottom:0;
+    font-size:85%;
 }
 
 .calendar-week-row{
