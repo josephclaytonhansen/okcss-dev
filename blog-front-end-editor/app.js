@@ -84,6 +84,11 @@ app.get('/app.css', (req, res) => {
     res.sendFile("/src/assets/css/app.min.css", { root: '.' })
 })
 
+app.get('/lightbox-modal.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/assets/css/lightbox-modal.min.css", { root: '.' })
+})
+
 app.get('/admin_toolbar.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/includes/css/admin_toolbar.min.css", { root: '.' })

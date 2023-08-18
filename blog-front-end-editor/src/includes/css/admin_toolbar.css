@@ -61,3 +61,6 @@
     background-color: rgb(49, 152, 196);
     cursor: pointer;
 }
+#user{
+    text-wrap:nowrap;
+}

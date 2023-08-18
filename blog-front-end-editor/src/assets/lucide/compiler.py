@@ -25,7 +25,8 @@ used_icons = sorted(list(set(used_icons)))
 
 path = os.path.join(os.getcwd(), "blog-front-end-editor/src", "assets", "lucide", "used")
 for file in os.listdir(path):
-    os.remove(os.path.join(path, file))
+    if not file.startswith("x"):
+        os.remove(os.path.join(path, file))
 
 for i in icons: 
     for u in used_icons: 
