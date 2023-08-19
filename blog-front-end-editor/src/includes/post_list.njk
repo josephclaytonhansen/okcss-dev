@@ -1,0 +1,46 @@
+{% macro ost_list(posts) %}
+<div class = "post_list">
+    <table>
+        <colgroup>
+            <col style="width: 32%;">
+            <col style="width: 18%;">
+            <col style="width: 22%;">
+            <col style="width: 14%;">
+            <col style="width: 14%;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Categories</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td><a href ={{post.slug}}>{{ post.title }}</a></td>
+                <td>{{ post.author }}</td>
+                <td>
+                    <select name="categories" class="categories" multiple value={{post.categories}}>
+                        <option value="uncategorized" {%if "uncategorized" in post.categories %}selected{% endif %}>Uncategorized</option>
+                        <option value="blog" {%if "blog" in post.categories %}selected{% endif %}>Blog</option>
+                        <option value="test" {%if "test" in post.categories %}selected{% endif %}>Test</option>
+                    </select>
+                
+                </td>
+                <td>
+                    <select name="status" id="status" value={{post.status}}>
+                        <option value="published" {%if post.status == "published"%}selected{% endif %}>Published</option>
+                        <option value="draft" {%if post.status == "draft"%}selected{% endif %}>Draft</option>
+                        <option value="private" {%if post.status == "private"%}selected{% endif %}>Private</option>
+                    </select>
+                </td>
+                <td>{{ post.date }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+</div>
+<script src="/post_list.js"></script>
+{% endmacro %}

@@ -46,12 +46,41 @@ app.get('/dashboard', (req, res) => {
             email: 'served_from@express.app',
             username: 'served_from_express',
         }
+        const posts = [
+            {
+                title: 'Served from Express',
+                slug: 'served-from-express',
+                author: 'served_from_express',
+                date: "2020-05-01",
+                status: 'published',
+                comments: 4,
+                categories: ['uncategorized', 'test'],
+            },
+            {
+                title: 'Blog Post',
+                slug: 'blog-post',
+                author: 'served_from_express',
+                date: "2023-08-22",
+                status: 'draft',
+                comments: 0,
+                categories: ['blog'],
+            },
+            {
+                title: 'Another Blog Post',
+                slug: 'another-blog-post',
+                author: 'served_from_express',
+                date: "2023-01-02",
+                status: 'draft',
+                comments: 2,
+                categories: ['blog'],
+            }
+        ]
     res.render('dashboard.html', { root: '.', date: {
         day: new Date().getDate(),
         month: new Date().getMonth(),
         monthName: new Date().toLocaleString('default', { month: 'long' }),
         year: new Date().getFullYear()
-    }, user:user})
+    }, user:user, posts:posts})
 })
 
 app.get('/account', (req, res) => {
@@ -131,6 +160,16 @@ app.get('/admin_toolbar.css', (req, res) => {
 app.get('/admin_toolbar.js', (req, res) => {
     res.type('js')
     res.sendFile("/src/includes/js/admin_toolbar.min.js", { root: '.' })
+})
+
+app.get('/post_list.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/includes/js/post_list.min.js", { root: '.' })
+})
+
+app.get('/post_list.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/includes/css/post_list.min.css", { root: '.' })
 })
 
 app.get('/sidebar.css', (req, res) => {
