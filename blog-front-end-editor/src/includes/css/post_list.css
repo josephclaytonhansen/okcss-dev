@@ -1,6 +1,7 @@
 .post_list{
     padding:1rem;
     padding-left:0;
+    overflow-y: auto;
 }
 
 .post_list table{

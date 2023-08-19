@@ -7,6 +7,7 @@
     {% import "../includes/admin_toolbar.njk" as a %}
     {% import "../includes/lucide.njk" as lu %}
     {% import "../includes/calendar.njk" as c%}
+    {% import "../includes/post_list.njk" as p%}
     <link rel="stylesheet" href="/icons/style.css">
     {{ i.ncludes("account") }}
     {{ m.eta()}}
@@ -54,7 +55,9 @@
             <div class='c' id="posts">
                 <h2>Posts</h2>
                 <hr />
-                <section></section>
+                <section>
+                    {{ p.ost_list(posts) }}
+                </section>
             </div>
             <div class='c' id="comments">
                 <h2>Comments</h2>
