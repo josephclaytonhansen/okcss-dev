@@ -74,13 +74,14 @@ app.get('/dashboard', (req, res) => {
                 comments: 2,
                 categories: ['blog'],
             }
-        ]
+        ],
+        all_categories = ["blog", "test", "uncategorized"]
     res.render('dashboard.html', { root: '.', date: {
         day: new Date().getDate(),
         month: new Date().getMonth(),
         monthName: new Date().toLocaleString('default', { month: 'long' }),
         year: new Date().getFullYear()
-    }, user:user, posts:posts})
+    }, user:user, posts:posts, all_categories:all_categories })
 })
 
 app.get('/account', (req, res) => {

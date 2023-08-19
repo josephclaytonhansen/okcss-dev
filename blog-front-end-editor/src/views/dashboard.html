@@ -22,14 +22,14 @@
                 <h2>Pages</h2>
                 <hr />
                 <section>
-                    {{ p.ost_list(pages, "pages") }}
+                    {{ p.ost_list(pages, "pages", all_categories) }}
                 </section>
             </div>
             <div class='c' id = "posts">
                 <h2>Posts</h2>
                 <hr />
                 <section>
-                    {{ p.ost_list(posts, "posts") }}
+                    {{ p.ost_list(posts, "posts", all_categories) }}
                 </section>
             </div>
         </div>
@@ -59,6 +59,18 @@
                     <div class='c'>
                         <h2>Categories</h2>
                         <hr />
+                        <section style = "margin-top:1rem;">
+                            {% for category in all_categories %}
+                            <div class="flex-between gap-1 baseline-down squish category">
+                                <p>{{category}}</p>
+                                <span>
+                                    <span class = 'cat' id = 'cat-edit'>{{lu.i("pencil")}}</span>
+                                    <span class = 'cat' id = "cat-list">{{lu.i("list")}}</span>
+                                    <span id = 'cat-delete' class="danger cat">{{lu.i("trash-2")}}</spanid>
+                                </span>
+                            </div>
+                            {% endfor %}
+                        </section>
                     </div>
                     <div>
                         <h2>Comments</h2>

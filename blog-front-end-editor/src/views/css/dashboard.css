@@ -132,3 +132,17 @@ hr{
     padding: 2rem;
     padding-top: 1rem;
 }
+
+.category{
+    border: none!important;
+    padding: 0!important;
+}
+
+.cat, .cat .lucide{
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.cat:not(.danger):hover .lucide{
+    background-color: rgb(49, 152, 196);
+}
