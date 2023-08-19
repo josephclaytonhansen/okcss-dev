@@ -26,6 +26,8 @@ def copy_all():
     os.system("rm -rf " + os.path.join(dist_path, "node_modules"))
     #remove dist 
     os.system("rm -rf " + os.path.join(dist_path, "dist"))
+    #remove dist.zip
+    os.system("rm -rf " + os.path.join(dist_path, "dist.zip"))
     
     # remove package-lock.json
     os.system("rm -rf " + os.path.join(dist_path, "package-lock.json"))

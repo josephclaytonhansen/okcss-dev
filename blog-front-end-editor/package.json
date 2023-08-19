@@ -11,9 +11,11 @@
   "author": "Joseph Hansen (josephclaytonhansen@gmail.com)",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-rate-limit": "^6.9.0",
+    "fs": "^0.0.1-security",
     "i": "^0.3.7",
     "mongoose": "^7.4.3",
     "nodemon": "^3.0.1",

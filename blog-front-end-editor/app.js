@@ -7,6 +7,25 @@ import db from './src/server/mongo.js'
 
 import base_routes from './src/server/base_routes.js'
 
+import cors from 'cors'
+
+import fs from 'fs'
+
+/* var privateKey  = fs.readFileSync('/etc/ssl/key.pem', 'utf8')
+var certificate = fs.readFileSync('/etc/ssl/cert.pem', 'utf8')
+
+var credentials = {key: privateKey, cert: certificate} */
+
+const corsOptions = {
+    origin:process.env.ORIGIN || "http://localhost:5920",
+    credentials: true,
+    optionSuccessStatus: 200
+  }
+  
+  app.use(cors(corsOptions))
+  app.options('*', cors(corsOptions))
+
+
 nunjucks.configure(['src/views', 'src/includes', 'src/assets'] , {
     autoescape: true,
     express: app,
