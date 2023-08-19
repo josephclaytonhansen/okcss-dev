@@ -46,42 +46,14 @@ app.get('/dashboard', (req, res) => {
             email: 'served_from@express.app',
             username: 'served_from_express',
         }
-        const posts = [
-            {
-                title: 'Served from Express',
-                slug: 'served-from-express',
-                author: 'served_from_express',
-                date: "2020-05-01",
-                status: 'published',
-                comments: 4,
-                categories: ['uncategorized', 'test'],
-            },
-            {
-                title: 'Blog Post',
-                slug: 'blog-post',
-                author: 'served_from_express',
-                date: "2023-08-22",
-                status: 'draft',
-                comments: 0,
-                categories: ['blog'],
-            },
-            {
-                title: 'Another Blog Post',
-                slug: 'another-blog-post',
-                author: 'served_from_express',
-                date: "2023-01-02",
-                status: 'draft',
-                comments: 2,
-                categories: ['blog'],
-            }
-        ],
-        all_categories = ["blog", "test", "uncategorized"]
+
+        const all_categories = ["blog", "test", "uncategorized"]
     res.render('dashboard.html', { root: '.', date: {
         day: new Date().getDate(),
         month: new Date().getMonth(),
         monthName: new Date().toLocaleString('default', { month: 'long' }),
         year: new Date().getFullYear()
-    }, user:user, posts:posts, all_categories:all_categories })
+    }, user:user, all_categories:all_categories })
 })
 
 app.get('/account', (req, res) => {
@@ -100,45 +72,8 @@ app.get('/account', (req, res) => {
         monthName: new Date().toLocaleString('default', { month: 'long' }),
         year: new Date().getFullYear()
     }
-    const posts = [
-        {
-            title: 'Served from Express',
-            slug: 'served-from-express',
-            author: 'served_from_express',
-            date: "2020-05-01",
-            status: 'published',
-            comments: 4,
-            categories: ['uncategorized', 'test'],
-        },
-        {
-            title: 'Blog Post',
-            slug: 'blog-post',
-            author: 'served_from_express',
-            date: "2023-08-22",
-            status: 'draft',
-            comments: 0,
-            categories: ['blog'],
-        },
-        {
-            title: 'Another Blog Post',
-            slug: 'another-blog-post',
-            author: 'served_from_express',
-            date: "2023-01-02",
-            status: 'draft',
-            comments: 2,
-            categories: ['blog'],
-        },
-        {
-            title: 'A Third Blog Post',
-            slug: 'another-blog-post',
-            author: 'served_from_express',
-            date: "2023-01-02",
-            status: 'draft',
-            comments: 2,
-            categories: ['blog'],
-        }
-    ]
-    res.render('account.html', { root: '.', user:user, date:date, posts:posts })
+    
+    res.render('account.html', { root: '.', user:user, date:date })
 
 })
 
