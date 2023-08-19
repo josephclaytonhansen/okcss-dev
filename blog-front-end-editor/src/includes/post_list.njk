@@ -1,22 +1,39 @@
-{% macro ost_list(posts) %}
+{% macro ost_list(posts, ptype, all_categories=["blog", "test", "uncategorized"]) %}
 <div class = "post_list">
     <table>
         <colgroup>
+            {% if ptype == "posts" %}
             <col style="width: 32%;">
             <col style="width: 18%;">
             <col style="width: 22%;">
             <col style="width: 14%;">
             <col style="width: 14%;">
+            {% endif %}
+            {% if ptype == "pages" %}
+            <col style="width: 40%;">
+            <col style="width: 20%;">
+            <col style="width: 20%;">
+            <col style="width: 20%;">
+            {% endif %}
         </colgroup>
         <thead>
             <tr>
+                {% if ptype == "posts" %}
                 <th>Title</th>
                 <th>Author</th>
                 <th>Categories</th>
                 <th>Status</th>
                 <th>Date</th>
+                {% endif %}
+                {% if ptype == "pages" %}
+                <th>Title</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Views</th>
+                {% endif %}
             </tr>
         </thead>
+        {% if ptype == "posts" %}
         <tbody>
             {% for post in posts %}
             <tr>
@@ -40,6 +57,26 @@
                 <td>{{ post.date }}</td>
             </tr>
             {% endfor %}
+        </tbody>
+        {% endif %}
+        {% if ptype == "pages" %}
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td><a href ={{post.slug}}>{{ post.title }}</a></td>
+                <td>{{ post.author }}</td>
+                <td>
+                    <select name="status" id="status" value={{post.status}}>
+                        {% for category in all_categories %}
+                        <option value={{category}} {%if post.status == category%}selected{% endif %}>{{category}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>{{ post.views }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% endif %}
     </table>
 </div>
 <script src="/post_list.js"></script>

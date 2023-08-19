@@ -50,13 +50,15 @@
             <div class='c' id="pages">
                 <h2>Pages</h2>
                 <hr />
-                <section></section>
+                <section>
+                    {{ p.ost_list(pages, "pages") }}
+                </section>
             </div>
             <div class='c' id="posts">
                 <h2>Posts</h2>
                 <hr />
                 <section>
-                    {{ p.ost_list(posts) }}
+                    {{ p.ost_list(posts, "posts") }}
                 </section>
             </div>
             <div class='c' id="comments">
