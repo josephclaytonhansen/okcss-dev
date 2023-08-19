@@ -15,7 +15,7 @@ function populateGallery(){
     images.forEach((image)=>{
         let d = $('<div>')
         d.addClass('img-container')
-        d.css('max-width', '6.3vw')
+        d.css('max-width', '7.3vw')
         d.css('min-width', '50px')
         let i = $('<img>')
         i.on('click', ()=>{

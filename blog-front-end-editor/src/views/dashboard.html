@@ -19,14 +19,20 @@
     <div class="grid">
         <div class="section left">
             <div class='c' id = "pages">
-                <h2>Pages</h2>
+                <div class = "flex-between">
+                    <h2>Pages</h2>
+                    <span id = "new-page">{{lu.i("plus")}}</span>
+                </div>
                 <hr />
                 <section>
                     {{ p.ost_list(pages, "pages", all_categories) }}
                 </section>
             </div>
             <div class='c' id = "posts">
-                <h2>Posts</h2>
+                <div class = "flex-between">
+                    <h2>Posts</h2>
+                    <span id = "new-post">{{lu.i("plus")}}</span>
+                </div>
                 <hr />
                 <section>
                     {{ p.ost_list(posts, "posts", all_categories) }}
@@ -57,7 +63,10 @@
             <div class="bottomright">
                 <div class="wrapper">
                     <div class='c'>
-                        <h2>Categories</h2>
+                        <section class = "flex-between">
+                            <h2>Categories</h2>
+                            <span id = "new-cat">{{lu.i("plus")}}</span>
+                        </section>
                         <hr />
                         <section style = "margin-top:1rem;">
                             {% for category in all_categories %}

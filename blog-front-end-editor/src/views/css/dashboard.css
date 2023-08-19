@@ -138,11 +138,17 @@ hr{
     padding: 0!important;
 }
 
-.cat, .cat .lucide{
+.cat, .cat .lucide, #new-page, #new-post, #new-post .lucide, #new-page .lucide, #new-cat, #new-cat .lucide{
     cursor: pointer;
     transition: 0.2s all;
 }
 
-.cat:not(.danger):hover .lucide{
+.cat:not(.danger):hover .lucide, #new-post:hover .lucide, #new-page:hover .lucide, #new-cat:hover .lucide{
     background-color: rgb(49, 152, 196);
+}
+
+@media screen and (max-width: 1000px){
+    .c{
+        width:90%!important;
+    }
 }
