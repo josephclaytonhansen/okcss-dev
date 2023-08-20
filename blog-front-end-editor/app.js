@@ -8,6 +8,8 @@ import db from './src/server/mongo.js'
 import base_routes from './src/server/base_routes.js'
 import page_routes from './src/server/routes/pageRoutes.js'
 import post_routes from './src/server/routes/postRoutes.js'
+import user_routes from './src/server/routes/userRoutes.js'
+import comment_routes from './src/server/routes/commentRoutes.js'
 
 import cors from 'cors'
 
@@ -50,6 +52,8 @@ app.use("", base_routes)
 
 app.use("/page", page_routes)
 app.use("/post", post_routes)
+app.use("/user", user_routes)
+app.use("/comment", comment_routes)
 
 app.listen(5920, () => {
     console.log('Server is running on port 5920')
