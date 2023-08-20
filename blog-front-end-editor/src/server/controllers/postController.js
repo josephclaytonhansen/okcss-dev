@@ -17,20 +17,19 @@ const getPostById = asyncHandler(async (req, res) => {
 })
 
 const updatePost = asyncHandler(async (req, res) => {
-    const { title, slug, author, category, status, content, excerpt, featuredImage, metaTitle, metaDescription, metaKeywords, scheduledDate } = req.body
+    const { title, slug, author, categories, status, content, featuredImage, metaTitle, metaDescription, metaKeywords, scheduledDate } = req.body
     const post = await Post.findById(req.params.id)
     if (post) {
         post.title = title
         post.slug = slug
         post.author = author
-        post.category = category
+        post.categories = categories
         post.status = status
         post.content = content
-        post.excerpt = excerpt
-        post.featuredImage = featuredImage
-        post.metaTitle = metaTitle
-        post.metaDescription = metaDescription
-        post.metaKeywords = metaKeywords
+        post.featured_image = featuredImage
+        post.meta_title = metaTitle
+        post.meta_description = metaDescription
+        post.meta_keywords = metaKeywords
         post.scheduled_date = scheduledDate
         const updatedPost = await Post.save()
         res.json(updatedPost)
@@ -53,20 +52,19 @@ const deletePost = asyncHandler(async (req, res) => {
 })
 
 const createPost = asyncHandler(async (req, res) => {
-    const { title, slug, author, category, status, content, excerpt, featuredImage, metaTitle, metaDescription, metaKeywords, scheduledDate } = req.body
+    const { title, slug, author, categories, status, content, featuredImage, metaTitle, metaDescription, metaKeywords, scheduledDate } = req.body
     const post = await Post.create({
-        title,
-        slug,
-        author,
-        category,
-        status,
-        content,
-        excerpt,
-        featuredImage,
-        metaTitle,
-        metaDescription,
-        metaKeywords,
-        scheduledDate
+        title: title,
+        slug: slug,
+        author: author,
+        categories: categories,
+        status: status,
+        content: content,
+        featured_image: featuredImage,
+        meta_title: metaTitle,
+        meta_description: metaDescription,
+        meta_keywords: metaKeywords,
+        scheduled_date: scheduledDate
     })
     if (post) {
         res.json(post)

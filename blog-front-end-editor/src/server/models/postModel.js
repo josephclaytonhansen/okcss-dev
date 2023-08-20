@@ -2,6 +2,14 @@ import mongoose from 'mongoose'
 
 const postSchema = new mongoose.Schema({
     title: {type: String, index: true},
+    meta_title: {type: String, index: true},
+    meta_description: {type: String, index: true},
+    meta_keywords: [
+        {
+            type: String,
+        }
+    ],
+    
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -11,11 +19,7 @@ const postSchema = new mongoose.Schema({
         unique: true
     },
     content: {type: String, index: true},
-    category: [
-        {
-            type: String
-        }
-    ],
+    categories: [String],
     tags: [
         {
             type: String
@@ -28,6 +32,9 @@ const postSchema = new mongoose.Schema({
         type: String,
         default: "draft"
     },
+    featured_image: {
+        type: String
+    }
 
 })
 

@@ -9,6 +9,8 @@ const getPages = asyncHandler(async (req, res) => {
 const getPageById = asyncHandler(async (req, res) => {
     const page = await Page.findById(req.params.id)
     if (page) {
+        page.views = page.views + 1
+        await page.save()
         res.json(page)
     } else {
         res.status(404)
@@ -76,6 +78,8 @@ const createPage = asyncHandler(async (req, res) => {
 const getPageBySlug = asyncHandler(async (req, res) => {
     const page = await Page.findOne({ slug: req.params.slug })
     if (page) {
+        page.views = page.views + 1
+        await page.save()
         res.json(page)
     } else {
         res.status(404)
@@ -102,6 +106,7 @@ const getPagesByStatus = asyncHandler(async (req, res) => {
         throw new Error('Pages not found')
     }
 })
+
 
 export {
     getPages,
