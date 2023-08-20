@@ -6,10 +6,15 @@ import rate_limit from 'express-rate-limit'
 import db from './src/server/mongo.js'
 
 import base_routes from './src/server/base_routes.js'
+import page_routes from './src/server/routes/pageRoutes.js'
 
 import cors from 'cors'
 
 import fs from 'fs'
+
+// Body parser middleware
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 /* var privateKey  = fs.readFileSync('/etc/ssl/key.pem', 'utf8')
 var certificate = fs.readFileSync('/etc/ssl/cert.pem', 'utf8')
@@ -41,6 +46,8 @@ const limiter = rate_limit({
 
 app.use(limiter)
 app.use("", base_routes)
+
+app.use("/page", page_routes)
 
 app.listen(5920, () => {
     console.log('Server is running on port 5920')
