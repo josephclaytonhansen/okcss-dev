@@ -1,6 +1,7 @@
 import db from './mongo.js'
 import Post from './models/postModel.min.js'
 import Page from './models/pageModel.min.js'
+import User from './models/userModel.min.js'
 
 const createTestPages = async () => {
     const pages = [
@@ -76,5 +77,25 @@ const createTestPosts = async () => {
     }
 }
 
+const createTestUser = async () => {
+    const user = {
+        username: "johndoe",
+        email: "john@email.com",
+        password: "password",
+        permissions: "admin",
+        picture: "https://picsum.photos/200/300",
+        bio: "This is a test user",
+        display_name: "Test User"
+}
+    try {
+        await User.deleteMany({})
+        await User.create(user)
+        console.log("User Created")
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 createTestPages()
 createTestPosts()
+createTestUser()
