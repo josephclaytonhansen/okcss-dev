@@ -1,19 +1,6 @@
 import express from 'express'
 const router = express.Router()
 
-router.get('/:slug/edit', (req, res) => {
-    const slug = req.params.slug
-    //eventually, get this from the database
-    const user = {
-        email: 'served_from@express.app',
-        username: 'served_from_express',
-    }
-    const post = {
-        title: 'Served from Express',
-        slug: slug,
-    }
-    res.render('editor.html', { root: '.', post:post, user:user })})
-
 router.get('/editor.js', (req, res) => {
     res.type('js')
     res.sendFile("/src/views/js/editor.min.js", { root: '.' })
