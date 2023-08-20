@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const postSchema = new mongoose.Schema({
-    title: {String, index: true},
+    title: {type: String, index: true},
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -10,7 +10,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    content: {String, index: true},
+    content: {type: String, index: true},
     category: [
         {
             type: String

@@ -1,13 +1,13 @@
 import asyncHandler from '../middleware/asyncHandler.min.js'
-import page from '../models/pageModel.min.js'
+import Page from '../models/pageModel.min.js'
 
 const getPages = asyncHandler(async (req, res) => {
-    const pages = await page.find({})
+    const pages = await Page.find({})
     res.json(pages)
 })
 
 const getPageById = asyncHandler(async (req, res) => {
-    const page = await page.findById(req.params.id)
+    const page = await Page.findById(req.params.id)
     if (page) {
         res.json(page)
     } else {
@@ -18,7 +18,7 @@ const getPageById = asyncHandler(async (req, res) => {
 
 const updatePageById = asyncHandler(async (req, res) => {
     const {title, content, author, slug, status, views } = req.body
-    const page = await page.findById(req.params.id)
+    const page = await Page.findById(req.params.id)
     if (page) {
         page.title = title
         page.content = content
@@ -36,7 +36,7 @@ const updatePageById = asyncHandler(async (req, res) => {
 })
 
 const deletePageById = asyncHandler(async (req, res) => {
-    const page = await page.findById(req.params.id)
+    const page = await Page.findById(req.params.id)
     if (page) {
         await page.remove()
         res.json({ message: 'Page removed' })
@@ -48,7 +48,7 @@ const deletePageById = asyncHandler(async (req, res) => {
 
 const createPage = asyncHandler(async (req, res) => {
     const { title, content, author, slug, status, views } = req.body
-    const page = await page.create({
+    const page = await Page.create({
         title,
         content,
         author,
@@ -74,7 +74,7 @@ const createPage = asyncHandler(async (req, res) => {
 })
 
 const getPageBySlug = asyncHandler(async (req, res) => {
-    const page = await page.findOne({ slug: req.params.slug })
+    const page = await Page.findOne({ slug: req.params.slug })
     if (page) {
         res.json(page)
     } else {
@@ -84,7 +84,7 @@ const getPageBySlug = asyncHandler(async (req, res) => {
 })
 
 const getPagesByAuthor = asyncHandler(async (req, res) => {
-    const pages = await page.find({ author: req.params.author })
+    const pages = await Page.find({ author: req.params.author })
     if (pages) {
         res.json(pages)
     } else {
@@ -94,7 +94,7 @@ const getPagesByAuthor = asyncHandler(async (req, res) => {
 })
 
 const getPagesByStatus = asyncHandler(async (req, res) => {
-    const pages = await page.find({ status: req.params.status })
+    const pages = await Page.find({ status: req.params.status })
     if (pages) {
         res.json(pages)
     } else {

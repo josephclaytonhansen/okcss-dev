@@ -1,13 +1,13 @@
 import asyncHandler from '../middleware/asyncHandler.min.js'
-import post from '../models/postModel.min.js'
+import Post from '../models/postModel.min.js'
 
 const getPosts = asyncHandler(async (req, res) => {
-    const posts = await post.find({})
+    const posts = await Post.find({})
     res.json(posts)
 })
 
 const getPostById = asyncHandler(async (req, res) => {
-    const post = await post.findById(req.params.id)
+    const post = await Post.findById(req.params.id)
     if (post) {
         res.json(post)
     } else {
@@ -18,7 +18,7 @@ const getPostById = asyncHandler(async (req, res) => {
 
 const updatePost = asyncHandler(async (req, res) => {
     const { title, slug, author, category, status, content, excerpt, featuredImage, metaTitle, metaDescription, metaKeywords, scheduledDate } = req.body
-    const post = await post.findById(req.params.id)
+    const post = await Post.findById(req.params.id)
     if (post) {
         post.title = title
         post.slug = slug
@@ -31,8 +31,8 @@ const updatePost = asyncHandler(async (req, res) => {
         post.metaTitle = metaTitle
         post.metaDescription = metaDescription
         post.metaKeywords = metaKeywords
-        post.scheduledDate = scheduledDate
-        const updatedPost = await post.save()
+        post.scheduled_date = scheduledDate
+        const updatedPost = await Post.save()
         res.json(updatedPost)
     }
     else {
@@ -42,7 +42,7 @@ const updatePost = asyncHandler(async (req, res) => {
 })
 
 const deletePost = asyncHandler(async (req, res) => {
-    const post = await post.findById(req.params.id)
+    const post = await Post.findById(req.params.id)
     if (post) {
         await post.remove()
         res.json({ message: 'post removed' })
@@ -54,7 +54,7 @@ const deletePost = asyncHandler(async (req, res) => {
 
 const createPost = asyncHandler(async (req, res) => {
     const { title, slug, author, category, status, content, excerpt, featuredImage, metaTitle, metaDescription, metaKeywords, scheduledDate } = req.body
-    const post = await post.create({
+    const post = await Post.create({
         title,
         slug,
         author,
@@ -77,7 +77,7 @@ const createPost = asyncHandler(async (req, res) => {
 })
 
 const getPostBySlug = asyncHandler(async (req, res) => {
-    const post = await post.findOne({ slug: req.params.slug })
+    const post = await Post.findOne({ slug: req.params.slug })
     if (post) {
         res.json(post)
     } else {
@@ -87,7 +87,7 @@ const getPostBySlug = asyncHandler(async (req, res) => {
 })
 
 const getPostsByAuthor = asyncHandler(async (req, res) => {
-    const posts = await post.find({ author: req.params.author })
+    const posts = await Post.find({ author: req.params.author })
     if (posts) {
         res.json(posts)
     } else {
@@ -97,7 +97,7 @@ const getPostsByAuthor = asyncHandler(async (req, res) => {
 })
 
 const getPostsByStatus = asyncHandler(async (req, res) => {
-    const posts = await post.find({ status: req.params.status })
+    const posts = await Post.find({ status: req.params.status })
     if (posts) {
         res.json(posts)
     } else {
@@ -107,7 +107,7 @@ const getPostsByStatus = asyncHandler(async (req, res) => {
 })
 
 const getPostsByCategory = asyncHandler(async (req, res) => {
-    const posts = await posts.find({ category: req.params.category })
+    const posts = await Post.find({ category: req.params.category })
     if (posts) {
         res.json(posts)
     } else {
@@ -118,7 +118,7 @@ const getPostsByCategory = asyncHandler(async (req, res) => {
 
 const getUpcomingPosts = asyncHandler(async (req, res) => {
     let currentDate = new Date()
-    const posts = await post.find({ status: 'scheduled', scheduledDate: { $gte: currentDate }, limit: 3 })
+    const posts = await Post.find({ status: 'scheduled', scheduledDate: { $gte: currentDate }, limit: 3 })
     if (posts) {
         res.json(posts)
     }
