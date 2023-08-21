@@ -21,3 +21,19 @@ $('#gallery-view').on('click', ()=>{
 $('#list-view').on('click', ()=>{
     listView()
 })
+
+$('.cat-delete').on('click', (e)=>{
+    let parent = e.target.parentElement
+    let id = parent.id.split('-')[1]
+    let url = `/category/delete/${id}`
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(result){
+            location.reload()
+        },
+        error: function(err){
+            console.log(err)
+        }
+    })
+})

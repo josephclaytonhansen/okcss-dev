@@ -54,6 +54,8 @@ const limiter = rate_limit({
     legacyHeaders: false,
 })
 
+app.use(limiter)
+
 
 
 app.use("/page", page_routes)
@@ -159,8 +161,7 @@ router.get('/dashboard', async (req, res) => {
             year: new Date().getFullYear()
         },
         user: user,
-        all_categories: all_categories,
-        current_categories: categories,
+        all_categories: categories,
         posts: await axios.get('http://localhost:5920/post').then((response) => {
             return response.data
         }),

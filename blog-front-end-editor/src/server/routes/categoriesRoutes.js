@@ -13,5 +13,6 @@ import Category from '../models/categoriesModel.min.js'
 
 router.route('/').get(getCategories).post(createCategory)
 router.route('/id/:id').get(getCategoryById).put(updateCategory).delete(deleteCategory)
+router.route('/delete/:id').get(deleteCategory)
 
 export default router
