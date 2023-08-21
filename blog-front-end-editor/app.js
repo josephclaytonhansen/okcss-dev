@@ -48,10 +48,12 @@ nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
 
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
-    max: 100,
+    max: 200,
     standardHeaders: true,
     legacyHeaders: false,
 })
+
+app.use(limiter)
 
 app.use("/page", page_routes)
 app.use("/post", post_routes)
