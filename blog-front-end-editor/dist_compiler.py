@@ -65,7 +65,8 @@ def tree():
                 f.write('{}{}/\n'.format(indent, os.path.basename(root)))
                 subindent = ' ' * 4 * (level + 1)
                 for file in files:
-                    f.write('{}{}\n'.format(subindent, file))
+                    print(file)
+                    f.write('{}{}\n'.format(subindent, file ))
 
 def fix_tree():
     global dist_path
@@ -76,6 +77,8 @@ def fix_tree():
     for i in range(len(lines)):
         if "dist" in lines[i]:
             lines[i] = "blog-front-end-editor/dist\n"
+        if ".min" in lines[i]:
+            lines[i] = lines[i].replace(".min", "")
     with open(tree_path, "w") as f:
         f.writelines(lines)
             
