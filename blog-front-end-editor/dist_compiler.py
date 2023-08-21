@@ -28,6 +28,10 @@ def copy_all():
     os.system("rm -rf " + os.path.join(dist_path, "dist"))
     #remove dist.zip
     os.system("rm -rf " + os.path.join(dist_path, "dist.zip"))
+    #remove src/assets/lucide/icons
+    os.system("rm -rf " + os.path.join(dist_path, "src", "assets", "lucide", "icons"))
+    #remove seeder.js
+    os.system("rm -rf " + os.path.join(dist_path, "src", "server", "seeder.min.js"))
     
     # remove package-lock.json
     os.system("rm -rf " + os.path.join(dist_path, "package-lock.json"))
@@ -36,8 +40,6 @@ def copy_all():
         file = f.read()
     with open(os.path.join(dist_path, "package.json"), "w") as f:
         f.write(re.sub(r'"start": "cd .. && python3 blog-front-end-editor/dist_compiler.py && python3 blog-front-end-editor/src/assets/lucide/compiler.py && cd blog-front-end-editor && nodemon app.min.js"', '"start": "npm i && node app.min.js"', file))
-
-
 
 def zip_dist():
     global dist_path
@@ -49,8 +51,39 @@ def zip_dist():
     # remove dist folder
     os.system("rm -rf " + dist_path)
     
+def tree():
+    global dist_path
+    try:
+        with open(os.path.join(dist_path, "tree.txt"), "w") as f:
+            f.write("")
+        os.system("tree " + dist_path + " > " + os.path.join(dist_path, "tree.txt"))
+    except:
+        with open(os.path.join(dist_path, "tree.txt"), "w") as f:
+            for root, dirs, files in os.walk(dist_path):
+                level = root.replace(dist_path, '').count(os.sep)
+                indent = ' ' * 4 * (level)
+                f.write('{}{}/\n'.format(indent, os.path.basename(root)))
+                subindent = ' ' * 4 * (level + 1)
+                for file in files:
+                    f.write('{}{}\n'.format(subindent, file))
+
+def fix_tree():
+    global dist_path
+    tree_path = os.path.join(dist_path, "tree.txt")
+    lines = []
+    with open(tree_path, "r") as f:
+        lines = f.readlines()
+    for i in range(len(lines)):
+        if "dist" in lines[i]:
+            lines[i] = "blog-front-end-editor/dist\n"
+    with open(tree_path, "w") as f:
+        f.writelines(lines)
+            
 try:
     copy_all()
+    tree()
+    fix_tree()
     zip_dist()
 except Exception as e:
     print(e)
+    
