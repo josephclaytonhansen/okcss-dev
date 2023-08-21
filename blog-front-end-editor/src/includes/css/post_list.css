@@ -24,7 +24,7 @@
 }
 
 .post_list tbody tr:hover{
-    background-color:#eee;
+    background-color:hsl(0, 0%, 98%);
 }
 
 .post_list td{
@@ -42,4 +42,12 @@
     max-height:2.5rem;
     overflow-y:scroll;
     width: 100%;
+}
+
+.pedit, .pedit .lucide{
+    transition: 0.2s all;
+}
+
+.pedit:hover .lucide{
+    background-color:rgb(49, 152, 196)!important;
 }
