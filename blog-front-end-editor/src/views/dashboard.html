@@ -73,10 +73,9 @@
                             <div class="flex-between gap-1 baseline-down squish category">
                                 <p>{{category.name}}</p>
                                 <span>
-                                    <span class = 'cat' id = 'cat-edit'>{{lu.i("pencil", 2)}}</span>
-                                    <span class = 'cat' id = "cat-list">{{lu.i("list", 2)}}</span>
-                                    
-                                    <span id = 'delete-{{category._id}}' class="danger cat cat-delete">{{lu.i("trash-2", 2)}}</spanid>
+                                    <span id = 'edit-{{category._id}}' class=" cat-edit">{{lu.i("pencil", 2)}}</span>
+                                    <span id = 'list-{{category._id}}' class=" cat-list">{{lu.i("list", 2)}}</span>
+                                    <span id = 'delete-{{category._id}}' class="danger  cat-delete">{{lu.i("trash-2", 2)}}</span>
                                 </span>
                             </div>
                             {% endfor %}

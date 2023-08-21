@@ -37,3 +37,9 @@ $('.cat-delete').on('click', (e)=>{
         }
     })
 })
+
+$('.cat-edit').on('click', (e)=>{
+    let parent = e.target.parentElement
+    let id = parent.id.split('-')[1]
+    //TODO: add edit functionality
+})
