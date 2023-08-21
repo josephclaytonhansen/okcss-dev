@@ -169,6 +169,12 @@ router.get('/dashboard', async (req, res) => {
         all_categories.push(categories[i].name)
     }
 
+    const authors = await axios.get('http://localhost:5920/user/').then((response) => {return response.data})
+    let all_authors = []
+    for (let i = 0; i < authors.length; i++) {
+        all_authors.push({name: authors[i].display_name, id: authors[i]._id})
+    }
+
     res.render('dashboard.html', {
         root: '.',
         date: {
@@ -180,6 +186,7 @@ router.get('/dashboard', async (req, res) => {
             year: new Date().getFullYear()
         },
         user: user,
+        all_authors: all_authors,
         all_categories: categories,
         posts: await axios.get('http://localhost:5920/post').then((response) => {
             return response.data

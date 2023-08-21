@@ -11,21 +11,21 @@ const createTestPages = async () => {
             content: "This is the home page",
             slug: "home",
             status: "published",
-            author: "5f9d3b3b9b0b7e1b1c3b0b7e"
+            author: "64e37fa934cf3d179f7d1821"
         },
         {
             title: "About",
             content: "This is the about page",
             slug: "about",
             status: "published",
-            author: "5f9d3b3b9b0b7e1b1c3b0b7e"
+            author: "64e37fa934cf3d179f7d1821"
         },
         {
             title: "Contact",
             content: "This is the contact page",
             slug: "contact",
             status: "draft",
-            author: "5f9d3b3b9b0b7e1b1c3b0b7e"
+            author: "64e37fa934cf3d179f7d1821"
         }
     ]
 

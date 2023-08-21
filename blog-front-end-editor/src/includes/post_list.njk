@@ -1,4 +1,4 @@
-{% macro ost_list(posts, ptype, all_categories) %}
+{% macro ost_list(posts, ptype, all_categories, all_authors) %}
 {% import "../includes/lucide.njk" as lu %}
 <div class = "post_list">
     <table>
@@ -43,7 +43,13 @@
             {% for post in posts %}
             <tr>
                 <td><a href ={{"/post/"+post.slug}}>{{ post.title }}</a></td>
-                <td>{{ post.author }}</td>
+                <td>
+                    {% for a in all_authors %}
+                    {% if a.id == post.author %}
+                    {{a.name}}
+                    {% endif %}
+                    {% endfor %}
+                </td>
                 <td>
                     <select name="categories" class="categories" multiple value={{post.categories}}>
                         {% for category in all_categories %}
@@ -71,7 +77,13 @@
             {% for post in posts %}
             <tr>
                 <td><a href ={{"/page/"+post.slug}}>{{ post.title }}</a></td>
-                <td>{{ post.author }}</td>
+                <td>
+                    {% for a in all_authors %}
+                    {% if a.id == post.author %}
+                    {{a.name}}
+                    {% endif %}
+                    {% endfor %}
+                </td>
                 <td>
 
                         <select name="status" id="status" value={{post.status}}>
