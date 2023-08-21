@@ -1,4 +1,4 @@
-{% macro ost_list(posts, ptype, all_categories, all_authors) %}
+{% macro ost_list(posts, ptype, all_categories, all_authors, current_categories) %}
 {% import "../includes/lucide.njk" as lu %}
 <div class = "post_list">
     <table>
@@ -51,8 +51,8 @@
                     {% endfor %}
                 </td>
                 <td>
-                    <select name="categories" class="categories" multiple value={{post.categories}}>
-                        {% for category in all_categories %}
+                    <select name="categories" class="categories" multiple>
+                        {% for category in current_categories %}
                         <option value={{category}} {% if category in post.categories %}selected{% endif %}>{{category}}</option>
                         {% endfor %}
                     </select>

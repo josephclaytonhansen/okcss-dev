@@ -25,17 +25,17 @@
                 </div>
                 <hr />
                 <section>
-                    {{ p.ost_list(pages, "pages", all_categories, all_authors) }}
+                    {{ p.ost_list(pages, "pages", all_categories, all_authors, current_categories) }}
                 </section>
             </div>
-            <div class='c' id = "posts">
+            <div class='c' id = "posts"> 
                 <div class = "flex-between">
                     <h2>Posts</h2>
                     <span id = "new-post">{{lu.i("plus")}}</span>
                 </div>
                 <hr />
                 <section>
-                    {{ p.ost_list(posts, "posts", all_categories, all_authors) }}
+                    {{ p.ost_list(posts, "posts", all_categories, all_authors, current_categories) }}
                 </section>
             </div>
         </div>

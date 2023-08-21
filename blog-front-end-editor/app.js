@@ -188,6 +188,7 @@ router.get('/dashboard', async (req, res) => {
         user: user,
         all_authors: all_authors,
         all_categories: categories,
+        current_categories: all_categories,
         posts: await axios.get('http://localhost:5920/post').then((response) => {
             return response.data
         }),
@@ -360,6 +361,59 @@ router.get('/icons/:icon', (req, res) => {
     res.sendFile('src/assets/lucide/used/' + icon + '.svg', {
         root: '.'
     })
+})
+
+router.get('/new-post', async (req, res) => {
+    let all_categories = []
+    const categories = await axios.get('http://localhost:5920/category/').then((response) => {return response.data})
+    for (let i = 0; i < categories.length; i++) {
+        all_categories.push(categories[i].name)
+    }
+    res.render('editor.html', {
+        root: '.',
+        post: {
+            title: 'Untitled Post',
+            meta_title: '',
+            meta_description: '',
+            meta_keywords: [],
+            author: '',
+            slug: '',
+            content: '',
+            categories: [],
+            tags: [],
+            scheduled_date: '',
+            status: 'draft',
+            featured_image: ''
+        },
+        type: 'post',
+        user: {
+            email: 'served_from@express.app',
+            username: 'served_from_express',
+        },
+        all_categories: all_categories
+        })
+})
+
+router.get('/new-page', async (req, res) => {
+
+    res.render('editor.html', {
+        root: '.',
+        post: {
+            title: 'Untitled Page',
+            meta_title: '',
+            meta_description: '',
+            meta_keywords: [],
+            author: '',
+            slug: '',
+            content: '',
+            status: 'draft',
+        },
+        type: 'page',
+        user: {
+            email: 'served_from@express.app',
+            username: 'served_from_express',
+        }
+        })
 })
 
 app.use('/', router)

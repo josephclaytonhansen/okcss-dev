@@ -192,3 +192,18 @@ img.rounded{
 .gap-3{
     gap: 1.5rem;
 }
+
+p[contenteditable=true]{
+    background-color:white;
+    border-radius: 5px;
+    transition: 0.2s all;
+}
+
+p[contenteditable=true]:focus{
+    background-color: rgb(49, 152, 196);
+    color: seashell;
+    border: none;
+    outline: none;
+    padding:0.5rem;
+}
+
