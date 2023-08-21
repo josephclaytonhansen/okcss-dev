@@ -107,6 +107,9 @@ const createTestCategories = async () => {
         },
         {
             name: "uncategorized"
+        },
+        {
+            name: "thoughts"
         }
     ]
     try {

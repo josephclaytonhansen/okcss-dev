@@ -54,15 +54,13 @@ const limiter = rate_limit({
     legacyHeaders: false,
 })
 
-app.use(limiter)
+
 
 app.use("/page", page_routes)
 app.use("/post", post_routes)
 app.use("/user", user_routes)
 app.use("/comment", comment_routes)
 app.use("/category", category_routes)
-
-// base routes
 
 router.get('/', (req, res) => {
     // if user logged in, redirect to dashboard
@@ -72,20 +70,31 @@ router.get('/', (req, res) => {
 
 router.get('/edit/post/:id', async (req, res) => {
     const id = req.params.id
+    let all_categories = []
+    const categories = await axios.get('http://localhost:5920/category/').then((response) => {return response.data})
+    for (let i = 0; i < categories.length; i++) {
+        all_categories.push(categories[i].name)
+    }
     res.render('editor.html', {
         root: '.',
         post: await axios.get('http://localhost:5920/post/id/'+id).then((response) => {
             return response.data
         }),
-        type: 'page',
+        type: 'post',
         user: {
             email: 'served_from@express.app',
             username: 'served_from_express',
-        }
+        },
+        all_categories: all_categories
     })
 })
 router.get('/edit/page/:id', async (req, res) => {
     const id = req.params.id
+    let all_categories = []
+    const categories = await axios.get('http://localhost:5920/category/').then((response) => {return response.data})
+    for (let i = 0; i < categories.length; i++) {
+        all_categories.push(categories[i].name)
+    }
     res.render('editor.html', {
         root: '.',
         post: await axios.get('http://localhost:5920/page/id/'+id).then((response) => {
@@ -95,7 +104,8 @@ router.get('/edit/page/:id', async (req, res) => {
         user: {
             email: 'served_from@express.app',
             username: 'served_from_express',
-        }
+        },
+        all_categories: all_categories
     })
 })
 
@@ -132,8 +142,11 @@ router.get('/dashboard', async (req, res) => {
         email: 'served_from@express.app',
         username: 'served_from_express',
     }
-
-    const all_categories = ["blog", "test", "uncategorized"]
+    const categories = await axios.get('http://localhost:5920/category/').then((response) => {return response.data})
+    let all_categories = []
+    for (let i = 0; i < categories.length; i++) {
+        all_categories.push(categories[i].name)
+    }
 
     res.render('dashboard.html', {
         root: '.',
@@ -147,6 +160,7 @@ router.get('/dashboard', async (req, res) => {
         },
         user: user,
         all_categories: all_categories,
+        current_categories: categories,
         posts: await axios.get('http://localhost:5920/post').then((response) => {
             return response.data
         }),

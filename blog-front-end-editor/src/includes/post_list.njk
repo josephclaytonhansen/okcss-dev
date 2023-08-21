@@ -46,9 +46,9 @@
                 <td>{{ post.author }}</td>
                 <td>
                     <select name="categories" class="categories" multiple value={{post.categories}}>
-                        <option value="uncategorized" {%if "uncategorized" in post.categories %}selected{% endif %}>Uncategorized</option>
-                        <option value="blog" {%if "blog" in post.categories %}selected{% endif %}>Blog</option>
-                        <option value="test" {%if "test" in post.categories %}selected{% endif %}>Test</option>
+                        {% for category in all_categories %}
+                        <option value={{category}} {% if category in post.categories %}selected{% endif %}>{{category}}</option>
+                        {% endfor %}
                     </select>
                 
                 </td>
