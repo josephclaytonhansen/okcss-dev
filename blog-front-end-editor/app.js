@@ -113,6 +113,11 @@ router.get('/dashboard', async (req, res) => {
         }),
         pages: await axios.get('http://localhost:5920/page').then((response) => {
             return response.data
+        }),
+        upcoming_posts: await axios.get('http://localhost:5920/post/upcoming').then((response) => {
+            return response.data
+        }).catch((error) => {
+            return []
         })
     })
 })

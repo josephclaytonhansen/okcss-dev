@@ -1,4 +1,4 @@
-{% macro ost_list(posts, ptype, all_categories=["blog", "test", "uncategorized"]) %}
+{% macro ost_list(posts, ptype, all_categories) %}
 {% import "../includes/lucide.njk" as lu %}
 <div class = "post_list">
     <table>
@@ -12,11 +12,11 @@
             <col style="width: 2%;">
             {% endif %}
             {% if ptype == "pages" %}
-            <col style="width: 38%;">
-            <col style="width: 20%;">
-            <col style="width: 20%;">
-            <col style="width: 20%;">
-            <col style="width: 2%;">
+            <col style="width: 40%;">
+            <col style="width: 26%;">
+            <col style="width: 26%;">
+            <col style="width: 5%;">
+            <col style="width: 3%;">
             {% endif %}
         </colgroup>
         <thead>
@@ -54,6 +54,7 @@
                 </td>
                 <td>
                     <select name="status" id="status" value={{post.status}}>
+                        <option value="scheduled" {%if post.status == "scheduled"%}selected{% endif %}>Scheduled</option>
                         <option value="published" {%if post.status == "published"%}selected{% endif %}>Published</option>
                         <option value="draft" {%if post.status == "draft"%}selected{% endif %}>Draft</option>
                         <option value="private" {%if post.status == "private"%}selected{% endif %}>Private</option>
@@ -72,11 +73,12 @@
                 <td><a href ={{post.slug}}>{{ post.title }}</a></td>
                 <td>{{ post.author }}</td>
                 <td>
-                    <select name="status" id="status" value={{post.status}}>
-                        {% for category in all_categories %}
-                        <option value={{category}} {%if post.status == category%}selected{% endif %}>{{category}}</option>
-                        {% endfor %}
-                    </select>
+
+                        <select name="status" id="status" value={{post.status}}>
+                            <option value="published" {%if post.status == "published"%}selected{% endif %}>Published</option>
+                            <option value="draft" {%if post.status == "draft"%}selected{% endif %}>Draft</option>
+                            <option value="private" {%if post.status == "private"%}selected{% endif %}>Private</option>
+                        </select>
                 </td>
                 <td>{{ post.views }}</td>
                 <td><span class = "pedit" id = {{"edit-"+post._id}}>{{lu.i("pencil", 2)}}</span></td>
