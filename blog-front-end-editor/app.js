@@ -77,9 +77,19 @@ router.get('/edit/post/:id', async (req, res) => {
     for (let i = 0; i < categories.length; i++) {
         all_categories.push(categories[i].name)
     }
+    let all_posts = await axios.get('http://localhost:5920/post/').then((response) => {return response.data})
+    let all_post_ids = []
+    for (let i = 0; i < all_posts.length; i++) {
+        all_post_ids.push(all_posts[i]._id)
+    }
+    let id_index = all_post_ids.indexOf(id)
+    if (id_index == -1) {
+        res.redirect('/dashboard')
+        
+    } else {
     res.render('editor.html', {
         root: '.',
-        post: await axios.get('http://localhost:5920/post/id/'+id).then((response) => {
+        post: await axios.get('http://localhost:5920/post/id/'+all_post_ids[id_index]).then((response) => {
             return response.data
         }),
         type: 'post',
@@ -88,7 +98,7 @@ router.get('/edit/post/:id', async (req, res) => {
             username: 'served_from_express',
         },
         all_categories: all_categories
-    })
+    })}
 })
 router.get('/edit/page/:id', async (req, res) => {
     const id = req.params.id
@@ -97,9 +107,18 @@ router.get('/edit/page/:id', async (req, res) => {
     for (let i = 0; i < categories.length; i++) {
         all_categories.push(categories[i].name)
     }
+    let all_pages = await axios.get('http://localhost:5920/page/').then((response) => {return response.data})
+    let all_page_ids = []
+    for (let i = 0; i < all_pages.length; i++) {
+        all_page_ids.push(all_pages[i]._id)
+    }
+    let id_index = all_page_ids.indexOf(id)
+    if (id_index == -1) {
+        res.redirect('/dashboard')
+    } else {
     res.render('editor.html', {
         root: '.',
-        post: await axios.get('http://localhost:5920/page/id/'+id).then((response) => {
+        post: await axios.get('http://localhost:5920/page/id/'+all_page_ids[id_index]).then((response) => {
             return response.data
         }),
         type: 'page',
@@ -108,7 +127,7 @@ router.get('/edit/page/:id', async (req, res) => {
             username: 'served_from_express',
         },
         all_categories: all_categories
-    })
+    })}
 })
 
 router.get('/editor.js', (req, res) => {
