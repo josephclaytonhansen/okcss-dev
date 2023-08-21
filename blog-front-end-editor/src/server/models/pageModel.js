@@ -2,6 +2,9 @@ import mongoose from 'mongoose'
 
 const pageSchema = new mongoose.Schema({
     title: {type:String, index: true},
+    meta_title: {type:String, index: true},
+    meta_description: {type:String, index: true},
+    meta_keywords: {type:String, index: true},
     content: {type:String, index: true},
     slug: {type:String, unique: true},
     status: {type:String, default: "draft"},

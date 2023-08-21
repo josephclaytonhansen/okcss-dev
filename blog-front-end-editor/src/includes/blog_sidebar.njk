@@ -1,4 +1,5 @@
 {% macro idebar(
+    type,
     blog_title,
     meta_title,
     content,
@@ -8,16 +9,20 @@
     status,
     publish_time,
     slug,
-    categories=[],
-    all_categories=["category1", "category2", "category3"],
+    categories,
     blog_tags,
     author,
+    all_categories=["blog", "test", "uncategorized"],
     all_authors=["author1", "author2", "author3"]
 ) %}
 {% import "../includes/lucide.njk" as lu %}
 <link rel="stylesheet" href="/sidebar.css" />
+
+{% if type == "post" %}
+
 <div class="blog-editor-sidebar">
     <div class="top">
+
 
         <div class="sidebar-tool" id="sidebar-tool-title">
             <label for="blog-title">Title</label>
@@ -83,5 +88,64 @@
 
 </div>
 </div>
+
+{% endif %}
+
+{% if type == "page" %}
+
+<div class="blog-editor-sidebar">
+    <div class="top">
+
+
+        <div class="sidebar-tool" id="sidebar-tool-title">
+            <label for="blog-title">Title</label>
+            <input type="text" id="blog-title" value="{{ blog_title }}" />
+        </div>
+
+        <div class="sidebar-tool" id="sidebar-tool-meta-title">
+            <label for="blog-title">Meta Title</label>
+            <input type="text" id="blog-meta-title" value="{{ meta_title }}" />
+        </div>
+
+        <div class="sidebar-tool" id="sidebar-tool-meta-description">
+            <label for="blog-meta-description">Meta Description</label>
+            <textarea id="blog-meta-description">{{ meta_description }}</textarea>
+        </div>
+
+        <div class="sidebar-tool" id="sidebar-tool-meta-keywords">
+            <label for="blog-meta-keywords">Meta Keywords</label>
+            <textarea id="blog-meta-keywords">{{ meta_keywords }}</textarea>
+        </div>
+
+        <div class="sidebar-tool" id="sidebar-tool-status">
+            <label for="blog-status">Status</label>
+            <select id="blog-status">
+                <option value="draft" {% if status == "draft" %} selected {% endif %}>Draft</option>
+                <option value="published" {% if status == "published" %} selected {% endif %}>Published</option>
+                <option value="scheduled" {% if status == "scheduled" %} selected {% endif %}>Scheduled</option>
+            </select>
+        </div>
+
+        <div class="sidebar-tool" id="sidebar-tool-slug">
+            <label for="blog-slug">Slug</label>
+            <input type="text" id="blog-slug" value="{{ slug }}" />
+        </div>
+
+        <div class="sidebar-tool" id="sidebar-tool-author">
+            <label for="blog-author">Author</label>
+            <select id="blog-author">
+                {% for a in all_authors %}
+                <option value="{{ a }}" {% if a == author %} selected {% endif %}>{{ a }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class = "bottom">
+        <button id="sidebar-tool-delete" class="ocean flexwidth">{{lu.i("door-open")}}Exit editor</button>
+    <button id="sidebar-tool-delete" class="danger flexwidth">{{lu.i("trash-2")}}Delete</button>
+
+</div>
+</div>
+{% endif %}
 
 {% endmacro %}

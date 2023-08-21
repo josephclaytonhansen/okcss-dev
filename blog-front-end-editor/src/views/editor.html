@@ -21,7 +21,24 @@
             <div id='editorjs'></div>
         </div>
         <div id="editor-right">
-            {{ s.idebar() }}
+
+                {{ s.idebar(
+                    type,
+                    post.title,
+                    post.meta_title,
+                    post.content,
+                    post.meta_description,
+                    post.meta_keywords,
+                    post.featured_image,
+                    post.status,
+                    post.scheduled_date,
+                    post.slug,
+                    post.categories,
+                    post.tags,
+                    post.author
+                ) }}
+
+
         </div>
     </div>
 

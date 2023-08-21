@@ -48,7 +48,7 @@ nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
 
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
-    max: 200,
+    max: 400,
     standardHeaders: true,
     legacyHeaders: false,
 })
@@ -61,6 +61,41 @@ app.use("/user", user_routes)
 app.use("/comment", comment_routes)
 
 // base routes
+
+router.get('/', (req, res) => {
+    // if user logged in, redirect to dashboard
+    // else, redirect to login
+    res.redirect('/login')
+})
+
+router.get('/edit/post/:slug', async (req, res) => {
+    const slug = req.params.slug
+    res.render('editor.html', {
+        root: '.',
+        post: await axios.get('http://localhost:5920/post/'+slug).then((response) => {
+            return response.data
+        }),
+        type: 'post'
+    })
+})
+
+router.get('/edit/page/:slug', async (req, res) => {
+    const slug = req.params.slug
+    res.render('editor.html', {
+        root: '.',
+        post: await axios.get('http://localhost:5920/page/'+slug).then((response) => {
+            return response.data
+        }),
+        type: 'page'
+    })
+})
+
+router.get('/edit?page=:page', (req, res) => {
+    res.render('editor.html', {
+        root: '.',
+        page: req.params.page
+    })
+})
 
 router.get('/editor.js', (req, res) => {
     res.type('js')
