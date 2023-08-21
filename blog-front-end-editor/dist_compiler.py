@@ -81,11 +81,24 @@ def fix_tree():
             lines[i] = lines[i].replace(".min", "")
     with open(tree_path, "w") as f:
         f.writelines(lines)
+
+def copy_tree():
+    global src_path, dist_path
+    # copy tree.txt from dist_path to src_path
+    try:
+        os.system("cp " + os.path.join(dist_path, "tree.txt") + " " + os.path.join(src_path, "tree.txt"))
+    except:
+        lines = []
+        with open(os.path.join(dist_path, "tree.txt"), "r") as f:
+            lines = f.readlines()
+        with open(os.path.join(src_path, "tree.txt"), "w") as f:
+            f.writelines(lines)
             
 try:
     copy_all()
     tree()
     fix_tree()
+    copy_tree()
     zip_dist()
 except Exception as e:
     print(e)

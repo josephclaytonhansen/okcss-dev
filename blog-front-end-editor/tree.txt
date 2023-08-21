@@ -1,0 +1,107 @@
+blog-front-end-editor/dist
+├── app.js
+├── package.json
+├── package.json
+├── src
+│   ├── assets
+│   │   ├── css
+│   │   │   ├── app.css
+│   │   │   ├── img-gallery-list-view.css
+│   │   │   └── lightbox-modal.css
+│   │   └── lucide
+│   │       ├── css
+│   │       │   └── l.css
+│   │       └── used
+│   │           ├── bar-chart-3.svg
+│   │           ├── calendar-check.svg
+│   │           ├── calendar-days.svg
+│   │           ├── check.svg
+│   │           ├── chevron-down.svg
+│   │           ├── chevron-up.svg
+│   │           ├── door-open.svg
+│   │           ├── eye.svg
+│   │           ├── fingerprint.svg
+│   │           ├── folder-tree.svg
+│   │           ├── gallery-horizontal-end.svg
+│   │           ├── home.svg
+│   │           ├── image-plus.svg
+│   │           ├── key-round.svg
+│   │           ├── layout-grid.svg
+│   │           ├── list.svg
+│   │           ├── messages-square.svg
+│   │           ├── panel-right-close.svg
+│   │           ├── panel-right-open.svg
+│   │           ├── pencil.svg
+│   │           ├── plus.svg
+│   │           ├── save.svg
+│   │           ├── trash-2.svg
+│   │           └── x.svg
+│   ├── includes
+│   │   ├── admin_toolbar.njk
+│   │   ├── blog_sidebar.njk
+│   │   ├── calendar.njk
+│   │   ├── css
+│   │   │   ├── admin_toolbar.css
+│   │   │   ├── header.css
+│   │   │   ├── post_list.css
+│   │   │   ├── sidebar.css
+│   │   │   ├── stats.css
+│   │   │   └── word_count.css
+│   │   ├── editor_includes.njk
+│   │   ├── header.njk
+│   │   ├── js
+│   │   │   ├── admin_toolbar.js
+│   │   │   ├── calendar.js
+│   │   │   ├── post_list.js
+│   │   │   └── stats.js
+│   │   ├── lucide.njk
+│   │   ├── meta.njk
+│   │   ├── post_list.njk
+│   │   ├── stats.njk
+│   │   └── word_count.njk
+│   ├── server
+│   │   ├── controllers
+│   │   │   ├── categoriesController.js
+│   │   │   ├── commentController.js
+│   │   │   ├── pageController.js
+│   │   │   ├── postController.js
+│   │   │   └── userController.js
+│   │   ├── middleware
+│   │   │   └── asyncHandler.js
+│   │   ├── models
+│   │   │   ├── categoriesModel.js
+│   │   │   ├── commentModel.js
+│   │   │   ├── pageModel.js
+│   │   │   ├── postModel.js
+│   │   │   └── userModel.js
+│   │   ├── mongo.js
+│   │   └── routes
+│   │       ├── categoriesRoutes.js
+│   │       ├── commentRoutes.js
+│   │       ├── pageRoutes.js
+│   │       ├── postRoutes.js
+│   │       └── userRoutes.js
+│   └── views
+│       ├── account.html
+│       ├── css
+│       │   ├── account.css
+│       │   ├── calendar.css
+│       │   ├── dashboard.css
+│       │   ├── editor.css
+│       │   └── login.css
+│       ├── dashboard.html
+│       ├── editor.html
+│       ├── js
+│       │   ├── account.js
+│       │   ├── dashboard.js
+│       │   ├── editor.js
+│       │   └── utils
+│       │       ├── colors
+│       │       │   └── color.js
+│       │       └── imgs
+│       │           ├── gallery.js
+│       │           └── img_list.js
+│       └── login.html
+└── tree.txt
+
+21 directories, 84 files
