@@ -54,7 +54,7 @@ const limiter = rate_limit({
     legacyHeaders: false,
 })
 
-app.use(limiter)
+//app.use(limiter)
 
 
 
@@ -251,6 +251,20 @@ router.get('/calendar.css', (req, res) => {
     })
 })
 
+router.get('/stats.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/includes/css/stats.min.css", {
+        root: '.'
+    })
+})
+
+router.get('/stats.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/includes/js/stats.min.js", {
+        root: '.'
+    })
+})
+
 router.get('/calendar.js', (req, res) => {
     res.type('js')
     res.sendFile("/src/includes/js/calendar.min.js", {
@@ -271,6 +285,14 @@ router.get('/img/gallery.js', (req, res) => {
         root: '.'
     })
 })
+
+router.get('/colors.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/views/js/utils/colors/color.min.js", {
+        root: '.'
+    })
+})
+
 router.get('/img/list.js', (req, res) => {
     res.type('js')
     res.sendFile("/src/views/js/utils/imgs/img_list.min.js", {

@@ -8,6 +8,7 @@
     {% import "../includes/lucide.njk" as lu %}
     {% import "../includes/calendar.njk" as c%}
     {% import "../includes/post_list.njk" as p%}
+    {% import "../includes/stats.njk" as st%}
     <link rel="stylesheet" href="/icons/style.css">
     {{ i.ncludes("dashboard") }}
     {{ m.eta()}}
@@ -82,8 +83,20 @@
                         </section>
                     </div>
                     <div>
-                        <h2>Comments</h2>
-                        <hr />
+                        <section class = "flex-between hidden" id ="section-comments">
+                        <section style="width:100%"><h2 id = "comments-h2">Comments</h2><hr /></section>
+                        <span id = "show-views">{{lu.i("bar-chart-3", 3, ["va-10"])}}</span>
+                        </section>
+                        <section class = "flex-between hidden" id = "comments">
+                            </section>
+                        <section class = "flex-between" id = "section-views">
+                            <section style="width:100%"><h2 id = "views-h2">Views</h2><hr /></section>
+                            <span id = "show-comments">{{lu.i("messages-square", 3, ["va-10"])}}</span>
+                            </section>
+                            <section class = "flex-between" id = "views">
+                                {{st.ats_chart(pages)}}
+                            </section>
+                        
                     </div>
                 </div>
             </div>

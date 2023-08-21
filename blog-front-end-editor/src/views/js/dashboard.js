@@ -47,7 +47,7 @@ $('.cat-edit').on('click', (e)=>{
  
     name_edit.contentEditable = true
     name_edit.focus()
-    name_edit.addEventListener('keypress', (e)=>{
+    name_edit.addEventListener('keydown', (e)=>{
         if(e.key === 'Enter'){
             e.preventDefault()
             name_edit.contentEditable = false
@@ -68,8 +68,7 @@ $('.cat-edit').on('click', (e)=>{
                 }
             })
         }
-        if(e.key === 'Escape' || e.key === 'Esc' || e.key === 'Spacebar' || e.key === ' '){
-            e.preventDefault()
+        if(e.key === 'Escape' || e.key === 'Spacebar' || e.key === ' ' || e.keyCode === 27 || e.code === 'Escape'){
             name_edit.contentEditable = false
         }
     })
@@ -106,3 +105,18 @@ $('#new-post').on('click', ()=>{
 $('#new-page').on('click', ()=>{
     window.location.href = '/new/page'
 })
+
+$('#show-views').on('click', ()=>{
+    $('#section-comments').addClass('hidden')
+    $('#section-views').removeClass('hidden')
+    $('#comments').addClass('hidden')
+    $('#views').removeClass('hidden')
+})
+
+$('#show-comments').on('click', ()=>{
+    $('#section-comments').removeClass('hidden')
+    $('#section-views').addClass('hidden')
+    $('#comments').removeClass('hidden')
+    $('#views').addClass('hidden')
+})
+
