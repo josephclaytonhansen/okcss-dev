@@ -11,6 +11,7 @@ import page_routes from './src/server/routes/pageRoutes.js'
 import post_routes from './src/server/routes/postRoutes.js'
 import user_routes from './src/server/routes/userRoutes.js'
 import comment_routes from './src/server/routes/commentRoutes.js'
+import category_routes from './src/server/routes/categoriesRoutes.js'
 
 import cors from 'cors'
 
@@ -59,6 +60,7 @@ app.use("/page", page_routes)
 app.use("/post", post_routes)
 app.use("/user", user_routes)
 app.use("/comment", comment_routes)
+app.use("/category", category_routes)
 
 // base routes
 
@@ -68,32 +70,32 @@ router.get('/', (req, res) => {
     res.redirect('/login')
 })
 
-router.get('/edit/post/:slug', async (req, res) => {
-    const slug = req.params.slug
+router.get('/edit/post/:id', async (req, res) => {
+    const id = req.params.id
     res.render('editor.html', {
         root: '.',
-        post: await axios.get('http://localhost:5920/post/'+slug).then((response) => {
+        post: await axios.get('http://localhost:5920/post/id/'+id).then((response) => {
             return response.data
         }),
-        type: 'post'
+        type: 'page',
+        user: {
+            email: 'served_from@express.app',
+            username: 'served_from_express',
+        }
     })
 })
-
-router.get('/edit/page/:slug', async (req, res) => {
-    const slug = req.params.slug
+router.get('/edit/page/:id', async (req, res) => {
+    const id = req.params.id
     res.render('editor.html', {
         root: '.',
-        post: await axios.get('http://localhost:5920/page/'+slug).then((response) => {
+        post: await axios.get('http://localhost:5920/page/id/'+id).then((response) => {
             return response.data
         }),
-        type: 'page'
-    })
-})
-
-router.get('/edit?page=:page', (req, res) => {
-    res.render('editor.html', {
-        root: '.',
-        page: req.params.page
+        type: 'page',
+        user: {
+            email: 'served_from@express.app',
+            username: 'served_from_express',
+        }
     })
 })
 

@@ -9,8 +9,6 @@ const getPages = asyncHandler(async (req, res) => {
 const getPageById = asyncHandler(async (req, res) => {
     const page = await Page.findById(req.params.id)
     if (page) {
-        page.views = page.views + 1
-        await page.save()
         res.json(page)
     } else {
         res.status(404)

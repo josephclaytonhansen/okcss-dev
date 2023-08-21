@@ -2,6 +2,7 @@ import db from './mongo.js'
 import Post from './models/postModel.min.js'
 import Page from './models/pageModel.min.js'
 import User from './models/userModel.min.js'
+import Category from './models/categoriesModel.min.js'
 
 const createTestPages = async () => {
     const pages = [
@@ -96,6 +97,28 @@ const createTestUser = async () => {
     }
 }
 
+const createTestCategories = async () => {
+    const categories = [
+        {
+            name: "blog"
+        },
+        {
+            name: "test"
+        },
+        {
+            name: "uncategorized"
+        }
+    ]
+    try {
+        await Category.deleteMany({})
+        await Category.insertMany(categories)
+        console.log("Categories Created")
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 createTestPages()
 createTestPosts()
 createTestUser()
+createTestCategories()
