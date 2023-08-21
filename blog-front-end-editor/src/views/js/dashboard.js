@@ -75,6 +75,30 @@ $('.cat-edit').on('click', (e)=>{
     })
 })
 
+$('#new-cat').on('click', ()=>{
+    let t = document.querySelector("body > div.grid > div.section.right > div.bottomright > div > div.c > section:nth-child(3) > div:nth-child(1)")
+    let c = document.querySelector("body > div.grid > div.section.right > div.bottomright > div > div.c > section:nth-child(3)")
+    //duplicate t and append it to c
+    let clone = t.cloneNode(true)
+    c.appendChild(clone)
+    //make it editable
+    let name_edit = clone.children[0]
+    name_edit.textContent = 'untitled category'
+    $.ajax({
+        url: '/category',
+        type: 'POST',
+        data: {
+            name: 'untitled category'
+        },
+        success: function(result){
+            location.reload()
+        },
+        error: function(err){
+            console.log(err)
+        }
+    })
+})
+
 $('#new-post').on('click', ()=>{
     window.location.href = '/new/post'
 })
