@@ -54,7 +54,9 @@ const limiter = rate_limit({
     legacyHeaders: false,
 })
 
-//app.use(limiter)
+if (process.env.ENV == 'production') {
+    app.use(limiter)
+}
 
 
 
