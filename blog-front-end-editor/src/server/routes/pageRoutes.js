@@ -10,7 +10,7 @@ import {
     getPagesByStatus,
     updatePageById,
     deletePageById
-} from '../controllers/pageController.js'
+} from '../controllers/pageController.min.js'
 
 import Page from '../models/pageModel.min.js'
 

@@ -7,11 +7,11 @@ import axios from 'axios'
 
 import db from './src/server/mongo.js'
 
-import page_routes from './src/server/routes/pageRoutes.js'
-import post_routes from './src/server/routes/postRoutes.js'
-import user_routes from './src/server/routes/userRoutes.js'
-import comment_routes from './src/server/routes/commentRoutes.js'
-import category_routes from './src/server/routes/categoriesRoutes.js'
+import page_routes from './src/server/routes/pageRoutes.min.js'
+import post_routes from './src/server/routes/postRoutes.min.js'
+import user_routes from './src/server/routes/userRoutes.min.js'
+import comment_routes from './src/server/routes/commentRoutes.min.js'
+import category_routes from './src/server/routes/categoriesRoutes.min.js'
 
 import cors from 'cors'
 
