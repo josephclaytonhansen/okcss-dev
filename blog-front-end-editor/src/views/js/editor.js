@@ -78,8 +78,17 @@ const edjsParser = edjsHTML()
 
 function parseToHTML(data) {
     let html = edjsParser.parse(data)
+    let json = JSON.stringify(data)
     html = html.join('')
     sessionStorage.setItem('current-blog-data', html)
+    sessionStorage.setItem('current-blog-data-raw', json)
+    // loop through json['blocks'] and get ['data']['text'] for each block
+    let text = []
+    for(let i = 0; i < data['blocks'].length; i++){
+        text.push(data['blocks'][i]['data']['text'])
+    }
+    text = text.join(' ')
+    $('#word-count').text(text.split(' ').length + " words")
 }
 
 let sidebar_open = true

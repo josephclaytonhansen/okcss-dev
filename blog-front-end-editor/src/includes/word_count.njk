@@ -3,15 +3,4 @@
 <link rel="stylesheet" href="/word_count.css" />
 <div id="word-count">0 words</div>
 
-<script>
-    let e = document.getElementById('editorjs');
-    const wordCount = document.getElementById('word-count');
-
-    e.addEventListener('keyup', () => {
-        const text = e.innerText;
-        const words = text.split(' ');
-        wordCount.innerText = words.length + " words";
-
-    });
-</script>
 {% endmacro %}
