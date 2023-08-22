@@ -99,11 +99,11 @@ $('#new-cat').on('click', ()=>{
 })
 
 $('#new-post').on('click', ()=>{
-    window.location.href = '/new/post'
+    window.location.href = '/new-post'
 })
 
 $('#new-page').on('click', ()=>{
-    window.location.href = '/new/page'
+    window.location.href = '/new-page'
 })
 
 $('#show-views').on('click', ()=>{
