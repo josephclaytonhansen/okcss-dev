@@ -16,6 +16,23 @@ const getPostById = asyncHandler(async (req, res) => {
     }
 })
 
+const deletePostHistory = asyncHandler(async (req, res) => {
+    const post = await Post.findById(req.params.id)
+    if (post) {
+        post.history = []
+        const updatedPost = await Post.findByIdAndUpdate({ _id: req.params.id }, { history: post.history })
+        if (updatedPost) {
+            res.json({ message: 'post history deleted' })
+        }
+        else {
+            res.status(400).json({ message: 'invalid data' })
+        }
+    } else {
+        res.status(404)
+        throw new Error('post not found')
+    }
+})
+
 const updatePostHistory = asyncHandler(async (req, res) => {
     const post = await Post.findById(req.params.id)
     if (post) {
@@ -155,6 +172,7 @@ export {
     getPostById,
     updatePost,
     updatePostHistory,
+    deletePostHistory,
     deletePost,
     createPost,
     getPostBySlug,
