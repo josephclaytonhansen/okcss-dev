@@ -86,6 +86,9 @@ function populateHistory(l = 0, r = 1) {
         left_string_sanitized = left_string_sanitized.replace(regex, '')
     })
 
+    right_string_sanitized = right_string_sanitized.replace(/(?!href=".*?)(\.[a-zA-Z0-9]{2,5})/g, 'file')
+    left_string_sanitized = left_string_sanitized.replace(/(?!href=".*?)(\.[a-zA-Z0-9]{2,5})/g, 'file')
+
     $('#r-right').html(right_string_sanitized)
     $('#r-left').html(left_string_sanitized)
 }
