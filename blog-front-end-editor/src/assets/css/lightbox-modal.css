@@ -72,14 +72,9 @@
 }
 
 .lightbox-modal-close{
-    cursor: pointer;
     position: relative;
     top: -35%;
     right: -35%;
-}
-
-.lightbox-modal-close .lucide{
-    transition: 0.2s all;
 }
 
 .lightbox-modal-close:hover .lucide{

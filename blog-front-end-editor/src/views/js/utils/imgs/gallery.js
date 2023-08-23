@@ -120,7 +120,7 @@ function lightboxModal(image){
 
     let close = $('<div>')
 
-    close.addClass('lightbox-modal-close')
+    close.addClass('lightbox-modal-close clickable-icon')
     let close_icon = $('<span>')
     close_icon.addClass('lucide lucide-4 lucide-va-1 icon-x')
     close_icon.css('-webkit-mask-image', 'url(/icons/x)')
