@@ -16,26 +16,50 @@ const getPostById = asyncHandler(async (req, res) => {
     }
 })
 
+const updatePostHistory = asyncHandler(async (req, res) => {
+    const post = await Post.findById(req.params.id)
+    if (post) {
+        post.history.push(post.content)
+        const updatedPost = await Post.findByIdAndUpdate({ _id: req.params.id }, { history: post.history})
+        if (updatedPost) {
+        res.json({message: 'post history updated'})}
+        else {
+            res.status(400).json({ message: 'invalid data' })
+        }
+    } else {
+        res.status(404)
+        throw new Error('post not found')
+    }
+})
+
 const updatePost = asyncHandler(async (req, res) => {
-    const { title, slug, author, categories, status, content, featuredImage, metaTitle, metaDescription, metaKeywords, scheduledDate } = req.body
+    const {title, slug, author, categories, tags, status, content, featuredImage, metaTitle, metaDescription, metaKeywords} = req.body
     const post = await Post.findById(req.params.id)
     if (post) {
         post.title = title
-        post.slug = slug
-        post.author = author
-        post.categories = categories
-        post.status = status
-        post.content = content
-        post.featured_image = featuredImage
-        post.meta_title = metaTitle
-        post.meta_description = metaDescription
-        post.meta_keywords = metaKeywords
-        post.scheduled_date = scheduledDate
-        const updatedPost = await Post.save()
-        res.json(updatedPost)
+        //TODO: author
+        //TODO: categories
+        //TODO: tags
+        //TODO: scheduled date
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, {
+            title: title,
+            slug: slug,
+            status: status,
+            content: content,
+            featured_image: featuredImage,
+            meta_title: metaTitle,
+            meta_description: metaDescription,
+            meta_keywords: metaKeywords
+        })
+        if (updatedPost) {
+            res.json({ message: 'post updated' })
+        }
+        else {
+            res.status(400).json({ message: 'invalid data' })
+        }
     }
     else {
-        res.status(404)
+        res.status(404).json({ message: 'post not found' })
         throw new Error('post not found')
     }
 })
@@ -130,6 +154,7 @@ export {
     getPosts,
     getPostById,
     updatePost,
+    updatePostHistory,
     deletePost,
     createPost,
     getPostBySlug,

@@ -72,6 +72,13 @@ router.get('/', (req, res) => {
     res.redirect('/login')
 })
 
+app.get('/postFunctions.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/assets/js/postFunctions.min.js", {
+        root: '.'
+    })
+})
+
 router.get('/edit/post/:id', async (req, res) => {
     const id = req.params.id
     let all_categories = []

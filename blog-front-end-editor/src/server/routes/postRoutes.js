@@ -11,13 +11,14 @@ import {
     getUpcomingPosts,
     createPost,
     updatePost,
+    updatePostHistory,
     deletePost
 } from '../controllers/postController.js'
 
-import Post from '../models/postModel.min.js'
-
 router.route('/').get(getPosts).post(createPost)
 router.route('/id/:id').get(getPostById).put(updatePost).delete(deletePost)
+router.route('/update/:id').post(updatePost)
+router.route('/update_history/:id').get(updatePostHistory)
 router.route('/:slug').get(getPostBySlug)
 router.route('/author/:author').get(getPostsByAuthor)
 router.route('/status/:status').get(getPostsByStatus)

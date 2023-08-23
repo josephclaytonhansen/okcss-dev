@@ -52,7 +52,8 @@ const createTestPosts = async () => {
             status: "scheduled",
             scheduled_date: new Date(),
             author: "5f9d3b3b9b0b7e1b1c3b0b7e",
-            featured_image: "https://picsum.photos/200/300"
+            featured_image: "https://picsum.photos/200/300",
+            history: [],
         },
     {
         title: "Post 2",
@@ -65,7 +66,8 @@ const createTestPosts = async () => {
         categories: ["blog", "test"],
         status: "published",
         author: "5f9d3b3b9b0b7e1b1c3b0b7e",
-        featured_image: "https://picsum.photos/200/300"
+        featured_image: "https://picsum.photos/200/300",
+        history: [],
     }
 ]
     try {

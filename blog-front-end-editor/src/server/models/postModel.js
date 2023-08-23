@@ -34,20 +34,39 @@ const postSchema = new mongoose.Schema({
     },
     featured_image: {
         type: String
-    }
+    },
 
-})
+    history: [
+        {type: String}
+    ],
+
+}, {timestamps: true})
 
 postSchema.pre('validate', function (next) {
     if (!this.slug){
     this.slug = this.name.toLowerCase().replace(/ /g, '-')}
+
     next()
 })
 
-postSchema.post('save', function (next) {
+postSchema.pre('save', function (next) {
     if (!this.slug){
-    this.slug = this.name.toLowerCase().replace(/ /g, '-')
-    this.save()}
+        this.slug = this.name.toLowerCase().replace(/ /g, '-')}
+
+})
+
+postSchema.post('update', function (next) {
+    if (!this.slug){
+        this.slug = this.name.toLowerCase().replace(/ /g, '-')}
+
+    next()
+})
+
+postSchema.pre('update', function (next) {
+    if (!this.slug){
+        this.slug = this.name.toLowerCase().replace(/ /g, '-')}
+
+    next()
 })
 
 const Post = mongoose.model('Post', postSchema)
