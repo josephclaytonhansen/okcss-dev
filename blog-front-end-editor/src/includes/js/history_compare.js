@@ -75,8 +75,16 @@ function populateHistory(l = 0, r = 1) {
         }
     })
 
-    $('#r-right').html(right_string)
-    $('#r-left').html(left_string)
+    let right_string_sanitized = right_string.replace(/href=".*?"/g, '')
+    right_string_sanitized = right_string_sanitized.replace(/<script>.*?<\/script>/g, '') 
+    right_string_sanitized = right_string_sanitized.replace(/<iframe>.*?<\/iframe>/g, '') 
+
+    let left_string_sanitized = left_string.replace(/href=".*?"/g, '')
+    left_string_sanitized = left_string_sanitized.replace(/<script>.*?<\/script>/g, '')
+    left_string_sanitized = left_string_sanitized.replace(/<iframe>.*?<\/iframe>/g, '')
+
+    $('#r-right').html(right_string_sanitized)
+    $('#r-left').html(left_string_sanitized)
 }
 
 populateHistory(ll, rr)
