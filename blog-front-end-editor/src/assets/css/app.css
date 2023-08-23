@@ -171,6 +171,26 @@ img.rounded{
     align-items: center;
 }
 
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.f-column{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
 .no-border{
     border: none!important;
 }

@@ -1,4 +1,9 @@
-$('#history').on('click', function() {})
+
+$('#history').on('click', function() {
+    $('#editor-grid').css('pointer-events', 'none')
+    $('#history-modal').removeClass('hidden')
+})
+
 
 $('#delete-history').on('click', function() {
     let url = new URL(window.location.href)

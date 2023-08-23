@@ -2,19 +2,21 @@
 <html lang="en">
 
 <head>
+    {% import "../includes/history_compare.njk" as hi %}
     {% import "../includes/editor_includes.njk" as i %}
     {% import "../includes/blog_sidebar.njk" as s %}
     {% import "../includes/admin_toolbar.njk" as a %}
     {% import "../includes/header.njk" as h %}
     {% import "../includes/meta.njk" as m %}
     {% import "../includes/word_count.njk" as w %}
-    {% import "../includes/history_compare.njk" as hi %}
-
     {{ m.eta() }}
     {{ i.ncludes("editor") }}
 </head>
 
 <body>
+
+    {{ hi.story(post.history) }}
+
     {{ a.dmin_toolbar("editor", post, user) }}
     {{ h.eader() }}
     <div id="editor-grid">
@@ -44,8 +46,6 @@
 
         </div>
     </div>
-
-    {{ hi.story(post.history) }}
 
     {{ w.ord_count() }}
 

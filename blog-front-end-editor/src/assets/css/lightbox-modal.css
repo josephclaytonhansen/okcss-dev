@@ -77,10 +77,6 @@
     right: -35%;
 }
 
-.lightbox-modal-close:hover .lucide{
-    background-color: rgb(49, 152, 196);
-}
-
 .lightbox-modal-delete{
     z-index:12;
     position: relative;

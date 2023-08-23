@@ -1,6 +1,32 @@
 {%macro story(history)%}
+
 {% import "../includes/lucide.njk" as lu %}
+<link rel="stylesheet" href = '/lightbox-modal.css'>
 <link rel="stylesheet" href='/history_compare.css'>
 
+<div class = 'hidden' id="history-storage">{{history}}</div>
+
+<div class = 'lightbox-modal hidden' id ='history-modal'>
+    <div class = 'lightbox-modal-inner'>
+        <section class = "inner-inner">
+            <section class = "top flex-around"></section>
+            <section class = "left flex-start f-column">
+                <h4 id = "left-time">Revision #1</h4>
+                <article class = "revision" id = "r-left">
+
+                </article>
+            </section>
+            <section class = "right flex-start f-column">
+                <h4 id = "right-time">Revision #2</h4>
+                <article class = "revision" id = "r-right">
+
+                </article>
+            </section>
+            <section class = "bottom flex-between"></section>
+        </section>
+    <div class = "lightbox-modal-close clickable-icon">{{lu.i("x")}}</div>
+</div>
+</div>
 <script src="/history_compare.js"></script>
+
 {% endmacro %}

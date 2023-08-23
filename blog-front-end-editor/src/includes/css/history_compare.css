@@ -1,0 +1,78 @@
+.lightbox-modal-inner{
+    background-color:transparent;
+    z-index:9999;
+    width:60vw;
+    transition: width 0.2s ease-in-out;
+
+}
+
+.inner-inner{
+    position: relative;
+    width:calc(100% + 1rem);
+    height:calc(100% - 2rem);
+    top:0;
+    left:0;
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 2fr 12fr 1fr;
+    grid-template-areas: 
+        "top top"
+        "left right"
+        "bottom bottom";
+    gap: 0.25rem;
+    background-color: #ccc;
+    border-radius: 8px;
+}
+
+.inner-inner section{
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.inner-inner .top{
+    grid-area: top;
+}
+
+.inner-inner .left{
+    grid-area: left;
+}
+
+.inner-inner .right{
+    grid-area: right;
+}
+
+.inner-inner .bottom{
+    grid-area: bottom;
+}
+
+.inner-inner h4, h3, .revision, p{
+    width:calc(100% - 1rem);
+    text-align: center;
+    padding:0.5rem;
+    margin:0;
+}
+
+.inner-inner h4{
+    background-color: #e0ecf2;
+    border-radius: 5px 5px 0 0;
+}
+
+.revision{
+    background-color: white;
+    height: 100%;
+}
+
+.lightbox-modal-close{
+    position: relative;
+    top:1%;
+    left:-1.5rem;
+    display: inline;
+    height: 0; 
+    overflow: visible;
+    width:0;
+    max-width: 0;
+    max-height: 0;
+}
