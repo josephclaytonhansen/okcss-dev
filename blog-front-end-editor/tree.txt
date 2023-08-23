@@ -46,15 +46,18 @@ blog-front-end-editor/dist
 │   │   ├── css
 │   │   │   ├── admin_toolbar.css
 │   │   │   ├── header.css
+│   │   │   ├── history_compare.css
 │   │   │   ├── post_list.css
 │   │   │   ├── sidebar.css
 │   │   │   ├── stats.css
 │   │   │   └── word_count.css
 │   │   ├── editor_includes.njk
 │   │   ├── header.njk
+│   │   ├── history_compare.njk
 │   │   ├── js
 │   │   │   ├── admin_toolbar.js
 │   │   │   ├── calendar.js
+│   │   │   ├── history_compare.js
 │   │   │   ├── post_list.js
 │   │   │   └── stats.js
 │   │   ├── lucide.njk
@@ -107,4 +110,4 @@ blog-front-end-editor/dist
 │       └── login.html
 └── tree.txt
 
-22 directories, 86 files
+22 directories, 89 files

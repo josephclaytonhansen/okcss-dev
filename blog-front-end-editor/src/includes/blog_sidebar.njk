@@ -86,7 +86,11 @@
         <div class="sidebar-tool" id="sidebar-tool-history">
             <div class = 'flex-between no-border fullwidth'>
             <span>History: {{history.length}} revisions</span>
-            <span id = "history">{{lu.i("history")}}</span>
+            <span>
+                <span id = "history" class = "clickable-icon">{{lu.i("history")}}</span>
+                <span id = "delete-history" class = "clickable-icon danger">{{lu.i("trash-2")}}</span>
+            </span>
+            
             
         </div>
 

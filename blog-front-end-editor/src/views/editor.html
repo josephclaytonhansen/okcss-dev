@@ -8,6 +8,7 @@
     {% import "../includes/header.njk" as h %}
     {% import "../includes/meta.njk" as m %}
     {% import "../includes/word_count.njk" as w %}
+    {% import "../includes/history_compare.njk" as hi %}
 
     {{ m.eta() }}
     {{ i.ncludes("editor") }}
@@ -43,6 +44,8 @@
 
         </div>
     </div>
+
+    {{ hi.story(post.history) }}
 
     {{ w.ord_count() }}
 

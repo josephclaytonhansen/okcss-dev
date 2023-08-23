@@ -260,6 +260,13 @@ router.get('/calendar.css', (req, res) => {
     })
 })
 
+router.get('/history_compare.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/includes/css/history_compare.min.css", {
+        root: '.'
+    })
+})
+
 router.get('/stats.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/includes/css/stats.min.css", {
@@ -277,6 +284,13 @@ router.get('/stats.js', (req, res) => {
 router.get('/calendar.js', (req, res) => {
     res.type('js')
     res.sendFile("/src/includes/js/calendar.min.js", {
+        root: '.'
+    })
+})
+
+router.get('/history_compare.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/includes/js/history_compare.min.js", {
         root: '.'
     })
 })
