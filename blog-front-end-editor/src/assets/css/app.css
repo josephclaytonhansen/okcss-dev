@@ -62,6 +62,15 @@
     background-color: rgb(225, 143, 127);
 }
 
+:has(.lucide).disabled .lucide{
+    background-color: rgb(158, 158, 158)!important;
+    pointer-events: none!important;
+}
+
+:has(.lucide).disabled{
+    cursor: not-allowed!important;
+}
+
 button{
     border-radius:4px;
     border: none;

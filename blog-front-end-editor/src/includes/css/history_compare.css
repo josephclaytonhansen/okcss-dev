@@ -38,10 +38,12 @@
 
 .inner-inner .left{
     grid-area: left;
+    overflow-y:scroll;
 }
 
 .inner-inner .right{
     grid-area: right;
+    overflow-y:scroll;
 }
 
 .inner-inner .bottom{

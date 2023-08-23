@@ -9,7 +9,11 @@
 <div class = 'lightbox-modal hidden' id ='history-modal'>
     <div class = 'lightbox-modal-inner'>
         <section class = "inner-inner">
-            <section class = "top flex-around"></section>
+            <section class = "top flex-around">
+                <span class = "clickable-icon" id = "left-arrow">{{lu.i("arrow-left", 4, ["va-2"])}}</span>
+                <h2>Compare and restore history</h2>
+                <span class = "clickable-icon disabled" id = "right-arrow">{{lu.i("arrow-right", 4, ["va-2"])}}</span>
+            </section>
             <section class = "left flex-start f-column">
                 <h4 id = "left-time">Revision #1</h4>
                 <article class = "revision" id = "r-left">
