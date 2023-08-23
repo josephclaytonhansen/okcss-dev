@@ -23,3 +23,7 @@ $('#delete-history').on('click', function() {
         },
     })
     })
+
+$('#sidebar-tool-close').on('click', function() {
+    window.location.href = '/dashboard'
+})

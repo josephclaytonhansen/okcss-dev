@@ -59,3 +59,8 @@
     gap: .5rem;
     max-width:85%;
 }
+
+
+.blog-editor-sidebar .bottom button:first-child{
+    flex-grow: 4;
+}
