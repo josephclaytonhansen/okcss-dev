@@ -76,12 +76,15 @@ function populateHistory(l = 0, r = 1) {
     })
 
     let right_string_sanitized = right_string.replace(/href=".*?"/g, '')
-    right_string_sanitized = right_string_sanitized.replace(/<script>.*?<\/script>/g, '') 
-    right_string_sanitized = right_string_sanitized.replace(/<iframe>.*?<\/iframe>/g, '') 
 
     let left_string_sanitized = left_string.replace(/href=".*?"/g, '')
-    left_string_sanitized = left_string_sanitized.replace(/<script>.*?<\/script>/g, '')
-    left_string_sanitized = left_string_sanitized.replace(/<iframe>.*?<\/iframe>/g, '')
+
+    remove_tags = ['canvas', 'svg', 'iframe', 'script', 'pre', 'code', 'form']
+    remove_tags.forEach(element => {
+        let regex = new RegExp('<' + element + '.*?(\/>|<\/' + element + '>)', 'gi')
+        right_string_sanitized = right_string_sanitized.replace(regex, '')
+        left_string_sanitized = left_string_sanitized.replace(regex, '')
+    })
 
     $('#r-right').html(right_string_sanitized)
     $('#r-left').html(left_string_sanitized)
