@@ -56,6 +56,7 @@ blog-front-end-editor/dist
 │   │   ├── history_compare.njk
 │   │   ├── js
 │   │   │   ├── admin_toolbar.js
+│   │   │   ├── blog_sidebar.js
 │   │   │   ├── calendar.js
 │   │   │   ├── history_compare.js
 │   │   │   ├── post_list.js
@@ -110,4 +111,4 @@ blog-front-end-editor/dist
 │       └── login.html
 └── tree.txt
 
-22 directories, 89 files
+22 directories, 90 files

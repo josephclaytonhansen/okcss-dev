@@ -288,6 +288,13 @@ router.get('/calendar.js', (req, res) => {
     })
 })
 
+router.get('/blog_sidebar.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/includes/js/blog_sidebar.min.js", {
+        root: '.'
+    })
+})
+
 router.get('/history_compare.js', (req, res) => {
     res.type('js')
     res.sendFile("/src/includes/js/history_compare.min.js", {
