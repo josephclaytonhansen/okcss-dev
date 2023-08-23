@@ -17,20 +17,19 @@
             <section class = "left flex-start f-column">
                 <h4 id = "left-time">Revision #1</h4>
                 <article class = "revision" id = "r-left">
-
                 </article>
+                <button class = "ocean" id = 'restore-left'>Restore{{lu.i("rotate-ccw")}}</button>
             </section>
             <section class = "right flex-start f-column">
                 <h4 id = "right-time">Revision #2</h4>
                 <article class = "revision" id = "r-right">
-
                 </article>
+                <button class = "ocean" id = 'restore-right'>Restore{{lu.i("rotate-ccw")}}</button>
             </section>
-            <section class = "bottom flex-between"></section>
         </section>
     <div class = "lightbox-modal-close clickable-icon">{{lu.i("x")}}</div>
 </div>
 </div>
-<script src="/history_compare.js"></script>
+<script type="module" src="/history_compare.js"></script>
 
 {% endmacro %}

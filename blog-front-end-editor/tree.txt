@@ -38,6 +38,7 @@ blog-front-end-editor/dist
 │   │           ├── panel-right-open.svg
 │   │           ├── pencil.svg
 │   │           ├── plus.svg
+│   │           ├── rotate-ccw.svg
 │   │           ├── save.svg
 │   │           ├── trash-2.svg
 │   │           └── x.svg
@@ -113,4 +114,4 @@ blog-front-end-editor/dist
 │       └── login.html
 └── tree.txt
 
-22 directories, 92 files
+22 directories, 93 files

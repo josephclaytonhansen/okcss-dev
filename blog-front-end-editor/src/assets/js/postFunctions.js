@@ -1,4 +1,4 @@
-function savePost(){
+function savePost(content){
     let url = new URL(window.location.href)
     let post_index = url.href.indexOf('post/')
     let post_id = url.href.slice(post_index + 5)
@@ -12,7 +12,6 @@ function savePost(){
     let categories = $('#blog-categories').val()
     let tags = $('#blog-tags').val()
     let author = $('#blog-author').val()
-    let content = sessionStorage.getItem('current-blog-data-raw')
     //TODO: featured image
     let featuredImage = ''
     //TODO: scheduled date
@@ -44,6 +43,9 @@ function savePost(){
 }
 
 function savePostCallback(post_id, content){
+    let current_text = $('#history-count').text().split(' ')
+    let current_count = parseInt(current_text[1]) + 1
+    $('#history-count').text(current_text[0] +" "+ current_count+" "+current_text[2])
     $.ajax({
         method: 'GET',
         url: '/post/update_history/' + post_id,
@@ -52,6 +54,7 @@ function savePostCallback(post_id, content){
         error: (err) => {
         }
     })
+    window.location.reload()
 }
 
 export {savePostCallback, savePost}

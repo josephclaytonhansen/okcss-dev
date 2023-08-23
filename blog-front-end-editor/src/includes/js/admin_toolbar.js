@@ -48,5 +48,5 @@ function showDropdown(target){
 }
 
 $('#save').on('click', (e) => {
-    savePost()
+    savePost(sessionStorage.getItem('current-blog-data-raw'))
 })

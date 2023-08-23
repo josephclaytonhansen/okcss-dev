@@ -1,10 +1,17 @@
 $('.lightbox-modal-close').on('click', function () {
     $('.lightbox-modal').addClass('hidden')
     $('#editor-grid').css('pointer-events', 'auto')
+    $('#editor-grid').css('opacity', '1')
 })
 
 let ll = 0
 let rr = 1
+let mostRecent = null
+let secondMostRecent = null
+let left_time_d = null
+let right_time_d = null
+
+import {savePost} from './postFunctions.js'
 
 function populateHistory(l = 0, r = 1) {
     let raw = $('#history-storage').text()
@@ -23,15 +30,17 @@ function populateHistory(l = 0, r = 1) {
         return bTime - aTime
     })
     //get the most recent
-    let mostRecent = raw[l]
+    mostRecent = raw[l]
     //get the second most recent
-    let secondMostRecent = raw[r]
+    secondMostRecent = raw[r]
 
     let left_time = JSON.parse(secondMostRecent).time
+    left_time_d = left_time
     left_time = new Date(left_time)
     left_time = left_time.toLocaleDateString() + ' ' + left_time.toLocaleTimeString()
 
     let right_time = JSON.parse(mostRecent).time
+    let right_time_d = right_time
     right_time = new Date(right_time)
     right_time = right_time.toLocaleDateString() + ' ' + right_time.toLocaleTimeString()
 
@@ -104,4 +113,24 @@ $('#right-arrow').on('click', function () {
         $('#right-arrow').addClass('disabled')
         $('#left-arrow').removeClass('disabled')
     }
+})
+
+$('#restore-right').on('click', function () {
+        let right_time = JSON.stringify(right_time_d)
+        
+        mostRecent = JSON.parse(mostRecent)
+        mostRecent.time = right_time
+        mostRecent = JSON.stringify(mostRecent)
+        savePost(mostRecent)
+        window.location.reload()
+})
+
+$('#restore-left').on('click', function () {
+    let left_time = JSON.stringify(left_time_d)
+    //change the time of secondMostRecent to left_time
+    secondMostRecent = JSON.parse(secondMostRecent)
+    secondMostRecent.time = left_time
+    secondMostRecent = JSON.stringify(secondMostRecent)
+    savePost(secondMostRecent)
+    window.location.reload()
 })

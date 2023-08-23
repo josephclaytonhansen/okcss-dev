@@ -2,6 +2,7 @@
 $('#history').on('click', function() {
     $('#editor-grid').css('pointer-events', 'none')
     $('#history-modal').removeClass('hidden')
+    $('#editor-grid').css('opacity', '0')
 })
 
 
