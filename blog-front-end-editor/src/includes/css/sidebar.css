@@ -25,7 +25,7 @@
     padding-top:.5rem;
 }
 
-.sidebar-tool :not(label){
+.sidebar-tool input, .sidebar-tool select, .sidebar-tool textarea{
     flex-grow: 1;
     height:100%;
     padding:0.5rem;

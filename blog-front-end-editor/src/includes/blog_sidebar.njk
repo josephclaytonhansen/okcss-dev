@@ -82,6 +82,16 @@
                 {% endfor %}
             </select>
         </div>
+
+        <div class="sidebar-tool" id="sidebar-tool-history">
+            <div class = 'flex-between no-border fullwidth'>
+            <span>History: {{history.length}} revisions</span>
+            <span id = "history">{{lu.i("history")}}</span>
+            
+        </div>
+
+        </div>
+
     </div>
     <div class = "bottom">
         <button id="sidebar-tool-delete" class="ocean flexwidth">{{lu.i("door-open")}}Exit editor</button>

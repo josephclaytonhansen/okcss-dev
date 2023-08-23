@@ -8,6 +8,8 @@ blog-front-end-editor/dist
 │   │   │   ├── app.css
 │   │   │   ├── img-gallery-list-view.css
 │   │   │   └── lightbox-modal.css
+│   │   ├── js
+│   │   │   └── postFunctions.js
 │   │   └── lucide
 │   │       ├── css
 │   │       │   └── l.css
@@ -23,6 +25,7 @@ blog-front-end-editor/dist
 │   │           ├── fingerprint.svg
 │   │           ├── folder-tree.svg
 │   │           ├── gallery-horizontal-end.svg
+│   │           ├── history.svg
 │   │           ├── home.svg
 │   │           ├── image-plus.svg
 │   │           ├── key-round.svg
@@ -104,4 +107,4 @@ blog-front-end-editor/dist
 │       └── login.html
 └── tree.txt
 
-21 directories, 84 files
+22 directories, 86 files

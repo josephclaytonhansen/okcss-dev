@@ -22,7 +22,7 @@
             <div class='c' id = "pages">
                 <div class = "flex-between">
                     <h2>Pages</h2>
-                    <span id = "new-page">{{lu.i("plus")}}</span>
+                    <span id = "new-page" class="clickable-icon">{{lu.i("plus")}}</span>
                 </div>
                 <hr />
                 <section>
@@ -32,7 +32,7 @@
             <div class='c' id = "posts"> 
                 <div class = "flex-between">
                     <h2>Posts</h2>
-                    <span id = "new-post">{{lu.i("plus")}}</span>
+                    <span id = "new-post" class="clickable-icon">{{lu.i("plus")}}</span>
                 </div>
                 <hr />
                 <section>
@@ -46,9 +46,9 @@
                     <section class="gallery-top">
                         <h2>Images</h2>
                         <section class="gallery-top">
-                            <span id = "list-view">{{ lu.i("folder-tree")}}</span>
-                            <span id = "gallery-view" class="hidden">{{ lu.i("layout-grid")}}</span>
-                            <span>{{ lu.i("image-plus")}}</span>
+                            <span id = "list-view" class="clickable-icon">{{ lu.i("folder-tree")}}</span>
+                            <span id = "gallery-view" class="hidden clickable-icon">{{ lu.i("layout-grid")}}</span>
+                            <span class ="clickable-icon">{{ lu.i("image-plus") }}</span>
                         </section>
                     </section>
 
@@ -66,7 +66,7 @@
                     <div class='c'>
                         <section class = "flex-between">
                             <h2>Categories</h2>
-                            <span id = "new-cat">{{lu.i("plus")}}</span>
+                            <span id = "new-cat" class="clickable-icon">{{lu.i("plus")}}</span>
                         </section>
                         <hr />
                         <section style = "margin-top:1rem;">
@@ -74,9 +74,9 @@
                             <div class="flex-between gap-1 baseline-down squish category">
                                 <p>{{category.name}}</p>
                                 <span>
-                                    <span id = 'edit-{{category._id}}' class=" cat-edit">{{lu.i("pencil", 2)}}</span>
-                                    <span id = 'list-{{category._id}}' class=" cat-list">{{lu.i("list", 2)}}</span>
-                                    <span id = 'delete-{{category._id}}' class="danger  cat-delete">{{lu.i("trash-2", 2)}}</span>
+                                    <span id = 'edit-{{category._id}}' class=" cat-edit clickable-icon">{{lu.i("pencil", 2)}}</span>
+                                    <span id = 'list-{{category._id}}' class=" cat-list clickable-icon">{{lu.i("list", 2)}}</span>
+                                    <span id = 'delete-{{category._id}}' class="danger clickable-icon  cat-delete">{{lu.i("trash-2", 2)}}</span>
                                 </span>
                             </div>
                             {% endfor %}
@@ -85,13 +85,13 @@
                     <div>
                         <section class = "flex-between hidden" id ="section-comments">
                         <section style="width:100%"><h2 id = "comments-h2">Comments</h2><hr /></section>
-                        <span id = "show-views">{{lu.i("bar-chart-3", 3, ["va-10"])}}</span>
+                        <span id = "show-views" class="clickable-icon">{{lu.i("bar-chart-3", 3, ["va-10"])}}</span>
                         </section>
                         <section class = "flex-between hidden" id = "comments">
                             </section>
                         <section class = "flex-between" id = "section-views">
                             <section style="width:100%"><h2 id = "views-h2">Views</h2><hr /></section>
-                            <span id = "show-comments">{{lu.i("messages-square", 3, ["va-10"])}}</span>
+                            <span id = "show-comments" class="clickable-icon">{{lu.i("messages-square", 3, ["va-10"])}}</span>
                             </section>
                             <section class = "flex-between" id = "views">
                                 {{st.ats_chart(pages)}}

@@ -43,11 +43,3 @@
     overflow-y:scroll;
     width: 100%;
 }
-
-.pedit, .pedit .lucide{
-    transition: 0.2s all;
-}
-
-.pedit:hover .lucide{
-    background-color:rgb(49, 152, 196)!important;
-}
