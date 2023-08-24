@@ -4,8 +4,10 @@ import nunjucks from 'nunjucks'
 import rate_limit from 'express-rate-limit'
 const router = express.Router()
 import axios from 'axios'
+import path from 'path'
 
 import db from './src/server/mongo.js'
+import upload from './src/server/multerStorage.js'
 
 import page_routes from './src/server/routes/pageRoutes.min.js'
 import post_routes from './src/server/routes/postRoutes.min.js'
