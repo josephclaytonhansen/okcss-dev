@@ -1,0 +1,22 @@
+{%macro pload_image()%}
+
+{% import "../includes/lucide.njk" as lu %}
+<link rel="stylesheet" href = '/lightbox-modal.css'>
+<link rel="stylesheet" href='/image_upload.css'>
+
+<div class = 'lightbox-modal hidden' id ='upload-image'>
+    <div class = 'lightbox-modal-inner'>
+        <div class = "inner-inner flex-center">
+            <form action="/upload-image" method="post" enctype="multipart/form-data">
+                <input type="file" name="streamfile" />
+                <button class = "ocean" type="submit">Upload</button>
+              </form>
+        </div>
+        <div class = "lightbox-modal-close clickable-icon">{{lu.i("x")}}</div>
+    </div>
+    
+</div>
+</div>
+<script type='module' src="/img/upload.js"></script>
+
+{% endmacro %}

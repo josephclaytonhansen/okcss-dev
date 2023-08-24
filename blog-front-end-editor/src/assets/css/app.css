@@ -257,3 +257,12 @@ p[contenteditable=true]:focus{
 .clickable-icon:not(.danger):hover .lucide{
     background-color: rgb(49, 152, 196);
 }
+
+.lightbox-modal-inner{
+    background-color:transparent;
+    z-index:9999;
+    width:80vw;
+    transition: width 0.2s ease-in-out;
+
+}
+

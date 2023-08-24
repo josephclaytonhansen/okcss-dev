@@ -269,6 +269,13 @@ router.get('/history_compare.css', (req, res) => {
     })
 })
 
+router.get('/image_upload.css', (req, res) => {
+    res.type('css')
+    res.sendFile("/src/includes/css/image_upload.min.css", {
+        root: '.'
+    })
+})
+
 router.get('/stats.css', (req, res) => {
     res.type('css')
     res.sendFile("/src/includes/css/stats.min.css", {
@@ -328,6 +335,13 @@ router.get('/colors.js', (req, res) => {
 router.get('/img/list.js', (req, res) => {
     res.type('js')
     res.sendFile("/src/views/js/utils/imgs/img_list.min.js", {
+        root: '.'
+    })
+})
+
+router.get('/img/upload.js', (req, res) => {
+    res.type('js')
+    res.sendFile("/src/views/js/utils/imgs/upload.min.js", {
         root: '.'
     })
 })
@@ -469,6 +483,25 @@ router.get('/new-page', async (req, res) => {
         }
         })
 })
+
+router.post('/upload-image', upload.single('streamfile'), (req, res) => {
+    if(req.fileValidationError) {
+      return res.status(400).json({
+        message: req.fileValidationError,
+      })
+    }
+    // get the file from the request
+    const file = req.file
+    if (!file) {
+        return res.status(400).json({
+            message: 'Please upload a file',
+        })
+    }
+    return res.status(201).json({
+        name: file.filename,
+    })
+
+  });
 
 app.use('/', router)
 

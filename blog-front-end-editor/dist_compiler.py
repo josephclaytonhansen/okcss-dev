@@ -56,7 +56,6 @@ def tree():
     try:
         with open(os.path.join(dist_path, "tree.txt"), "w") as f:
             f.write("")
-        os.system("tree " + dist_path + " > " + os.path.join(dist_path, "tree.txt"))
     except:
         with open(os.path.join(dist_path, "tree.txt"), "w") as f:
             for root, dirs, files in os.walk(dist_path):

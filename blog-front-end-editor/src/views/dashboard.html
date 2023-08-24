@@ -9,12 +9,14 @@
     {% import "../includes/calendar.njk" as c%}
     {% import "../includes/post_list.njk" as p%}
     {% import "../includes/stats.njk" as st%}
+    {% import "../includes/image_upload.njk" as u%}
     <link rel="stylesheet" href="/icons/style.css">
     {{ i.ncludes("dashboard") }}
     {{ m.eta()}}
 </head>
 
 <body>
+    {{ u.pload_image() }}
     {{ c.alendar("calendar-container", month=date.monthName, day=date.day, year=date.year) }}
     {{ a.dmin_toolbar("dashboard", "", user) }}
     <div class="grid">
@@ -48,7 +50,7 @@
                         <section class="gallery-top">
                             <span id = "list-view" class="clickable-icon">{{ lu.i("folder-tree")}}</span>
                             <span id = "gallery-view" class="hidden clickable-icon">{{ lu.i("layout-grid")}}</span>
-                            <span class ="clickable-icon">{{ lu.i("image-plus") }}</span>
+                            <span class ="clickable-icon" id="new-image">{{ lu.i("image-plus") }}</span>
                         </section>
                     </section>
 
@@ -102,6 +104,7 @@
             </div>
         </div>
     </div>
+
     <script src="/dashboard.js"></script>
     <script src="/img/gallery.js"></script>
     <script src="/img/list.js"></script>

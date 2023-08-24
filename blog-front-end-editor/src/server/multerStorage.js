@@ -5,7 +5,7 @@ import crypto from 'crypto'
 dotenv.config()
 
 const storage = new GridFsStorage({
-    url: process.env.MONGO_STRING,
+    url: process.env.MONGO_STRING+process.env.MONGO_DB_NAME,
     file: (req, file) => {
       return new Promise((resolve, reject) => {
         crypto.randomBytes(16, (err, buf) => {
@@ -34,7 +34,7 @@ const storage = new GridFsStorage({
     cb(null, true)
   }
 
-  const upload = multer({ storage, fileFilter: imageFilter })
+  const upload = multer({ storage, fileFilter: imageFilter})
   export default upload
   
   

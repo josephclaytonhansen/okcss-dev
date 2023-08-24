@@ -1,11 +1,3 @@
-.lightbox-modal-inner{
-    background-color:transparent;
-    z-index:9999;
-    width:80vw;
-    transition: width 0.2s ease-in-out;
-
-}
-
 .inner-inner{
     position: relative;
     width:calc(100% + 1rem);
