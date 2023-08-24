@@ -79,7 +79,7 @@ function populateHistory(l = 0, r = 1) {
 
     let left_string_sanitized = left_string.replace(/href=".*?"/g, '')
 
-    remove_tags = ['canvas', 'svg', 'iframe', 'script', 'pre', 'code', 'form']
+    let remove_tags = ['canvas', 'svg', 'iframe', 'script', 'pre', 'code', 'form']
     remove_tags.forEach(element => {
         let regex = new RegExp('<' + element + '.*?(\/>|<\/' + element + '>)', 'gi')
         right_string_sanitized = right_string_sanitized.replace(regex, '')
