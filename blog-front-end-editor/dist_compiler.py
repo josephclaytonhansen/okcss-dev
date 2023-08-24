@@ -32,15 +32,43 @@ def copy_all():
     os.system("rm -rf " + os.path.join(dist_path, "src", "assets", "lucide", "icons"))
     #remove seeder.js
     os.system("rm -rf " + os.path.join(dist_path, "src", "server", "seeder.min.js"))
-    
     # remove package-lock.json
     os.system("rm -rf " + os.path.join(dist_path, "package-lock.json"))
+    # remove package.min.json
+    os.system("rm -rf " + os.path.join(dist_path, "package.min.json"))
     # change package.json "start" script from "cd .. && python3 blog-front-end-editor/dist_compiler.py && python3 blog-front-end-editor/src/assets/lucide/compiler.py && cd blog-front-end-editor && nodemon app.min.js" to "npm i && node start app.min.js"
     with open(os.path.join(dist_path, "package.json"), "r") as f:
         file = f.read()
     with open(os.path.join(dist_path, "package.json"), "w") as f:
         f.write(re.sub(r'"start": "cd .. && python3 blog-front-end-editor/dist_compiler.py && python3 blog-front-end-editor/src/assets/lucide/compiler.py && cd blog-front-end-editor && nodemon app.min.js"', '"start": "npm i && node app.min.js"', file))
 
+def rename_all():
+    global dist_path
+    # rename all .min.css files to .css, and all .min.js files to .js
+    for root, dirs, files in os.walk(dist_path):
+        try:
+            for file in files:
+                if file.endswith(".min.css"):
+                    os.rename(os.path.join(root, file), os.path.join(root, file[:-8] + ".css"))
+                elif file.endswith(".min.js"):
+                    os.rename(os.path.join(root, file), os.path.join(root, file[:-7] + ".js"))
+        except Exception as e:
+            print(e)
+
+def fix_import_paths():
+    global dist_path
+    # loop through the content all files and replace all instances of ".min.css" with ".css" and all instances of ".min.js" with ".js"
+    for root, dirs, files in os.walk(dist_path):
+        try: 
+            for file in files:
+                if file.endswith(".html") or file.endswith(".css") or file.endswith(".js") or file.endswith(".njk"):
+                    with open(os.path.join(root, file), "r") as f:
+                        file_content = f.read()
+                    with open(os.path.join(root, file), "w") as f:
+                        f.write(re.sub(r'\.min\.css', '.css', re.sub(r'\.min\.js', '.js', file_content)))
+        except Exception as e:
+            print(e)
+            
 def zip_dist():
     global dist_path
     # zip dist folder recursively
@@ -53,6 +81,8 @@ def zip_dist():
             
 try:
     copy_all()
+    rename_all()
+    fix_import_paths()
     zip_dist()
 except Exception as e:
     print(e)
