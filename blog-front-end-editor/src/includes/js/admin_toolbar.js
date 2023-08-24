@@ -39,7 +39,7 @@ function showDropdown(target){
         dropdown_item.classList.add('dropdown-item')
         //add click event listener
         dropdown_item.addEventListener('click', (e) => {
-            link = dropdown_links[dropdown_items.indexOf(item)]
+            let link = dropdown_links[dropdown_items.indexOf(item)]
             document.location.href = link
         })
         dropdown_item.innerHTML = item
