@@ -1,4 +1,14 @@
+let url = new URL(window.location.href)
+let post_index = url.href.indexOf('post/')
+let post_id = url.href.slice(post_index + 5)
 
+$.ajax({
+    method: 'GET',
+    url: '/post/id/' + post_id,
+    success: (data) => {
+        sessionStorage.setItem('current-blog-data-raw', data.content)
+    },
+})
 
 const editor = new EditorJS({
     holder: 'editorjs',
@@ -13,6 +23,13 @@ const editor = new EditorJS({
     onReady: () => {
         new Undo({editor});
         new DragDrop(editor);
+        let blocks = JSON.parse(sessionStorage.getItem('current-blog-data-raw'))['blocks']
+        if (blocks){
+        blocks.forEach(block => {
+            editor.blocks.insert(block.type, block.data)
+        })}
+
+        
     },
     tools: {
         paragraph: {
@@ -115,3 +132,6 @@ sidebar_button_close.addEventListener('click', () => {
     $("#editor-grid").css("grid-template-columns", "100vw 0vw")
     $("#editor-left").css("margin-right", "2rem")
 })
+
+
+
