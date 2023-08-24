@@ -1,12 +1,12 @@
 import os, re, zipfile
-src_path = os.path.join(os.getcwd(), "blog-front-end-editor")
-dist_path = os.path.join(os.getcwd(), "blog-front-end-editor", "dist")
+src_path = os.path.join(os.getcwd(), "seabass")
+dist_path = os.path.join(os.getcwd(), "seabass", "dist")
 
 # copy all files and folders from src to dist
 def copy_all():
     global src_path, dist_path
     if not os.path.exists(dist_path):
-        os.mkdir(os.path.join(os.getcwd(), "blog-front-end-editor", "dist"))
+        os.mkdir(os.path.join(os.getcwd(), "seabass", "dist"))
     os.system("cp -r " + src_path + "/* " + dist_path)
     #remove all .py files
     os.system("find " + dist_path + " -name '*.py' -type f -delete")
@@ -36,11 +36,11 @@ def copy_all():
     os.system("rm -rf " + os.path.join(dist_path, "package-lock.json"))
     # remove package.min.json
     os.system("rm -rf " + os.path.join(dist_path, "package.min.json"))
-    # change package.json "start" script from "cd .. && python3 blog-front-end-editor/dist_compiler.py && python3 blog-front-end-editor/src/assets/lucide/compiler.py && cd blog-front-end-editor && nodemon app.min.js" to "npm i && node start app.min.js"
+    # change package.json "start" script from "cd .. && python3 seabass/dist_compiler.py && python3 seabass/src/assets/lucide/compiler.py && cd seabass && nodemon app.min.js" to "npm i && node start app.min.js"
     with open(os.path.join(dist_path, "package.json"), "r") as f:
         file = f.read()
     with open(os.path.join(dist_path, "package.json"), "w") as f:
-        f.write(re.sub(r'"start": "cd .. && python3 blog-front-end-editor/dist_compiler.py && python3 blog-front-end-editor/src/assets/lucide/compiler.py && cd blog-front-end-editor && nodemon app.min.js"', '"start": "npm i && node app.min.js"', file))
+        f.write(re.sub(r'"start": "cd .. && python3 seabass/dist_compiler.py && python3 seabass/src/assets/lucide/compiler.py && cd seabass && nodemon app.min.js"', '"start": "npm i && node app.min.js"', file))
 
 def rename_all():
     global dist_path
@@ -72,7 +72,7 @@ def fix_import_paths():
 def zip_dist():
     global dist_path
     # zip dist folder recursively
-    with zipfile.ZipFile(os.path.join(os.getcwd(), "blog-front-end-editor", "dist.zip"), "w", zipfile.ZIP_DEFLATED) as zip:
+    with zipfile.ZipFile(os.path.join(os.getcwd(), "seabass", "dist.zip"), "w", zipfile.ZIP_DEFLATED) as zip:
         for root, dirs, files in os.walk(dist_path):
             for file in files:
                 zip.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(dist_path, '..')))
