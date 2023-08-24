@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
     permissions: {type: String,
         default: "user"
     },
+    secret: {type: String,}
 })
 
 const User = mongoose.model('User', userSchema)

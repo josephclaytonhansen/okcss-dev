@@ -13,4 +13,20 @@ db.once('connected', () => {
     console.log('Database Connected');
 })
 
+//create a session store
+db.sessionStorage = {
+    sessions: {},
+    get: function (sid, cb) {
+        cb(null, this.sessions[sid])
+    },
+    set: function (sid, session, cb) {
+        this.sessions[sid] = session
+        cb(null, session)
+    },
+    destroy: function (sid, cb) {
+        delete this.sessions[sid]
+        cb(null)
+    }
+}
+
 export default db
