@@ -498,6 +498,14 @@ router.post('/upload-image', upload.single('streamfile'), (req, res) => {
     }
     return res.status(201).json({
         name: file.filename,
+        path: file.path,
+        size: file.size,
+        type: file.type,
+        width: file.width,
+        height: file.height,
+        createdAt: file.createdAt,
+        updatedAt: file.updatedAt,
+        alt: file.alt_text
     })
 
   });

@@ -16,6 +16,15 @@ const storage = new GridFsStorage({
           const fileInfo = {
             filename: filename,
             bucketName: 'uploads',
+            metadata: {
+              "size":file.o,
+              "type":file.mimetype,
+              "width":file.width,
+              "height":file.height,
+              "createdAt":new Date(),
+              "updatedAt":new Date(),
+              "alt_text": file.originalname,
+            },
           }
           resolve(fileInfo)
         })
@@ -34,10 +43,6 @@ const storage = new GridFsStorage({
     if (file.size > 5 * 1024 * 1024) {
       req.fileValidationError = 'File size exceeds 5MB.'
       return cb(new Error('File size exceeds 5MB.'), false)
-    }
-    if (file.originalname.includes(' ')) {
-      req.fileValidationError = 'Filename cannot contain spaces.'
-      return cb(new Error('Filename cannot contain spaces.'), false)
     }
     if (file.originalname.includes('\'')) {
       req.fileValidationError = 'Filename cannot contain apostrophes.'
