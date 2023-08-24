@@ -1,12 +1,11 @@
+import db from './src/server/mongo.js'
+
 import express from 'express'
 const app = express()
 import nunjucks from 'nunjucks'
 import rate_limit from 'express-rate-limit'
 const router = express.Router()
 import axios from 'axios'
-import path from 'path'
-
-import db from './src/server/mongo.js'
 import upload from './src/server/multerStorage.js'
 
 import page_routes from './src/server/routes/pageRoutes.min.js'
@@ -34,7 +33,7 @@ var certificate = fs.readFileSync('/etc/ssl/cert.pem', 'utf8')
 var credentials = {key: privateKey, cert: certificate} */
 
 const corsOptions = {
-    origin: process.env.ORIGIN || "http://localhost:5920",
+    origin: process.env.ORIGIN,
     credentials: true,
     optionSuccessStatus: 200
 }
@@ -74,7 +73,7 @@ router.get('/', (req, res) => {
     res.redirect('/login')
 })
 
-app.get('/postFunctions.js', (req, res) => {
+router.get('/postFunctions.js', (req, res) => {
     res.type('js')
     res.sendFile("/src/assets/js/postFunctions.min.js", {
         root: '.'
