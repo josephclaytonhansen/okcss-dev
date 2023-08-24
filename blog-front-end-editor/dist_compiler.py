@@ -50,54 +50,9 @@ def zip_dist():
                 zip.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(dist_path, '..')))
     # remove dist folder
     os.system("rm -rf " + dist_path)
-    
-def tree():
-    global dist_path
-    try:
-        with open(os.path.join(dist_path, "tree.txt"), "w") as f:
-            f.write("")
-    except:
-        with open(os.path.join(dist_path, "tree.txt"), "w") as f:
-            for root, dirs, files in os.walk(dist_path):
-                level = root.replace(dist_path, '').count(os.sep)
-                indent = ' ' * 4 * (level)
-                f.write('{}{}/\n'.format(indent, os.path.basename(root)))
-                subindent = ' ' * 4 * (level + 1)
-                for file in files:
-                    print(file)
-                    f.write('{}{}\n'.format(subindent, file ))
-
-def fix_tree():
-    global dist_path
-    tree_path = os.path.join(dist_path, "tree.txt")
-    lines = []
-    with open(tree_path, "r") as f:
-        lines = f.readlines()
-    for i in range(len(lines)):
-        if "dist" in lines[i]:
-            lines[i] = "blog-front-end-editor/dist\n"
-        if ".min" in lines[i]:
-            lines[i] = lines[i].replace(".min", "")
-    with open(tree_path, "w") as f:
-        f.writelines(lines)
-
-def copy_tree():
-    global src_path, dist_path
-    # copy tree.txt from dist_path to src_path
-    try:
-        os.system("cp " + os.path.join(dist_path, "tree.txt") + " " + os.path.join(src_path, "tree.txt"))
-    except:
-        lines = []
-        with open(os.path.join(dist_path, "tree.txt"), "r") as f:
-            lines = f.readlines()
-        with open(os.path.join(src_path, "tree.txt"), "w") as f:
-            f.writelines(lines)
             
 try:
     copy_all()
-    tree()
-    fix_tree()
-    copy_tree()
     zip_dist()
 except Exception as e:
     print(e)

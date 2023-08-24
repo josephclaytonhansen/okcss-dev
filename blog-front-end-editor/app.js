@@ -23,7 +23,9 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true },
+    cookie: {
+        secure: true
+    },
     store: db.sessionStore
 }))
 
@@ -88,16 +90,20 @@ router.get('/', passport.authenticate('2fa-totp', {
     failureRedirect: '/login'
 }))
 
-router.get('/edit/post/:id', passport.authenticate('2fa-totp',{
+router.get('/edit/post/:id', passport.authenticate('2fa-totp', {
     failureRedirect: '/login',
 }), async (req, res) => {
     const id = req.params.id
     let all_categories = []
-    const categories = await axios.get('http://localhost:5920/category/').then((response) => {return response.data})
+    const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+        return response.data
+    })
     for (let i = 0; i < categories.length; i++) {
         all_categories.push(categories[i].name)
     }
-    let all_posts = await axios.get('http://localhost:5920/post/').then((response) => {return response.data})
+    let all_posts = await axios.get('http://localhost:5920/post/').then((response) => {
+        return response.data
+    })
     let all_post_ids = []
     for (let i = 0; i < all_posts.length; i++) {
         all_post_ids.push(all_posts[i]._id)
@@ -105,31 +111,36 @@ router.get('/edit/post/:id', passport.authenticate('2fa-totp',{
     let id_index = all_post_ids.indexOf(id)
     if (id_index == -1) {
         res.redirect('/dashboard')
-        
+
     } else {
-    res.render('editor.html', {
-        root: '.',
-        post: await axios.get('http://localhost:5920/post/id/'+all_post_ids[id_index]).then((response) => {
-            return response.data
-        }),
-        type: 'post',
-        user: {
-            email: 'served_from@express.app',
-            username: 'served_from_express',
-        },
-        all_categories: all_categories
-    })}
+        res.render('editor.html', {
+            root: '.',
+            post: await axios.get('http://localhost:5920/post/id/' + all_post_ids[id_index]).then((response) => {
+                return response.data
+            }),
+            type: 'post',
+            user: {
+                email: 'served_from@express.app',
+                username: 'served_from_express',
+            },
+            all_categories: all_categories
+        })
+    }
 })
-router.get('/edit/page/:id', passport.authenticate('2fa-totp',{
+router.get('/edit/page/:id', passport.authenticate('2fa-totp', {
     failureRedirect: '/login',
-}),async (req, res) => {
+}), async (req, res) => {
     const id = req.params.id
     let all_categories = []
-    const categories = await axios.get('http://localhost:5920/category/').then((response) => {return response.data})
+    const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+        return response.data
+    })
     for (let i = 0; i < categories.length; i++) {
         all_categories.push(categories[i].name)
     }
-    let all_pages = await axios.get('http://localhost:5920/page/').then((response) => {return response.data})
+    let all_pages = await axios.get('http://localhost:5920/page/').then((response) => {
+        return response.data
+    })
     let all_page_ids = []
     for (let i = 0; i < all_pages.length; i++) {
         all_page_ids.push(all_pages[i]._id)
@@ -138,18 +149,19 @@ router.get('/edit/page/:id', passport.authenticate('2fa-totp',{
     if (id_index == -1) {
         res.redirect('/dashboard')
     } else {
-    res.render('editor.html', {
-        root: '.',
-        post: await axios.get('http://localhost:5920/page/id/'+all_page_ids[id_index]).then((response) => {
-            return response.data
-        }),
-        type: 'page',
-        user: {
-            email: 'served_from@express.app',
-            username: 'served_from_express',
-        },
-        all_categories: all_categories
-    })}
+        res.render('editor.html', {
+            root: '.',
+            post: await axios.get('http://localhost:5920/page/id/' + all_page_ids[id_index]).then((response) => {
+                return response.data
+            }),
+            type: 'page',
+            user: {
+                email: 'served_from@express.app',
+                username: 'served_from_express',
+            },
+            all_categories: all_categories
+        })
+    }
 })
 
 router.get('/login', (req, res) => {
@@ -164,16 +176,23 @@ router.get('/dashboard', async (req, res) => {
         email: 'served_from@express.app',
         username: 'served_from_express',
     }
-    const categories = await axios.get('http://localhost:5920/category/').then((response) => {return response.data})
+    const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+        return response.data
+    })
     let all_categories = []
     for (let i = 0; i < categories.length; i++) {
         all_categories.push(categories[i].name)
     }
 
-    const authors = await axios.get('http://localhost:5920/user/').then((response) => {return response.data})
+    const authors = await axios.get('http://localhost:5920/user/').then((response) => {
+        return response.data
+    })
     let all_authors = []
     for (let i = 0; i < authors.length; i++) {
-        all_authors.push({name: authors[i].display_name, id: authors[i]._id})
+        all_authors.push({
+            name: authors[i].display_name,
+            id: authors[i]._id
+        })
     }
 
     res.render('dashboard.html', {
@@ -204,9 +223,9 @@ router.get('/dashboard', async (req, res) => {
     })
 })
 
-router.get('/account', passport.authenticate('2fa-totp',{
+router.get('/account', passport.authenticate('2fa-totp', {
     failureRedirect: '/login',
-}),(req, res) => {
+}), (req, res) => {
     //eventually, get this from the database
     const user = {
         email: 'served_from@express.app',
@@ -233,11 +252,13 @@ router.get('/account', passport.authenticate('2fa-totp',{
 
 })
 
-router.get('/new-post', passport.authenticate('2fa-totp',{
+router.get('/new-post', passport.authenticate('2fa-totp', {
     failureRedirect: '/login',
-}),async (req, res) => {
+}), async (req, res) => {
     let all_categories = []
-    const categories = await axios.get('http://localhost:5920/category/').then((response) => {return response.data})
+    const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+        return response.data
+    })
     for (let i = 0; i < categories.length; i++) {
         all_categories.push(categories[i].name)
     }
@@ -263,12 +284,12 @@ router.get('/new-post', passport.authenticate('2fa-totp',{
             username: 'served_from_express',
         },
         all_categories: all_categories
-        })
+    })
 })
 
-router.get('/new-page', passport.authenticate('2fa-totp',{
+router.get('/new-page', passport.authenticate('2fa-totp', {
     failureRedirect: '/login',
-}),async (req, res) => {
+}), async (req, res) => {
 
     res.render('editor.html', {
         root: '.',
@@ -287,16 +308,16 @@ router.get('/new-page', passport.authenticate('2fa-totp',{
             email: 'served_from@express.app',
             username: 'served_from_express',
         }
-        })
+    })
 })
 
-router.post('/upload-image', passport.authenticate('2fa-totp',{
+router.post('/upload-image', passport.authenticate('2fa-totp', {
     failureRedirect: '/login',
-}),upload.single('streamfile'), (req, res) => {
-    if(req.fileValidationError) {
-      return res.status(400).json({
-        message: req.fileValidationError,
-      })
+}), upload.single('streamfile'), (req, res) => {
+    if (req.fileValidationError) {
+        return res.status(400).json({
+            message: req.fileValidationError,
+        })
     }
     // get the file from the request
     const file = req.file
@@ -317,7 +338,7 @@ router.post('/upload-image', passport.authenticate('2fa-totp',{
         alt: file.alt_text
     })
 
-  });
+});
 
 app.use('/', router)
 
