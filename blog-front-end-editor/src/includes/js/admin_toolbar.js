@@ -16,7 +16,7 @@ $('#dropdown-close').on('click', (e) => {
 function showDropdown(target){
     //get target parent
     let target_parent = target.parentElement.parentElement
-    loc = target_parent.getBoundingClientRect()
+    let loc = target_parent.getBoundingClientRect()
     console.log(loc)
     $('#user-dropdown').addClass('hidden')
     $('#dropdown-close').removeClass('hidden')

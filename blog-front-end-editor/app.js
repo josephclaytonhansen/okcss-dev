@@ -14,7 +14,6 @@ import user_routes from './src/server/routes/userRoutes.min.js'
 import comment_routes from './src/server/routes/commentRoutes.min.js'
 import category_routes from './src/server/routes/categoriesRoutes.min.js'
 
-
 import session from 'express-session'
 import passport from 'passport'
 import './src/server/passportSetup.js'
@@ -22,10 +21,9 @@ import './src/server/passportSetup.js'
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false },
+    saveUninitialized: true,
+    cookie: { secure: process.env.ENV == 'production' ? true : false },
     store: db.sessionStore
-
 }))
 
 app.use(passport.session())
@@ -76,8 +74,6 @@ const limiter = rate_limit({
 if (process.env.ENV == 'production') {
     app.use(limiter)
 }
-
-
 
 app.use("/page", page_routes)
 app.use("/post", post_routes)
