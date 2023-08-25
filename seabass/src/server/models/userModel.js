@@ -10,6 +10,8 @@ const userSchema = new mongoose.Schema({
     permissions: {type: String,
         default: "user"
     },
+    totp: {type: Boolean, default: false},
+    totpSecret: {type: String},
 })
 
 const User = mongoose.model('User', userSchema)
