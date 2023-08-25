@@ -43,7 +43,7 @@ const store = new MongoDBStore({
 })
 
 app.use(session({
-    expires: new Date(Date.now() + (1 * 86400 * 1000)),
+    expires: new Date(Date.now() + (2 * 3600 * 1000)),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
