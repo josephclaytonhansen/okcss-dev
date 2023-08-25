@@ -1,4 +1,4 @@
-.lightbox-modal-close{
+#upload-image .lightbox-modal-close{
     position: relative;
     top:1%;
     left:-1.5rem;
@@ -11,12 +11,12 @@
     z-index:81;
 }
 
-.lightbox-modal{
+#upload-image.lightbox-modal{
     background-color: rgba(0,0,0,0.5);
     z-index:80;
 }
 
-.lightbox-modal-inner{
+#upload-image .lightbox-modal-inner{
     width: fit-content;
     height: fit-content;
     padding: 2rem;
@@ -26,12 +26,12 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .lightbox-modal-inner{
+    #upload-image .lightbox-modal-inner{
         left:40vw;
     }
 }
 
-.inner-inner{
+#upload-image .inner-inner{
     position: relative;
     width:calc(100% + 1rem);
     height:calc(100% - 2rem);
@@ -47,6 +47,6 @@
     padding: 1rem;
 }
 
-.inner-inner button{
+#upload-image .inner-inner button{
     margin-top:1rem;
 }
