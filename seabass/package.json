@@ -31,7 +31,6 @@
     "npm": "^9.8.1",
     "nunjucks": "^3.2.4",
     "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-google-oidc": "^0.1.0"
+    "passport-google-oauth20": "^2.0.0"
   }
 }
