@@ -24,10 +24,13 @@ import session from 'express-session'
 import passport from 'passport'
 import Strategy from 'passport-google-oauth20'
 import authMiddleware from './src/server/middleware/authMiddleware.js'
+import {default as totp} from 'totp-generator'
+import QRCode from 'qrcode'
+import {default as base32} from 'base32'
+
 import {default as connectMongoDBSession} from 'connect-mongodb-session'
 
 import cookieParser from 'cookie-parser'
-import lusca from 'lusca'
 
 const app = express()
 const router = express.Router()
@@ -62,33 +65,32 @@ router.post('/upload-image', upload.single('streamfile'), (req, res) => {
     if (authenticated === false) {
         res.redirect('/login')
     } else {
-    if (req.fileValidationError) {
-        return res.status(400).json({
-            message: req.fileValidationError,
+        if (req.fileValidationError) {
+            return res.status(400).json({
+                message: req.fileValidationError,
+            })
+        }
+        // get the file from the request
+        const file = req.file
+        if (!file) {
+            return res.status(400).json({
+                message: 'Please upload a file',
+            })
+        }
+        return res.status(201).json({
+            name: file.filename,
+            path: file.path,
+            size: file.size,
+            type: file.type,
+            width: file.width,
+            height: file.height,
+            createdAt: file.createdAt,
+            updatedAt: file.updatedAt,
+            alt: file.alt_text
         })
-    }
-    // get the file from the request
-    const file = req.file
-    if (!file) {
-        return res.status(400).json({
-            message: 'Please upload a file',
-        })
-    }
-    return res.status(201).json({
-        name: file.filename,
-        path: file.path,
-        size: file.size,
-        type: file.type,
-        width: file.width,
-        height: file.height,
-        createdAt: file.createdAt,
-        updatedAt: file.updatedAt,
-        alt: file.alt_text
-    })
 
-}})
-
-app.use(lusca.csrf())
+    }
+})
 
 passport.use(new Strategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -183,49 +185,103 @@ router.get('/', passport.authenticate('google', {
 }))
 
 router.get('/oauth2/redirect/google', passport.authenticate('google', {
-    successRedirect: '/dashboard',
+    successRedirect: '/totp-challenge',
     failureRedirect: '/login',
 }))
+
+router.get('/totp-challenge', (req, res) => {
+    if (req.session.passport.user) {
+        let user = req.session.passport.user
+        let totp_enabled = false
+        let totp_secret = ''
+        User.findById(user).then((user) => {
+            console.log(user)
+            totp_enabled = user.totp
+            totp_secret = user.totpSecret
+
+            if (totp_enabled == true) {
+                let token = totp(totp_secret)
+                res.render('totp-challenge.html', {
+                    root: '.',
+                })
+            } else {
+                let secret = (user + process.env.TOTP_SECRET)
+                //encode secret as base32
+                secret = base32.encode(secret).toString().replace(/0/g, 'O').replace(/1/g, 'I').replace(/8/g, 'B').replace(/9/g, 'P').toUpperCase().replace(/[^A-Z2-7=]/g, '')
+                //remove any characters that don't match A-Z, 2-7, or =
+                let message = "otpauth://totp/OklahomaCitySouthStake:" + user + "?secret=" + secret + "&issuer=OklahomaCitySouthStake"
+                let qr = QRCode.toDataURL(message).then((url) => {
+                    url = url.slice(0, -1)
+                    res.render('totp.html', {
+                        qr: url,
+                        root: '.'
+                    })
+                })
+    
+            }
+        })
+    }
+})
+
+router.post('/totp-verify', (req, res) => {
+    let user = req.session.passport.user
+    let secret = (user + process.env.TOTP_SECRET)
+    secret = base32.encode(secret).toString().replace(/0/g, 'O').replace(/1/g, 'I').replace(/8/g, 'B').replace(/9/g, 'P').toUpperCase().replace(/[^A-Z2-7=]/g, '')
+    let submitted_token = req.body.code
+    let token = totp(secret)
+    if (submitted_token == token) {
+        User.findByIdAndUpdate(user, {
+            totp: true,
+            totpSecret: secret
+        }).then((user) => {
+            res.redirect('/dashboard')
+        })
+    } else {
+        res.redirect('/totp-challenge')
+    }
+
+})
 
 router.get('/edit/post/:id', async (req, res) => {
     let authenticated = authMiddleware(req, User)
     if (authenticated === false) {
         res.redirect('/login')
     } else {
-    const id = req.params.id
-    let all_categories = []
-    const categories = await axios.get('http://localhost:5920/category/').then((response) => {
-        return response.data
-    })
-    for (let i = 0; i < categories.length; i++) {
-        all_categories.push(categories[i].name)
-    }
-    let all_posts = await axios.get('http://localhost:5920/post/').then((response) => {
-        return response.data
-    })
-    let all_post_ids = []
-    for (let i = 0; i < all_posts.length; i++) {
-        all_post_ids.push(all_posts[i]._id)
-    }
-    let id_index = all_post_ids.indexOf(id)
-    if (id_index == -1) {
-        res.redirect('/dashboard')
-
-    } else {
-        res.render('editor.html', {
-            root: '.',
-            post: await axios.get('http://localhost:5920/post/id/' + all_post_ids[id_index]).then((response) => {
-                return response.data
-            }),
-            type: 'post',
-            user: {
-                email: 'served_from@express.app',
-                username: 'served_from_express',
-            },
-            all_categories: all_categories
+        const id = req.params.id
+        let all_categories = []
+        const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+            return response.data
         })
+        for (let i = 0; i < categories.length; i++) {
+            all_categories.push(categories[i].name)
+        }
+        let all_posts = await axios.get('http://localhost:5920/post/').then((response) => {
+            return response.data
+        })
+        let all_post_ids = []
+        for (let i = 0; i < all_posts.length; i++) {
+            all_post_ids.push(all_posts[i]._id)
+        }
+        let id_index = all_post_ids.indexOf(id)
+        if (id_index == -1) {
+            res.redirect('/dashboard')
+
+        } else {
+            res.render('editor.html', {
+                root: '.',
+                post: await axios.get('http://localhost:5920/post/id/' + all_post_ids[id_index]).then((response) => {
+                    return response.data
+                }),
+                type: 'post',
+                user: {
+                    email: 'served_from@express.app',
+                    username: 'served_from_express',
+                },
+                all_categories: all_categories
+            })
+        }
     }
-}})
+})
 
 router.get('/edit/page/:id', async (req, res) => {
     let authenticated = authMiddleware(req, User)
@@ -333,74 +389,75 @@ router.get('/dashboard', async (req, res) => {
     }
 })
 
-
 router.get('/account', (req, res) => {
     let authenticated = authMiddleware(req, User)
     if (authenticated === false) {
         res.redirect('/login')
     } else {
-    //eventually, get this from the database
-    const user = {
-        email: 'served_from@express.app',
-        username: 'served_from_express',
-        password: 'password',
-        picture: 'https://unsplash.it/1000/450/?random?',
-        bio: 'I am a user served from express. This is my bio. As a placeholder, I have little else to say.',
-        display_name: 'Served F. Express',
-    }
-    const date = {
-        day: new Date().getDate(),
-        month: new Date().getMonth(),
-        monthName: new Date().toLocaleString('default', {
-            month: 'long'
-        }),
-        year: new Date().getFullYear()
-    }
+        //eventually, get this from the database
+        const user = {
+            email: 'served_from@express.app',
+            username: 'served_from_express',
+            password: 'password',
+            picture: 'https://unsplash.it/1000/450/?random?',
+            bio: 'I am a user served from express. This is my bio. As a placeholder, I have little else to say.',
+            display_name: 'Served F. Express',
+        }
+        const date = {
+            day: new Date().getDate(),
+            month: new Date().getMonth(),
+            monthName: new Date().toLocaleString('default', {
+                month: 'long'
+            }),
+            year: new Date().getFullYear()
+        }
 
-    res.render('account.html', {
-        root: '.',
-        user: user,
-        date: date
-    })
+        res.render('account.html', {
+            root: '.',
+            user: user,
+            date: date
+        })
 
-}})
+    }
+})
 
 router.get('/new-post', async (req, res) => {
     let authenticated = authMiddleware(req, User)
     if (authenticated === false) {
         res.redirect('/login')
     } else {
-    let all_categories = []
-    const categories = await axios.get('http://localhost:5920/category/').then((response) => {
-        return response.data
-    })
-    for (let i = 0; i < categories.length; i++) {
-        all_categories.push(categories[i].name)
+        let all_categories = []
+        const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+            return response.data
+        })
+        for (let i = 0; i < categories.length; i++) {
+            all_categories.push(categories[i].name)
+        }
+        res.render('editor.html', {
+            root: '.',
+            post: {
+                title: 'Untitled Post',
+                meta_title: '',
+                meta_description: '',
+                meta_keywords: [],
+                author: '',
+                slug: '',
+                content: '',
+                categories: [],
+                tags: [],
+                scheduled_date: '',
+                status: 'draft',
+                featured_image: ''
+            },
+            type: 'post',
+            user: {
+                email: 'served_from@express.app',
+                username: 'served_from_express',
+            },
+            all_categories: all_categories
+        })
     }
-    res.render('editor.html', {
-        root: '.',
-        post: {
-            title: 'Untitled Post',
-            meta_title: '',
-            meta_description: '',
-            meta_keywords: [],
-            author: '',
-            slug: '',
-            content: '',
-            categories: [],
-            tags: [],
-            scheduled_date: '',
-            status: 'draft',
-            featured_image: ''
-        },
-        type: 'post',
-        user: {
-            email: 'served_from@express.app',
-            username: 'served_from_express',
-        },
-        all_categories: all_categories
-    })
-}})
+})
 
 router.get('/new-page', async (req, res) => {
     let authenticated = authMiddleware(req, User)
@@ -408,25 +465,26 @@ router.get('/new-page', async (req, res) => {
         res.redirect('/login')
     } else {
 
-    res.render('editor.html', {
-        root: '.',
-        post: {
-            title: 'Untitled Page',
-            meta_title: '',
-            meta_description: '',
-            meta_keywords: [],
-            author: '',
-            slug: '',
-            content: '',
-            status: 'draft',
-        },
-        type: 'page',
-        user: {
-            email: 'served_from@express.app',
-            username: 'served_from_express',
-        }
-    })
-}})
+        res.render('editor.html', {
+            root: '.',
+            post: {
+                title: 'Untitled Page',
+                meta_title: '',
+                meta_description: '',
+                meta_keywords: [],
+                author: '',
+                slug: '',
+                content: '',
+                status: 'draft',
+            },
+            type: 'page',
+            user: {
+                email: 'served_from@express.app',
+                username: 'served_from_express',
+            }
+        })
+    }
+})
 
 app.use('/', router)
 
