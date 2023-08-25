@@ -157,7 +157,8 @@ router.get('/oauth2/redirect/google', passport.authenticate('google', {
 }))
 
 router.get('/edit/post/:id', async (req, res) => {
-    if (authMiddleware(req, User) == true) {
+    let authenticated = authMiddleware(req, User)
+    if (authenticated === false) {
         res.redirect('/login')
     } else {
     const id = req.params.id
@@ -196,7 +197,8 @@ router.get('/edit/post/:id', async (req, res) => {
 }})
 
 router.get('/edit/page/:id', async (req, res) => {
-    if (authMiddleware(req, User) == true) {
+    let authenticated = authMiddleware(req, User)
+    if (authenticated === false) {
         res.redirect('/login')
     } else {
         const id = req.params.id
@@ -241,7 +243,9 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/dashboard', async (req, res) => {
-    if (authMiddleware(req, User) == true) {
+    let authenticated = authMiddleware(req, User)
+    if (authenticated === false) {
+        console.log('redirecting')
         res.redirect('/login')
     } else {
         //eventually, get this from the database
@@ -299,7 +303,8 @@ router.get('/dashboard', async (req, res) => {
 
 
 router.get('/account', (req, res) => {
-    if (authMiddleware(req, User) == true) {
+    let authenticated = authMiddleware(req, User)
+    if (authenticated === false) {
         res.redirect('/login')
     } else {
     //eventually, get this from the database
@@ -329,7 +334,8 @@ router.get('/account', (req, res) => {
 }})
 
 router.get('/new-post', async (req, res) => {
-    if (authMiddleware(req, User) == true) {
+    let authenticated = authMiddleware(req, User)
+    if (authenticated === false) {
         res.redirect('/login')
     } else {
     let all_categories = []
@@ -365,7 +371,8 @@ router.get('/new-post', async (req, res) => {
 }})
 
 router.get('/new-page', async (req, res) => {
-    if (authMiddleware(req, User) == true) {
+    let authenticated = authMiddleware(req, User)
+    if (authenticated === false) {
         res.redirect('/login')
     } else {
 
@@ -390,7 +397,8 @@ router.get('/new-page', async (req, res) => {
 }})
 
 router.post('/upload-image', upload.single('streamfile'), (req, res) => {
-    if (authMiddleware(req, User) == true) {
+    let authenticated = authMiddleware(req, User)
+    if (authenticated === false) {
         res.redirect('/login')
     } else {
     if (req.fileValidationError) {

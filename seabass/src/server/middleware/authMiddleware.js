@@ -1,10 +1,25 @@
-const authMiddleware = async (req, User) => {
-let sessionuser = req.session.passport['user']
-if (!req.session.permissions){
-        const user = await User.findById(sessionuser)
-        req.session.permissions = user.permissions
-        return user.permissions === 'worm'
-} else {
-        return req.session.permissions === 'worm'
-}}
+const getUserPermissions = async (User, id) => {
+    const user = await User.findById(id)
+    return user.permissions
+}
+
+const authMiddleware = (req, User) => {
+    if (req.session.passport) {
+        if (req.session.permissions) {
+            if (req.session.permissions !== "worm") {
+                return true
+            }
+        } else {
+            getUserPermissions(User, req.session.passport.user).then((permissions) => {
+                req.session.permissions = permissions
+                if (req.session.permissions !== "worm") {
+                    return true
+                }
+            })
+        }
+    } else {
+        return false
+    }
+}
+
 export default authMiddleware
