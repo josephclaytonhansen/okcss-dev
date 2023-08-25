@@ -35,7 +35,8 @@ import cookieParser from 'cookie-parser'
 const app = express()
 const router = express.Router()
 
-app.use(cookieParser())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser(process.env.COOKIE_PARSER_SECRET))
 
 const MongoDBStore = connectMongoDBSession(session)
 
@@ -52,6 +53,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         secure: process.env.ENV == 'production',
+        maxAge: 1000 * 60 * 60,
     },
     store: store
 }))
