@@ -356,7 +356,7 @@ router.get('/login', (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     let authenticated = authMiddleware(req, User)
-    console.log(authenticated)
+    console.log("Authenticated: ", authenticated)
     if (authenticated === false) {
         console.log('redirecting')
         res.redirect('/login')

@@ -4,6 +4,7 @@ const getUserPermissions = async (User, id) => {
 }
 
 const authMiddleware = (req, User) => {
+    console.log(req.session)
     if (req.session.passport) {
         if (req.session.permissions) {
             if (req.session.permissions !== "worm") {
@@ -20,6 +21,7 @@ const authMiddleware = (req, User) => {
     } else {
         return false
     }
+    return false
 }
 
 export default authMiddleware
