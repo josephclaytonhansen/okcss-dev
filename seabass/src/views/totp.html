@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href = '/app.css'>
-    <title>Document</title>
+    {% import "../includes/editor_includes.njk" as i %}
+    {% import "../includes/meta.njk" as m %}
+    {{ i.ncludes("login") }}
+    {{ m.eta()}}
 </head>
 <body>
-    <div class = "login-card">
-        <div class="login-card-header">
-        <div class = "image-container">
-            <img src={{qr}}/>
-        </div>
-        <h2>Scan the QR code with your authenticator app</h2></div>
-        <div class = "login-card-content flex-center">
+    <div class="login-card">
+        <div class="login-card-header"><h2>Please scan the QR code with an authenticator app</h2><img src = {{qr}}></div>
+        <div class="login-card-content flex-center">
             <form action="/totp-verify" method="post">
                 <input type="text" name="code" />
                 <button class = "ocean fullwidth" type="submit">Submit</button>
               </form>
+              </div>
     </div>
-    
 
 </body>
 </html>

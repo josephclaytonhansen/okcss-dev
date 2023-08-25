@@ -4,9 +4,9 @@ const userSchema = new mongoose.Schema({
     googleId: {type:String, unique: true},
     username: {type:String, unique: true},
     email: {type:String, unique: true},
-    display_name: String,
+    display_name: {type:String, default: "No display name set"},
     picture: String,
-    bio: String,
+    bio: {type:String, default: "No bio yet"},
     permissions: {type: String,
         default: "user"
     },

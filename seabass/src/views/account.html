@@ -20,10 +20,10 @@
         <div class="section left thin">
             <div class="profile">
                 <div class="flex-center gap-1">
-                    <div class="img-container profile-picture">
-                        <img src="{{ user.picture }}" alt="profile picture" class="square rounded">
-                    </div>
-                    {{lu.i("pencil", 2)}}
+                    {%if user.picture %}<div class="img-container profile-picture">
+                        <img src=" {{user.picture }}" alt="profile picture" class="square rounded">
+                    </div>{%endif%}
+                    {{lu.i("image-plus", 6)}}
                 </div>
                 <div class="flex-center gap-1">
                     <h1 contenteditable="true">{{user.display_name}}</h1>
@@ -35,12 +35,8 @@
                 <div class="flex-center gap-1 baseline-down squish">
                     <p><strong>Email:</strong></p><p >{{user.email}}</p>
                 </div>
-                <div class="flex-center gap-1 baseline-down squish">
-                    <p><strong>Username:</strong></p><p>{{user.username}}</p>
-                </div>
                 <div class="flex-center gap-1 baseline-down" style = "margin-top:2rem;">
-                    <button class="ocean">{{lu.i("key-round")}} Change password</button>
-                    <button class="ocean">{{lu.i("fingerprint")}} Edit MFA</button>
+                    <button class="ocean">{{lu.i("fingerprint")}} Generate new MFA</button>
                 </div>
 
 

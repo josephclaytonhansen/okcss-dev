@@ -181,6 +181,16 @@ router.get('/login/federated/google', passport.authenticate('google', {
     scope: ['profile email']
 }))
 
+router.get('/logout', async (req, res, next) => {
+    req.session.destroy()
+    await req.logout(function error(err) {
+        if (err) {
+            return next(err)
+        }
+    })
+    res.redirect('/login')
+})
+
 router.get('/', passport.authenticate('google', {
     successRedirect: '/dashboard',
     failureRedirect: '/login'
@@ -200,6 +210,11 @@ router.get('/totp-challenge', (req, res) => {
             console.log(user)
             totp_enabled = user.totp
             totp_secret = user.totpSecret
+            req.session.passport.email = user.email
+            req.session.passport.display_name = user.display_name
+            req.session.passport.username = user.username
+            req.session.passport.picture = user.picture
+            req.session.passport.bio = user.bio
 
             if (totp_enabled == true) {
                 let token = totp(totp_secret)
@@ -231,6 +246,7 @@ router.post('/totp-verify', (req, res) => {
     secret = base32.encode(secret).toString().replace(/0/g, 'O').replace(/1/g, 'I').replace(/8/g, 'B').replace(/9/g, 'P').toUpperCase().replace(/[^A-Z2-7=]/g, '')
     let submitted_token = req.body.code
     let token = totp(secret)
+    console.log(submitted_token, token)
     if (submitted_token == token) {
         User.findByIdAndUpdate(user, {
             totp: true,
@@ -276,9 +292,10 @@ router.get('/edit/post/:id', async (req, res) => {
                 }),
                 type: 'post',
                 user: {
-                    email: 'served_from@express.app',
-                    username: 'served_from_express',
-                },
+                    email: req.session.passport.email,
+                    username: req.session.passport.username,
+                    displayName: req.session.passport.displayName,
+                }, username: 'served_from_express',
                 all_categories: all_categories
             })
         }
@@ -316,8 +333,9 @@ router.get('/edit/page/:id', async (req, res) => {
                 }),
                 type: 'page',
                 user: {
-                    email: 'served_from@express.app',
-                    username: 'served_from_express',
+                    email: req.session.passport.email,
+                    username: req.session.passport.username,
+                    displayName: req.session.passport.displayName,
                 },
                 all_categories: all_categories
             })
@@ -338,10 +356,10 @@ router.get('/dashboard', async (req, res) => {
         console.log('redirecting')
         res.redirect('/login')
     } else {
-        //eventually, get this from the database
         const user = {
-            email: 'served_from@express.app',
-            username: 'served_from_express',
+            email: req.session.passport.email,
+            username: req.session.passport.username,
+            display_name: req.session.passport.display_name,
         }
         const categories = await axios.get('http://localhost:5920/category/').then((response) => {
             return response.data
@@ -397,28 +415,25 @@ router.get('/account', (req, res) => {
         res.redirect('/login')
     } else {
         //eventually, get this from the database
-        const user = {
-            email: 'served_from@express.app',
-            username: 'served_from_express',
-            password: 'password',
-            picture: 'https://unsplash.it/1000/450/?random?',
-            bio: 'I am a user served from express. This is my bio. As a placeholder, I have little else to say.',
-            display_name: 'Served F. Express',
-        }
-        const date = {
-            day: new Date().getDate(),
-            month: new Date().getMonth(),
-            monthName: new Date().toLocaleString('default', {
-                month: 'long'
-            }),
-            year: new Date().getFullYear()
-        }
-
-        res.render('account.html', {
-            root: '.',
-            user: user,
-            date: date
+        User.findById(req.session.passport.user).then((user) => {
+            const date = {
+                day: new Date().getDate(),
+                month: new Date().getMonth(),
+                monthName: new Date().toLocaleString('default', {
+                    month: 'long'
+                }),
+                year: new Date().getFullYear()
+            }
+    
+            res.render('account.html', {
+                root: '.',
+                user: user,
+                date: date
+            })
+        }).catch((error) => {
+            res.redirect('/login')
         })
+        
 
     }
 })

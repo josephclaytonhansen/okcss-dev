@@ -12,7 +12,7 @@
         </div>
         <div class="toolbar-container toolbar-dropdown">
             <p id="user">
-                Hey, {{ user.username }} :) 
+                Hey, {%if user.display_name%} {{user.display_name}}{% elif user.username %}{{ user.username }}{% else %}{{user.email}}{%endif%} :) 
             </p>
             <div class="toolbar-tool seashell" id="user-dropdown">
                 {{ lu.i("chevron-down", 2, ["va-2"]) }}
