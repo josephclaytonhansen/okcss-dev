@@ -57,6 +57,37 @@ app.use(passport.session())
 
 app.use(passport.initialize())
 
+router.post('/upload-image', upload.single('streamfile'), (req, res) => {
+    let authenticated = authMiddleware(req, User)
+    if (authenticated === false) {
+        res.redirect('/login')
+    } else {
+    if (req.fileValidationError) {
+        return res.status(400).json({
+            message: req.fileValidationError,
+        })
+    }
+    // get the file from the request
+    const file = req.file
+    if (!file) {
+        return res.status(400).json({
+            message: 'Please upload a file',
+        })
+    }
+    return res.status(201).json({
+        name: file.filename,
+        path: file.path,
+        size: file.size,
+        type: file.type,
+        width: file.width,
+        height: file.height,
+        createdAt: file.createdAt,
+        updatedAt: file.updatedAt,
+        alt: file.alt_text
+    })
+
+}})
+
 app.use(lusca.csrf())
 
 passport.use(new Strategy({
@@ -244,6 +275,7 @@ router.get('/login', (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     let authenticated = authMiddleware(req, User)
+    console.log(authenticated)
     if (authenticated === false) {
         console.log('redirecting')
         res.redirect('/login')
@@ -394,37 +426,6 @@ router.get('/new-page', async (req, res) => {
             username: 'served_from_express',
         }
     })
-}})
-
-router.post('/upload-image', upload.single('streamfile'), (req, res) => {
-    let authenticated = authMiddleware(req, User)
-    if (authenticated === false) {
-        res.redirect('/login')
-    } else {
-    if (req.fileValidationError) {
-        return res.status(400).json({
-            message: req.fileValidationError,
-        })
-    }
-    // get the file from the request
-    const file = req.file
-    if (!file) {
-        return res.status(400).json({
-            message: 'Please upload a file',
-        })
-    }
-    return res.status(201).json({
-        name: file.filename,
-        path: file.path,
-        size: file.size,
-        type: file.type,
-        width: file.width,
-        height: file.height,
-        createdAt: file.createdAt,
-        updatedAt: file.updatedAt,
-        alt: file.alt_text
-    })
-
 }})
 
 app.use('/', router)
