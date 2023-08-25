@@ -222,12 +222,17 @@ router.get('/totp-challenge', (req, res) => {
                     root: '.',
                 })
             } else {
-                let secret = (user + process.env.TOTP_SECRET)
+                let secret = (user._id + process.env.TOTP_SECRET)
                 //encode secret as base32
                 secret = base32.encode(secret).toString().replace(/0/g, 'O').replace(/1/g, 'I').replace(/8/g, 'B').replace(/9/g, 'P').toUpperCase().replace(/[^A-Z2-7=]/g, '')
                 //remove any characters that don't match A-Z, 2-7, or =
-                let message = "otpauth://totp/OklahomaCitySouthStake:" + user + "?secret=" + secret + "&issuer=OklahomaCitySouthStake"
-                let qr = QRCode.toDataURL(message).then((url) => {
+                let message = "otpauth://totp/" + user.email + "?secret=" + secret
+                console.log(message)
+                let qr = QRCode.toDataURL(message, {
+                    errorCorrectionLevel: 'L',
+                    type: 'image/png',
+
+                }).then((url) => {
                     url = url.slice(0, -1)
                     res.render('totp.html', {
                         qr: url,
