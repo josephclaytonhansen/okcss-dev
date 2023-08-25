@@ -127,6 +127,16 @@ button.ocean:hover .lucide{
     background-color: seashell;
 }
 
+button a{
+    text-decoration: none;
+    color: inherit;
+}
+
+button a:hover{
+    text-decoration: none;
+    color: inherit;
+}
+
 .img-container{
     position: relative;
 }
