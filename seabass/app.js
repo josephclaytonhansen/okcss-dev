@@ -27,6 +27,7 @@ import authMiddleware from './src/server/middleware/authMiddleware.js'
 import {default as connectMongoDBSession} from 'connect-mongodb-session'
 
 import cookieParser from 'cookie-parser'
+import lusca from 'lusca'
 
 const app = express()
 const router = express.Router()
@@ -55,6 +56,8 @@ app.use(session({
 app.use(passport.session())
 
 app.use(passport.initialize())
+
+app.use(lusca.csrf())
 
 passport.use(new Strategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
