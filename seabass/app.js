@@ -35,7 +35,9 @@ import cookieParser from 'cookie-parser'
 const app = express()
 const router = express.Router()
 
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({
+    extended: false
+}))
 app.use(cookieParser(process.env.COOKIE_PARSER_SECRET))
 
 const MongoDBStore = connectMongoDBSession(session)
@@ -234,7 +236,7 @@ router.get('/totp-challenge', (req, res) => {
                         root: '.'
                     })
                 })
-    
+
             }
         })
     }
@@ -252,7 +254,7 @@ router.post('/totp-verify', (req, res) => {
             totp: true,
             totpSecret: secret
         }).then((user) => {
-            res.redirect('/dashboard')
+            res.redirect('/logged-in')
         })
     } else {
         res.redirect('/totp-challenge')
@@ -260,20 +262,38 @@ router.post('/totp-verify', (req, res) => {
 
 })
 
+router.get('/logged-in', (req, res) => {
+    let user = req.session.passport.user
+    User.findById(user).then((user) => {
+        req.session.passport.email = user.email
+        req.session.passport.display_name = user.display_name
+        req.session.passport.username = user.username
+        req.session.passport.picture = user.picture
+        req.session.passport.bio = user.bio
+        req.session.passport.permissions = user.permissions
+        let authenticated = req.session.passport.permissions !== "worm"
+        if (authenticated === false) {
+            res.redirect('/login')
+        } else {
+            res.redirect('/dashboard')
+        }
+    })
+
+})
+
 router.get('/edit/post/:id', async (req, res) => {
     let authenticated = authMiddleware(req, User)
-    if (authenticated === false) {
-        res.redirect('/login')
-    } else {
+    let user = req.session.passport.user
+    User.findById(user).then((user) => {
         const id = req.params.id
         let all_categories = []
-        const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+        const categories = axios.get('http://localhost:5920/category/').then((response) => {
             return response.data
         })
         for (let i = 0; i < categories.length; i++) {
             all_categories.push(categories[i].name)
         }
-        let all_posts = await axios.get('http://localhost:5920/post/').then((response) => {
+        let all_posts = axios.get('http://localhost:5920/post/').then((response) => {
             return response.data
         })
         let all_post_ids = []
@@ -287,7 +307,7 @@ router.get('/edit/post/:id', async (req, res) => {
         } else {
             res.render('editor.html', {
                 root: '.',
-                post: await axios.get('http://localhost:5920/post/id/' + all_post_ids[id_index]).then((response) => {
+                post: axios.get('http://localhost:5920/post/id/' + all_post_ids[id_index]).then((response) => {
                     return response.data
                 }),
                 type: 'post',
@@ -295,27 +315,28 @@ router.get('/edit/post/:id', async (req, res) => {
                     email: req.session.passport.email,
                     username: req.session.passport.username,
                     displayName: req.session.passport.displayName,
-                }, username: 'served_from_express',
+                },
+                username: 'served_from_express',
                 all_categories: all_categories
             })
         }
-    }
+    }).catch((error) => {
+        res.redirect('/login')
+    })
 })
 
 router.get('/edit/page/:id', async (req, res) => {
-    let authenticated = authMiddleware(req, User)
-    if (authenticated === false) {
-        res.redirect('/login')
-    } else {
+    let user = req.session.passport.user
+    User.findById(user).then((user) => {
         const id = req.params.id
         let all_categories = []
-        const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+        const categories = axios.get('http://localhost:5920/category/').then((response) => {
             return response.data
         })
         for (let i = 0; i < categories.length; i++) {
             all_categories.push(categories[i].name)
         }
-        let all_pages = await axios.get('http://localhost:5920/page/').then((response) => {
+        let all_pages = axios.get('http://localhost:5920/page/').then((response) => {
             return response.data
         })
         let all_page_ids = []
@@ -328,7 +349,7 @@ router.get('/edit/page/:id', async (req, res) => {
         } else {
             res.render('editor.html', {
                 root: '.',
-                post: await axios.get('http://localhost:5920/page/id/' + all_page_ids[id_index]).then((response) => {
+                post: axios.get('http://localhost:5920/page/id/' + all_page_ids[id_index]).then((response) => {
                     return response.data
                 }),
                 type: 'page',
@@ -340,7 +361,9 @@ router.get('/edit/page/:id', async (req, res) => {
                 all_categories: all_categories
             })
         }
-    }
+    }).catch((error) => {
+        res.redirect('/login')
+    })
 })
 
 router.get('/login', (req, res) => {
@@ -350,18 +373,10 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/dashboard', async (req, res) => {
-    let authenticated = authMiddleware(req, User)
-    console.log("Authenticated: ", authenticated)
-    if (authenticated === false) {
-        console.log('redirecting')
-        res.redirect('/login')
-    } else {
-        const user = {
-            email: req.session.passport.email,
-            username: req.session.passport.username,
-            display_name: req.session.passport.display_name,
-        }
-        const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+    let user = req.session.passport.user
+    User.findById(user).then((user) => {
+
+        const categories = axios.get('http://localhost:5920/category/').then((response) => {
             return response.data
         })
         let all_categories = []
@@ -369,7 +384,7 @@ router.get('/dashboard', async (req, res) => {
             all_categories.push(categories[i].name)
         }
 
-        const authors = await axios.get('http://localhost:5920/user/').then((response) => {
+        const authors = axios.get('http://localhost:5920/user/').then((response) => {
             return response.data
         })
         let all_authors = []
@@ -394,26 +409,26 @@ router.get('/dashboard', async (req, res) => {
             all_authors: all_authors,
             all_categories: categories,
             current_categories: all_categories,
-            posts: await axios.get('http://localhost:5920/post').then((response) => {
+            posts: axios.get('http://localhost:5920/post').then((response) => {
                 return response.data
             }),
-            pages: await axios.get('http://localhost:5920/page').then((response) => {
+            pages: axios.get('http://localhost:5920/page').then((response) => {
                 return response.data
             }),
-            upcoming_posts: await axios.get('http://localhost:5920/post/upcoming').then((response) => {
+            upcoming_posts: axios.get('http://localhost:5920/post/upcoming').then((response) => {
                 return response.data
             }).catch((error) => {
                 return []
             })
         })
-    }
+    }).catch((error) => {
+        res.redirect('/login')
+    })
 })
 
 router.get('/account', (req, res) => {
-    let authenticated = authMiddleware(req, User)
-    if (authenticated === false) {
-        res.redirect('/login')
-    } else {
+    let user = req.session.passport.user
+    User.findById(user).then((user) => {
         //eventually, get this from the database
         User.findById(req.session.passport.user).then((user) => {
             const date = {
@@ -424,7 +439,7 @@ router.get('/account', (req, res) => {
                 }),
                 year: new Date().getFullYear()
             }
-    
+
             res.render('account.html', {
                 root: '.',
                 user: user,
@@ -433,18 +448,18 @@ router.get('/account', (req, res) => {
         }).catch((error) => {
             res.redirect('/login')
         })
-        
 
-    }
+
+    }).catch((error) => {
+        res.redirect('/login')
+    })
 })
 
 router.get('/new-post', async (req, res) => {
-    let authenticated = authMiddleware(req, User)
-    if (authenticated === false) {
-        res.redirect('/login')
-    } else {
+    let user = req.session.passport.user
+    User.findById(user).then((user) => {
         let all_categories = []
-        const categories = await axios.get('http://localhost:5920/category/').then((response) => {
+        const categories = axios.get('http://localhost:5920/category/').then((response) => {
             return response.data
         })
         for (let i = 0; i < categories.length; i++) {
@@ -473,14 +488,14 @@ router.get('/new-post', async (req, res) => {
             },
             all_categories: all_categories
         })
-    }
+    }).catch((error) => {
+        res.redirect('/login')
+    })
 })
 
 router.get('/new-page', async (req, res) => {
-    let authenticated = authMiddleware(req, User)
-    if (authenticated === false) {
-        res.redirect('/login')
-    } else {
+    let user = req.session.passport.user
+    User.findById(user).then((user) => {
 
         res.render('editor.html', {
             root: '.',
@@ -500,7 +515,9 @@ router.get('/new-page', async (req, res) => {
                 username: 'served_from_express',
             }
         })
-    }
+    }).catch((error) => {
+        res.redirect('/login')
+    })
 })
 
 app.use('/', router)

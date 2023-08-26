@@ -21,7 +21,7 @@ const authMiddleware = (req, User) => {
     } else {
         return false
     }
-    return false
+
 }
 
 export default authMiddleware
