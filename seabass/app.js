@@ -23,7 +23,6 @@ import static_routes from './src/server/routes/staticRoutes.min.js'
 import session from 'express-session'
 import passport from 'passport'
 import Strategy from 'passport-google-oauth20'
-import authMiddleware from './src/server/middleware/authMiddleware.js'
 import {default as totp} from 'totp-generator'
 import QRCode from 'qrcode'
 import {default as base32} from 'base32'
@@ -248,7 +247,7 @@ router.post('/totp-verify', (req, res) => {
     secret = base32.encode(secret).toString().replace(/0/g, 'O').replace(/1/g, 'I').replace(/8/g, 'B').replace(/9/g, 'P').toUpperCase().replace(/[^A-Z2-7=]/g, '')
     let submitted_token = req.body.code
     let token = totp(secret)
-    console.log(submitted_token, token)
+    console.log("%s, %s", submitted_token, token)
     if (submitted_token == token) {
         User.findByIdAndUpdate(user, {
             totp: true,
