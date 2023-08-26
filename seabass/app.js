@@ -65,10 +65,10 @@ app.use(passport.session())
 app.use(passport.initialize())
 
 router.post('/upload-image', upload.single('streamfile'), (req, res) => {
-    let authenticated = authMiddleware(req, User)
-    if (authenticated === false) {
-        res.redirect('/login')
-    } else {
+    if (!req.session.passport || req.session.passport.permissions == 'worm') {
+        res.redirect('/login-na')
+    }
+    else {
         if (req.fileValidationError) {
             return res.status(400).json({
                 message: req.fileValidationError,
@@ -94,6 +94,39 @@ router.post('/upload-image', upload.single('streamfile'), (req, res) => {
         })
 
     }
+})
+
+router.get('/uploaded-media/:id', async (req, res) => {
+    
+        //get all files in db.collection('uploads.files')
+        let _file = null
+        let files = await db.collection('uploads.files').find().toArray()
+        files.forEach((file) => {
+            if (file._id == req.params.id) {
+                _file = file
+            }
+        })
+
+        //get chunks from (uploads.chunks) and build them into a file
+        let chunks = await db.collection('uploads.chunks').find({}).toArray()
+        let file = []
+        chunks.forEach((chunk) => {
+            if (chunk.files_id.toString() === _file._id.toString()){
+                file.push(chunk.data)
+            }
+        })
+        let fileData = [];         
+        for(let i=0; i<chunks.length;i++){            
+          fileData.push(chunks[i].data.toString('base64'));          
+        }
+        
+         //Display the chunks using the data URI format          
+         let finalFile = 'data:' + _file.contentType + ';base64,' 
+              + fileData.join('')
+
+        res.json({"image":finalFile})
+
+    
 })
 
 passport.use(new Strategy({
