@@ -7,6 +7,7 @@ import fs from 'fs'
 import dotenv from 'dotenv'
 
 import nunjucks from 'nunjucks'
+import {default as nunjuckDate} from 'nunjucks-date'
 import rate_limit from 'express-rate-limit'
 
 import axios from 'axios'
@@ -154,11 +155,14 @@ app.use(cors(corsOptions))
 app.options('*', cors(corsOptions))
 
 
-nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
+const nenv = nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
     autoescape: true,
     express: app,
-    watch: true
+    watch: true,
 })
+
+nunjuckDate.setDefaultFormat('MMM Do, h:mm a')
+nunjuckDate.install(nenv)
 
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
@@ -281,7 +285,6 @@ router.get('/logged-in', (req, res) => {
 })
 
 router.get('/edit/post/:id', async (req, res) => {
-    let authenticated = authMiddleware(req, User)
     let user = req.session.passport.user
     User.findById(user).then((user) => {
         const id = req.params.id
@@ -289,6 +292,15 @@ router.get('/edit/post/:id', async (req, res) => {
         const categories = axios.get('http://localhost:5920/category/').then((response) => {
             return response.data
         })
+        let all_authors = axios.get('http://localhost:5920/user/').then((response) => {
+        let data = response.data
+        return data.map((author) => {
+            return {
+                name: author.display_name,
+                id: author._id
+            }
+        })
+    })
         for (let i = 0; i < categories.length; i++) {
             all_categories.push(categories[i].name)
         }
@@ -310,13 +322,10 @@ router.get('/edit/post/:id', async (req, res) => {
                     return response.data
                 }),
                 type: 'post',
-                user: {
-                    email: req.session.passport.email,
-                    username: req.session.passport.username,
-                    displayName: req.session.passport.displayName,
-                },
+                user: user,
                 username: 'served_from_express',
-                all_categories: all_categories
+                all_categories: all_categories,
+                all_authors: all_authors
             })
         }
     }).catch((error) => {
@@ -332,6 +341,15 @@ router.get('/edit/page/:id', async (req, res) => {
         const categories = axios.get('http://localhost:5920/category/').then((response) => {
             return response.data
         })
+        let all_authors = axios.get('http://localhost:5920/user/').then((response) => {
+        let data = response.data
+        return data.map((author) => {
+            return {
+                name: author.display_name,
+                id: author._id
+            }
+        })
+    })
         for (let i = 0; i < categories.length; i++) {
             all_categories.push(categories[i].name)
         }
@@ -352,12 +370,9 @@ router.get('/edit/page/:id', async (req, res) => {
                     return response.data
                 }),
                 type: 'page',
-                user: {
-                    email: req.session.passport.email,
-                    username: req.session.passport.username,
-                    displayName: req.session.passport.displayName,
-                },
-                all_categories: all_categories
+                user: user,
+                all_categories: all_categories,
+                all_authors: all_authors
             })
         }
     }).catch((error) => {
@@ -372,56 +387,41 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/dashboard', async (req, res) => {
-    let user = req.session.passport.user
-    User.findById(user).then((user) => {
-
-        const categories = axios.get('http://localhost:5920/category/').then((response) => {
-            return response.data
-        })
-        let all_categories = []
-        for (let i = 0; i < categories.length; i++) {
-            all_categories.push(categories[i].name)
+    let user_id = req.session.passport.user
+    let user = await User.findById(user_id)
+    let categories = await axios.get('http://localhost:5920/category/')
+    let posts = await axios.get('http://localhost:5920/post/')
+    let pages = await axios.get('http://localhost:5920/page/')
+    let comments = await axios.get('http://localhost:5920/comment/')
+    let users = await axios.get('http://localhost:5920/user/')
+    let all_authors = users.data.map((author) => {
+        return {
+            name: author.display_name,
+            id: author._id
         }
-
-        const authors = axios.get('http://localhost:5920/user/').then((response) => {
-            return response.data
-        })
-        let all_authors = []
-        for (let i = 0; i < authors.length; i++) {
-            all_authors.push({
-                name: authors[i].display_name,
-                id: authors[i]._id
-            })
+    })
+    let all_categories = categories.data.map((category) => {
+        return {
+            name: category.name,
+            id: category._id
         }
-
-        res.render('dashboard.html', {
-            root: '.',
-            date: {
-                day: new Date().getDate(),
-                month: new Date().getMonth(),
-                monthName: new Date().toLocaleString('default', {
-                    month: 'long'
-                }),
-                year: new Date().getFullYear()
-            },
-            user: user,
-            all_authors: all_authors,
-            all_categories: categories,
-            current_categories: all_categories,
-            posts: axios.get('http://localhost:5920/post').then((response) => {
-                return response.data
+    })
+    res.render('dashboard.html', {
+        root: '.',
+        user: user,
+        posts: posts.data,
+        pages: pages.data,
+        comments: comments.data,
+        all_authors: all_authors,
+        all_categories: all_categories,
+        date: {
+            day: new Date().getDate(),
+            month: new Date().getMonth(),
+            monthName: new Date().toLocaleString('default', {
+                month: 'long'
             }),
-            pages: axios.get('http://localhost:5920/page').then((response) => {
-                return response.data
-            }),
-            upcoming_posts: axios.get('http://localhost:5920/post/upcoming').then((response) => {
-                return response.data
-            }).catch((error) => {
-                return []
-            })
-        })
-    }).catch((error) => {
-        res.redirect('/login')
+            year: new Date().getFullYear()
+        }
     })
 })
 
@@ -461,6 +461,15 @@ router.get('/new-post', async (req, res) => {
         const categories = axios.get('http://localhost:5920/category/').then((response) => {
             return response.data
         })
+        let all_authors = axios.get('http://localhost:5920/user/').then((response) => {
+        let data = response.data
+        return data.map((author) => {
+            return {
+                name: author.display_name,
+                id: author._id
+            }
+        })
+    })
         for (let i = 0; i < categories.length; i++) {
             all_categories.push(categories[i].name)
         }
@@ -481,11 +490,9 @@ router.get('/new-post', async (req, res) => {
                 featured_image: ''
             },
             type: 'post',
-            user: {
-                email: 'served_from@express.app',
-                username: 'served_from_express',
-            },
-            all_categories: all_categories
+            user: user,
+            all_categories: all_categories,
+            all_authors: all_authors
         })
     }).catch((error) => {
         res.redirect('/login')
@@ -494,6 +501,15 @@ router.get('/new-post', async (req, res) => {
 
 router.get('/new-page', async (req, res) => {
     let user = req.session.passport.user
+    let all_authors = axios.get('http://localhost:5920/user/').then((response) => {
+        let data = response.data
+        return data.map((author) => {
+            return {
+                name: author.display_name,
+                id: author._id
+            }
+        })
+    })
     User.findById(user).then((user) => {
 
         res.render('editor.html', {
@@ -509,10 +525,8 @@ router.get('/new-page', async (req, res) => {
                 status: 'draft',
             },
             type: 'page',
-            user: {
-                email: 'served_from@express.app',
-                username: 'served_from_express',
-            }
+            user: user,
+            all_authors: all_authors
         })
     }).catch((error) => {
         res.redirect('/login')

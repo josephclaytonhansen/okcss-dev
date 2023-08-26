@@ -1,14 +1,14 @@
-{% macro ost_list(posts, ptype, all_categories, all_authors, current_categories) %}
+{% macro ost_list(posts, ptype, all_authors, all_categories) %}
 {% import "../includes/lucide.njk" as lu %}
 <div class = "post_list">
     <table>
         <colgroup>
             {% if ptype == "posts" %}
-            <col style="width: 32%;">
+            <col style="width: 28%;">
             <col style="width: 18%;">
-            <col style="width: 22%;">
+            <col style="width: 21%;">
             <col style="width: 13%;">
-            <col style="width: 13%;">
+            <col style="width: 18%;">
             <col style="width: 2%;">
             {% endif %}
             {% if ptype == "pages" %}
@@ -47,13 +47,15 @@
                     {% for a in all_authors %}
                     {% if a.id == post.author %}
                     {{a.name}}
+                    {% else %}
+                    Invalid Author
                     {% endif %}
                     {% endfor %}
                 </td>
                 <td>
                     <select name="categories" class="categories" multiple>
-                        {% for category in current_categories %}
-                        <option value={{category}} {% if category in post.categories %}selected{% endif %}>{{category}}</option>
+                        {% for category in all_categories %}
+                        <option value={{category.name}} {% if category.name in post.categories %}selected{% endif %}>{{category.name}}</option>
                         {% endfor %}
                     </select>
                 
@@ -66,7 +68,7 @@
                         <option value="private" {%if post.status == "private"%}selected{% endif %}>Private</option>
                     </select>
                 </td>
-                <td>{{ post.date }}</td>
+                <td>{{ post.createdAt | date }}</td>
                 <td><a href ="{{'/edit/post/'+post._id}}"><span class = "pedit clickable-icon" id = {{"edit-"+post._id}}>{{lu.i("pencil", 2)}}</span></a></td>
             </tr>
             {% endfor %}
@@ -81,6 +83,8 @@
                     {% for a in all_authors %}
                     {% if a.id == post.author %}
                     {{a.name}}
+                    {% else %}
+                    Invalid Author
                     {% endif %}
                     {% endfor %}
                 </td>
