@@ -64,6 +64,95 @@ app.use(passport.session())
 
 app.use(passport.initialize())
 
+passport.serializeUser(async function (user, done) {
+    done(null, user.id)
+})
+
+passport.deserializeUser(function (id, done) {
+    User.findById(id).then((user) => {
+        done(null, user)
+    })
+})
+
+dotenv.config()
+
+// Body parser middleware
+app.use(express.json())
+app.use(express.urlencoded({
+    extended: false
+}))
+
+passport.use(new Strategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: '/oauth2/redirect/google',
+    scope: ['profile', 'email'],
+}, async (accessToken, refreshToken, profile, cb) => {
+    const user = await User.findOne({
+        googleId: profile.id
+    })
+    if (user) {
+        return cb(null, user)
+    } else {
+        const newUser = await User.create({
+            googleId: profile.id,
+            displayName: profile.displayName,
+            firstName: profile.name.givenName,
+            lastName: profile.name.familyName,
+            image: profile.photos[0].value,
+            email: profile.emails[0].value,
+            permissions: 'worm'
+        })
+        return cb(null, newUser)
+    }
+
+}))
+
+/* var privateKey  = fs.readFileSync('/etc/ssl/key.pem', 'utf8')
+var certificate = fs.readFileSync('/etc/ssl/cert.pem', 'utf8')
+
+var credentials = {key: privateKey, cert: certificate} */
+
+const corsOptions = {
+    origin: process.env.ORIGIN,
+    credentials: true,
+    optionSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
+app.options('*', cors(corsOptions))
+
+
+const nenv = nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
+    autoescape: true,
+    express: app,
+    watch: true,
+})
+
+nunjuckDate.setDefaultFormat('MMM Do, h:mm a')
+nunjuckDate.install(nenv)
+
+const limiter = rate_limit({
+    windowMs: 15 * 60 * 1000,
+    max: 400,
+    standardHeaders: true,
+    legacyHeaders: false,
+})
+
+if (process.env.ENV == 'production') {
+    app.use(limiter)
+}
+
+app.use("/page", page_routes)
+app.use("/post", post_routes)
+app.use("/user", user_routes)
+app.use("/comment", comment_routes)
+app.use("/category", category_routes)
+app.use("/", static_routes)
+
+
+/* ------------------------------- Base routes ------------------------------ */
+
 router.post('/upload-image', upload.single('streamfile'), (req, res) => {
     if (!req.session.passport || req.session.passport.permissions == 'worm') {
         res.redirect('/login-na')
@@ -128,92 +217,6 @@ router.get('/uploaded-media/:id', async (req, res) => {
 
     
 })
-
-passport.use(new Strategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: '/oauth2/redirect/google',
-    scope: ['profile', 'email'],
-}, async (accessToken, refreshToken, profile, cb) => {
-    const user = await User.findOne({
-        googleId: profile.id
-    })
-    if (user) {
-        return cb(null, user)
-    } else {
-        const newUser = await User.create({
-            googleId: profile.id,
-            displayName: profile.displayName,
-            firstName: profile.name.givenName,
-            lastName: profile.name.familyName,
-            image: profile.photos[0].value,
-            email: profile.emails[0].value,
-            permissions: 'worm'
-        })
-        return cb(null, newUser)
-    }
-
-}))
-
-passport.serializeUser(async function (user, done) {
-    done(null, user.id)
-})
-
-passport.deserializeUser(function (id, done) {
-    User.findById(id).then((user) => {
-        done(null, user)
-    })
-})
-
-dotenv.config()
-
-// Body parser middleware
-app.use(express.json())
-app.use(express.urlencoded({
-    extended: false
-}))
-
-/* var privateKey  = fs.readFileSync('/etc/ssl/key.pem', 'utf8')
-var certificate = fs.readFileSync('/etc/ssl/cert.pem', 'utf8')
-
-var credentials = {key: privateKey, cert: certificate} */
-
-const corsOptions = {
-    origin: process.env.ORIGIN,
-    credentials: true,
-    optionSuccessStatus: 200
-}
-
-app.use(cors(corsOptions))
-app.options('*', cors(corsOptions))
-
-
-const nenv = nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
-    autoescape: true,
-    express: app,
-    watch: true,
-})
-
-nunjuckDate.setDefaultFormat('MMM Do, h:mm a')
-nunjuckDate.install(nenv)
-
-const limiter = rate_limit({
-    windowMs: 15 * 60 * 1000,
-    max: 400,
-    standardHeaders: true,
-    legacyHeaders: false,
-})
-
-if (process.env.ENV == 'production') {
-    app.use(limiter)
-}
-
-app.use("/page", page_routes)
-app.use("/post", post_routes)
-app.use("/user", user_routes)
-app.use("/comment", comment_routes)
-app.use("/category", category_routes)
-app.use("/", static_routes)
 
 router.get('/login/federated/google', passport.authenticate('google', {
     scope: ['profile email']
