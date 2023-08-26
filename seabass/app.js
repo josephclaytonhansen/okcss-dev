@@ -186,6 +186,13 @@ router.get('/login/federated/google', passport.authenticate('google', {
     scope: ['profile email']
 }))
 
+router.get('/login-na', (req, res) => {
+    res.render('login.html', {
+        root: '.',
+        message: 'You are not authorized.\nContact the database admin to gain access'
+    })
+})
+
 router.get('/logout', async (req, res, next) => {
     req.session.destroy()
     await req.logout(function error(err) {
@@ -227,16 +234,18 @@ router.get('/totp-challenge', (req, res) => {
                     root: '.',
                 })
             } else {
-                let secret = (user + process.env.TOTP_SECRET)
+                let secret = (user.email + process.env.TOTP_SECRET)
                 //encode secret as base32
                 secret = base32.encode(secret).toString().replace(/0/g, 'O').replace(/1/g, 'I').replace(/8/g, 'B').replace(/9/g, 'P').toUpperCase().replace(/[^A-Z2-7=]/g, '')
                 //remove any characters that don't match A-Z, 2-7, or =
                 let message = "otpauth://totp/OklahomaCitySouthStake:" + user + "?secret=" + secret + "&issuer=OklahomaCitySouthStake"
-                let qr = QRCode.toDataURL(message).then((url) => {
-                    url = url.slice(0, -1)
+                let qr = QRCode.toDataURL(message, {
+                    errorCorrectionLevel: 'L',
+                    type: 'image/png',
+                }).then((url) => {
                     res.render('totp.html', {
                         qr: url,
-                        root: '.'
+                        root: '.',
                     })
                 })
 
@@ -387,6 +396,10 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/dashboard', async (req, res) => {
+    if (!req.session.passport || req.session.passport.permissions == 'worm') {
+        res.redirect('/login-na')
+    }
+    else {
     let user_id = req.session.passport.user
     let user = await User.findById(user_id)
     let categories = await axios.get('http://localhost:5920/category/')
@@ -422,7 +435,7 @@ router.get('/dashboard', async (req, res) => {
             }),
             year: new Date().getFullYear()
         }
-    })
+    })}
 })
 
 router.get('/account', (req, res) => {
