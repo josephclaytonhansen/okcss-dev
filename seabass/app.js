@@ -31,6 +31,7 @@ import {default as base32} from 'base32'
 import {default as connectMongoDBSession} from 'connect-mongodb-session'
 
 import cookieParser from 'cookie-parser'
+import cachedMedia from './src/server/middleware/cachedMedia.js'
 
 const app = express()
 const router = express.Router()
@@ -185,6 +186,17 @@ router.post('/upload-image', upload.single('streamfile'), (req, res) => {
     }
 })
 
+router.get('/uploaded-media-ids', async (req, res) => {
+        //get all files in db.collection('uploads.files')
+        let files = await db.collection('uploads.files').find().toArray()
+        //return all _ids
+        let file_ids = []
+        files.forEach((file) => {
+            file_ids.push(file._id)
+        })
+        res.json({"ids": file_ids})
+})
+
 router.get('/uploaded-media/:id', async (req, res) => {
     
         //get all files in db.collection('uploads.files')
@@ -213,7 +225,7 @@ router.get('/uploaded-media/:id', async (req, res) => {
          let finalFile = 'data:' + _file.contentType + ';base64,' 
               + fileData.join('')
 
-        res.json({"image":finalFile})
+        res.json({"image":finalFile, "filename": _file.filename})
 
     
 })
@@ -436,6 +448,7 @@ router.get('/dashboard', async (req, res) => {
         res.redirect('/login-na')
     }
     else {
+    
     let user_id = req.session.passport.user
     let user = await User.findById(user_id)
     let categories = await axios.get('http://localhost:5920/category/')
@@ -455,6 +468,7 @@ router.get('/dashboard', async (req, res) => {
             id: category._id
         }
     })
+    let cached_media = cachedMedia(req, res).then((response) => {
     res.render('dashboard.html', {
         root: '.',
         user: user,
@@ -463,6 +477,7 @@ router.get('/dashboard', async (req, res) => {
         comments: comments.data,
         all_authors: all_authors,
         all_categories: all_categories,
+        cached_media: response,
         date: {
             day: new Date().getDate(),
             month: new Date().getMonth(),
@@ -471,7 +486,7 @@ router.get('/dashboard', async (req, res) => {
             }),
             year: new Date().getFullYear()
         }
-    })}
+    })})}
 })
 
 router.get('/account', (req, res) => {
