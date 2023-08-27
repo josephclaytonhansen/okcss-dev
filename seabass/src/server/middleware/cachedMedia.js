@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const cachedMedia = async (req, res) => {
     let cached_media = null
     if (!req.session.cached_media) {

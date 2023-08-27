@@ -3,9 +3,7 @@ images = []
 function populateListView(){
     let l = $('.list-view')
     //for now, use a static array of images
-    for(let i = 0; i < 20; i++){
-        images.push({"name":"image"+i.toString()+".png","src":"https://unsplash.it/1000/450/?random?"+i*Math.random(), metadata:{"createdAt":new Date(), "updatedAt":new Date(), "size":1024, "type":"image/png", "width":625, "height":938, "alt": "alt text"}})
-    }
+    
     images.push({"name":"wide.png", "src":'https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2142&q=80', metadata:{"createdAt":new Date(), "updatedAt":new Date(), "size":1024, "type":"image/png", "width":1364, "height":513, "alt": "alt text"}})
     images.push({"name":"square.png", "src":"https://images.unsplash.com/photo-1488654715439-fbf461f0eb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80", metadata:{"createdAt":new Date(), "updatedAt":new Date(), "size":1024, "type":"image/png", "width":880, "height":880, "alt": "alt text"}})
     images = images.reverse()

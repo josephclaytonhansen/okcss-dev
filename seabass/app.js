@@ -7,7 +7,9 @@ import fs from 'fs'
 import dotenv from 'dotenv'
 
 import nunjucks from 'nunjucks'
-import {default as nunjuckDate} from 'nunjucks-date'
+import {
+    default as nunjuckDate
+} from 'nunjucks-date'
 import rate_limit from 'express-rate-limit'
 
 import axios from 'axios'
@@ -24,11 +26,17 @@ import static_routes from './src/server/routes/staticRoutes.min.js'
 import session from 'express-session'
 import passport from 'passport'
 import Strategy from 'passport-google-oauth20'
-import {default as totp} from 'totp-generator'
+import {
+    default as totp
+} from 'totp-generator'
 import QRCode from 'qrcode'
-import {default as base32} from 'base32'
+import {
+    default as base32
+} from 'base32'
 
-import {default as connectMongoDBSession} from 'connect-mongodb-session'
+import {
+    default as connectMongoDBSession
+} from 'connect-mongodb-session'
 
 import cookieParser from 'cookie-parser'
 import cachedMedia from './src/server/middleware/cachedMedia.js'
@@ -157,8 +165,7 @@ app.use("/", static_routes)
 router.post('/upload-image', upload.single('streamfile'), (req, res) => {
     if (!req.session.passport || req.session.passport.permissions == 'worm') {
         res.redirect('/login-na')
-    }
-    else {
+    } else {
         if (req.fileValidationError) {
             return res.status(400).json({
                 message: req.fileValidationError,
@@ -187,47 +194,52 @@ router.post('/upload-image', upload.single('streamfile'), (req, res) => {
 })
 
 router.get('/uploaded-media-ids', async (req, res) => {
-        //get all files in db.collection('uploads.files')
-        let files = await db.collection('uploads.files').find().toArray()
-        //return all _ids
-        let file_ids = []
-        files.forEach((file) => {
-            file_ids.push(file._id)
-        })
-        res.json({"ids": file_ids})
+    //get all files in db.collection('uploads.files')
+    let files = await db.collection('uploads.files').find().toArray()
+    //return all _ids
+    let file_ids = []
+    files.forEach((file) => {
+        file_ids.push(file._id)
+    })
+    res.json({
+        "ids": file_ids
+    })
 })
 
 router.get('/uploaded-media/:id', async (req, res) => {
-    
-        //get all files in db.collection('uploads.files')
-        let _file = null
-        let files = await db.collection('uploads.files').find().toArray()
-        files.forEach((file) => {
-            if (file._id == req.params.id) {
-                _file = file
-            }
-        })
 
-        //get chunks from (uploads.chunks) and build them into a file
-        let chunks = await db.collection('uploads.chunks').find({}).toArray()
-        let file = []
-        chunks.forEach((chunk) => {
-            if (chunk.files_id.toString() === _file._id.toString()){
-                file.push(chunk.data)
-            }
-        })
-        let fileData = [];         
-        for(let i=0; i<chunks.length;i++){            
-          fileData.push(chunks[i].data.toString('base64'));          
+    //get all files in db.collection('uploads.files')
+    let _file = null
+    let files = await db.collection('uploads.files').find().toArray()
+    files.forEach((file) => {
+        if (file._id == req.params.id) {
+            _file = file
         }
-        
-         //Display the chunks using the data URI format          
-         let finalFile = 'data:' + _file.contentType + ';base64,' 
-              + fileData.join('')
+    })
 
-        res.json({"image":finalFile, "filename": _file.filename})
+    //get chunks from (uploads.chunks) and build them into a file
+    let chunks = await db.collection('uploads.chunks').find({}).toArray()
+    let file = []
+    chunks.forEach((chunk) => {
+        if (chunk.files_id.toString() === _file._id.toString()) {
+            file.push(chunk.data)
+        }
+    })
+    let fileData = [];
+    for (let i = 0; i < chunks.length; i++) {
+        fileData.push(chunks[i].data.toString('base64'));
+    }
 
-    
+    //Display the chunks using the data URI format          
+    let finalFile = 'data:' + _file.contentType + ';base64,' +
+        fileData.join('')
+
+    res.json({
+        "image": finalFile,
+        "filename": _file.filename
+    })
+
+
 })
 
 router.get('/login/federated/google', passport.authenticate('google', {
@@ -350,14 +362,14 @@ router.get('/edit/post/:id', async (req, res) => {
             return response.data
         })
         let all_authors = axios.get('http://localhost:5920/user/').then((response) => {
-        let data = response.data
-        return data.map((author) => {
-            return {
-                name: author.display_name,
-                id: author._id
-            }
+            let data = response.data
+            return data.map((author) => {
+                return {
+                    name: author.display_name,
+                    id: author._id
+                }
+            })
         })
-    })
         for (let i = 0; i < categories.length; i++) {
             all_categories.push(categories[i].name)
         }
@@ -399,14 +411,14 @@ router.get('/edit/page/:id', async (req, res) => {
             return response.data
         })
         let all_authors = axios.get('http://localhost:5920/user/').then((response) => {
-        let data = response.data
-        return data.map((author) => {
-            return {
-                name: author.display_name,
-                id: author._id
-            }
+            let data = response.data
+            return data.map((author) => {
+                return {
+                    name: author.display_name,
+                    id: author._id
+                }
+            })
         })
-    })
         for (let i = 0; i < categories.length; i++) {
             all_categories.push(categories[i].name)
         }
@@ -446,48 +458,101 @@ router.get('/login', (req, res) => {
 router.get('/dashboard', async (req, res) => {
     if (!req.session.passport || req.session.passport.permissions == 'worm') {
         res.redirect('/login-na')
+    } else {
+
+        let user_id = req.session.passport.user
+        let user = null
+        if (!req.session.user) {
+            let user = await User.findById(user_id)
+            req.session.user = user
+        } else {
+            user = req.session.user
+        }
+        let categories = null
+        let all_categories = null
+        if (!req.session.categories) {
+            categories = await axios.get('http://localhost:5920/category/')
+            req.session.categories = categories.data
+            all_categories = categories.data.map((category) => {
+                return {
+                    name: category.name,
+                    id: category._id
+                }
+            })
+        } else {
+            categories = req.session.categories
+            all_categories = categories.map((category) => {
+                return {
+                    name: category.name,
+                    id: category._id
+                }
+            })
+        }
+        let posts = null
+        if (!req.session.posts) {
+            posts = await axios.get('http://localhost:5920/post/')
+            req.session.posts = posts.data
+        } else {
+            posts = req.session.posts
+        }
+        let pages = null
+        if (!req.session.pages) {
+            pages = await axios.get('http://localhost:5920/page/')
+            req.session.pages = pages.data
+        } else {
+            pages = req.session.pages
+        }
+        let comments = null
+        if (!req.session.comments) {
+            comments = await axios.get('http://localhost:5920/comment/')
+            req.session.comments = comments.data
+        } else {
+            comments = req.session.comments
+        }
+        let users = null
+        let all_authors = null
+        if (!req.session.users) {
+            users = await axios.get('http://localhost:5920/user/')
+            req.session.users = users.data
+            all_authors = users.data.map((author) => {
+                return {
+                    name: author.display_name,
+                    id: author._id
+                }
+            })
+        } else {
+            users = req.session.users
+            all_authors = users.map((author) => {
+                return {
+                    name: author.display_name,
+                    id: author._id
+                }
+            })
+        }
+
+        let cached_media = cachedMedia(req, res).then((response) => {
+            res.render('dashboard.html', {
+                root: '.',
+                user: user,
+                posts: posts,
+                pages: pages.data,
+                comments: comments.data,
+                all_authors: all_authors,
+                all_categories: all_categories,
+                cached_media: response,
+                date: {
+                    day: new Date().getDate(),
+                    month: new Date().getMonth(),
+                    monthName: new Date().toLocaleString('default', {
+                        month: 'long'
+                    }),
+                    year: new Date().getFullYear()
+                }
+            })
+        })
     }
-    else {
-    
-    let user_id = req.session.passport.user
-    let user = await User.findById(user_id)
-    let categories = await axios.get('http://localhost:5920/category/')
-    let posts = await axios.get('http://localhost:5920/post/')
-    let pages = await axios.get('http://localhost:5920/page/')
-    let comments = await axios.get('http://localhost:5920/comment/')
-    let users = await axios.get('http://localhost:5920/user/')
-    let all_authors = users.data.map((author) => {
-        return {
-            name: author.display_name,
-            id: author._id
-        }
-    })
-    let all_categories = categories.data.map((category) => {
-        return {
-            name: category.name,
-            id: category._id
-        }
-    })
-    let cached_media = cachedMedia(req, res).then((response) => {
-    res.render('dashboard.html', {
-        root: '.',
-        user: user,
-        posts: posts.data,
-        pages: pages.data,
-        comments: comments.data,
-        all_authors: all_authors,
-        all_categories: all_categories,
-        cached_media: response,
-        date: {
-            day: new Date().getDate(),
-            month: new Date().getMonth(),
-            monthName: new Date().toLocaleString('default', {
-                month: 'long'
-            }),
-            year: new Date().getFullYear()
-        }
-    })})}
 })
+
 
 router.get('/account', (req, res) => {
     let user = req.session.passport.user
@@ -526,14 +591,14 @@ router.get('/new-post', async (req, res) => {
             return response.data
         })
         let all_authors = axios.get('http://localhost:5920/user/').then((response) => {
-        let data = response.data
-        return data.map((author) => {
-            return {
-                name: author.display_name,
-                id: author._id
-            }
+            let data = response.data
+            return data.map((author) => {
+                return {
+                    name: author.display_name,
+                    id: author._id
+                }
+            })
         })
-    })
         for (let i = 0; i < categories.length; i++) {
             all_categories.push(categories[i].name)
         }
