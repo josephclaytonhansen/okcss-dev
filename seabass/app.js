@@ -15,9 +15,7 @@ import rate_limit from 'express-rate-limit'
 import axios from 'axios'
 //import upload from './src/server/multerStorage.js'
 import multer from 'multer'
-const upload = multer({
-    dest: 'uploads/'
-})
+const upload = multer({dest: 'tmp/'})
 import User from './src/server/models/userModel.min.js'
 
 import page_routes from './src/server/routes/pageRoutes.min.js'
@@ -182,6 +180,7 @@ router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
                 message: 'Please upload a file',
             })
         }
+
         const imageFile = req.file.path
         const base64 = fs.readFileSync(imageFile, {
             encoding: 'base64'
@@ -199,16 +198,19 @@ router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
     }
 })
 
-router.get('/uploaded-media-ids', async (req, res) => {
+router.get('/uploaded-media', async (req, res) => {
     //get all files in db.collection('uploads.files')
     let files = await db.collection('uploads').find().toArray()
     //return all _ids
     let file_ids = []
+    let file_slugs = []
     files.forEach((file) => {
         file_ids.push(file._id)
+        file_slugs.push(file.slug)
     })
     res.json({
-        "ids": file_ids
+        "ids": file_ids,
+        "slugs": file_slugs
     })
 })
 
@@ -449,7 +451,9 @@ router.get('/dashboard', async (req, res) => {
         let user_id = req.session.passport.user
         let user = null
         if (!req.session.user) {
-            let user = await User.findById(user_id)
+            let user = await User.findById(user_id).then((user) => {
+                return user
+            })
             req.session.user = user
         } else {
             user = req.session.user
