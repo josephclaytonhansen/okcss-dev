@@ -16,6 +16,8 @@ import axios from 'axios'
 //import upload from './src/server/multerStorage.js'
 import multer from 'multer'
 const upload = multer({dest: 'tmp/'})
+import sharp from 'sharp'
+import imageSize from 'image-size'
 import User from './src/server/models/userModel.min.js'
 
 import page_routes from './src/server/routes/pageRoutes.min.js'
@@ -174,6 +176,7 @@ router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
             })
         }
         // get the file from the request
+        console.log(req.file)
         const file = req.file
         if (!file) {
             return res.status(400).json({
@@ -182,14 +185,43 @@ router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
         }
 
         const imageFile = req.file.path
-        const base64 = fs.readFileSync(imageFile, {
-            encoding: 'base64'
+
+        const dimensions = imageSize(imageFile)
+        const width = dimensions.width
+        const height = dimensions.height
+
+        let resizedImage = null
+
+        if (width > 1920) {
+            resizedImage = await sharp(imageFile).resize(1920).jpeg({quality: 80}).toBuffer()
+        } else {
+            resizedImage = await sharp(imageFile).jpeg({quality: 80}).toBuffer()
+        }
+
+        const thumb = await sharp(imageFile).resize(200,200).jpeg({quality: 60}).toBuffer()
+
+        const resizedBase64 = resizedImage.toString('base64')
+
+        let image_string = "data:" + file.mimetype + ";base64," + resizedBase64
+        let thumb_string = "data:" + file.mimetype + ";base64," + thumb.toString('base64')
+
+        await db.collection('uploads').insertOne({
+            image: thumb_string,
+            width: 200,
+            height: 200,
+            filename: file.originalname,
+            type: 'image/jpeg',
+            slug: "thumbnail-" + file.originalname.replace(/\s+/g, '-').toLowerCase(),
+            size: thumb_string.length
         })
-        let image_string = "data:" + file.mimetype + ";base64," + base64
+
         await db.collection('uploads').insertOne({
             image: image_string,
+            width: width,
+            height: height,
             filename: file.originalname,
-            type: file.mimetype,
+            type: 'image/jpeg',
+            size: image_string.length,
             slug: file.originalname.replace(/\s+/g, '-').toLowerCase(),
         }).then((result) => {
             res.redirect('/dashboard')
