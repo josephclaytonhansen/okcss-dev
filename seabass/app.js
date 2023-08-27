@@ -58,13 +58,13 @@ const store = new MongoDBStore({
 })
 
 app.use(session({
-    maxAge: 1000 * 60 * 60,
+    maxAge: 1000 * 60 * 60 * 5,
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
         secure: process.env.ENV == 'production',
-        maxAge: 1000 * 60 * 60,
+        maxAge: 5 * 1000 * 60 * 60,
     },
     store: store
 }))
