@@ -186,9 +186,9 @@ router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
         const base64 = fs.readFileSync(imageFile, {
             encoding: 'base64'
         })
-        //create a new record in the 'uploads' collection, with the file's data as "image" and the filename as "filename"
+        let image_string = "data:" + file.mimetype + ";base64," + base64
         await db.collection('uploads').insertOne({
-            image: base64,
+            image: image_string,
             filename: file.originalname,
             type: file.mimetype,
             slug: file.originalname.replace(/\s+/g, '-').toLowerCase(),
