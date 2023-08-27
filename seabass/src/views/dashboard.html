@@ -48,7 +48,6 @@
                 <div class='wrapper'>
                     <section class="gallery-top">
                         <h2>Images</h2>
-                        <div>{{g.allery(cached_media)}}</div>
                         <section class="gallery-top">
                             <span id = "list-view" class="clickable-icon">{{ lu.i("folder-tree")}}</span>
                             <span id = "gallery-view" class="hidden clickable-icon">{{ lu.i("layout-grid")}}</span>
@@ -57,7 +56,9 @@
                     </section>
 
                     <hr />
-                    <div class='gallery'></div>
+                    <div class='gallery'>
+                        {{g.allery(cached_media)}}
+                    </div>
                     <div class="list-view" style = "display:none">
                         <section class = "breadcrumbs"></section>
                         <section class = "list"></section>

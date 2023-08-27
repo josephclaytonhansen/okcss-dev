@@ -13,7 +13,11 @@ import {
 import rate_limit from 'express-rate-limit'
 
 import axios from 'axios'
-import upload from './src/server/multerStorage.js'
+//import upload from './src/server/multerStorage.js'
+import multer from 'multer'
+const upload = multer({
+    dest: 'uploads/'
+})
 import User from './src/server/models/userModel.min.js'
 
 import page_routes from './src/server/routes/pageRoutes.min.js'
@@ -162,7 +166,7 @@ app.use("/", static_routes)
 
 /* ------------------------------- Base routes ------------------------------ */
 
-router.post('/upload-image', upload.single('streamfile'), (req, res) => {
+router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
     if (!req.session.passport || req.session.passport.permissions == 'worm') {
         res.redirect('/login-na')
     } else {
@@ -178,16 +182,18 @@ router.post('/upload-image', upload.single('streamfile'), (req, res) => {
                 message: 'Please upload a file',
             })
         }
-        return res.status(201).json({
-            name: file.filename,
-            path: file.path,
-            size: file.size,
-            type: file.type,
-            width: file.width,
-            height: file.height,
-            createdAt: file.createdAt,
-            updatedAt: file.updatedAt,
-            alt: file.alt_text
+        const imageFile = req.file.path
+        const base64 = fs.readFileSync(imageFile, {
+            encoding: 'base64'
+        })
+        //create a new record in the 'uploads' collection, with the file's data as "image" and the filename as "filename"
+        await db.collection('uploads').insertOne({
+            image: base64,
+            filename: file.originalname,
+            type: file.mimetype,
+            slug: file.originalname.replace(/\s+/g, '-').toLowerCase(),
+        }).then((result) => {
+            res.redirect('/dashboard')
         })
 
     }
@@ -195,7 +201,7 @@ router.post('/upload-image', upload.single('streamfile'), (req, res) => {
 
 router.get('/uploaded-media-ids', async (req, res) => {
     //get all files in db.collection('uploads.files')
-    let files = await db.collection('uploads.files').find().toArray()
+    let files = await db.collection('uploads').find().toArray()
     //return all _ids
     let file_ids = []
     files.forEach((file) => {
@@ -206,40 +212,20 @@ router.get('/uploaded-media-ids', async (req, res) => {
     })
 })
 
-router.get('/uploaded-media/:id', async (req, res) => {
+router.get('/uploaded-media/:slug', async (req, res) => {
+    await db.collection('uploads').findOne({
+        slug: req.params.slug
+    }).then((file) => {
+        //Display the chunks using the data URI format          
+        let finalFile = 'data:' + file.type + ';base64,' +
+            file.image
 
-    //get all files in db.collection('uploads.files')
-    let _file = null
-    let files = await db.collection('uploads.files').find().toArray()
-    files.forEach((file) => {
-        if (file._id == req.params.id) {
-            _file = file
-        }
+        res.json({
+            "image": file.image,
+            "filename": file.filename,
+            "type": file.type
+        })
     })
-
-    //get chunks from (uploads.chunks) and build them into a file
-    let chunks = await db.collection('uploads.chunks').find({}).toArray()
-    let file = []
-    chunks.forEach((chunk) => {
-        if (chunk.files_id.toString() === _file._id.toString()) {
-            file.push(chunk.data)
-        }
-    })
-    let fileData = [];
-    for (let i = 0; i < chunks.length; i++) {
-        fileData.push(chunks[i].data.toString('base64'));
-    }
-
-    //Display the chunks using the data URI format          
-    let finalFile = 'data:' + _file.contentType + ';base64,' +
-        fileData.join('')
-
-    res.json({
-        "image": finalFile,
-        "filename": _file.filename
-    })
-
-
 })
 
 router.get('/login/federated/google', passport.authenticate('google', {
@@ -535,8 +521,8 @@ router.get('/dashboard', async (req, res) => {
                 root: '.',
                 user: user,
                 posts: posts,
-                pages: pages.data,
-                comments: comments.data,
+                pages: pages,
+                comments: comments,
                 all_authors: all_authors,
                 all_categories: all_categories,
                 cached_media: response,
