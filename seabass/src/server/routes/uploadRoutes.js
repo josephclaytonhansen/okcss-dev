@@ -37,16 +37,16 @@ router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
 
         let resizedImage = null
 
-        if (width > 1920) {
-            resizedImage = await sharp(imageFile).resize(1920).jpeg({
-                quality: 80
+        if (width > 1080) {
+            resizedImage = await sharp(imageFile).resize(1080).jpeg({
+                quality: 95
             }).toBuffer()
             dimensions = imageSize(resizedImage)
             width = dimensions.width
             height = dimensions.height
         } else {
             resizedImage = await sharp(imageFile).jpeg({
-                quality: 80
+                quality: 95
             }).toBuffer()
         }
 
