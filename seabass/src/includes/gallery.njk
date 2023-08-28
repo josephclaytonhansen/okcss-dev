@@ -1,8 +1,19 @@
 {%macro allery(images)%}
-{%for key, item in images%}
+
+{%for item in images%}
 
 <div class ="img-container" style="max-width: 7.3vw;min-width:50px">
     <img class = "square rounded gallery-img" src = "{{item.image}}" alt = "{{item.filename}}" />
+    <div class = 'hidden'>
+        <ul>
+            <li id = "width">{{item.width}}</li>
+            <li id = "height">{{item.height}}</li>
+            <li id = "filename">{{item.filename}}</li>
+            <li id = "type">{{item.type}}</li>
+            <li id = "size">{{item.size}}</li>
+            <li id = "date">{{item.date}}</li>
+        </ul>
+    </div>
 </div>
 
 {%endfor%}

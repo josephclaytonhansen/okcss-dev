@@ -13,6 +13,8 @@ db.once('connected', () => {
     console.log('Database Connected');
 })
 
+db.ObjectId = mongoose.Types.ObjectId
+
 //create a session store
 db.sessionStorage = {
     sessions: {},

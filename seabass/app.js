@@ -3,21 +3,14 @@ import db from './src/server/mongo.js'
 import express from 'express'
 
 import cors from 'cors'
-import fs from 'fs'
 import dotenv from 'dotenv'
+import fs from 'fs'
 
 import nunjucks from 'nunjucks'
-import {
-    default as nunjuckDate
-} from 'nunjucks-date'
+import {default as nunjuckDate} from 'nunjucks-date'
 import rate_limit from 'express-rate-limit'
 
 import axios from 'axios'
-//import upload from './src/server/multerStorage.js'
-import multer from 'multer'
-const upload = multer({dest: 'tmp/'})
-import sharp from 'sharp'
-import imageSize from 'image-size'
 import User from './src/server/models/userModel.min.js'
 
 import page_routes from './src/server/routes/pageRoutes.min.js'
@@ -26,24 +19,22 @@ import user_routes from './src/server/routes/userRoutes.min.js'
 import comment_routes from './src/server/routes/commentRoutes.min.js'
 import category_routes from './src/server/routes/categoriesRoutes.min.js'
 import static_routes from './src/server/routes/staticRoutes.min.js'
+import upload_routes from './src/server/routes/uploadRoutes.min.js'
 
 import session from 'express-session'
 import passport from 'passport'
 import Strategy from 'passport-google-oauth20'
-import {
-    default as totp
-} from 'totp-generator'
+import {default as totp} from 'totp-generator'
 import QRCode from 'qrcode'
-import {
-    default as base32
-} from 'base32'
+import {default as base32} from 'base32'
 
-import {
-    default as connectMongoDBSession
-} from 'connect-mongodb-session'
+import {default as connectMongoDBSession} from 'connect-mongodb-session'
 
 import cookieParser from 'cookie-parser'
-import cachedMedia from './src/server/middleware/cachedMedia.js'
+
+fs.rmSync('tmp', {
+    recursive: true
+})
 
 const app = express()
 const router = express.Router()
@@ -162,105 +153,12 @@ app.use("/user", user_routes)
 app.use("/comment", comment_routes)
 app.use("/category", category_routes)
 app.use("/", static_routes)
+app.use("/", upload_routes)
 
 
 /* ------------------------------- Base routes ------------------------------ */
 
-router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
-    if (!req.session.passport || req.session.passport.permissions == 'worm') {
-        res.redirect('/login-na')
-    } else {
-        if (req.fileValidationError) {
-            return res.status(400).json({
-                message: req.fileValidationError,
-            })
-        }
-        // get the file from the request
-        console.log(req.file)
-        const file = req.file
-        if (!file) {
-            return res.status(400).json({
-                message: 'Please upload a file',
-            })
-        }
 
-        const imageFile = req.file.path
-
-        const dimensions = imageSize(imageFile)
-        const width = dimensions.width
-        const height = dimensions.height
-
-        let resizedImage = null
-
-        if (width > 1920) {
-            resizedImage = await sharp(imageFile).resize(1920).jpeg({quality: 80}).toBuffer()
-        } else {
-            resizedImage = await sharp(imageFile).jpeg({quality: 80}).toBuffer()
-        }
-
-        const thumb = await sharp(imageFile).resize(200,200).jpeg({quality: 60}).toBuffer()
-
-        const resizedBase64 = resizedImage.toString('base64')
-
-        let image_string = "data:" + file.mimetype + ";base64," + resizedBase64
-        let thumb_string = "data:" + file.mimetype + ";base64," + thumb.toString('base64')
-
-        await db.collection('uploads').insertOne({
-            image: thumb_string,
-            width: 200,
-            height: 200,
-            filename: file.originalname,
-            type: 'image/jpeg',
-            slug: "thumbnail-" + file.originalname.replace(/\s+/g, '-').toLowerCase(),
-            size: thumb_string.length
-        })
-
-        await db.collection('uploads').insertOne({
-            image: image_string,
-            width: width,
-            height: height,
-            filename: file.originalname,
-            type: 'image/jpeg',
-            size: image_string.length,
-            slug: file.originalname.replace(/\s+/g, '-').toLowerCase(),
-        }).then((result) => {
-            res.redirect('/dashboard')
-        })
-
-    }
-})
-
-router.get('/uploaded-media', async (req, res) => {
-    //get all files in db.collection('uploads.files')
-    let files = await db.collection('uploads').find().toArray()
-    //return all _ids
-    let file_ids = []
-    let file_slugs = []
-    files.forEach((file) => {
-        file_ids.push(file._id)
-        file_slugs.push(file.slug)
-    })
-    res.json({
-        "ids": file_ids,
-        "slugs": file_slugs
-    })
-})
-
-router.get('/uploaded-media/:slug', async (req, res) => {
-    await db.collection('uploads').findOne({
-        slug: req.params.slug
-    }).then((file) => {
-        //Display the chunks using the data URI format          
-        let finalFile = 'data:' + file.type + ';base64,' +
-            file.image
-
-        res.json({
-            "image": file.image,
-            "filename": file.filename,
-            "type": file.type
-        })
-    })
-})
 
 router.get('/login/federated/google', passport.authenticate('google', {
     scope: ['profile email']
@@ -551,27 +449,45 @@ router.get('/dashboard', async (req, res) => {
                 }
             })
         }
+        let thumbnails = []
+        if (!req.session.thumbnails) {
+            let thumbnails_slugs = []
+            
 
-        let cached_media = cachedMedia(req, res).then((response) => {
-            res.render('dashboard.html', {
-                root: '.',
-                user: user,
-                posts: posts,
-                pages: pages,
-                comments: comments,
-                all_authors: all_authors,
-                all_categories: all_categories,
-                cached_media: response,
-                date: {
-                    day: new Date().getDate(),
-                    month: new Date().getMonth(),
-                    monthName: new Date().toLocaleString('default', {
-                        month: 'long'
-                    }),
-                    year: new Date().getFullYear()
-                }
+            await axios.get('http://localhost:5920/uploaded-media-thumbnails').then((response) => {
+                thumbnails_slugs = response.data.slugs
             })
+
+            for (let i = 0; i < thumbnails_slugs.length; i++) {
+                await axios.get('http://localhost:5920/uploaded-media/' + thumbnails_slugs[i]).then((response) => {
+                    thumbnails.push(response.data)
+                })
+            }
+
+            req.session.thumbnails = thumbnails
+        } else {
+            thumbnails = req.session.thumbnails
+        }
+
+        res.render('dashboard.html', {
+            root: '.',
+            user: user,
+            posts: posts,
+            pages: pages,
+            comments: comments,
+            all_authors: all_authors,
+            all_categories: all_categories,
+            cached_media: thumbnails,
+            date: {
+                day: new Date().getDate(),
+                month: new Date().getMonth(),
+                monthName: new Date().toLocaleString('default', {
+                    month: 'long'
+                }),
+                year: new Date().getFullYear()
+            }
         })
+
     }
 })
 
