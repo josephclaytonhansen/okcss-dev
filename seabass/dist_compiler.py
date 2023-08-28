@@ -28,6 +28,8 @@ def copy_all():
     os.system("rm -rf " + os.path.join(dist_path, "dist"))
     #remove dist.zip
     os.system("rm -rf " + os.path.join(dist_path, "dist.zip"))
+    #remove /tmp
+    os.system("rm -rf " + os.path.join(dist_path, "tmp"))
     #remove src/assets/lucide/icons
     os.system("rm -rf " + os.path.join(dist_path, "src", "assets", "lucide", "icons"))
     #remove seeder.js
