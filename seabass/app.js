@@ -32,10 +32,6 @@ import {default as connectMongoDBSession} from 'connect-mongodb-session'
 
 import cookieParser from 'cookie-parser'
 
-fs.rmSync('tmp', {
-    recursive: true
-})
-
 const app = express()
 const router = express.Router()
 

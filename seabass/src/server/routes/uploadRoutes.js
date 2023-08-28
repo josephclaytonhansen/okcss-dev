@@ -68,7 +68,8 @@ router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
             type: 'image/jpeg',
             slug: "thumbnail-" + file.originalname.replace(/\s+/g, '-').toLowerCase(),
             size: thumb_string.length,
-            date: new Date()
+            date: new Date().toDateString(),
+            url: process.env.ORIGIN + "/uploaded-media/thumbnail-" + file.originalname.replace(/\s+/g, '-').toLowerCase(),
         }).then((result) => {
             thumb_id = result.insertedId
         })
@@ -83,6 +84,8 @@ router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
             slug: file.originalname.replace(/\s+/g, '-').toLowerCase(),
             thumbnail: new db.ObjectId(thumb_id),
             date: new Date().toDateString(),
+            url: process.env.ORIGIN + "/uploaded-media/thumbnail-" + file.originalname.replace(/\s+/g, '-').toLowerCase(),
+
         }).then((result) => {
             req.session.thumbnails = null
             res.redirect('/dashboard')
@@ -144,6 +147,10 @@ router.get('/uploaded-media/:slug', async (req, res) => {
             "size": file.size,
             "width": file.width,
             "height": file.height,
+            "id": file._id,
+            "url": file.url,
+            "slug": file.slug,
+            "date": file.date
         })
     })
 })

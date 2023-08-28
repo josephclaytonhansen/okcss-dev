@@ -1,34 +1,3 @@
-let images = []
-
-function populateGallery(){
-    let g = $('.gallery')
-    //for now, use a static array of images
-
-    images.push({"name":"wide.png", "src":'https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2142&q=80', metadata:{"createdAt":new Date(), "updatedAt":new Date(), "size":1024, "type":"image/png", "width":1364, "height":513, "alt": "alt text"}})
-
-    images.push({"name":"square.png", "src":"https://images.unsplash.com/photo-1488654715439-fbf461f0eb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80", metadata:{"createdAt":new Date(), "updatedAt":new Date(), "size":1024, "type":"image/png", "width":880, "height":880, "alt": "alt text"}})
-
-    images = images.reverse()
-
-    images.forEach((image)=>{
-        let d = $('<div>')
-        d.addClass('img-container')
-        d.css('max-width', '7.3vw')
-        d.css('min-width', '50px')
-        let i = $('<img>')
-        i.on('click', ()=>{
-            lightboxModal(image)
-        })
-        i.addClass('square rounded gallery-img')
-        i.attr('src', image['src'])
-        d.append(i)
-        g.append(d)
-        console.log(g,d,i)
-    })
-}
-
-populateGallery()
-
 function lightboxModal(image){
     let modal = $('<div>')
     modal.addClass('lightbox-modal')
@@ -64,7 +33,7 @@ function lightboxModal(image){
     createdAtLabel.text('Created at')
     createdAt.append(createdAtLabel)
     let createdAtValue = $('<td>')
-    let pretty_date = image['metadata']['createdAt'].toString().split(' ').slice(0,4).join(' ')
+    let pretty_date = image['metadata']['createdAt']
     createdAtValue.text(pretty_date)
     createdAt.append(createdAtValue)
     table.append(createdAt)
@@ -83,7 +52,9 @@ function lightboxModal(image){
     sizeLabel.text('Size')
     size.append(sizeLabel)
     let sizeValue = $('<td>')
-    sizeValue.text(image['metadata']['size']+ " bytes")
+    let bytes = image['metadata']['size']
+    let kb = (bytes/1024).toFixed(2)
+    sizeValue.text(kb+ " KB")
     size.append(sizeValue)
     table.append(size)
 
@@ -102,7 +73,7 @@ function lightboxModal(image){
     src.append(srcLabel)
     let srcValue = $('<td>')
     srcValue.addClass('lightbox-modal-src')
-    srcValue.text(image['src'])
+    srcValue.text(image['url'])
     src.append(srcValue)
     table.append(src)
 
@@ -152,3 +123,44 @@ function lightboxModal(image){
 
     $('body').append(modal)
 }
+
+
+let imgs = $('.gallery img')
+
+imgs.each((i, img)=>
+    $(img).on('click', ()=>{
+        //get data-url attribute from img
+        let url = $(img).attr('data-url')
+        let large_image_url = url.replace('thumbnail-', '')
+        $.ajax({
+            url: large_image_url,
+            type: 'GET',
+            success:  (large_image) => {
+                let large_image_size = large_image['size']? large_image['size']: 0
+                let large_image_type = large_image['type']? large_image['type']: 'unknown'
+                let large_image_width = large_image['width']? large_image['width']: 0
+                let large_image_height = large_image['height']? large_image['height']: 0
+                let large_image_filename = large_image['filename']? large_image['filename']: 'unknown'
+                let large_image_alt = large_image['alt']? large_image['alt']: 'No alt text'
+                let large_image_createdAt = large_image['date']? large_image['date']: 'unknown'
+                let large_image_image = large_image['image']
+                let large_image_url = large_image['url']
+        
+                let image = {
+                    'src': large_image_image,
+                    'name': large_image_filename,
+                    'metadata': {
+                        'size': large_image_size,
+                        'type': large_image_type,
+                        'width': large_image_width,
+                        'height': large_image_height,
+                        'alt': large_image_alt,
+                        'createdAt': large_image_createdAt,
+                        "url": large_image_url,
+                    }
+                }
+                lightboxModal(image)
+        }
+        })
+    })
+)
