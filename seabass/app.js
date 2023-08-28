@@ -269,7 +269,7 @@ router.get('/logged-in', (req, res) => {
 
 router.get('/edit/post/:id', async (req, res) => {
     let user = req.session.passport.user
-    User.findById(user).then((user) => {
+
         const id = req.params.id
         let all_categories = []
         const categories = axios.get('http://localhost:5920/category/').then((response) => {
@@ -287,13 +287,16 @@ router.get('/edit/post/:id', async (req, res) => {
         for (let i = 0; i < categories.length; i++) {
             all_categories.push(categories[i].name)
         }
-        let all_posts = axios.get('http://localhost:5920/post/').then((response) => {
-            return response.data
-        })
+        let all_posts = null
         let all_post_ids = []
+        all_posts = await axios.get('http://localhost:5920/post/')
+        all_posts = all_posts.data
+
         for (let i = 0; i < all_posts.length; i++) {
             all_post_ids.push(all_posts[i]._id)
         }
+        console.log(all_post_ids)
+        
         let id_index = all_post_ids.indexOf(id)
         if (id_index == -1) {
             res.redirect('/dashboard')
@@ -311,10 +314,9 @@ router.get('/edit/post/:id', async (req, res) => {
                 all_authors: all_authors
             })
         }
-    }).catch((error) => {
-        res.redirect('/login')
+
     })
-})
+
 
 router.get('/edit/page/:id', async (req, res) => {
     let user = req.session.passport.user

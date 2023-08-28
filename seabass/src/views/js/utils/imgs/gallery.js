@@ -72,10 +72,20 @@ function lightboxModal(image){
     srcLabel.text('Slug')
     src.append(srcLabel)
     let srcValue = $('<td>')
+    srcValue.addClass('slug')
     srcValue.addClass('lightbox-modal-src')
-    srcValue.text(image['url'])
+    srcValue.text(image['metadata']['url'])
     src.append(srcValue)
+    srcValue.css('transition', 'all 0.2s ease-in-out')
     table.append(src)
+
+    srcValue.on('click', ()=>{
+        navigator.clipboard.writeText(image['metadata']['url'])
+        srcValue.text('Copied!')
+        setTimeout(()=>{
+            srcValue.text(image['metadata']['url'])
+        }, 1000)
+    })
 
     let alt = $('<tr>')
     let altLabel = $('<td>')

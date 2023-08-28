@@ -84,7 +84,7 @@ router.post('/upload-image', upload.single('streamfile'), async (req, res) => {
             slug: file.originalname.replace(/\s+/g, '-').toLowerCase(),
             thumbnail: new db.ObjectId(thumb_id),
             date: new Date().toDateString(),
-            url: process.env.ORIGIN + "/uploaded-media/thumbnail-" + file.originalname.replace(/\s+/g, '-').toLowerCase(),
+            url: process.env.ORIGIN + "/uploads/" + file.originalname.replace(/\s+/g, '-').toLowerCase(),
 
         }).then((result) => {
             req.session.thumbnails = null
@@ -152,6 +152,17 @@ router.get('/uploaded-media/:slug', async (req, res) => {
             "slug": file.slug,
             "date": file.date
         })
+    })
+})
+
+router.get('/uploads/:slug', async (req, res) => {
+    await db.collection('uploads').findOne({
+        slug: req.params.slug
+    }).then((img)=>{
+        res.contentType(img.type)
+        //img.image looks like this: "data:image/png;base64,/9j/2wBDAAYEBQYFBAYGBQYHB..."
+        //send this as an image file 
+        res.send(Buffer.from(img.image.split(',')[1], 'base64'))
     })
 })
 
