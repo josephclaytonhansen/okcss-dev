@@ -156,6 +156,8 @@ app.use("/", static_routes)
 app.use("/", upload_routes)
 app.use("/", base_routes)
 
+/* ------------------------------- Auth routes ------------------------------ */
+
 router.get('/login/federated/google', passport.authenticate('google', {
     scope: ['profile email']
 }))
@@ -380,6 +382,6 @@ router.get('/login', (req, res) => {
 
 app.use('/', router)
 
-app.listen(5920, () => {
-    console.log('Server is running on port 5920')
+app.listen(process.env.PORT, () => {
+    console.log('Server is running on port ' + process.env.PORT)
 })
