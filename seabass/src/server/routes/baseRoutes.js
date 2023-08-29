@@ -97,24 +97,8 @@ router.get('/new-post', async (req, res) => {
     if (!req.session.passport || req.session.passport.permissions == 'worm') {
         res.redirect('/login-na')
     } else {
-        let user = req.session.passport.user
-        User.findById(user).then((user) => {
-            let all_categories = []
-            const categories = axios.get('http://localhost:5920/category/').then((response) => {
-                return response.data
-            })
-            let all_authors = axios.get('http://localhost:5920/user/').then((response) => {
-                let data = response.data
-                return data.map((author) => {
-                    return {
-                        name: author.display_name,
-                        id: author._id
-                    }
-                })
-            })
-            for (let i = 0; i < categories.length; i++) {
-                all_categories.push(categories[i].name)
-            }
+        
+        let data = await populateNew(req, res).then((data) => {return data})
             res.render('editor.html', {
                 root: '.',
                 post: {
@@ -129,23 +113,46 @@ router.get('/new-post', async (req, res) => {
                     tags: [],
                     scheduled_date: '',
                     status: 'draft',
-                    featured_image: ''
+                    featured_image: '',
+                    history: [],
                 },
                 type: 'post',
-                user: user,
-                all_categories: all_categories,
-                all_authors: all_authors
+                user: data.user,
+                all_categories: data.all_categories,
+                all_authors: data.all_authors
             })
-        }).catch((error) => {
-            res.redirect('/login')
-        })
     }
 })
 
 router.get('/new-page', async (req, res) => {
     if (!req.session.passport || req.session.passport.permissions == 'worm') {
         res.redirect('/login-na')
-    } else {}
+    } else {
+        
+        let data = await populateNew(req, res).then((data) => {return data})
+            res.render('editor.html', {
+                root: '.',
+                post: {
+                    title: 'Untitled Page',
+                    meta_title: '',
+                    meta_description: '',
+                    meta_keywords: [],
+                    author: '',
+                    slug: '',
+                    content: '',
+                    categories: [],
+                    tags: [],
+                    scheduled_date: '',
+                    status: 'draft',
+                    featured_image: '',
+                    history: [],
+                },
+                type: 'page',
+                user: data.user,
+                all_categories: data.all_categories,
+                all_authors: data.all_authors
+            })
+    }
 })
 
 router.get('/edit/post/:id', async (req, res) => {

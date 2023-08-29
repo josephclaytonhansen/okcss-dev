@@ -63,7 +63,7 @@
             <label for="blog-categories">Categories</label>
             <select id="blog-categories" multiple>
                 {% for category in all_categories %}
-                <option value="{{ category }}" {% if category in categories %} selected {% endif %}>{{ category }}
+                <option value="{{ category.name }}" {% if category.name in categories %} selected {% endif %}>{{ category.name }}
                 </option>
                 {% endfor %}
             </select>
@@ -78,7 +78,7 @@
             <label for="blog-author">Author</label>
             <select id="blog-author">
                 {% for a in all_authors %}
-                <option value="{{ a }}" {% if a == author %} selected {% endif %}>{{ a }}</option>
+                <option value="{{ a.name }}" {% if a.id == author %} selected {% endif %}>{{ a.name }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -150,7 +150,7 @@
             <label for="blog-author">Author</label>
             <select id="blog-author">
                 {% for a in all_authors %}
-                <option value="{{ a }}" {% if a == author %} selected {% endif %}>{{ a }}</option>
+                <option value="{{ a.name }}" {% if a.name == author %} selected {% endif %}>{{ a.name }}</option>
                 {% endfor %}
             </select>
         </div>

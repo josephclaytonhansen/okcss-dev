@@ -143,6 +143,7 @@ const populateNew = async(req, res) => {
         user: user,
         categories: categories,
         all_categories: all_categories,
+
         users: users,
         all_authors: all_authors
     }
