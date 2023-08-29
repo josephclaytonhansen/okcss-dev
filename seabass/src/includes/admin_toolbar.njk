@@ -7,9 +7,6 @@
         <div class="toolbar-tool seashell" onclick="{window.location.href='/dashboard'}" id="home">
             {{ lu.i("home", 2) }}
         </div>
-        <div class="toolbar-tool seashell" id="posts">
-            {{ lu.i("gallery-horizontal-end", 2) }}
-        </div>
         <div class="toolbar-container toolbar-dropdown">
             <p id="user">
                 Hey, {%if user.display_name%} {{user.display_name}}{% elif user.username %}{{ user.username }}{% else %}{{user.email}}{%endif%} :) 
@@ -57,9 +54,6 @@
             {{ lu.i("panel-right-open", 2) }}
             {% endif %}
             {% if t == "dashboard" or t=="account" %}
-            <div class="toolbar-tool seashell" id="dashboard-review-comments">
-            {{ lu.i("messages-square", 2) }}
-        </div>
         <div class="toolbar-tool seashell" id="dashboard-schedule">
             {{ lu.i("calendar-days", 2) }}
         </div>
