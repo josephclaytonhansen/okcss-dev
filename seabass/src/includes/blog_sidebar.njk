@@ -63,7 +63,7 @@
             <label for="blog-categories">Categories</label>
             <select id="blog-categories" multiple>
                 {% for category in all_categories %}
-                <option value="{{ category.name }}" {% if category.name in categories %} selected {% endif %}>{{ category.name }}
+                <option value="{{ category.name }}" {% if categories%} {% if (category.name in categories)%} selected {% endif %}{%endif %}>{{ category.name }}
                 </option>
                 {% endfor %}
             </select>
