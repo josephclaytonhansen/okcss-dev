@@ -63,7 +63,7 @@ router.get('/image_upload.css',cache(60), (req, res) => {
     })
 })
 
-router.get('/stats.css', (req, res) => {
+router.get('/stats.css',cache(60), (req, res) => {
     res.type('css')
     res.sendFile("/src/includes/css/stats.min.css", {
         root: '.'
@@ -77,7 +77,7 @@ router.get('/stats.js',cache(60), (req, res) => {
     })
 })
 
-router.get('/calendar.js', (req, res) => {
+router.get('/calendar.js',cache(60), (req, res) => {
     res.type('js')
     res.sendFile("/src/includes/js/calendar.min.js", {
         root: '.'
