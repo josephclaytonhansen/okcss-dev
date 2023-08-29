@@ -12,6 +12,7 @@ import {
     createPost,
     updatePost,
     publishPost,
+    unpublishPost,
     updatePostHistory,
     deletePostHistory,
     deletePost
@@ -28,6 +29,7 @@ router.route('/status/:status').get(getPostsByStatus)
 router.route('/category/:category').get(getPostsByCategory)
 router.route('/upcoming').get(getUpcomingPosts)
 router.route('/publish/:id').get(publishPost)
+router.route('/unpublish/:id').get(unpublishPost)
 
 
 

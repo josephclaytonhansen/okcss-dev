@@ -87,4 +87,28 @@ function publishPost(){
     })
 }
 
-export {savePostCallback, savePost, publishPost}
+function unpublishPost(){
+    let post_id = $('#post-id-hidden').text()
+    $.ajax({
+        method: 'GET',
+        url: '/post/unpublish/' + post_id,
+        success: () => {
+            $.ajax({
+                method: 'GET',
+                url: '/refresh-session',
+                success: () => {
+                    $.ajax({
+                        method: 'GET',
+                        url: '/post/unpublish/' + post_id}),
+                        window.location.reload()
+                }
+            })
+            
+        },
+        error: (err) => {
+            console.log(err)
+        }
+    })
+}
+
+export {savePostCallback, savePost, publishPost, unpublishPost}

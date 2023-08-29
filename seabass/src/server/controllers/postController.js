@@ -99,6 +99,25 @@ const publishPost = asyncHandler(async (req, res) => {
     }
 })
 
+const unpublishPost = asyncHandler(async (req, res) => {
+    const post = await Post.findById(req.params.id)
+    if (post) {
+        post.status = 'draft'
+        post.scheduled_date = ''
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, { status: 'draft', scheduled_date: '' })
+        if (updatedPost) {
+            res.json({ message: 'post unpublished' })
+        }
+        else {
+            res.status(400).json({ message: 'invalid data' })
+        }
+    }
+    else {
+        res.status(404).json({ message: 'post not found' })
+        throw new Error('post not found')
+    }
+})
+
 const deletePost = asyncHandler(async (req, res) => {
     const post = await Post.findById(req.params.id)
     if (post) {
@@ -198,5 +217,6 @@ export {
     getPostsByStatus,
     getPostsByCategory,
     getUpcomingPosts,
-    publishPost
+    publishPost,
+    unpublishPost
 }

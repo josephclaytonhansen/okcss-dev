@@ -41,11 +41,24 @@
         <div class="toolbar-tool seashell" id="preview">
             {{ lu.i("eye", 2) }}
         </div>
+        {%if post%}
+        {% if post.status != 'published' %}
         <div class="toolbar-tool ocean" id="publish">
             {{ lu.i("check", 2) }}
         </div>
+        {% else %}
+        <div class="toolbar-tool ocean" id="unpublish">
+            {{ lu.i("screen-share-off", 2) }}
+        </div>
+        {% endif %}
+        {% endif %}
+        <div class = 'toolbar-container'>
         <div class="toolbar-tool ocean" id="schedule">
             {{ lu.i("calendar-check", 2) }}
+        </div>
+        <div class="toolbar-tool seashell hidden" id="date-close">
+            {{ lu.i("chevron-up", 2, ["va-2"]) }}
+        </div>
         </div>
         <div class = "spacer"></div>
         <div class="toolbar-tool seashell" id="sidebar-close">

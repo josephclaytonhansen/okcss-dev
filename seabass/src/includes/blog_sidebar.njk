@@ -45,15 +45,6 @@
             <textarea id="blog-meta-keywords">{{ meta_keywords }}</textarea>
         </div>
 
-        <div class="sidebar-tool" id="sidebar-tool-status">
-            <label for="blog-status">Status</label>
-            <select id="blog-status">
-                <option value="draft" {% if status == "draft" %} selected {% endif %}>Draft</option>
-                <option value="published" {% if status == "published" %} selected {% endif %}>Published</option>
-                <option value="scheduled" {% if status == "scheduled" %} selected {% endif %}>Scheduled</option>
-            </select>
-        </div>
-
         <div class="sidebar-tool" id="sidebar-tool-slug">
             <label for="blog-slug">Slug</label>
             <input type="text" id="blog-slug" value="{{ slug }}" />
