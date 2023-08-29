@@ -47,14 +47,14 @@
                 <h2>Pages</h2>
                 <hr />
                 <section>
-                    {{ p.ost_list(pages, "pages") }}
+                    {{ p.ost_list(pages, "pages", all_authors, all_categories) }}
                 </section>
             </div>
             <div class='c' id="posts">
                 <h2>Posts</h2>
                 <hr />
                 <section>
-                    {{ p.ost_list(posts, "posts") }}
+                    {{ p.ost_list(posts, "posts", all_authors, all_categories) }}
                 </section>
             </div>
             <div class='c' id="comments">
