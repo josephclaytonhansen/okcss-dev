@@ -100,7 +100,7 @@ router.get('/dashboard.js',cache(60), (req, res) => {
 
 router.get('/img/gallery_list_lightbox.js',cache(60), (req, res) => {
     res.type('js')
-    res.sendFile("/src/views/js/utils/imgs/gallery.min.js", {
+    res.sendFile("/src/views/js/utils/imgs/gallery_list_lightbox.min.js", {
         root: '.'
     })
 })
