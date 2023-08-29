@@ -218,8 +218,10 @@ router.get('/totp-challenge', (req, res) => {
                     root: '.',
                 })
             } else {
-                //generate a random number between 10000 and 99999 with window.crypto
-                let random_number = window.crypto.getRandomValues(new Uint32Array(1))[0] % 90000 + 10000
+                let secret_digits = []
+                for (let i = 0; i < 32; i++) {
+                    secret_digits.push(window.crypto.getRandomValues(new Uint32Array(1))[0])
+                }
                 let secret = (user.email + process.env.TOTP_SECRET + random_number)
                 //encode secret as base32
                 secret = base32.encode(secret).toString().replace(/0/g, 'O').replace(/1/g, 'I').replace(/8/g, 'B').replace(/9/g, 'P').toUpperCase().replace(/[^A-Z2-7=]/g, '')
