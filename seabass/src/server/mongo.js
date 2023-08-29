@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const MONGO_STRING = process.env.MONGO_STRING
-mongoose.connect(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "development" })
+mongoose.connect(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "development", keepAlive:true, keepAliveInitialDelay:300000, retryReads:true, retryWrites:true })
 const db = mongoose.connection
 db.on('error', (error) => {
     console.log(error)
