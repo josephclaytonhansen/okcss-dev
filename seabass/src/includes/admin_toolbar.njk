@@ -23,7 +23,7 @@
     <div class="toolbar-container" id="admin-toolbar-center">
         <p id = "current-task">
             {% if t == "editor" %}
-            {{ post.title }}
+            {{ post.title }}<p class = "hidden" id = 'post-id-hidden'>{{post._id}}</p>
             {% endif %}
             {% if t == "dashboard" %}
             Dashboard

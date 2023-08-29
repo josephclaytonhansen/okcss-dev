@@ -1,4 +1,4 @@
-import {savePostCallback, savePost} from '/postFunctions.js'
+import {savePostCallback, savePost, publishPost} from '/postFunctions.js'
 
 $('#user-dropdown').on('click', (e) => {
     e.stopPropagation()
@@ -49,4 +49,8 @@ function showDropdown(target){
 
 $('#save').on('click', (e) => {
     savePost(sessionStorage.getItem('current-blog-data-raw'))
+})
+
+$('#publish').on('click', (e) => {
+    publishPost()
 })

@@ -81,6 +81,24 @@ const updatePost = asyncHandler(async (req, res) => {
     }
 })
 
+const publishPost = asyncHandler(async (req, res) => {
+    const post = await Post.findById(req.params.id)
+    if (post) {
+        post.status = 'published'
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, { status: 'published' })
+        if (updatedPost) {
+            res.json({ message: 'post published' })
+        }
+        else {
+            res.status(400).json({ message: 'invalid data' })
+        }
+    }
+    else {
+        res.status(404).json({ message: 'post not found' })
+        throw new Error('post not found')
+    }
+})
+
 const deletePost = asyncHandler(async (req, res) => {
     const post = await Post.findById(req.params.id)
     if (post) {
@@ -179,5 +197,6 @@ export {
     getPostsByAuthor,
     getPostsByStatus,
     getPostsByCategory,
-    getUpcomingPosts
+    getUpcomingPosts,
+    publishPost
 }

@@ -50,11 +50,41 @@ function savePostCallback(post_id, content){
         method: 'GET',
         url: '/post/update_history/' + post_id,
         success: () => {
+            $.ajax({
+                method: 'GET',
+                url: '/refresh-session',
+                success: () => {
+                    window.location.reload()
+                }})
         },
         error: (err) => {
         }
     })
-    window.location.reload()
+
 }
 
-export {savePostCallback, savePost}
+function publishPost(){
+    let post_id = $('#post-id-hidden').text()
+    $.ajax({
+        method: 'GET',
+        url: '/post/publish/' + post_id,
+        success: () => {
+            $.ajax({
+                method: 'GET',
+                url: '/refresh-session',
+                success: () => {
+                    $.ajax({
+                        method: 'GET',
+                        url: '/post/publish/' + post_id}),
+                        window.location.reload()
+                }
+            })
+            
+        },
+        error: (err) => {
+            console.log(err)
+        }
+    })
+}
+
+export {savePostCallback, savePost, publishPost}
