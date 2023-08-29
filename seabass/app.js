@@ -219,7 +219,7 @@ router.get('/totp-challenge', (req, res) => {
                 })
             } else {
                 let secret_digits = []
-                for (let i = 0; i < 32; i++) {
+                for (let i = 0; i < 8; i++) {
                     secret_digits.push(window.crypto.getRandomValues(new Uint32Array(1))[0])
                 }
                 let random_number = secret_digits.join('')
