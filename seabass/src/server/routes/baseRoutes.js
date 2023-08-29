@@ -163,11 +163,29 @@ router.get('/edit/post/:id', async (req, res) => {
         let post = data.posts.filter((post) => {
             return post._id == req.params.id
         })
+        let thumbnails = []
+        if (!req.session.thumbnails) {
+            let thumbnails_slugs = []
+            await axios.get('http://localhost:5920/uploaded-media-thumbnails').then((response) => {
+                thumbnails_slugs = response.data.slugs
+            })
+
+            for (let i = 0; i < thumbnails_slugs.length; i++) {
+                await axios.get('http://localhost:5920/uploaded-media/' + thumbnails_slugs[i]).then((response) => {
+                    thumbnails.push(response.data)
+                })
+            }
+
+            req.session.thumbnails = thumbnails
+        } else {
+            thumbnails = req.session.thumbnails
+        }
 
         res.render('editor.html', {
             root: '.',
             post: post,
             type: 'post',
+            images: thumbnails,
             all_categories: data.all_categories,
             all_authors: data.all_authors,
         })
@@ -184,11 +202,30 @@ router.get('/edit/page/:id', async (req, res) => {
         let page = data.pages.filter((page) => {
             return page._id == req.params.id
         })
+        let thumbnails = []
+        if (!req.session.thumbnails) {
+            let thumbnails_slugs = []
+
+            await axios.get('http://localhost:5920/uploaded-media-thumbnails').then((response) => {
+                thumbnails_slugs = response.data.slugs
+            })
+
+            for (let i = 0; i < thumbnails_slugs.length; i++) {
+                await axios.get('http://localhost:5920/uploaded-media/' + thumbnails_slugs[i]).then((response) => {
+                    thumbnails.push(response.data)
+                })
+            }
+
+            req.session.thumbnails = thumbnails
+        } else {
+            thumbnails = req.session.thumbnails
+        }
 
         res.render('editor.html', {
             root: '.',
             post: page,
             type: 'page',
+            images: thumbnails,
             all_categories: data.all_categories,
             all_authors: data.all_authors,
         })

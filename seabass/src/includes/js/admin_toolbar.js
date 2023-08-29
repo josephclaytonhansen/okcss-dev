@@ -143,5 +143,9 @@ $('#unpublish').on('click', (e) => {
 
 $('#schedule').on('click', (e) => {
     e.stopPropagation()
-    showDropdown(e.target, "#schedule", "#schedule", [], [], 100, 0, "schedule")
+    if ($('#schedule-dropdown').length == 0) {
+    showDropdown(e.target, "#schedule", "#schedule", [], [], 100, 0, "schedule-dropdown")}
+    else {
+        $('#schedule-dropdown').remove()
+    }
 })

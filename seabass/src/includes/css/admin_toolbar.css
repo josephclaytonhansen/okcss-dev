@@ -21,6 +21,9 @@
     font-size: 80%;
 }
 
+#current-task, #user{
+    white-space: nowrap;}
+
 .toolbar-container{
     display: flex;
     align-items: center;
