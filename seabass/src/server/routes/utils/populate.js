@@ -87,4 +87,65 @@ const populate = async(req, res) => {
     }
 }
 
-export default populate
+const populateNew = async(req, res) => {
+    let user_id = req.session.passport.user
+    let user = null
+    if (!req.session.user) {
+        let user = await User.findById(user_id).then((user) => {
+            return user
+        })
+        req.session.user = user
+    } else {
+        user = req.session.user
+    }
+    let categories = null
+    let all_categories = null
+    if (!req.session.categories) {
+        categories = await axios.get('http://localhost:5920/category/')
+        req.session.categories = categories.data
+        all_categories = categories.data.map((category) => {
+            return {
+                name: category.name,
+                id: category._id
+            }
+        })
+    } else {
+        categories = req.session.categories
+        all_categories = categories.map((category) => {
+            return {
+                name: category.name,
+                id: category._id
+            }
+        })
+    }
+
+    let users = null
+    let all_authors = null
+    if (!req.session.users) {
+        users = await axios.get('http://localhost:5920/user/')
+        req.session.users = users.data
+        all_authors = users.data.map((author) => {
+            return {
+                name: author.display_name,
+                id: author._id
+            }
+        })
+    } else {
+        users = req.session.users
+        all_authors = users.map((author) => {
+            return {
+                name: author.display_name,
+                id: author._id
+            }
+        })
+    }
+    return {
+        user: user,
+        categories: categories,
+        all_categories: all_categories,
+        users: users,
+        all_authors: all_authors
+    }
+}
+
+export  {populate, populateNew}

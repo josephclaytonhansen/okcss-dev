@@ -2,7 +2,7 @@ import axios from 'axios'
 import User from '../models/userModel.min.js'
 import Post from '../models/postModel.min.js'
 import fs from 'fs'
-import populate from './utils/populate.min.js'
+import {populate, populateNew} from './utils/populate.min.js'
 import express from 'express'
 const router = express.Router()
 
