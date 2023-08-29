@@ -158,7 +158,21 @@ router.get('/new-page', async (req, res) => {
 router.get('/edit/post/:id', async (req, res) => {
     if (!req.session.passport || req.session.passport.permissions == 'worm') {
         res.redirect('/login-na')
-    } else {}
+    } else {
+        let data = await populate(req, res).then((data) => {return data})
+        let post = data.posts.filter((post) => {
+            return post._id == req.params.id
+        })
+
+        res.render('editor.html', {
+            root: '.',
+            post: post,
+            type: 'post',
+            all_categories: data.all_categories,
+            all_authors: data.all_authors,
+        })
+
+    }
 })
 
 

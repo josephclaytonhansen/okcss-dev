@@ -15,7 +15,7 @@
 
 <body>
 
-    {{ hi.story(post.history) }}
+    {{ hi.story(post[0].history) }}
 
     {{ a.dmin_toolbar("editor", post, user) }}
     {{ h.eader() }}
@@ -24,22 +24,21 @@
             <div id='editorjs'></div>
         </div>
         <div id="editor-right">
-
                 {{ s.idebar(
                     type,
-                    post.title,
-                    post.meta_title,
-                    post.content,
-                    post.meta_description,
-                    post.meta_keywords,
-                    post.featured_image,
-                    post.status,
-                    post.scheduled_date,
-                    post.slug,
-                    post.categories,
-                    post.tags,
-                    post.author,
-                    post.history,
+                    post[0].title,
+                    post[0].meta_title,
+                    post[0].content,
+                    post[0].meta_description,
+                    post[0].meta_keywords,
+                    post[0].featured_image,
+                    post[0].status,
+                    post[0].scheduled_date,
+                    post[0].slug,
+                    post[0].categories,
+                    post[0].tags,
+                    post[0].author,
+                    post[0].history,
                     all_categories,
                     all_authors
                 ) }}
