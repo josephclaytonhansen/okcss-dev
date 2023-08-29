@@ -136,8 +136,10 @@ function lightboxModal(image){
 
 
 let imgs = $('.gallery img')
+let list_imgs = $('.list img')
+let all_imgs = imgs.add(list_imgs)
 
-imgs.each((i, img)=>
+all_imgs.each((i, img)=>
     $(img).on('click', ()=>{
         //get data-url attribute from img
         let url = $(img).attr('data-url')

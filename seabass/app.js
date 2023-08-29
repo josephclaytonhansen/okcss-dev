@@ -136,6 +136,14 @@ const nenv = nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
 nunjuckDate.setDefaultFormat('MMM Do, h:mm a')
 nunjuckDate.install(nenv)
 
+nenv.addFilter('fixed', function(num, length) {
+    return num.toFixed(length || 2)
+})
+
+nenv.addFilter('reverse', function(items) {
+    return items.reverse()
+})
+
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
     max: 400,
