@@ -196,4 +196,33 @@ router.get('/edit/page/:id', async (req, res) => {
         
 })
 
+router.get('/refresh-session', async (req, res) => {
+    //get users, posts, pages, comments, categories from the database, replacing existing req.session values
+    let users = await axios.get('http://localhost:5920/user/').then((response) => {
+        return response.data
+    })
+    req.session.users = users
+    let posts = await axios.get('http://localhost:5920/post/').then((response) => {
+        return response.data
+    })
+    req.session.posts = posts
+    let pages = await axios.get('http://localhost:5920/page/').then((response) => {
+        return response.data
+    })
+    req.session.pages = pages
+    let comments = await axios.get('http://localhost:5920/comment/').then((response) => {
+        return response.data
+    })
+    req.session.comments = comments
+
+    let user = await User.findById(req.session.passport.user).then((user) => {
+        return user
+    })
+
+    req.session.user = user
+    req.session.passport.user = user
+
+    res.send('session refreshed')
+})
+
 export default router

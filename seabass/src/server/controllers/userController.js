@@ -42,6 +42,7 @@ const updateUserById = asyncHandler(async (req, res) => {
     const {username, email, password, permissions, picture, display_name, bio} = req.body
     const user = await User.findById(req.params.id)
     if (user) {
+        //update modified fields
         user.username = username
         user.email = email
         user.password = password
@@ -57,6 +58,36 @@ const updateUserById = asyncHandler(async (req, res) => {
         throw new Error('user not found')
     }
 
+})
+
+const updateUserBioById = asyncHandler(async (req, res) => {
+    const {bio} = req.body
+    const user = await User.findById(req.params.id)
+    if (user) {
+        //update modified fields
+        user.bio = bio
+        const updatedUser = await user.save()
+        res.json(updatedUser)
+    }
+    else {
+        res.status(404)
+        throw new Error('user not found')
+    }
+})
+
+const updateUserDisplayNameById = asyncHandler(async (req, res) => {
+    const {display_name} = req.body
+    const user = await User.findById(req.params.id)
+    if (user) {
+        //update modified fields
+        user.display_name = display_name
+        const updatedUser = await user.save()
+        res.json(updatedUser)
+    }
+    else {
+        res.status(404)
+        throw new Error('user not found')
+    }
 })
 
 const deleteUserById = asyncHandler(async (req, res) => {
@@ -107,6 +138,8 @@ export {
     getUserByUsername,
     getUserByEmail,
     updateUserById,
+    updateUserBioById,
+    updateUserDisplayNameById,
     deleteUserById,
     createUser
 }

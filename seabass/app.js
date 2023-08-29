@@ -218,7 +218,8 @@ router.get('/totp-challenge', (req, res) => {
                     root: '.',
                 })
             } else {
-                let secret = (user.email + process.env.TOTP_SECRET)
+                let random_number = Math.floor(Math.random() * (999999 - 100000 + 1) + 100000)
+                let secret = (user.email + process.env.TOTP_SECRET + random_number)
                 //encode secret as base32
                 secret = base32.encode(secret).toString().replace(/0/g, 'O').replace(/1/g, 'I').replace(/8/g, 'B').replace(/9/g, 'P').toUpperCase().replace(/[^A-Z2-7=]/g, '')
                 //remove any characters that don't match A-Z, 2-7, or =
@@ -281,6 +282,11 @@ router.get('/login', (req, res) => {
     res.render('login.html', {
         root: '.'
     })
+})
+
+router.get('/reset-session', (req, res) => {
+    req.session.destroy()
+    res.send('session reset')
 })
 
 app.use('/', router)

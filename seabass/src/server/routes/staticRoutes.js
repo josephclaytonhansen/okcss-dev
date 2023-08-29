@@ -28,6 +28,13 @@ router.get('/account.css', cache(60), (req, res) => {
     })
 })
 
+router.get('/account.js', cache(60), (req, res) => {
+    res.type('js')
+    res.sendFile("/src/views/js/account.min.js", {
+        root: '.'
+    })
+})
+
 router.get('/dashboard.css',cache(60), (req, res) => {
     res.type('css')
     res.sendFile("/src/views/css/dashboard.min.css", {
