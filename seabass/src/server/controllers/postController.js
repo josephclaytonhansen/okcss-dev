@@ -230,18 +230,6 @@ const getPostsByCategory = asyncHandler(async (req, res) => {
     }
 })
 
-const getUpcomingPosts = asyncHandler(async (req, res) => {
-    let currentDate = new Date()
-    const posts = await Post.find({ status: 'scheduled', scheduledDate: { $gte: currentDate }, limit: 3 })
-    if (posts) {
-        res.json(posts)
-    }
-    else {
-        res.status(404)
-        throw new Error('posts not found')
-    }
-})
-
 export {
     getPosts,
     getPostById,
@@ -254,7 +242,6 @@ export {
     getPostsByAuthor,
     getPostsByStatus,
     getPostsByCategory,
-    getUpcomingPosts,
     publishPost,
     unpublishPost,
     schedulePost
