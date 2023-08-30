@@ -61,7 +61,7 @@
                 
                 </td>
                 <td>
-                    <select name="status" id="status" value={{post.status}}>
+                    <select name="status" class="pl-status" value={{post.status}} data-post={{post._id}}>
                         <option value="scheduled" {%if post.status == "scheduled"%}selected{% endif %}>Scheduled</option>
                         <option value="published" {%if post.status == "published"%}selected{% endif %}>Published</option>
                         <option value="draft" {%if post.status == "draft"%}selected{% endif %}>Draft</option>
@@ -96,7 +96,7 @@
                 </td>
                 <td>
 
-                        <select name="status" id="status" value={{post.status}}>
+                        <select name="status" class="pl-status" value={{post.status}} data-post={{post._id}}>
                             <option value="published" {%if post.status == "published"%}selected{% endif %}>Published</option>
                             <option value="draft" {%if post.status == "draft"%}selected{% endif %}>Draft</option>
                             <option value="private" {%if post.status == "private"%}selected{% endif %}>Private</option>
@@ -110,5 +110,5 @@
         {% endif %}
     </table>
 </div>
-<script src="/post_list.js"></script>
+<script type = "module" src="/post_list.js"></script>
 {% endmacro %}

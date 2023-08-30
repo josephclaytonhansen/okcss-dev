@@ -63,8 +63,9 @@ function savePostCallback(post_id, content){
 
 }
 
-function publishPost(){
-    let post_id = $('#post-id-hidden').text()
+function publishPost(post=null){
+    let post_id = post? post : $('#post-id-hidden').text()
+
     $.ajax({
         method: 'GET',
         url: '/post/publish/' + post_id,
@@ -87,8 +88,8 @@ function publishPost(){
     })
 }
 
-function unpublishPost(){
-    let post_id = $('#post-id-hidden').text()
+function unpublishPost(post=null){
+    let post_id = post? post : $('#post-id-hidden').text()
     $.ajax({
         method: 'GET',
         url: '/post/unpublish/' + post_id,

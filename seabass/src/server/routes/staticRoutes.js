@@ -98,6 +98,14 @@ router.get('/history_compare.js',cache(60), (req, res) => {
     })
 })
 
+
+router.get('/post-functions.js',cache(60), (req, res) => {
+    res.type('js')
+    res.sendFile("/src/assets/js/postFunctions.min.js", {
+        root: '.'
+    })
+})
+
 router.get('/dashboard.js',cache(60), (req, res) => {
     res.type('js')
     res.sendFile("/src/views/js/dashboard.min.js", {
