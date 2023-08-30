@@ -1,3 +1,4 @@
+
 function lightboxModal(image){
     let modal = $('<div>')
     modal.addClass('lightbox-modal')
@@ -138,6 +139,7 @@ function lightboxModal(image){
 let imgs = $('.gallery img')
 let list_imgs = $('.list img')
 let all_imgs = imgs.add(list_imgs)
+
 
 all_imgs.each((i, img)=>
     $(img).on('click', ()=>{

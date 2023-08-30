@@ -10,8 +10,10 @@
     {% import "../includes/meta.njk" as m %}
     {% import "../includes/word_count.njk" as w %}
     {% import "../includes/gallery.njk" as g %}
+    {%import "../includes/lucide.njk" as lu%}
     {{ m.eta() }}
     {{ i.ncludes("editor") }}
+    <script type = "module" src="/img/gallery_list_lightbox.js"></script>
 </head>
 
 <body>
@@ -49,6 +51,15 @@
     </div>
 
     {{ w.ord_count() }}
+    <div id = 'editor-gallery'>
+        <div class = "expand hidden">
+            <div class = "gallery">
+            {{ g.allery(images) }}
+        </div>
+        </div>
+        <span class = "clickable-icon" id = "gallery-expand">{{lu.i("image-plus", 5)}}</span>
+
+    </div>
 
     <script src="/editor.js"></script>
     <script>

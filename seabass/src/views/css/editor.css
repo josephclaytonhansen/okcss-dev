@@ -28,5 +28,61 @@ body{
     width: 100vw;
   }
 
+#editor-gallery .clickable-icon .lucide{
+    background-color: rgb(160, 160, 160);
+}
+
+#editor-gallery .clickable-icon{
+    float:right;
+    margin-right:20vw;
+    margin-top:-2rem;
+    padding:1rem;
+    background-color:hsl(0, 0%, 95%);
+    border-radius: 8px;
+}
+
+#editor-gallery .gallery{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: .5rem;
+    flex-wrap: wrap;
+    height: auto;
+    width: 100%;
+    position: relative;
+    top: 0rem;
+}
+
+.gallery .img-container{
+    min-width:150px!important;
+}
+
+#editor-gallery .expand{
+    position: absolute;
+    right: calc(20vw + 1rem);
+    padding: .5rem;
+    background-color:rgba(211, 211, 211, 0.5);
+    border-radius: 8px;
+    transition: all 0.4s ease-in-out;
+    gap: 0.5rem;
+}
+
+.expand.expanded{
+    height: 40%;
+    top: 45%;
+    width: 40%;
+}
+
+.expand:not(.expanded){
+    height: 0%;
+    top: 95%;
+    width: 0%;
+}
+
+.lightbox-modal-close{
+    right:-35%!important;
+    top:-35%!important;
+    left: 35%!important;
+}
   
 

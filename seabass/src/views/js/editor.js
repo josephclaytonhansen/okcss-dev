@@ -133,5 +133,17 @@ sidebar_button_close.addEventListener('click', () => {
     $("#editor-left").css("margin-right", "2rem")
 })
 
+$('#gallery-expand').on('click', () => {
+    $('.expand').toggleClass('expanded')
+    $('.expand').toggleClass('hidden')
+    if ($('.expand').hasClass('expanded')){
+        $('#editorjs').css('pointer-events', 'none')
+    }
+    else{
+        $('#editorjs').css('pointer-events', 'auto')
+    }
+})
+
+
 
 
