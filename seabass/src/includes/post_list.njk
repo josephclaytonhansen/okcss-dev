@@ -68,7 +68,13 @@
                         <option value="private" {%if post.status == "private"%}selected{% endif %}>Private</option>
                     </select>
                 </td>
-                <td>{{ post.createdAt | date('MMM Do, h:mm a') }}</td>
+                <td>
+                    {%if post.scheduled_date%}
+                    {{ post.scheduled_date | date('MMM Do, h:mm a') }}
+                    {% else %}
+                    Not scheduled
+                    {% endif %}
+                </td>
                 <td><a href ="{{'/edit/post/'+post._id}}"><span class = "pedit clickable-icon" id = {{"edit-"+post._id}}>{{lu.i("pencil", 2)}}</span></a></td>
             </tr>
             {% endfor %}
