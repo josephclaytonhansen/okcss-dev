@@ -88,6 +88,38 @@ function publishPost(post=null){
     })
 }
 
+function schedulePost(post=null, scheduled_date=null){
+    let post_id = post? post : $('#post-id-hidden').text()
+    let scheduled_date = scheduled_date
+
+    $.ajax({
+        method: 'POST',
+        url: '/post/schedule/' + post_id,
+        data: {
+            scheduled_date: scheduled_date
+        },
+        success: () => {
+            $.ajax({
+                method: 'GET',
+                url: '/refresh-session',
+                success: () => {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/post/schedule/' + post_id,
+                        data: {
+                            scheduled_date: scheduled_date
+                        }}),
+                        window.location.reload()
+                }
+            })
+            
+        },
+        error: (err) => {
+            console.log(err)
+        }
+    })
+}
+
 function unpublishPost(post=null){
     let post_id = post? post : $('#post-id-hidden').text()
     $.ajax({
@@ -112,4 +144,4 @@ function unpublishPost(post=null){
     })
 }
 
-export {savePostCallback, savePost, publishPost, unpublishPost}
+export {savePostCallback, savePost, publishPost, unpublishPost, schedulePost}

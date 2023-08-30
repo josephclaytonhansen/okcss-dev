@@ -133,7 +133,7 @@ const nenv = nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
     watch: true,
 })
 
-nunjuckDate.setDefaultFormat('MMM Do, h:mm a')
+nunjuckDate.setDefaultFormat('MMM. Do')
 nunjuckDate.install(nenv)
 
 nenv.addFilter('fixed', function(num, length) {

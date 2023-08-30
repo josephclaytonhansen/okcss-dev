@@ -68,7 +68,7 @@
                 </td>
                 <td>
                     {%if post.scheduled_date%}
-                    {{ post.scheduled_date | date('MMM Do, h:mm a') }}
+                    {{ post.scheduled_date | date }}
                     {% else %}
                     Not scheduled
                     {% endif %}

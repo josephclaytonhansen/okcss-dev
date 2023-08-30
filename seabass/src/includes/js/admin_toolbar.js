@@ -2,7 +2,8 @@ import {
     savePostCallback,
     savePost,
     publishPost,
-    unpublishPost
+    unpublishPost,
+    schedulePost
 } from '/postFunctions.js'
 
 $('#user-dropdown').on('click', (e) => {
@@ -68,60 +69,10 @@ function scheduleDropdown(dropdown_body) {
     let submit = document.createElement('button')
     submit.id = 'submit'
     submit.onclick = (e) => {
-        let scheduled_date = $('#calendar').val()
-        let url = new URL(window.location.href)
-        let post_index = url.href.indexOf('post/')
-        let post_id = url.href.slice(post_index + 5)
-        scheduled_date = new Date(scheduled_date)
-        $.ajax({
-            method: 'POST',
-            url: '/post/update/' + post_id,
-            data: {
-                scheduled_date: scheduled_date,
-                status: 'scheduled'
-            },
-            success: () => {
-                $.ajax({
-                    method: 'GET',
-                    url: '/refresh-session',
-                    success: () => {
-                        window.location.reload()
-                    }
-                })
-            },
-            error: (err) => {
-                console.log(err)
-            }
-        })
+
+        schedulePost(null, calendar.value)
     }
-    let s = $('#submit')
-    s.on('click', (e) => {
-        let scheduled_date = $('#calendar').val()
-        let url = new URL(window.location.href)
-        let post_index = url.href.indexOf('post/')
-        let post_id = url.href.slice(post_index + 5)
-        scheduled_date = new Date(scheduled_date)
-        $.ajax({
-            method: 'POST',
-            url: '/post/update/' + post_id,
-            data: {
-                scheduled_date: scheduled_date,
-                status: 'scheduled'
-            },
-            success: () => {
-                $.ajax({
-                    method: 'GET',
-                    url: '/refresh-session',
-                    success: () => {
-                        window.location.reload()
-                    }
-                })
-            },
-            error: (err) => {
-                console.log(err)
-            }
-        })
-    })
+    
     submit.innerHTML = 'Submit'
     submit.classList.add('ocean')
     submit.classList.add('fullwidth')

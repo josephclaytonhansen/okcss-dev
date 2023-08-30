@@ -11,6 +11,9 @@ router.get('/dashboard', async (req, res) => {
         res.redirect('/login-na')
     } else {
         let data = await populate(req, res).then((data) => {return data})
+        if (!data){
+            data = await populate(req, res).then((data) => {return data})
+        }
         let thumbnails = []
         if (!req.session.thumbnails) {
             let thumbnails_slugs = []
@@ -32,11 +35,13 @@ router.get('/dashboard', async (req, res) => {
         }
 
         let upcoming_posts = []
+        try{
         data.posts.forEach((post) => {
             if (post.status == 'scheduled' && new Date(post.scheduled_date) > new Date()) {
                 upcoming_posts.push(post)
             }
         })
+    } catch (err) {}
 
         res.render('dashboard.html', {
             root: '.',

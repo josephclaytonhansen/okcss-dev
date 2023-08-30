@@ -99,6 +99,44 @@ const publishPost = asyncHandler(async (req, res) => {
     }
 })
 
+const schedulePost = asyncHandler(async (req, res) => {
+    const post = await Post.findById(req.params.id)
+    if (post) {
+        post.status = 'scheduled'
+        let date = new Date()
+        //req.body.scheduledDate is in format Weekday Month (short) Day Year
+        let year = req.body.scheduled_date.split(' ')[3]
+        let month_abbr = req.body.scheduled_date.split(' ')[1]
+        let day = req.body.scheduled_date.split(' ')[2]
+        //given month_abbr, get month number
+        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        let month = months.indexOf(month_abbr)
+        date.setFullYear(year)
+        date.setMonth(month)
+        date.setDate(day)
+        date.setHours(0)
+        date.setMinutes(0)
+        date.setSeconds(0)
+        date.setMilliseconds(0)
+        //add one full day
+        date.setDate(date.getDate() + 1)
+        date = date.toISOString()
+
+        post.scheduled_date = date
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, { status: 'scheduled', scheduled_date: date})
+        if (updatedPost) {
+            res.json({ message: 'post scheduled'+post.scheduled_date })
+        }
+        else {
+            res.status(400).json({ message: 'invalid data' })
+        }
+    }
+    else {
+        res.status(404).json({ message: 'post not found' })
+        throw new Error('post not found')
+    }
+})
+
 const unpublishPost = asyncHandler(async (req, res) => {
     const post = await Post.findById(req.params.id)
     if (post) {
@@ -218,5 +256,6 @@ export {
     getPostsByCategory,
     getUpcomingPosts,
     publishPost,
-    unpublishPost
+    unpublishPost,
+    schedulePost
 }
