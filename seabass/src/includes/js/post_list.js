@@ -49,13 +49,13 @@ $('#filter-categories').on('click', (e) => {
                     categories.push($(span).text().trim())
                 })
 
-                let show = false
+                let show_count = 0
                 categories.forEach((category) => {
                     if (checked.includes(category)) {
-                        show = true
+                        show_count++
                     }
                 })
-                if (show) {
+                if (show_count > 0) {
                     $('#'+row_id).css('display', 'table-row')
                 } else {
                     $('#'+row_id).css('display', 'none')
