@@ -200,35 +200,7 @@ const getPostBySlug = asyncHandler(async (req, res) => {
     }
 })
 
-const getPostsByAuthor = asyncHandler(async (req, res) => {
-    const posts = await Post.find({ author: req.params.author })
-    if (posts) {
-        res.json(posts)
-    } else {
-        res.status(404)
-        throw new Error('posts not found')
-    }
-})
 
-const getPostsByStatus = asyncHandler(async (req, res) => {
-    const posts = await Post.find({ status: req.params.status })
-    if (posts) {
-        res.json(posts)
-    } else {
-        res.status(404)
-        throw new Error('posts not found')
-    }
-})
-
-const getPostsByCategory = asyncHandler(async (req, res) => {
-    const posts = await Post.find({ category: req.params.category })
-    if (posts) {
-        res.json(posts)
-    } else {
-        res.status(404)
-        throw new Error('posts not found')
-    }
-})
 
 export {
     getPosts,
@@ -239,9 +211,6 @@ export {
     deletePost,
     createPost,
     getPostBySlug,
-    getPostsByAuthor,
-    getPostsByStatus,
-    getPostsByCategory,
     publishPost,
     unpublishPost,
     schedulePost

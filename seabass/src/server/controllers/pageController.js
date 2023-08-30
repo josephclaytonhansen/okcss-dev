@@ -85,26 +85,6 @@ const getPageBySlug = asyncHandler(async (req, res) => {
     }
 })
 
-const getPagesByAuthor = asyncHandler(async (req, res) => {
-    const pages = await Page.find({ author: req.params.author })
-    if (pages) {
-        res.json(pages)
-    } else {
-        res.status(404)
-        throw new Error('Pages not found')
-    }
-})
-
-const getPagesByStatus = asyncHandler(async (req, res) => {
-    const pages = await Page.find({ status: req.params.status })
-    if (pages) {
-        res.json(pages)
-    } else {
-        res.status(404)
-        throw new Error('Pages not found')
-    }
-})
-
 
 export {
     getPages,
@@ -113,6 +93,4 @@ export {
     deletePageById,
     createPage,
     getPageBySlug,
-    getPagesByAuthor,
-    getPagesByStatus
 }

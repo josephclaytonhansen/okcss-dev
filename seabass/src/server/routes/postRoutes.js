@@ -5,9 +5,6 @@ import {
     getPosts,
     getPostById,
     getPostBySlug,
-    getPostsByAuthor,
-    getPostsByStatus,
-    getPostsByCategory,
     createPost,
     updatePost,
     publishPost,
@@ -24,9 +21,6 @@ router.route('/update/:id').post(updatePost)
 router.route('/update_history/:id').get(updatePostHistory)
 router.route('/delete_history/:id').get(deletePostHistory)
 router.route('/:slug').get(getPostBySlug)
-router.route('/author/:author').get(getPostsByAuthor)
-router.route('/status/:status').get(getPostsByStatus)
-router.route('/category/:category').get(getPostsByCategory)
 router.route('/publish/:id').get(publishPost)
 router.route('/unpublish/:id').get(unpublishPost)
 router.route('/schedule/:id').post(schedulePost)
