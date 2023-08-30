@@ -10,4 +10,9 @@ $('.pl-status').on('change', function(e) {
     else if (valueSelected == 'draft') {
         unpublishPost(post)
     }
+    else{
+        //select "draft" as the selected option in the dropdown
+        $(this).val('draft')
+        $(this).find('option[value="draft"]').attr('selected', 'selected')
+    }
 })

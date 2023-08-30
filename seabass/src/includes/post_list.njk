@@ -64,9 +64,7 @@
                     <select name="status" class="pl-status" value={{post.status}} data-post={{post._id}}>
                         <option value="scheduled" {%if post.status == "scheduled"%}selected{% endif %}>Scheduled</option>
                         <option value="published" {%if post.status == "published"%}selected{% endif %}>Published</option>
-                        <option value="draft" {%if post.status == "draft"%}selected{% endif %}>Draft</option>
-                        <option value="private" {%if post.status == "private"%}selected{% endif %}>Private</option>
-                    </select>
+                        <option value="draft" {%if post.status == "draft"%}selected{% endif %}>Draft</option>                    </select>
                 </td>
                 <td>
                     {%if post.scheduled_date%}
@@ -99,7 +97,6 @@
                         <select name="status" class="pl-status" value={{post.status}} data-post={{post._id}}>
                             <option value="published" {%if post.status == "published"%}selected{% endif %}>Published</option>
                             <option value="draft" {%if post.status == "draft"%}selected{% endif %}>Draft</option>
-                            <option value="private" {%if post.status == "private"%}selected{% endif %}>Private</option>
                         </select>
                 </td>
                 <td>{{ post.views }}</td>
