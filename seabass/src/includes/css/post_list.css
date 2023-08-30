@@ -13,6 +13,10 @@
     font-size:100%;
 }
 
+.post_list th{
+    vertical-align: top;
+}
+
 .post_list td{
     text-align:left;
     font-size:90%;
@@ -46,4 +50,17 @@
 
 .post_list .ct-cell span:not(:last-child)::after{
     content: ", ";
+}
+
+th .filter-options{
+    margin-top: .5rem;
+    border: 1px solid #eee;
+    background-color: white;
+    height: 2rem;
+    padding-right:.5rem;
+    border-radius: 5px;
+    display:inline-block;
+    width: fit-content;
+    overflow-y:scroll;
+    height: 2.7rem;
 }

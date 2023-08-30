@@ -24,7 +24,16 @@
                 {% if ptype == "posts" %}
                 <th>Title</th>
                 <th>Author</th>
-                <th>Categories <span class = 'clickable-icon' id = 'filter-categories'>{{lu.i("filter", 2, ['va-2'])}}</span></th>
+                <th>Categories <span class = 'clickable-icon' id = 'filter-categories'>{{lu.i("filter", 2, ['va-2'])}}</span><span class = "filter-options" id = "opt-ct" style="display:none">
+
+                {% for category in all_categories %}
+                <section>
+                    <input type ='checkbox' id = 'ct-{{category._id}}' checked>
+                    <label for="ct-{{category._id}}">{{category.name}}</label>
+                </section>
+                {% endfor %}
+                    
+                </span></th>
                 <th>Status <span class = 'clickable-icon' id = 'filter-status'>{{lu.i("filter", 2, ['va-2'])}}</span></th>
                 <th>Date</th>
                 <th></th>

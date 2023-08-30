@@ -17,4 +17,12 @@ $('.pl-status').on('change', function(e) {
     }
 })
 
-$('')
+$('#filter-categories').on('click', (e) => {
+    let th = $(e.target).parent().parent()
+    let options = th.find('.filter-options')
+    if (options.css('display') == 'none') {
+        options.css('display', 'block')
+    } else {
+        options.css('display', 'none')
+    }
+})
