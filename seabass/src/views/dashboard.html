@@ -20,7 +20,7 @@
 
 <body>
     {{ u.pload_image() }}
-    {{ c.alendar("calendar-container", month=date.monthName, day=date.day, year=date.year) }}
+    {{ c.alendar("calendar-container", month=date.monthName, day=date.day, year=date.year, upcoming_posts=upcoming_posts) }}
     {{ a.dmin_toolbar("dashboard", "", user) }}
     <div class="grid">
         <div class="section left">

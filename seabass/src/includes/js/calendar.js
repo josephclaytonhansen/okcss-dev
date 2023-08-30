@@ -84,12 +84,15 @@ function setScheduleDays(){
         let firstP = $(this).children('p').eq(0)
         //get the text of the first p element
         let firstPText = firstP.text()
-        //this is in format "m/dd", split into months and days
-        let month = firstPText.split('/')[0]
-        let day = firstPText.split('/')[1]
-        //get the calendar day element with the same day as the first p element and add the class of active-calendar-day
+        //this is in format Sep 1st, 5:24 pm
+        //get the month and day
+        let month = firstPText.split(' ')[0]
+        let current_month = new Date().toLocaleString('default', {month: 'short'})
+        let day = firstPText.split(' ')[1]
+        //remove non-numbers from day
+        day = day.replace(/\D/g, '')
         $('.calendar-day').filter(function(){
-            return $(this).text() === day
+            return $(this).text() === day && current_month === month
         }).addClass('active-calendar-day')
     })
 }

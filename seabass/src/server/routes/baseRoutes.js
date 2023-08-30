@@ -31,12 +31,20 @@ router.get('/dashboard', async (req, res) => {
             thumbnails = req.session.thumbnails
         }
 
+        let upcoming_posts = []
+        data.posts.forEach((post) => {
+            if (post.status == 'scheduled' && new Date(post.scheduled_date) > new Date()) {
+                upcoming_posts.push(post)
+            }
+        })
+
         res.render('dashboard.html', {
             root: '.',
             user: data.user,
             posts: data.posts,
             pages: data.pages,
             comments: data.comments,
+            upcoming_posts: upcoming_posts,
             all_authors: data.all_authors,
             all_categories: data.all_categories,
             cached_media: thumbnails,

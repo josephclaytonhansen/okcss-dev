@@ -1,4 +1,4 @@
-{% macro alendar(container, month="August", day=17, year=2023) %}
+{% macro alendar(container, month="August", day=17, year=2023, upcoming_posts=[]) %}
 
 <link rel="stylesheet" href='/calendar.css'>
 <script src="/colors.js"></script>
@@ -11,24 +11,13 @@
             </div>
             <div class="upcoming">
                 <ul>
+                    {% for post in upcoming_posts %}
                     <li>
                         <div class="upcoming-schedule">
-                            <p>8/18</p>
-                            <p>Blog post about stuff</p>
+                            <p>{{post.scheduled_date | date}}</p>
+                            <p>{{post.title}}</p>
                         </div>
-                    </li>
-                    <li>
-                        <div class="upcoming-schedule">
-                            <p>8/19</p>
-                            <p>Blog post about stuff</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="upcoming-schedule">
-                            <p>8/20</p>
-                            <p>Blog post about stuff</p>
-                        </div>
-                    </li>
+                        {% endfor %}
                 </ul>
             </div>
         </div>
