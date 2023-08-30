@@ -25,4 +25,43 @@ $('#filter-categories').on('click', (e) => {
     } else {
         options.css('display', 'none')
     }
+    let checkboxes = options.find('input')
+    checkboxes.each((index, checkbox) => {
+        $(checkbox).on('change', (e) => {
+            let checked = []
+            checkboxes.each((index, checkbox) => {
+                if ($(checkbox).prop('checked')) {
+                    let label = $(checkbox).parent().find('label').text()
+                    checked.push(label)
+                }
+            })
+            let posts_container = $('#type-posts')
+            let table = posts_container.find('table')
+            let table_body = table.find('tbody')
+            let rows = table_body.find('tr')
+            for (let i = 0; i < rows.length; i++) {
+                let post = rows[i]
+                let row_id = post.id
+                let td = $(post).find('.ct-cell')
+                let spans = td.find('span')
+                let categories = []
+                spans.each((index, span) => {
+                    categories.push($(span).text().trim())
+                })
+
+                let show = false
+                categories.forEach((category) => {
+                    if (checked.includes(category)) {
+                        show = true
+                    }
+                })
+                if (show) {
+                    $('#'+row_id).css('display', 'table-row')
+                } else {
+                    $('#'+row_id).css('display', 'none')
+                }
+            }
+
+        })
+    })
 })
