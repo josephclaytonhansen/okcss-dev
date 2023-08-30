@@ -43,3 +43,7 @@
     overflow-y:scroll;
     width: 100%;
 }
+
+.post_list .ct-cell span:not(:last-child)::after{
+    content: ", ";
+}

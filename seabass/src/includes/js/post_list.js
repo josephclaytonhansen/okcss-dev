@@ -16,3 +16,5 @@ $('.pl-status').on('change', function(e) {
         $(this).find('option[value="draft"]').attr('selected', 'selected')
     }
 })
+
+$('')

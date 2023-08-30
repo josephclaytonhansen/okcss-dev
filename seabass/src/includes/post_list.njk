@@ -52,12 +52,13 @@
                     {% endif %}
                     {% endfor %}
                 </td>
-                <td>
-                    <select name="categories" class="categories" multiple>
-                        {% for category in all_categories %}
-                        <option value={{category.name}} {% if category.name in post.categories %}selected{% endif %}>{{category.name}}</option>
-                        {% endfor %}
-                    </select>
+                <td class = "ct-cell">
+
+                    {% for category in all_categories %}
+                    {% if category.name in post.categories %}
+                    <span class = 'comma-after-not-last'>{{category.name}}</span>
+                    {% endif %}
+                    {% endfor %}
                 
                 </td>
                 <td>
@@ -73,7 +74,7 @@
                     Not scheduled
                     {% endif %}
                 </td>
-                <td><a href ="{{'/edit/post/'+post._id}}"><span class = "pedit clickable-icon" id = {{"edit-"+post._id}}>{{lu.i("pencil", 2)}}</span></a></td>
+                <td><a href ="{{'/edit/post/'+post._id}}"><span class = "pedit clickable-icon" id = {{"edit-"+post._id}}>{{lu.i("pencil", 25)}}</span></a></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -100,7 +101,7 @@
                         </select>
                 </td>
                 <td>{{ post.views }}</td>
-                <td><a href ="{{'/edit/page/'+post._id}}"><span class = "pedit clickable-icon" id = {{"edit-"+post._id}}>{{lu.i("pencil", 2)}}</span></a></td>
+                <td><a href ="{{'/edit/page/'+post._id}}"><span class = "pedit clickable-icon" id = {{"edit-"+post._id}}>{{lu.i("pencil", 25)}}</span></a></td>
             </tr>
             {% endfor %}
         </tbody>
