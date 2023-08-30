@@ -65,3 +65,50 @@ $('#filter-categories').on('click', (e) => {
         })
     })
 })
+
+function filterStatus (e, b, c) {
+    let th = $(e.target).parent().parent()
+    let options = th.find('.filter-options')
+    if (options.css('display') == 'none') {
+        options.css('display', 'block')
+    } else {
+        options.css('display', 'none')
+    }
+    let checkboxes = options.find('input')
+    checkboxes.each((index, checkbox) => {
+        $(checkbox).on('change', (e) => {
+            let checked = []
+            checkboxes.each((index, checkbox) => {
+                if ($(checkbox).prop('checked')) {
+                    let label = $(checkbox).parent().find('label').text()
+                    checked.push(label.toLowerCase())
+                }
+            })
+            let posts_container = $(b)
+            let table = posts_container.find('table')
+            let table_body = table.find('tbody')
+            let rows = table_body.find('tr')
+            for (let i = 0; i < rows.length; i++) {
+                let post = rows[i]
+                let row_id = post.id
+                let td = $(post).find(c)
+                let status = td.val()
+
+                if (checked.includes(status)) {
+                    $('#'+row_id).css('display', 'table-row')
+                } else {
+                    $('#'+row_id).css('display', 'none')
+                }
+            }
+
+        })
+    })
+}
+
+$('#filter-status-pages').on('click', (e) => {
+    filterStatus(e, '#type-pages', '.pl-status-pages')
+})
+
+$('#filter-status').on('click', (e) => {
+    filterStatus(e, '#type-posts', '.pl-status')
+})

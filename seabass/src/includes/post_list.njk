@@ -7,8 +7,8 @@
             <col style="width: 28%;">
             <col style="width: 18%;">
             <col style="width: 21%;">
-            <col style="width: 13%;">
             <col style="width: 18%;">
+            <col style="width: 13%;">
             <col style="width: 2%;">
             {% endif %}
             {% if ptype == "pages" %}
@@ -34,14 +34,42 @@
                 {% endfor %}
                     
                 </span></th>
-                <th>Status <span class = 'clickable-icon' id = 'filter-status'>{{lu.i("filter", 2, ['va-2'])}}</span></th>
+                <th>Status <span class = 'clickable-icon' id = 'filter-status'>{{lu.i("filter", 2, ['va-2'])}}</span>
+                    <span class = "filter-options" id = "opt-ct" style="display:none">
+                        <section>
+                            <input type ='checkbox' id = 'st-scheduled' checked>
+                            <label for="st-scheduled">Scheduled</label>
+                        </section>
+                        <section>
+                            <input type ='checkbox' id = 'st-published' checked>
+                            <label for="st-published">Published</label>
+                        </section>
+                        <section>
+                            <input type ='checkbox' id = 'st-draft' checked>
+                            <label for="st-draft">Draft</label>
+                        </section>
+                    </span></th>
                 <th>Date</th>
                 <th></th>
                 {% endif %}
                 {% if ptype == "pages" %}
                 <th>Title</th>
                 <th>Author</th>
-                <th>Status <span class = 'clickable-icon' id = 'filter-status-pages'>{{lu.i("filter", 2, ['va-2'])}}</span></th>
+                <th>Status <span class = 'clickable-icon' id = 'filter-status-pages'>{{lu.i("filter", 2, ['va-2'])}}</span>
+                    <span class = "filter-options" id = "opt-ct" style="display:none">
+                        <section>
+                            <input type ='checkbox' id = 'st-scheduled' checked>
+                            <label for="st-scheduled">Scheduled</label>
+                        </section>
+                        <section>
+                            <input type ='checkbox' id = 'st-published' checked>
+                            <label for="st-published">Published</label>
+                        </section>
+                        <section>
+                            <input type ='checkbox' id = 'st-draft' checked>
+                            <label for="st-draft">Draft</label>
+                        </section>
+                    </span></th>
                 <th>Views</th>
                 <th></th>
                 {% endif %}
@@ -91,7 +119,7 @@
         {% if ptype == "pages" %}
         <tbody>
             {% for post in posts %}
-            <tr>
+            <tr id = "post-{{post._id}}">
                 <td><a href ={{"/page/"+post.slug}}>{{ post.title }}</a></td>
                 <td>
                     {% for a in all_authors %}
@@ -104,7 +132,7 @@
                 </td>
                 <td>
 
-                        <select name="status" class="pl-status" value={{post.status}} data-post={{post._id}}>
+                        <select name="status" class="pl-status-pages" value={{post.status}} data-post={{post._id}}>
                             <option value="published" {%if post.status == "published"%}selected{% endif %}>Published</option>
                             <option value="draft" {%if post.status == "draft"%}selected{% endif %}>Draft</option>
                         </select>
