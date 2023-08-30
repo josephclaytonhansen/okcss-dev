@@ -1,5 +1,5 @@
 
-weasel/.vscode/extensions.json
+
 # Logs
 logs
 *.log
@@ -18,6 +18,8 @@ dist-ssr
 .vscode/*
 .vscode
 /.vscode
+*vscode*
+*.vscode*
 *vscode*
 !.vscode/extensions.json
 .idea
@@ -166,6 +168,3 @@ out
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-weasel/.vscode
-weasel/.vscode*
-weasel/.vscode/*
