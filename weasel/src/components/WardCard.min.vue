@@ -1,1 +1,0 @@
-<script setup>import{reactive, ref, watch} from 'vue' const props=defineProps({ name: String, color_class: String})</script><template><div class="col-grow col-3"><div class="card column flex-between"><h2>{{name}}</h2><div :class="color_class"></div></div></div></template>

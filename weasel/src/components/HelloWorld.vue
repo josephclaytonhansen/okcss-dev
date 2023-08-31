@@ -56,7 +56,7 @@ watch(awesome, logAwesome)
   </List>
   <div class = "container">
     <div class = "row flex-between">
-      <div class = "col-gorw">
+      <div class = "col-grow">
   <div class="row wrap flex-between stretch">
     <WardCard v-for="(ward, index) in wards" :key="index" :name="ward" :color_class="color_classes[index]"></WardCard>
   </div>
