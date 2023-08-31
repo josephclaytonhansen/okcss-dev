@@ -1,8 +1,12 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import {ref} from 'vue'
+const darklight = ref('dark')
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
+    <body :class = 'darklight'>
+      <HelloWorld msg="Vite + Vue" />
+  </body>
 </template>
 
