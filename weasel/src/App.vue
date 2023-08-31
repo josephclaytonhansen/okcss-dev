@@ -8,7 +8,7 @@ const darklight = ref('dark')
 <template>
     <body :class = 'darklight'>
       <DarkModeToggle :darklight = 'darklight' @update = '(data) => darklight = data'/>
-      <HelloWorld msg="Vite + Vue" />
+      <HelloWorld />
   </body>
 </template>
 

@@ -35,6 +35,7 @@ function toggle() {
 
 function logAwesome() {
   console.log(awesome.value)
+  msg.value = 'Button has been clicked'
 }
 
 watch(awesome, logAwesome)
@@ -46,7 +47,7 @@ watch(awesome, logAwesome)
   <button @click="toggle">toggle</button>
   <h3 v-if="awesome">Vue is awesome!</h3>
   <h3 v-else>Oh no 😢</h3>
-  <List :class="css_class" @update_class="(msg) => childMsg = msg">
+  <List :class="css_class" @update_class="(data) => childMsg = data">
     <template #content>
       <p>{{ msg }}</p>
     </template>
