@@ -52,7 +52,7 @@ watch(awesome, logAwesome)
       <p>{{ msg }}</p>
     </template>
     <template #content2>
-      <p>{{ childMsg }}</p>
+      <p>From parent to child</p>
     </template>
   </List>
   <div class = "container">

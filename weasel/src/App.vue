@@ -7,8 +7,10 @@ const darklight = ref('dark')
 
 <template>
     <body :class = 'darklight'>
+      <div class = "container page">
       <DarkModeToggle :darklight = 'darklight' @update = '(data) => darklight = data'/>
       <HelloWorld />
+    </div>
   </body>
 </template>
 

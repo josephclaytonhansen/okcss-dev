@@ -1,5 +1,7 @@
 <script setup>
 
+import {Moon, Sun} from 'lucide-vue-next'
+
 const props = defineProps({
   darklight: String
 })
@@ -17,5 +19,12 @@ function toggle() {
 </script>
 
 <template>
-    <button @click="toggle">Toggle Dark Mode</button>
+    <button @click="toggle" class = "lucide-button">
+        <template v-if="props.darklight == 'dark'">
+            <Sun />
+        </template>
+        <template v-else>
+            <Moon />
+        </template>
+    </button>
 </template>

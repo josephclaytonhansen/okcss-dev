@@ -131,6 +131,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    transition: .2s background-color;
 }
 
 body.dark {
@@ -159,6 +160,11 @@ button {
     transition: --p .15s;
     box-shadow: none;
     cursor: pointer;
+}
+
+button.lucide-button{
+    padding:.5rem;
+    padding-bottom: .25rem;
 }
 
 button:hover {
@@ -329,8 +335,9 @@ body.light .card:hover h2{
     background-color: var(--color7);
 }
 
-.container {
+.page {
     width: 90vw;
-    height: 90vw;
-    margin: auto;
+    height: 90vh;
+    margin-left: 5vw;
+    margin-top: 5vh;
 }
