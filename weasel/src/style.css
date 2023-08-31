@@ -148,7 +148,7 @@ button {
     background-color: var(--gray);
     background: linear-gradient(to right,
             var(--accent) 0% var(--p),
-            var(--gray) 10% 100%);
+            var(--gray) var(--p) 100%);
     background-size: cover;
     background-position: center;
     color: var(--off-white);

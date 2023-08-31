@@ -1,11 +1,13 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import DarkModeToggle from './components/DarkModeToggle.vue'
 import {ref} from 'vue'
 const darklight = ref('dark')
 </script>
 
 <template>
     <body :class = 'darklight'>
+      <DarkModeToggle :darklight = 'darklight' @update = '(data) => darklight = data'/>
       <HelloWorld msg="Vite + Vue" />
   </body>
 </template>

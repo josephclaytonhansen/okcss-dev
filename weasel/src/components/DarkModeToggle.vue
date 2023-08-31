@@ -1,0 +1,21 @@
+<script setup>
+
+const props = defineProps({
+  darklight: String
+})
+const emit = defineEmits(['update'])
+
+function toggle() {
+  if (props.darklight == 'dark') {
+    emit('update', 'light')
+  } else {
+    emit('update', 'dark')
+  }
+}
+
+
+</script>
+
+<template>
+    <button @click="toggle">Toggle Dark Mode</button>
+</template>
