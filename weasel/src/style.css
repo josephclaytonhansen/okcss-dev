@@ -143,7 +143,7 @@ body.light {
 }
 
 button {
-    --p: 4%;
+    --p: 10%;
     font-family: 'Fira Sans Condensed', sans-serif;
     text-transform: uppercase;
     background-color: var(--gray);
