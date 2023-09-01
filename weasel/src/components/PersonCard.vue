@@ -18,10 +18,10 @@ import {Mail, Phone} from 'lucide-vue-next'
 
 <template>
     <div :class = "classes">
-        <div class = "col-4" style='background-color: var(--lighter-gray);'>
+        <div class = "col-3 person-image" style='background-color: var(--lighter-gray);'>
             <Image :src="image.src" :alt="image.alt" :width="image.width" :class="image.class"/>
         </div>
-        <div class = "col-8">
+        <div class = "col-9">
             <div class = "person-details">
                 <p class = "person-position">{{position}}</p>
                 <h2 class = "person-name">{{name}}</h2>
@@ -93,7 +93,11 @@ body.light .person{
 
 @media screen and (max-width: 1200px) {
     .person-details{
-        font-size:75%;
+        font-size:80%;
     }
+}
+
+.person-image{
+    min-width:120px;
 }
 </style>
