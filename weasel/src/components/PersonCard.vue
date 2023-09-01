@@ -14,6 +14,7 @@ import {Mail, Phone} from 'lucide-vue-next'
         phone: String,
         classes: String,
         size: String,
+        organization: String,
     })
 
 function setClassBySizeProp() {
@@ -26,7 +27,7 @@ function setClassBySizeProp() {
 </script>
 
 <template>
-    <div :class = "classes">
+    <div :class = "classes" style = "border-bottom: solid 10px var(--active-color)">
         <div v-if="size === 'full'" class = "col-3 person-image" style='background-color: var(--lighter-gray);'>
             <Image :src="image.src" :alt="image.alt" :width="image.width" :class="image.class"/>
         </div>
@@ -35,7 +36,7 @@ function setClassBySizeProp() {
                 <p class = "person-position">{{position}}</p>
                 <h2 :class="setClassBySizeProp()">{{name}}</h2>
                 <div v-if="size!=='full'">
-                    <div class = "row flex-between">
+                    <div class = "row flex-between" style="margin-bottom:-1rem">
                         <div class = "row"> 
                             <div class = "col-2 ht col-grow">
                                 <Mail
@@ -59,7 +60,7 @@ function setClassBySizeProp() {
                     </div>
                     
                 </div>
-                <div v-if="size==='full'" class = "row wrap flex-between">
+                <div v-if="size==='full'" class = "row wrap flex-between" style="margin-bottom:-1rem">
                     <div class = "col-6 ">
                         <div class = "row">
                             <div class = "col-2 ht">
@@ -114,9 +115,7 @@ body.dark .person{
 body.light .person{
     background-color: var(--lightest-gray);
 }
-.right{
-    border-bottom: solid 10px var(--color1);
-}
+
 .person-position{
     margin-bottom:0px;
     text-transform: uppercase;

@@ -10,13 +10,14 @@
     --dark-gray: hsl(248, 11%, 15%);
     --dark-blue: #243c4e;
     --off-white: #f7f8f7;
-    --color1: hsl(97, 67%, 51%);
+    --color1: #569a9d;
     --color2: hsl(165, 63%, 57%);
     --color3: hsl(197, 63%, 57%);
     --color4: hsl(203, 86%, 56%);
     --color5: hsl(215, 87%, 64%);
     --color6: hsl(226, 64%, 62%);
     --color7: hsl(249, 30%, 63%);
+    --active-color: black;
 }
 
 @property --p {
@@ -38,18 +39,11 @@ p {
     font-family: 'PT Sans', sans-serif;
 }
 
-body.dark a {
-    color: var(--light-accent);
-}
-
-body.light a {
-    color: var(--accent);
-}
-
 a {
     text-decoration: none;
     transition: .2s all;
     padding: 0 .3rem;
+    color: var(--active-color);
 }
 
 body.dark a:hover {
@@ -69,17 +63,6 @@ a:hover {
 a:visited {
     color: var(--dark-blue);
 }
-
-body.dark a:active {
-    color: var(--light-accent);
-    background-color: var(--gray);
-}
-
-body.light a:active {
-    color: var(--accent);
-    background-color: var(--lightest-gray);
-}
-
 
 body.dark h1 {
     color: white;
@@ -121,7 +104,7 @@ h6 {
 
 
 body ::selection {
-    background-color: var(--light-accent);
+    background-color: var(--active-color);
 }
 
 body {
@@ -130,7 +113,7 @@ body {
     margin: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     transition: .2s background-color;
 }
 
@@ -147,17 +130,12 @@ button {
     font-family: 'Fira Sans Condensed', sans-serif;
     text-transform: uppercase;
     background-color: var(--gray);
-    background: linear-gradient(to right,
-            var(--accent) 0% var(--p),
-            var(--gray) var(--p) 100%);
-    background-size: cover;
-    background-position: center;
     color: var(--off-white);
     border-radius: 4px;
     outline: none;
     border: none;
     padding: .5rem 1rem;
-    transition: --p .15s;
+    transition: all .25s;
     box-shadow: none;
     cursor: pointer;
 }
@@ -172,12 +150,7 @@ button:hover {
     background-color: var(--light-gray);
     outline: none;
     border: none;
-    --p: 85%;
-}
 
-button:active {
-    --p: 100%;
-    transition: --p .2s;
 }
 
 .row {
@@ -386,6 +359,8 @@ body.light .card:hover h2{
 
 .img-container{
     position: relative;
+    height:100%;
+    width:100%;
 }
 
 .img-container:has(.square)::after{
@@ -399,6 +374,11 @@ body.light .card:hover h2{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.img-container img{
+    object-fit: cover;
+    height:100%;
 }
 
 .img-container:has(img.rounded){
