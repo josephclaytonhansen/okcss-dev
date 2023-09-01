@@ -361,3 +361,28 @@ body.light .card:hover h2{
     margin-left: 5vw;
     margin-top: 5vh;
 }
+
+.img-container{
+    position: relative;
+}
+
+.img-container:has(.square)::after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.img-container img.square{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.img-container:has(img.rounded){
+    border-radius:8px;
+}
+
+img.rounded{
+    border-radius:8px;
+}

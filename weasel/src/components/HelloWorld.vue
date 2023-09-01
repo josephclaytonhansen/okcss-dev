@@ -3,6 +3,7 @@ import { reactive, ref, watch } from 'vue'
 
 import List from './List.vue'
 import WardCard from './WardCard.vue'
+import PersonCard from './PersonCard.vue'
 
 const awesome = ref(true)
 const msg = ref('Hello World!')
@@ -44,6 +45,7 @@ watch(awesome, logAwesome)
 <template>
   <h1>{{ msg }}</h1>
   <h2>{{ childMsg }}</h2>
+  <PersonCard name="John Doe" :image="{src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}" position="Bishop" email="email@email.com" phone="555-555-5555" borderColor='row person col-6 right'/>
   <button @click="toggle">toggle</button>
   <h3 v-if="awesome">Vue is awesome!</h3>
   <h3 v-else>Oh no 😢</h3>
