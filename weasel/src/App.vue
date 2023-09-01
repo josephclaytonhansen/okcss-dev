@@ -1,8 +1,16 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import DarkModeToggle from './components/DarkModeToggle.vue'
+import {ref} from 'vue'
+const darklight = ref('light')
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
+    <body :class = 'darklight'>
+      <div class = "container page">
+      <DarkModeToggle :darklight = 'darklight' @update = '(data) => darklight = data'/>
+      <HelloWorld />
+    </div>
+  </body>
 </template>
 

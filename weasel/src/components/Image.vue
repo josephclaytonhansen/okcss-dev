@@ -1,0 +1,14 @@
+<script setup>
+const props = defineProps({
+    src: String,
+    alt: String,
+    width: String,
+    class: String
+})
+</script>
+
+<template>
+    <div class = 'img-container'>
+        <img :src="src" :alt="alt" :width="width" :class="class">
+    </div>
+</template>

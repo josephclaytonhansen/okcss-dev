@@ -1,0 +1,30 @@
+<script setup>
+
+import {Moon, Sun} from 'lucide-vue-next'
+
+const props = defineProps({
+  darklight: String
+})
+const emit = defineEmits(['update'])
+
+function toggle() {
+  if (props.darklight == 'dark') {
+    emit('update', 'light')
+  } else {
+    emit('update', 'dark')
+  }
+}
+
+
+</script>
+
+<template>
+    <button @click="toggle" class = "lucide-button">
+        <template v-if="props.darklight == 'dark'">
+            <Sun />
+        </template>
+        <template v-else>
+            <Moon />
+        </template>
+    </button>
+</template>

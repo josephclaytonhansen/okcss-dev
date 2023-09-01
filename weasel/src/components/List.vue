@@ -16,7 +16,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update_class'])
 
-emit('update_class', 'red')
+emit('update_class', 'from child to parent')
 
 </script>
 

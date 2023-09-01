@@ -9,7 +9,8 @@
 <template>
     <div class = "col-grow col-3">
       <div class = "card column flex-between">
-        <h2>{{name}}</h2>
+        <div class = "card_top"></div>
+        <h2 class = "card_h2">{{name}}</h2>
         <div :class="color_class"></div>
       </div>
     </div>
