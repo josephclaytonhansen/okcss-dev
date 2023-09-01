@@ -40,7 +40,7 @@ const props = defineProps({
     }
 })
 
-const currentTab = ref('contacts')
+const currentTab = ref('worship')
 
 function tabChanged(tab) {
     console.log(tab)
@@ -106,6 +106,10 @@ watch(currentTab, tabChanged)
     <!------------------------------ Tab buttons ----------------------------- -->
     <div class = "tab-row row flex-between wrap">
         <div class = "tab-row-tabs row">
+            <div class = "tab" :class = "{activeTab: currentTab === 'worship'}" @click = "currentTab = 'worship'">
+                <div class="tab-overlay" :class="{active: currentTab === 'worship'}"/>
+                <h3><HeartHandshake style = "margin-bottom:-.25rem;" class="ht"/> Worship</h3>
+            </div>
             <div class = "tab" :class = "{activeTab: currentTab === 'contacts'}" @click = "currentTab = 'contacts'">
                 <div class="tab-overlay" :class="{active: currentTab === 'contacts'}"/>
                 <h3><Contact2 style = "margin-bottom:-.25rem;" class="ht"/> Contacts</h3></div>
@@ -115,10 +119,6 @@ watch(currentTab, tabChanged)
             <div class = "tab" :class = "{activeTab: currentTab === 'tools'}" @click = "currentTab = 'tools'">
                 <div class="tab-overlay" :class="{active: currentTab === 'tools'}"/>
                 <h3><ListTodo style = "margin-bottom:-.25rem;" class="ht"/> Tools</h3></div>
-            <div class = "tab" :class = "{activeTab: currentTab === 'worship'}" @click = "currentTab = 'worship'">
-                <div class="tab-overlay" :class="{active: currentTab === 'worship'}"/>
-                <h3><HeartHandshake style = "margin-bottom:-.25rem;" class="ht"/> Worship</h3>
-            </div>
         </div>
         <p id = "submit-correction">Contact<a href = "mailto:josephclaytonhansen@gmail.com">Joseph Hansen</a>to request edit access.<br/><span id = 'disclaimer'>OKCSouthStake.org is not affiliated with, edited, reviewed, or maintained by The Church of Jesus Christ of Latter Day Saints.</span></p>
     </div>

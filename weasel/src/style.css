@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Manrope:wght@200;300;400;500;600&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&family=Mulish:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Vollkorn:ital@0;1&display=swap');
 
 :root {
     --accent: #286c6f;
@@ -10,13 +10,14 @@
     --dark-gray: hsl(248, 11%, 15%);
     --dark-blue: #243c4e;
     --off-white: #f7f8f7;
-    --color1: #569a9d;
-    --color2: hsl(165, 63%, 57%);
-    --color3: hsl(197, 63%, 57%);
+    --color1: hsl(0, 50%, 59%);
+    --color2: hsl(165, 43%, 52%);
+
+    --color3: hsl(260, 60%, 60%);
     --color4: hsl(203, 86%, 56%);
-    --color5: hsl(215, 87%, 64%);
-    --color6: hsl(226, 64%, 62%);
-    --color7: hsl(249, 30%, 63%);
+    --color5: #F1945B;
+    --color6: #3CAB3D;
+    --color7: #05B2A2;
     --active-color: black;
 }
 
@@ -36,7 +37,7 @@ body.light p {
 
 p {
 
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Mulish', sans-serif;
 }
 
 a {
@@ -89,7 +90,7 @@ body.light h6 {
 }
 
 h1 {
-    font-family: 'Fira Sans Condensed', sans-serif;
+    font-family: 'Vollkorn', serif;
     text-transform: uppercase;
 }
 
@@ -98,8 +99,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    text-transform: uppercase;
+    font-family: 'Vollkorn', sans-serif;
+    font-weight:500;
 }
 
 
@@ -128,8 +129,8 @@ body.light {
 button {
     --p: 10%;
     font-family: 'Fira Sans Condensed', sans-serif;
-    text-transform: uppercase;
-    background-color: var(--gray);
+
+    background-color: var(--active-color);
     color: var(--off-white);
     border-radius: 4px;
     outline: none;
