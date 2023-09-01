@@ -14,6 +14,7 @@ import {Mail, Phone} from 'lucide-vue-next'
         phone: String,
         classes: String,
         size: String,
+        organization: String,
     })
 
 function setClassBySizeProp() {

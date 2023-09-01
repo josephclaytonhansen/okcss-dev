@@ -6,6 +6,7 @@ const props = defineProps({
     size: {String, default: 'full'},
     colorClass: String,
     contacts: Array,
+    organizations: Array,
     ward: String,
     events: Array,
     tools: Array,
@@ -37,13 +38,21 @@ function setPersonClassesByContactSize(size) {
     }
 }
 
+function filterContactsByOrganization(organization) {
+    return props.contacts.filter(contact => contact.organization === organization)
+}
+
 watch(currentTab, tabChanged)
 
 </script>
 
 <template>
-     <div class = "row wrap flex-between">
-        <PersonCard v-for="contact in props.contacts" :key="contact.id" :name="contact.name" :image="contact.image" :position="contact.position" :email="contact.email" :phone="contact.phone" :classes="setPersonClassesByContactSize(contact.size)" :size="contact.size"/>
+    <div v-for = "organization in organizations">
+        <h2>{{organization}}</h2>
+     <div class = "row wrap">
+
+        <PersonCard v-for="contact in filterContactsByOrganization(organization)" :key="contact.id" :name="contact.name" :image="contact.image" :position="contact.position" :email="contact.email" :phone="contact.phone" :classes="setPersonClassesByContactSize(contact.size)" :size="contact.size"/>
   </div>
+</div>
 
 </template>
