@@ -359,6 +359,8 @@ body.light .card:hover h2{
 
 .img-container{
     position: relative;
+    height:100%;
+    width:100%;
 }
 
 .img-container:has(.square)::after{
@@ -372,6 +374,11 @@ body.light .card:hover h2{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.img-container img{
+    object-fit: cover;
+    height:100%;
 }
 
 .img-container:has(img.rounded){

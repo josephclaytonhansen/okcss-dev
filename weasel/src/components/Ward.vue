@@ -1,6 +1,7 @@
 <script setup>
     import {ref,watch} from 'vue'
     import PersonCard from './PersonCard.vue'
+    import Location from './Location.vue'
     import {Contact2, Calendar, HeartHandshake, ListTodo} from 'lucide-vue-next'
     import HomeBack from './HomeBack.vue'
 
@@ -13,7 +14,12 @@ const props = defineProps({
     events: Array,
     tools: Array,
     worship: {
-        location: String,
+        location: {
+            address: String,
+            city: String,
+            state: String,
+            zip: String
+        },
         time: String,
         googleMapsLink: String,
         image: {
@@ -76,6 +82,7 @@ watch(currentTab, tabChanged)
 
         <!------------------------------ Tab: Worship ----------------------------- -->
         <div v-else-if="currentTab === 'worship'">
+            <Location :location="worship.location" :time="worship.time" :googleMapsLink="worship.googleMapsLink" :image="worship.image"/>
         </div>
     </div>
     <!------------------------------ Tab buttons ----------------------------- -->
