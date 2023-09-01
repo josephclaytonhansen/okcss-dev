@@ -19,7 +19,7 @@ function toggle() {
 </script>
 
 <template>
-    <button @click="toggle" class = "lucide-button">
+    <button @click="toggle" class = "lucide-button" id = "dmt">
         <template v-if="props.darklight == 'dark'">
             <Sun />
         </template>
@@ -28,3 +28,13 @@ function toggle() {
         </template>
     </button>
 </template>
+
+<style>
+#dmt {
+    position: fixed;
+    top: .25rem;
+    right: .25rem;
+    z-index: 100;
+    transform: scale(75%);
+}
+</style>

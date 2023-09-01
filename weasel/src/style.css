@@ -17,6 +17,7 @@
     --color5: hsl(215, 87%, 64%);
     --color6: hsl(226, 64%, 62%);
     --color7: hsl(249, 30%, 63%);
+    --active-color: black;
 }
 
 @property --p {
