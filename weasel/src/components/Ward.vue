@@ -2,6 +2,7 @@
     import {ref,watch} from 'vue'
     import PersonCard from './PersonCard.vue'
     import Location from './Location.vue'
+    import Tools from './Tools.vue'
     import {Contact2, Calendar, HeartHandshake, ListTodo} from 'lucide-vue-next'
     import HomeBack from './HomeBack.vue'
 
@@ -77,7 +78,8 @@ watch(currentTab, tabChanged)
         </div>
 
         <!------------------------------ Tab: Tools ----------------------------- -->
-        <div v-else-if="currentTab === 'tool'">
+        <div v-else-if="currentTab === 'tools'">
+            <Tools/>
         </div>
 
         <!------------------------------ Tab: Worship ----------------------------- -->
