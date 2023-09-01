@@ -13,7 +13,15 @@ const props = defineProps({
     organizations: Array,
     ward: String,
     events: Array,
-    tools: Array,
+    tools: {
+        sbmr: String,
+        sbu: String,
+        stri: String,
+        sutftm: String,
+        vso: String,
+        vsrc: String,
+        vtpc: String
+    },
     worship: {
         location: {
             address: String,
@@ -80,13 +88,13 @@ watch(currentTab, tabChanged)
         <!------------------------------ Tab: Tools ----------------------------- -->
         <div v-else-if="currentTab === 'tools'">
             <Tools
-            :sbmrHTML="'<p>Add a tool here</p>'"
-            :sbuHTML="'<p>Add a tool here</p>'"
-            :striHTML="'<p>Add a tool here</p>'"
-            :sutftmHTML="'<p>Add a tool here</p>'"
-            :vsoHTML="'<p>Add a tool here</p>'"
-            :vsrcHTML="'<p>Add a tool here</p>'"
-            :vtpcHTML="'<p>Add a tool here</p>'"
+            :sbmrHTML="tools.sbmr"
+            :sbuHTML="tools.sbu"
+            :striHTML="tools.stri"
+            :sutftmHTML="tools.sutftm"
+            :vsoHTML="tools.vso"
+            :vsrcHTML="tools.vsrc"
+            :vtpcHTML="tools.vtpc"
             />
         </div>
 
