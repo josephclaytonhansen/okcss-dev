@@ -3,7 +3,8 @@ import { reactive, ref, watch } from 'vue'
 
 import List from './List.vue'
 import WardCard from './WardCard.vue'
-import PersonCard from './PersonCard.vue'
+
+import Ward from './Ward.vue'
 
 const awesome = ref(true)
 const msg = ref('Hello World!')
@@ -43,13 +44,21 @@ watch(awesome, logAwesome)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-  <h2>{{ childMsg }}</h2>
-  <div class = "row wrap">
-    <PersonCard name="John Doe" :image="{src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}" position="Bishop" email="email@email.com" phone="555-555-5555" classes='row person col-6 right fwc'/>
-    <PersonCard name="John Doe" :image="{src: 'https://picsum.photos/200/400', alt: 'random image', width: '100%', class: 'person-img square'}" position="Bishop" email="email@email.com" phone="555-555-5555" classes='row person col-6 right fwc'/>
-  </div>
+
   
+  <Ward :contacts="[
+    {id: 1, name: 'John R. Doe', image: {src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}, position: 'Bishop', email: 'email@email.com', phone: '555-205-4222', size:'full'},
+    {id: 2, name: 'John Bing', image: {src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}, position: 'First Counselor', email: 'email2@email.com', phone: '205-555-5020', size:'full'},
+    {id: 3, name: 'John Smith', image: {src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}, position: 'Second Counselor', email: 'email3@email.com', phone: '555-205-5442', size:'small'},
+    {id: 3, name: 'John Smith', image: {src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}, position: 'Second Counselor', email: 'email3@email.com', phone: '555-205-5442', size:'small'},
+    {id: 3, name: 'John Smith', image: {src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}, position: 'Second Counselor', email: 'email3@email.com', phone: '555-205-5442', size:'small'},
+    {id: 3, name: 'John Smith', image: {src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}, position: 'Second Counselor', email: 'email3@email.com', phone: '555-205-5442', size:'small'}
+    ]"/>
+
+
+<details>
+    <h1>{{ msg }}</h1>
+  <h2>{{ childMsg }}</h2>
   <button @click="toggle">toggle</button>
   <h3 v-if="awesome">Vue is awesome!</h3>
   <h3 v-else>Oh no 😢</h3>
@@ -70,4 +79,5 @@ watch(awesome, logAwesome)
 </div>
 </div>
 </div>
+  </details>
 </template>

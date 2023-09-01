@@ -203,6 +203,14 @@ button:active {
     justify-content: space-between;
 }
 
+.flex-around {
+    justify-content: space-around;
+}
+
+.flex-evenly {
+    justify-content: space-evenly;
+}
+
 .flex-center {
     justify-content: center;
 }
@@ -221,6 +229,10 @@ button:active {
     align-items: center;
 }
 
+.col-12{
+    width: 100%;
+}
+
 .col-9 {
     width: 75%;
 }
@@ -235,7 +247,7 @@ button:active {
 
 @media screen and (max-width: 1000px) {
     .fwc{
-        width: 100%;
+        width: 100%!important;
     }
 }
 
@@ -245,6 +257,10 @@ button:active {
 
 .col-3 {
     width: calc(25% - 2rem);
+}
+
+.col-2 {
+    width: calc(16.66% - 2rem);
 }
 
 .col-17 {

@@ -2,7 +2,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 import DarkModeToggle from './components/DarkModeToggle.vue'
 import {ref} from 'vue'
-const darklight = ref('dark')
+const darklight = ref('light')
 </script>
 
 <template>

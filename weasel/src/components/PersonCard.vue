@@ -13,40 +13,74 @@ import {Mail, Phone} from 'lucide-vue-next'
         email: String,
         phone: String,
         classes: String,
+        size: String,
     })
+
+function setClassBySizeProp() {
+    if (props.size === 'full') {
+        return 'person-name'
+    } else {
+        return 'person-name nm'
+    }
+}
 </script>
 
 <template>
     <div :class = "classes">
-        <div class = "col-3 person-image" style='background-color: var(--lighter-gray);'>
+        <div v-if="size === 'full'" class = "col-3 person-image" style='background-color: var(--lighter-gray);'>
             <Image :src="image.src" :alt="image.alt" :width="image.width" :class="image.class"/>
         </div>
-        <div class = "col-9">
+        <div class = "col-9 col-grow">
             <div class = "person-details">
                 <p class = "person-position">{{position}}</p>
-                <h2 class = "person-name">{{name}}</h2>
-                <div class = "row wrap flex-between">
-                    <div class = "col-6 ">
-                        <div class = "row">
-                            <div class = "col-2">
+                <h2 :class="setClassBySizeProp()">{{name}}</h2>
+                <div v-if="size!=='full'">
+                    <div class = "row flex-between">
+                        <div class = "row"> 
+                            <div class = "col-2 ht col-grow">
                                 <Mail
                                 class="icon-color lucide-icon"
                                 />
                             </div>
-                            <div class = "col-10">
-                                <p class = "person-email">{{email}}</p>
+                            <div class = "col-10 col-grow person-email">
+                                <p><a :href="'mailto:'+email">{{email}}</a></p>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col-2 ht col-grow">
+                                <Phone
+                                class="icon-color lucide-icon"
+                                />
+                            </div>
+                            <div class = "col-10 col-grow person-phone">
+                                <p><a href = "'tel:'+phone">{{phone}}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div v-if="size==='full'" class = "row wrap flex-between">
+                    <div class = "col-6 ">
+                        <div class = "row">
+                            <div class = "col-2 ht">
+                                <Mail
+                                class="icon-color lucide-icon"
+                                />
+                            </div>
+                            <div class = "col-10 col-grow person-email">
+                                <p><a :href="'mailto:'+email">{{email}}</a></p>
                             </div>
                         </div>
                     </div>
                     <div class = "col-6">
                         <div class = "row">
-                            <div class = "col-2">
+                            <div class = "col-2 ht">
                                 <Phone
                                 class="icon-color lucide-icon"
                                 />
                             </div>
-                            <div class = "col-10">
-                                <p class = "person-phone">{{phone}}</p>
+                            <div class = "col-10 col-grow person-phone">
+                                <p><a href = "'tel:'+phone">{{phone}}</a></p>
                             </div>
                         </div>
                     </div>
@@ -69,6 +103,14 @@ body.dark .person{
 .person{
     border-radius:4px;
 }
+.person-details{
+    padding: min(1rem, 1vw);
+}
+
+.person-details .lucide-icon{
+    margin-top:.5rem;
+}
+
 body.light .person{
     background-color: var(--lightest-gray);
 }
@@ -87,13 +129,35 @@ body.light .person{
     padding-right:2rem;
 }
 
-.person-email, .person-phone{
-    min-width:120px;
+.nm{
+    margin-bottom:0px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 1300px) and (max-width: 1600px) {
+    .person-details{
+        font-size:90%;
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1300px) {
     .person-details{
         font-size:80%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .person-details{
+        font-size:85%;
+    }
+    .person-email{
+        width:fit-content;
+    }
+    .person-phone{
+        width:fit-content;
+        padding-right:1rem;
+    }
+    .ht{
+        display:none;
     }
 }
 
