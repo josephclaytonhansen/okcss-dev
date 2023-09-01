@@ -12,12 +12,12 @@ import {Mail, Phone} from 'lucide-vue-next'
         position: String,
         email: String,
         phone: String,
-        borderColor: String,
+        classes: String,
     })
 </script>
 
 <template>
-    <div :class = "borderColor">
+    <div :class = "classes">
         <div class = "col-4" style='background-color: var(--lighter-gray);'>
             <Image :src="image.src" :alt="image.alt" :width="image.width" :class="image.class"/>
         </div>
@@ -29,7 +29,9 @@ import {Mail, Phone} from 'lucide-vue-next'
                     <div class = "col-6">
                         <div class = "row">
                             <div class = "col-2">
-                                <Mail/>
+                                <Mail
+                                class="icon-color lucide-icon"
+                                />
                             </div>
                             <div class = "col-10">
                                 <p class = "person-email">{{email}}</p>
@@ -39,7 +41,9 @@ import {Mail, Phone} from 'lucide-vue-next'
                     <div class = "col-6">
                         <div class = "row">
                             <div class = "col-2">
-                                <Phone/>
+                                <Phone
+                                class="icon-color lucide-icon"
+                                />
                             </div>
                             <div class = "col-10">
                                 <p class = "person-phone">{{phone}}</p>
@@ -53,8 +57,30 @@ import {Mail, Phone} from 'lucide-vue-next'
 </template>
 
 <style>
-.person{background-color: var(--light-gray);}
+body.dark .icon-color{
+    stroke: var(--off-white);
+}
+body.light .icon-color{
+    stroke: var(--gray);
+}
+body.dark .person{
+    background-color: var(--gray);
+}
+body.light .person{
+    background-color: var(--lightest-gray);
+}
 .right{
     border-bottom: solid 10px var(--color1);
+}
+.person-position{
+    margin-bottom:0px;
+    text-transform: uppercase;
+    font-size:80%;
+}
+.person-name{
+    margin-top:.25rem;
+    border-bottom: solid 2px var(--light-gray);
+    width:fit-content;
+    padding-right:2rem;
 }
 </style>
