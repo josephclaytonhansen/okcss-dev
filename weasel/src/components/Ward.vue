@@ -79,19 +79,23 @@ watch(currentTab, tabChanged)
         </div>
     </div>
     <!------------------------------ Tab buttons ----------------------------- -->
-    <div class = "tab-row row flex-start wrap">
-        <div class = "tab" :class = "{activeTab: currentTab === 'contacts'}" @click = "currentTab = 'contacts'">
-            <div class="tab-overlay" :class="{active: currentTab === 'contacts'}"/>
-            <h3><Contact2 style = "margin-bottom:-.25rem;"/> Contacts</h3></div>
-        <div class = "tab" :class = "{activeTab: currentTab === 'events'}" @click = "currentTab = 'events'">
-            <div class="tab-overlay" :class="{active: currentTab === 'events'}"/>
-            <h3><Calendar style = "margin-bottom:-.25rem;"/> Events</h3></div>
-        <div class = "tab" :class = "{activeTab: currentTab === 'tools'}" @click = "currentTab = 'tools'">
-            <div class="tab-overlay" :class="{active: currentTab === 'tools'}"/>
-            <h3><ListTodo style = "margin-bottom:-.25rem;"/> Tools</h3></div>
-        <div class = "tab" :class = "{activeTab: currentTab === 'worship'}" @click = "currentTab = 'worship'">
-            <div class="tab-overlay" :class="{active: currentTab === 'worship'}"/>
-            <h3><HeartHandshake style = "margin-bottom:-.25rem;"/> Worship</h3></div>
+    <div class = "tab-row row flex-between wrap">
+        <div class = "tab-row-tabs row">
+            <div class = "tab" :class = "{activeTab: currentTab === 'contacts'}" @click = "currentTab = 'contacts'">
+                <div class="tab-overlay" :class="{active: currentTab === 'contacts'}"/>
+                <h3><Contact2 style = "margin-bottom:-.25rem;" class="ht"/> Contacts</h3></div>
+            <div class = "tab" :class = "{activeTab: currentTab === 'events'}" @click = "currentTab = 'events'">
+                <div class="tab-overlay" :class="{active: currentTab === 'events'}"/>
+                <h3><Calendar style = "margin-bottom:-.25rem;" class="ht"/> Events</h3></div>
+            <div class = "tab" :class = "{activeTab: currentTab === 'tools'}" @click = "currentTab = 'tools'">
+                <div class="tab-overlay" :class="{active: currentTab === 'tools'}"/>
+                <h3><ListTodo style = "margin-bottom:-.25rem;" class="ht"/> Tools</h3></div>
+            <div class = "tab" :class = "{activeTab: currentTab === 'worship'}" @click = "currentTab = 'worship'">
+                <div class="tab-overlay" :class="{active: currentTab === 'worship'}"/>
+                <h3><HeartHandshake style = "margin-bottom:-.25rem;" class="ht"/> Worship</h3>
+            </div>
+        </div>
+        <p id = "submit-correction">Contact<a href = "mailto:josephclaytonhansen@gmail.com">Joseph Hansen</a>to request edit access.<br/><span id = 'disclaimer'>OKCSouthStake.org is not affiliated with, edited, reviewed, or maintained by The Church of Jesus Christ of Latter Day Saints.</span></p>
     </div>
 </section>
 
@@ -148,9 +152,13 @@ details h2{
 }
 
 .tab-row{
+    align-items:start!important;
+}
+
+.tab-row-tabs{
     gap: 0 !important;
-    margin-top:-0.5rem;
     padding-left:2rem;
+    margin-top:-0.5rem;
 }
 
 .tab{
@@ -174,6 +182,7 @@ body.dark .tab:hover{
     margin-top:.5rem;
 }
 
+
 .tab h3{
     margin-top: .25rem;
     margin-bottom:.25rem;
@@ -188,7 +197,7 @@ body.dark .tab:hover{
     width: 200%;
     margin-left:-999px;
     padding-left:999px;
-    transition: .4s all;
+    transition: .3s all;
     transform: translateY(2rem);
     pointer-events: none;
     position:relative;
@@ -212,6 +221,16 @@ body.light .tab{
 
 body.dark .tab{
     border: solid 1px var(--gray);
+}
+
+#submit-correction{
+    align-self:start;
+    text-align: right;
+}
+
+#disclaimer{
+    font-size:50%;
+
 }
 
 .Choctaw{
