@@ -45,9 +45,9 @@ watch(awesome, logAwesome)
 <template>
   <h1>{{ msg }}</h1>
   <h2>{{ childMsg }}</h2>
-  <div class = "row">
-    <PersonCard name="John Doe" :image="{src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}" position="Bishop" email="email@email.com" phone="555-555-5555" classes='row person col-6 right'/>
-    <PersonCard name="John Doe" :image="{src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}" position="Bishop" email="email@email.com" phone="555-555-5555" classes='row person col-6 right'/>
+  <div class = "row wrap">
+    <PersonCard name="John Doe" :image="{src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}" position="Bishop" email="email@email.com" phone="555-555-5555" classes='row person col-6 right fwc'/>
+    <PersonCard name="John Doe" :image="{src: 'https://picsum.photos/200/400', alt: 'random image', width: '100%', class: 'person-img square'}" position="Bishop" email="email@email.com" phone="555-555-5555" classes='row person col-6 right fwc'/>
   </div>
   
   <button @click="toggle">toggle</button>

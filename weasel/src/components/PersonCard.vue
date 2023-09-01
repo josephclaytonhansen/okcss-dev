@@ -25,8 +25,8 @@ import {Mail, Phone} from 'lucide-vue-next'
             <div class = "person-details">
                 <p class = "person-position">{{position}}</p>
                 <h2 class = "person-name">{{name}}</h2>
-                <div class = "row">
-                    <div class = "col-6">
+                <div class = "row wrap flex-between">
+                    <div class = "col-6 ">
                         <div class = "row">
                             <div class = "col-2">
                                 <Mail
@@ -66,6 +66,9 @@ body.light .icon-color{
 body.dark .person{
     background-color: var(--gray);
 }
+.person{
+    border-radius:4px;
+}
 body.light .person{
     background-color: var(--lightest-gray);
 }
@@ -82,5 +85,15 @@ body.light .person{
     border-bottom: solid 2px var(--light-gray);
     width:fit-content;
     padding-right:2rem;
+}
+
+.person-email, .person-phone{
+    min-width:120px;
+}
+
+@media screen and (max-width: 1200px) {
+    .person-details{
+        font-size:75%;
+    }
 }
 </style>
