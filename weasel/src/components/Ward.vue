@@ -52,9 +52,7 @@ watch(currentTab, tabChanged)
 
 <template>
     <HomeBack :ward="ward"/>
-
 <!------------------------------ Tab container ----------------------------- -->
-
 <section class = "tabs" :class="ward">
     <div class = "tab-content">
         <!------------------------------ Tab: Contacts ----------------------------- -->
@@ -68,7 +66,19 @@ watch(currentTab, tabChanged)
                 </details>
             </div>
         </div>
+            <!------------------------------ Tab: Events ----------------------------- -->
+        <div v-else-if="currentTab === 'events'">
+        </div>
+
+        <!------------------------------ Tab: Tools ----------------------------- -->
+        <div v-else-if="currentTab === 'tool'">
+        </div>
+
+        <!------------------------------ Tab: Worship ----------------------------- -->
+        <div v-else-if="currentTab === 'worship'">
+        </div>
     </div>
+    <!------------------------------ Tab buttons ----------------------------- -->
     <div class = "tab-row row flex-start wrap">
         <div class = "tab" :class = "{activeTab: currentTab === 'contacts'}" @click = "currentTab = 'contacts'">
             <div class="tab-overlay" :class="{active: currentTab === 'contacts'}"/>
@@ -85,10 +95,13 @@ watch(currentTab, tabChanged)
     </div>
 </section>
 
-
 </template>
 
 <style>
+.tabs{
+    margin-top:4rem;
+    
+}
 
 details{
     margin-bottom:1rem;

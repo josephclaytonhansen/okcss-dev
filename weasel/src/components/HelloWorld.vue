@@ -47,7 +47,7 @@ watch(awesome, logAwesome)
 
   
   <Ward
-  :ward="'Moore'"
+  :ward="'Choctaw'"
   :organizations="['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s','Ward Missionaries']"
   :contacts="[
     {id: 1, name: 'John R. Doe', image: {src: 'https://picsum.photos/200/300', alt: 'random image', width: '100%', class: 'person-img square'}, position: 'Bishop', email: 'email@email.com', phone: '555-205-4222', size:'full', organization: 'Bishopric'},
