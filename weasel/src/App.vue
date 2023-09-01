@@ -1,7 +1,11 @@
 <script setup>
 import DarkModeToggle from './components/DarkModeToggle.vue'
 import { reactive, ref, watch } from 'vue'
-const darklight = ref('light')
+
+const darklight = ref(
+  localStorage.getItem('darklight') || 'light'
+)
+
 
 import Ward from './components/Ward.vue'
 

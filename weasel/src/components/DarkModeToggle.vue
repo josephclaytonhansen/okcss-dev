@@ -10,8 +10,10 @@ const emit = defineEmits(['update'])
 function toggle() {
   if (props.darklight == 'dark') {
     emit('update', 'light')
+    localStorage.setItem('darklight', 'light')
   } else {
     emit('update', 'dark')
+    localStorage.setItem('darklight', 'dark')
   }
 }
 
