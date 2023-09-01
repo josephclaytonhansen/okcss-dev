@@ -30,12 +30,14 @@ function tabChanged(tab) {
     currentTab.value = tab
 }
 
-function setPersonClassesByContactSize(size) {
+function setPersonClassesByContactSize(size, ward) {
+    let s = 'row person fwc'
     if (size === 'full') {
-        return 'row person col-6 right fwc'
+        s = s + ' col-6' + ' ' + ward
     } else {
-        return 'row person col-3 right fwc'
+        s= s + ' col-3' + ' ' + ward
     }
+    return s
 }
 
 function filterContactsByOrganization(organization) {
@@ -50,9 +52,32 @@ watch(currentTab, tabChanged)
     <div v-for = "organization in organizations">
         <h2>{{organization}}</h2>
      <div class = "row wrap">
-
-        <PersonCard v-for="contact in filterContactsByOrganization(organization)" :key="contact.id" :name="contact.name" :image="contact.image" :position="contact.position" :email="contact.email" :phone="contact.phone" :classes="setPersonClassesByContactSize(contact.size)" :size="contact.size"/>
+        <PersonCard v-for="contact in filterContactsByOrganization(organization)" :key="contact.id" :name="contact.name" :image="contact.image" :position="contact.position" :email="contact.email" :phone="contact.phone" :classes="setPersonClassesByContactSize(contact.size, ward)" :size="contact.size"/>
   </div>
 </div>
 
 </template>
+
+<style>
+.Choctaw{
+    border-bottom: solid 10px var(--color1);
+}
+.Midwest-City{
+    border-bottom: solid 10px var(--color2);
+}
+.OKC-2nd{
+    border-bottom: solid 10px var(--color3);
+}
+.Moore{
+    border-bottom: solid 10px var(--color4);
+}
+.OKC-6th-Branch{
+    border-bottom: solid 10px var(--color5);
+}
+.Mustang-2nd{
+    border-bottom: solid 10px var(--color6);
+}
+.Mustang-1st{
+    border-bottom: solid 10px var(--color7);
+}
+</style>

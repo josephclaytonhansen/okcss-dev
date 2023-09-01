@@ -115,9 +115,7 @@ body.dark .person{
 body.light .person{
     background-color: var(--lightest-gray);
 }
-.right{
-    border-bottom: solid 10px var(--color1);
-}
+
 .person-position{
     margin-bottom:0px;
     text-transform: uppercase;
