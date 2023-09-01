@@ -79,7 +79,15 @@ watch(currentTab, tabChanged)
 
         <!------------------------------ Tab: Tools ----------------------------- -->
         <div v-else-if="currentTab === 'tools'">
-            <Tools/>
+            <Tools
+            :sbmrHTML="'<p>Add a tool here</p>'"
+            :sbuHTML="'<p>Add a tool here</p>'"
+            :striHTML="'<p>Add a tool here</p>'"
+            :sutftmHTML="'<p>Add a tool here</p>'"
+            :vsoHTML="'<p>Add a tool here</p>'"
+            :vsrcHTML="'<p>Add a tool here</p>'"
+            :vtpcHTML="'<p>Add a tool here</p>'"
+            />
         </div>
 
         <!------------------------------ Tab: Worship ----------------------------- -->

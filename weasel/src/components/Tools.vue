@@ -7,6 +7,16 @@ function tabChanged(tab) {
     currentTool.value = tab
 }
 
+const Props = defineProps({
+    striHTML: String,
+    sbuHTML: String,
+    sbmrHTML: String,
+    vsrcHTML: String,
+    vtpcHTML: String,
+    sutftmHTML: String,
+    vsoHTML: String
+})
+
 </script>
 
 <template>
@@ -20,7 +30,37 @@ function tabChanged(tab) {
             <button class = "tool" :class="currentTool === 'sutftm' ? 'active-tool' : ''" @click="tabChanged('sutftm')">Sign up to feed the missionaries</button>
             <button class = "tool" :class="currentTool === 'vso' ? 'active-tool' : ''" @click="tabChanged('vso')">View service opportunities</button>
         </div>
-        <div class = "column flex-between col-8 fwc tool-section"></div>
+        <div class = "column flex-between col-8 fwc tool-section">
+            <div v-if = "currentTool === 'stri'">
+                <h2>Schedule temple recommend interview</h2>
+                <div v-html="striHTML"></div>
+            </div>
+            <div v-else-if = "currentTool === 'sbu'">
+                <h2>Schedule building use</h2>
+                <div v-html="sbuHTML"></div>
+            </div>
+            <div v-else-if = "currentTool === 'sbmr'">
+                <h2>Submit building maintenance request</h2>
+                <div v-html="sbmrHTML"></div>
+            </div>
+            <div v-else-if = "currentTool === 'vsrc'">
+                <h2>View self reliance classes</h2>
+                <div v-html="vsrcHTML"></div>
+            </div>
+            <div v-else-if = "currentTool === 'vtpc'">
+                <h2>View temple/missionary preparation classes</h2>
+                <div v-html="vtpcHTML"></div>
+            </div> 
+            <div v-else-if = "currentTool === 'sutftm'">
+                <h2>Sign up to feed the missionaries</h2>
+                <div v-html="sutftmHTML"></div>
+            </div>
+            <div v-else-if = "currentTool === 'vso'">
+                <h2>View service opportunities</h2>
+                <div v-html="vsoHTML"></div>
+            </div>
+
+        </div>
     </div>
 </template>
 
