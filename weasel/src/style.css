@@ -128,7 +128,7 @@ body.light {
 
 button {
     --p: 10%;
-    font-family: 'Fira Sans Condensed', sans-serif;
+    font-family: 'Mulish', sans-serif;
 
     background-color: var(--active-color);
     color: var(--off-white);
