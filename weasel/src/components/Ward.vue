@@ -89,7 +89,7 @@ watch(currentTab, tabChanged)
                   title: 'Advanced algebra',
                   time: { start: '2022-05-16 12:05', end: '2022-05-16 13:35' },
                   color: 'yellow',
-                  isEditable: true,
+                  isEditable: false,
                   id: '753944708f0f',
                   description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
                 },
@@ -97,8 +97,9 @@ watch(currentTab, tabChanged)
                   title: 'Ralph on holiday',
                   time: { start: '2023-09-02', end: '2023-09-05' },
                   color: 'green',
-                  isEditable: true,
-                  id: '5602b6f589fc'
+                  isEditable: false,
+                  id: '5602b6f589fc',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
                 }
             ]}"/>
         </div>

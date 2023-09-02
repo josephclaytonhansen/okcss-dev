@@ -236,7 +236,7 @@ button:hover {
         width: 100%!important;
     }
     .tab-row-tabs{
-        margin-top:0rem;
+        margin-top:0rem!important;
     }
 }
 

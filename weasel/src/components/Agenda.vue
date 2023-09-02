@@ -28,7 +28,7 @@ onMounted(() => {
     getToday()
     let month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     month_name.value.textContent = month_names[today.month-1]
-    day.value.textContent = today.day
+    day.value.textContent = " - " + today.day + " - "
 })
 
 const getTodaysEvents = () => {
@@ -49,20 +49,20 @@ const getTodaysEvents = () => {
 
 <template>
     <div class="agenda column flex-evenly">
-        <div class = "today">
+        <div class = "today col-shrink">
             <h2 ref = "day"></h2>
-            <p ref = "month_name"></p>
+            <h3 ref = "month_name"></h3>
         </div>
-        <div class = "events">
-        <div class = "event" v-for = "event in getTodaysEvents()">
-            <h3>{{event.title}}</h3>
-            <p>{{event.time.start}} - {{event.time.end}}</p>
-        </div>
+        <hr style = "width:90%; margin-top:2rem;margin-bottom:2rem;"/>
+        <div class = "events col-grow">
+            <ul>
+                <li class = "event" v-for = "event in getTodaysEvents()">
+                    <h3 class="event-title">{{event.title}}</h3>
+                    <p class = "event-description">{{ event.description }}</p>
+                </li>
+            </ul>
     </div>
     </div>
-
-    
-
 </template>
 
 <style>
@@ -80,5 +80,33 @@ const getTodaysEvents = () => {
         min-height:500px;
 
     }
+}
+
+.today * {
+    color: var(--off-white)!important;
+}
+
+.events{
+    background-color: var(--off-white);
+    border-radius:5px;
+    padding:1rem;
+}
+
+.today{
+    text-align: center;
+}
+
+.today h2 {
+    font-size: 500%;
+    font-weight: 500;
+    margin-bottom:0;
+    margin-top:0;
+}
+
+.today h3 {
+    margin-bottom:0;
+    margin-top:-1rem;
+    font-size: 200%;
+    font-weight: 500;
 }
 </style>
