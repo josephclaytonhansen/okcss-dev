@@ -38,9 +38,9 @@ function setClassBySizeProp() {
                 <h2 :class="setClassBySizeProp()">{{name}}</h2>
                 <p class = "bio">{{bio}}</p>
                 <div v-if="size!=='full'">
-                    <div class = "row flex-between" style="margin-bottom:-1rem">
-                        <div class = "row"> 
-                            <div class = "col-2 ht col-grow">
+                    <div class = "row flex-between wrap" style="margin-bottom:-1rem; gap:0">
+                        <div class = "row col-grow"> 
+                            <div class = "col-2 ht ic">
                                 <Mail
                                 class="icon-color lucide-icon"
                                 />
@@ -49,8 +49,8 @@ function setClassBySizeProp() {
                                 <p><a :href="'mailto:'+email">{{email}}</a></p>
                             </div>
                         </div>
-                        <div class = "row">
-                            <div class = "col-2 ht col-grow">
+                        <div class = "row col-grow">
+                            <div class = "col-2 ht ic">
                                 <Phone
                                 class="icon-color lucide-icon"
                                 />
@@ -62,11 +62,11 @@ function setClassBySizeProp() {
                     </div>
                     
                 </div>
-                <div v-if="size==='full'" class = "row wrap flex-between" style="margin-bottom:-1rem">
+                <div v-if="size==='full'" class = "row wrap flex-between" style="margin-bottom:-1rem;gap:0">
 
-                    <div class = "col-6 ">
+                    <div class = "col-6 fwc">
                         <div class = "row">
-                            <div class = "col-2 ht">
+                            <div class = "col-2 ht ic">
                                 <Mail
                                 class="icon-color lucide-icon"
                                 />
@@ -76,9 +76,9 @@ function setClassBySizeProp() {
                             </div>
                         </div>
                     </div>
-                    <div class = "col-6">
+                    <div class = "col-6 fwc">
                         <div class = "row">
-                            <div class = "col-2 ht">
+                            <div class = "col-2 ht ic">
                                 <Phone
                                 class="icon-color lucide-icon"
                                 />
@@ -166,4 +166,9 @@ body.light .person{
 .person-image{
     min-width:120px;
 }
+
+.ic{
+    padding-right:.5rem;
+}
+
 </style>

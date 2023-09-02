@@ -104,8 +104,8 @@ watch(currentTab, tabChanged)
         </div>
     </div>
     <!------------------------------ Tab buttons ----------------------------- -->
-    <div class = "tab-row row flex-between wrap">
-        <div class = "tab-row-tabs row">
+    <div class = "tab-row row flex-between">
+        <div class = "tab-row-tabs row wrap">
             <div class = "tab" :class = "{activeTab: currentTab === 'worship'}" @click = "currentTab = 'worship'">
                 <div class="tab-overlay" :class="{active: currentTab === 'worship'}"/>
                 <h3><HeartHandshake style = "margin-bottom:-.25rem;" class="ht"/> Worship</h3>

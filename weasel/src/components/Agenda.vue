@@ -1,0 +1,29 @@
+<script setup>
+const props = defineProps({
+    events: Array,
+    ward: String,
+})
+</script>
+
+<template>
+    <div class="agenda"></div>
+
+</template>
+
+<style>
+.agenda {
+    height: 95%;
+    width: calc(100% - 4rem);
+    margin-left:2rem;
+    background-color: var(--active-color);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .agenda {
+        min-height:500px;
+
+    }
+}
+</style>

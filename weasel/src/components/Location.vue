@@ -81,7 +81,9 @@ align-items: stretch!important;
 
 .loc-text{
     text-align:center;
-    color: var(--off-white)
+    color: var(--off-white);
+    padding-left:1rem;
+    padding-right:1rem;
 }
 
 #time, #address, #cs, #zip{

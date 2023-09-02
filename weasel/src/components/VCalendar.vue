@@ -32,8 +32,8 @@ export default {
   @import '../../node_modules/qalendar/dist/style.css';
   
   .calendar-wrapper {
-    width: 100%;
-    max-width: 1600px;
+    width: 99%;
+    height:70vh;
     --qalendar-theme-color: var(--active-color);
   }
 
