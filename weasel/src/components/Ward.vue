@@ -5,7 +5,7 @@
     import Tools from './Tools.vue'
     import {Contact2, Calendar, HeartHandshake, ListTodo} from 'lucide-vue-next'
     import HomeBack from './HomeBack.vue'
-    import VCalendar from './VCalendar.vue'
+    import CCalendar from './CCalendar.vue'
 
 const props = defineProps({
     size: {String, default: 'full'},
@@ -84,7 +84,7 @@ watch(currentTab, tabChanged)
         </div>
             <!------------------------------ Tab: Events ----------------------------- -->
         <div v-else-if="currentTab === 'events'">
-            <VCalendar/>
+            <CCalendar :events="{}"/>
         </div>
 
         <!------------------------------ Tab: Tools ----------------------------- -->
@@ -188,6 +188,10 @@ details h2{
     margin-top:-0.5rem;
 }
 
+.tab-row-tabs-calendar{
+    margin-top: 0!important;
+}
+
 .tab{
     padding: 0.5rem 1rem;
     border-radius: 0px 0px 8px 8px;
@@ -195,6 +199,11 @@ details h2{
     transition: 0.2s all;
     cursor: pointer;
 }
+
+.calendar-tab{
+    border-radius: 8px 8px 0px 0px!important;
+}
+
 
 body.light .tab:hover{
     background-color: var(--lightest-gray);
@@ -207,6 +216,10 @@ body.dark .tab:hover{
 .activeTab{
     padding: 0.75rem 2rem;
     margin-top:.5rem;
+}
+
+.calendar-tab:not(.activeTab){
+    margin-bottom:-1rem;
 }
 
 
@@ -229,6 +242,10 @@ body.dark .tab:hover{
     pointer-events: none;
     position:relative;
     z-index:1;
+}
+
+.calendar-tab-overlay{
+    transform: translateY(2rem);
 }
 
 .activeTab .tab-overlay{
