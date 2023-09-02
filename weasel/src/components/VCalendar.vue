@@ -11,20 +11,14 @@
 import { Qalendar } from "qalendar";
 
 export default {
+    name: 'VCalendar',
     components: {
-        Qalendar,
+        Qalendar
     },
-
-    data() {
-        return {
-            events: [
-                
-            ],
-            config: {
-              
-            }
-        }
-    },
+    props: {
+        events: Array,
+        config: Object
+    }
 }
 </script>
   

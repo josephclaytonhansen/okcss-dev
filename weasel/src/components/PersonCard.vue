@@ -95,12 +95,7 @@ function setClassBySizeProp() {
 </template>
 
 <style>
-body.dark .icon-color{
-    stroke: var(--off-white);
-}
-body.light .icon-color{
-    stroke: var(--gray);
-}
+
 body.dark .person{
     background-color: var(--gray);
 }

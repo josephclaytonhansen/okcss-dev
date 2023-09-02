@@ -3,7 +3,7 @@
     import VCalendar from './VCalendar.vue'
     import Agenda from './Agenda.vue'
     const props = defineProps({
-        events: Array,
+        events: Object,
         config: Object,
         ward: String,
     })

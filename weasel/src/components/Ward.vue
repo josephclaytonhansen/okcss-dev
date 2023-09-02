@@ -84,7 +84,23 @@ watch(currentTab, tabChanged)
         </div>
             <!------------------------------ Tab: Events ----------------------------- -->
         <div v-else-if="currentTab === 'events'">
-            <CCalendar :events="{}"/>
+            <CCalendar :events="{ward: [
+                {
+                  title: 'Advanced algebra',
+                  time: { start: '2022-05-16 12:05', end: '2022-05-16 13:35' },
+                  color: 'yellow',
+                  isEditable: true,
+                  id: '753944708f0f',
+                  description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+                },
+                {
+                  title: 'Ralph on holiday',
+                  time: { start: '2023-09-02', end: '2023-09-05' },
+                  color: 'green',
+                  isEditable: true,
+                  id: '5602b6f589fc'
+                }
+            ]}"/>
         </div>
 
         <!------------------------------ Tab: Tools ----------------------------- -->
@@ -127,143 +143,6 @@ watch(currentTab, tabChanged)
 </template>
 
 <style>
-.tabs{
-    margin-top:4rem;
-    
-}
-
-details{
-    margin-bottom:1rem;
-}
-
-summary{
-    transition: 0.3s all;
-    width:fit-content;
-}
-
-body.light summary{
-    color: var(--gray);
-}
-
-body.dark summary{
-    color: var(--off-white);
-}
-
-summary:hover{
-    cursor:pointer;
-}
-
-body.light summary:hover{
-    background-color: var(--lightest-gray);
-}
-
-body.dark summary:hover{
-    background-color: var(--gray);
-}
-
-details[open] summary{
-    color: var(--active-color);
-    margin-bottom:1rem;
-}
-
-details h2{
-    display:inline;
-}
-
-.tab-content{
-    height:80vh;
-    width:100%;
-    overflow-y:auto;
-}
-
-.tab-row{
-    align-items:start!important;
-}
-
-.tab-row-tabs{
-    gap: 0 !important;
-    padding-left:2rem;
-    margin-top:-0.5rem;
-}
-
-.tab-row-tabs-calendar{
-    margin-top: 0!important;
-}
-
-.tab{
-    padding: 0.5rem 1rem;
-    border-radius: 0px 0px 8px 8px;
-    overflow:hidden;
-    transition: 0.2s all;
-    cursor: pointer;
-}
-
-.calendar-tab{
-    border-radius: 8px 8px 0px 0px!important;
-}
-
-
-body.light .tab:hover{
-    background-color: var(--lightest-gray);
-}
-
-body.dark .tab:hover{
-    background-color: var(--gray);
-}
-
-.activeTab{
-    padding: 0.75rem 2rem;
-    margin-top:.5rem;
-}
-
-.calendar-tab:not(.activeTab){
-    margin-bottom:-1rem;
-}
-
-
-.tab h3{
-    margin-top: .25rem;
-    margin-bottom:.25rem;
-    position:relative;
-    z-index:10;
-}
-
-.tab-overlay{
-    padding-bottom: 9999px; 
-    margin-bottom: -9999px;
-    background-color: var(--active-color);
-    width: 200%;
-    margin-left:-999px;
-    padding-left:999px;
-    transition: .3s all;
-    transform: translateY(2rem);
-    pointer-events: none;
-    position:relative;
-    z-index:1;
-}
-
-.calendar-tab-overlay{
-    transform: translateY(2rem);
-}
-
-.activeTab .tab-overlay{
-    transform:translateY(-2rem);
-}
-body.dark .tab-content{
-    border-bottom: solid 1px var(--gray);
-}
-
-body.light .tab-content{
-    border-bottom: solid 1px var(--lighter-gray);
-}
-
-body.light .tab{
-    border: solid 1px var(--lighter-gray);
-}
-
-body.dark .tab{
-    border: solid 1px var(--gray);
-}
 
 #submit-correction{
     align-self:start;
