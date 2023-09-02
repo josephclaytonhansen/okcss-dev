@@ -15,6 +15,7 @@ import {Mail, Phone} from 'lucide-vue-next'
         classes: String,
         size: String,
         organization: String,
+        bio: String
     })
 
 function setClassBySizeProp() {
@@ -35,6 +36,7 @@ function setClassBySizeProp() {
             <div class = "person-details">
                 <p class = "person-position">{{position}}</p>
                 <h2 :class="setClassBySizeProp()">{{name}}</h2>
+                <p class = "bio">{{bio}}</p>
                 <div v-if="size!=='full'">
                     <div class = "row flex-between" style="margin-bottom:-1rem">
                         <div class = "row"> 
@@ -61,6 +63,7 @@ function setClassBySizeProp() {
                     
                 </div>
                 <div v-if="size==='full'" class = "row wrap flex-between" style="margin-bottom:-1rem">
+
                     <div class = "col-6 ">
                         <div class = "row">
                             <div class = "col-2 ht">
