@@ -5,6 +5,7 @@
     import Tools from './Tools.vue'
     import {Contact2, Calendar, HeartHandshake, ListTodo} from 'lucide-vue-next'
     import HomeBack from './HomeBack.vue'
+    import VCalendar from './VCalendar.vue'
 
 const props = defineProps({
     size: {String, default: 'full'},
@@ -83,6 +84,7 @@ watch(currentTab, tabChanged)
         </div>
             <!------------------------------ Tab: Events ----------------------------- -->
         <div v-else-if="currentTab === 'events'">
+            <VCalendar/>
         </div>
 
         <!------------------------------ Tab: Tools ----------------------------- -->
