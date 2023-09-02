@@ -94,8 +94,6 @@ watch(currentTab, tabChanged)
             :sbuHTML="tools.sbu"
             :striHTML="tools.stri"
             :sutftmHTML="tools.sutftm"
-            :vsoHTML="tools.vso"
-            :vsrcHTML="tools.vsrc"
             :vtpcHTML="tools.vtpc"
             />
         </div>

@@ -45,4 +45,8 @@ export default {
     background-color: var(--active-color)!important;
     color: var(--off-white);
   }
+
+  .calendar-month__weekday.is-today .calendar-month__day-date{
+    background-color: var(--active-color)!important;
+  }
   </style>
