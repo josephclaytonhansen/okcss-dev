@@ -1,7 +1,7 @@
 <script setup>
 import Ward from '../components/Ward.vue'
 import axios from 'axios'
-import { onMounted, reactive } from 'vue'
+import { onBeforeMount, onMounted, onRenderTriggered, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 //create a tools object, which will be passed to the Ward component, and get the data from the API using onMounted
@@ -20,9 +20,9 @@ const worship = reactive({
     data: null,
 })
 
-onMounted(async () => {
-    try {
-      //get ward from URL params
+
+onBeforeMount(async () => {
+
         const ward = route.params.ward
         const tools_response = await axios.get('http://localhost:5220/api/tools/ward/' + ward)
         tools.data = tools_response.data[0]
@@ -30,11 +30,11 @@ onMounted(async () => {
         events.data = events_response.data[0]
         const contacts_response = await axios.get('http://localhost:5220/api/persons/ward/' + ward)
         contacts.data = contacts_response.data[0]
-        const worship_response = await axios.get('http://localhost:5220/api/worships/ward/' + ward)
-        worship.data = worship_response.data[0]
-    } catch (error) {
-        console.error(error)
-    }
+        const worship_response = await axios.get('http://localhost:5220/api/worships/ward/' + ward).then((response) => {
+            worship.data = response.data[0]
+        })
+        console.log(worship.data.time)
+
 })
 
 
@@ -45,7 +45,7 @@ onMounted(async () => {
           :ward="$props.ward"
           :tools="tools.data"
           :events="events.data"
-          :worship="{location: {address: '', city: '', state: '', zip: '', phone:''}, time: '', googleMapsLink: '', image: {src: '', alt: '', width: '', class: 'church-img'}}"
+          :worship="worship.data"
           :organizations="['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s']"
           :contacts="[
             {id: 1, name: '', image: {src: '', alt: '', width: '100%', class: 'person-img square'}, position: '', email: '', phone: '', size:'', organization: '', bio: ''},
