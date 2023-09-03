@@ -11,3 +11,5 @@ import {
 
 router.route('/').get(getPersons).post(createPerson)
 router.route('/:id').get(getPersonById).put(updatePerson).delete(deletePerson)
+
+export default router

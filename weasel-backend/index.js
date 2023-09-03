@@ -17,6 +17,8 @@ import cookieParser from 'cookie-parser'
 
 import event_routes from './routes/eventRoutes.js'
 import person_routes from './routes/personRoutes.js'
+import worship_routes from './routes/worshipRoutes.js'
+import tool_routes from './routes/toolRoutes.js'
 
 const app = express()
 
@@ -92,6 +94,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/events', event_routes)
 app.use('/api/persons', person_routes)
+app.use('/api/worships', worship_routes)
+app.use('/api/tools', tool_routes)
 
 app.listen(process.env.PORT, () => {
     console.log('Server is running on port ' + process.env.PORT)
