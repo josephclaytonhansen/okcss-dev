@@ -7,7 +7,8 @@ const toolSchema = new mongoose.Schema({
     vsrc: String,
     vtpc: String,
     sutftm: String,
-    vso: String
+    vso: String,
+    ward: String,
 })
 
 const Tool = mongoose.model("Tool", toolSchema)

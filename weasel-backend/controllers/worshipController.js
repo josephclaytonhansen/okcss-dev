@@ -20,6 +20,7 @@ const createWorship = asyncHandler(async (req, res) => {
 const updateWorship = asyncHandler(async (req, res) => {
     const worship = await Worship.findById(req.params.id)
     if (worship) {
+        worship.ward = req.body.ward || worship.ward
         worship.location = req.body.location || worship.location
         worship.time = req.body.time || worship.time
         worship.googleMapsLink = req.body.googleMapsLink || worship.googleMapsLink

@@ -9,6 +9,7 @@ const eventSchema = new mongoose.Schema({
     description: String,
     color: String,
     category: {type: String, default: "ward"},
+    ward: String,
 })
 
 const Event = mongoose.model('Event', eventSchema)

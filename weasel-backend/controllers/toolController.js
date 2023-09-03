@@ -19,6 +19,7 @@ const createTool = asyncHandler(async (req, res) => {
 const updateTool = asyncHandler(async (req, res) => {
     const tool = await Tool.findById(req.params.id)
     if (tool) {
+        tool.ward = req.body.ward || tool.ward
         tool.stri = req.body.stri || tool.stri
         tool.sbmr = req.body.sbmr || tool.sbmr
         tool.sbu = req.body.sbu || tool.sbu

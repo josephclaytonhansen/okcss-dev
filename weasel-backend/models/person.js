@@ -13,7 +13,8 @@ const personSchema = new mongoose.Schema({
     phone: String,
     size: String,
     organization: String,
-    bio: String
+    bio: String,
+    ward: String,
 })
 
 const Person = mongoose.model('Person', personSchema)

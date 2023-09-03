@@ -19,6 +19,7 @@ const createEvent = asyncHandler(async (req, res) => {
 const updateEvent = asyncHandler(async (req, res) => {
     const event = await Event.findById(req.params.id)
     if (event) {
+        event.ward = req.body.ward || event.ward
         event.time = req.body.time || event.time
         event.title = req.body.title || event.title
         event.description = req.body.description || event.description

@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 
 const worshipSchema = new mongoose.Schema({
+    ward: String,
     location: {
         address: String,
         city: String,

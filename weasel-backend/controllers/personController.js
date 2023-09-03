@@ -19,6 +19,7 @@ const createPerson = asyncHandler(async (req, res) => {
 const updatePerson = asyncHandler(async (req, res) => {
     const person = await Person.findById(req.params.id)
     if (person) {
+        person.ward = req.body.ward || person.ward
         person.name = req.body.name || person.name
         person.image = req.body.image || person.image
         person.position = req.body.position || person.position
