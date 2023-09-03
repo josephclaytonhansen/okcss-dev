@@ -9,16 +9,8 @@ import "vue-toastification/dist/index.css"
 const pinia = createPinia()
 const app = createApp(App)
 
-app.use(Toast, {
-    position: "top-right",
-    timeout: 3000,
-    closeOnClick: true,
-    pauseOnFocusLoss: false,
-    pauseOnHover: true,
-    draggable: false,
-    showCloseButtonOnHover: true,
-    hideProgressBar: false,
-})
+import { ToastPlugin } from './plugins/toast'
+app.use(ToastPlugin)
 
 const router = createRouter({
     history: createWebHistory(),
