@@ -4,7 +4,6 @@
     import Location from './Location.vue'
     import Tools from './Tools.vue'
     import {Contact2, Calendar, HeartHandshake, ListTodo} from 'lucide-vue-next'
-    import HomeBack from './HomeBack.vue'
     import CCalendar from './CCalendar.vue'
 
 const props = defineProps({
@@ -67,7 +66,6 @@ watch(currentTab, tabChanged)
 </script>
 
 <template>
-    <HomeBack :ward="ward"/>
 <!------------------------------ Tab container ----------------------------- -->
 <section class = "tabs" :class="ward">
     <div class = "tab-content">
@@ -84,24 +82,7 @@ watch(currentTab, tabChanged)
         </div>
             <!------------------------------ Tab: Events ----------------------------- -->
         <div v-else-if="currentTab === 'events'">
-            <CCalendar :events="{ward: [
-                {
-                  title: 'Advanced algebra',
-                  time: { start: '2022-05-16 12:05', end: '2022-05-16 13:35' },
-                  color: 'yellow',
-                  isEditable: false,
-                  id: '753944708f0f',
-                  description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-                },
-                {
-                  title: 'Ralph on holiday',
-                  time: { start: '2023-09-02', end: '2023-09-05' },
-                  color: 'green',
-                  isEditable: false,
-                  id: '5602b6f589fc',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
-                }
-            ]}"/>
+            <CCalendar :events="events"/>
         </div>
 
         <!------------------------------ Tab: Tools ----------------------------- -->
@@ -163,7 +144,7 @@ watch(currentTab, tabChanged)
     --active-color: var(--color2);
 }
 
-.OKC-2nd{
+.Okc-2nd{
     --active-color: var(--color3);
 }
 
@@ -171,7 +152,7 @@ watch(currentTab, tabChanged)
     --active-color: var(--color4);
 }
 
-.OKC-6th-Branch{
+.Okc-6th-Branch{
     --active-color: var(--color5);
 }
 

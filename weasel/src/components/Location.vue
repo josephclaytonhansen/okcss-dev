@@ -30,7 +30,7 @@ const props = defineProps({
                 <Image :src="image.src" :alt="image.alt" :width="image.width" :class="image.class"/>
             </div>
             <div class = "loc-text">
-                <h2 id = "time">We meet at {{ time }} on Sundays</h2>
+                <h2 id = "time">{{ time }}</h2>
                 <hr style = "margin-bottom:1rem;" />
                 <p id = "address"> {{ location.address }} </p>
                 <p id = "cs"> {{ location.city }}, {{ location.state }} </p>
