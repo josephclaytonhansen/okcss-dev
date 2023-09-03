@@ -76,7 +76,7 @@ watch(currentTab, tabChanged)
             <div v-for = "organization in organizations">
                 <details :open="organization==='Bishopric'">
                     <summary><h2>{{organization}}</h2></summary>
-                    <div class = "row wrap">
+                    <div class = "row wrap stretch">
                         <PersonCard v-for="contact in filterContactsByOrganization(organization)" :key="contact.id" :name="contact.name" :image="contact.image" :position="contact.position" :email="contact.email" :phone="contact.phone" :classes="setPersonClasses(contact.size, ward)" :size="contact.size" :bio="contact.bio"/>
                     </div>
                 </details>
