@@ -34,6 +34,7 @@ onMounted(() => {
 const getTodaysEvents = () => {
     let events = props.events
     let todaysEvents = []
+    if (events){
     events.forEach(event => {
         let start = new Date(event.time.start)
         let end = new Date(event.time.end)
@@ -41,7 +42,7 @@ const getTodaysEvents = () => {
         if (start <= today && end >= today) {
             todaysEvents.push(event)
         }
-    })
+    })}
     return todaysEvents
 }
 
@@ -90,6 +91,7 @@ const getTodaysEvents = () => {
     background-color: var(--off-white);
     border-radius:5px;
     padding:1rem;
+    width: 90%;
 }
 
 .today{
