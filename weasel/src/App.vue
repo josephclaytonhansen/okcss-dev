@@ -7,7 +7,6 @@ const darklight = ref(
 )
 
 import Ward from './components/Ward.vue'
-import worshipForm from './components/worshipForm.vue'
 
 </script>
 
@@ -15,7 +14,6 @@ import worshipForm from './components/worshipForm.vue'
     <body :class = 'darklight'>
       <div class = "container page">
       <DarkModeToggle :darklight = 'darklight' @update = '(data) => darklight = data'/>
-      <worshipForm />
         <Ward
           :ward="'Choctaw'"
           :tools="{
