@@ -136,31 +136,31 @@ watch(currentTab, tabChanged)
 
 }
 
-.Choctaw{
+.choctaw{
     --active-color: var(--color1);
 }
 
-.Midwest-City{
+.midwest-city{
     --active-color: var(--color2);
 }
 
-.Okc-2nd{
+.okc-2nd{
     --active-color: var(--color3);
 }
 
-.Moore{
+.moore{
     --active-color: var(--color4);
 }
 
-.Okc-6th-Branch{
+.okc-6th-branch{
     --active-color: var(--color5);
 }
 
-.Mustang-2nd{
+.mustang-2nd{
     --active-color: var(--color6);
 }
 
-.Mustang-1st{
+.mustang-1st{
     --active-color: var(--color7);
 }
 </style>

@@ -11,7 +11,7 @@ import {
 } from '../controllers/toolController.js'
 
 router.route('/').get(getTools).post(createTool)
-router.route('/:id').get(getToolById).put(updateTool).delete(deleteTool)
 router.route('/ward/:ward').get(getToolsByWard)
+router.route('/:id').get(getToolById).put(updateTool).delete(deleteTool)
 
 export default router
