@@ -11,6 +11,11 @@ const getToolById = asyncHandler(async (req, res) => {
     res.json(tool)
 })
 
+const getToolsByWard = asyncHandler(async (req, res) => {
+    const tools = await Tool.find({ ward: req.params.ward })
+    res.json(tools)
+})
+
 const createTool = asyncHandler(async (req, res) => {
     const tool = await Tool.create(req.body)
     res.json(tool)
@@ -49,6 +54,7 @@ const deleteTool = asyncHandler(async (req, res) => {
 export {
     getTools,
     getToolById,
+    getToolsByWard,
     createTool,
     updateTool,
     deleteTool

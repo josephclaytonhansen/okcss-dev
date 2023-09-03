@@ -11,6 +11,11 @@ const getPersonById = asyncHandler(async (req, res) => {
     res.json(person)
 })
 
+const getPersonsByWard = asyncHandler(async (req, res) => {
+    const persons = await Person.find({ ward: req.params.ward })
+    res.json(persons)
+})
+
 const createPerson = asyncHandler(async (req, res) => {
     const person = await Person.create(req.body)
     res.json(person)
@@ -50,6 +55,7 @@ const deletePerson = asyncHandler(async (req, res) => {
 export {
     getPersons,
     getPersonById,
+    getPersonsByWard,
     createPerson,
     updatePerson,
     deletePerson

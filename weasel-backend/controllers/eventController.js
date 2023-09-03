@@ -6,6 +6,11 @@ const getEvents = asyncHandler(async (req, res) => {
     res.json(events)
 })
 
+const getEventsByWard = asyncHandler(async (req, res) => {
+    const events = await Event.find({ ward: req.params.ward })
+    res.json(events)
+})
+
 const getEventById = asyncHandler(async (req, res) => {
     const event = await Event.findById(req.params.id)
     res.json(event)
@@ -47,6 +52,7 @@ const deleteEvent = asyncHandler(async (req, res) => {
 export {
     getEvents,
     getEventById,
+    getEventsByWard,
     createEvent,
     updateEvent,
     deleteEvent,

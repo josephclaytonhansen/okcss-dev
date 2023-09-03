@@ -1,4 +1,3 @@
-import e from 'express'
 import asyncHandler from '../middleware/asyncHandler.min.js'
 import Worship from '../models/worship.js'
 
@@ -10,6 +9,11 @@ const getWorships = asyncHandler(async (req, res) => {
 const getWorshipById = asyncHandler(async (req, res) => {
     const worship = await Worship.findById(req.params.id)
     res.json(worship)
+})
+
+const getWorshipsByWard = asyncHandler(async (req, res) => {
+    const worships = await Worship.find({ ward: req.params.ward })
+    res.json(worships)
 })
 
 const createWorship = asyncHandler(async (req, res) => {
@@ -47,6 +51,7 @@ const deleteWorship = asyncHandler(async (req, res) => {
 export {
     getWorships,
     getWorshipById,
+    getWorshipsByWard,
     createWorship,
     updateWorship,
     deleteWorship
