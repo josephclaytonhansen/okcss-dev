@@ -47,7 +47,15 @@ const submitForm = () => {
         >
             <div class = "form-group">
                 <label for = "ward">Ward</label>
-                <input type = "text" id = "ward" v-model = "form.ward">
+                <select id = "ward" v-model = "form.location.ward">
+                    <option value = "Choctaw">Choctaw</option>
+                    <option value = "Midwest City">Midwest City</option>
+                    <option value = "Oklahoma City 2nd">Oklahoma City 2nd</option>
+                    <option value = "Moore">Moore</option>
+                    <option value = "Oklahoma City 6th Branch">Oklahoma City 6th Branch</option>
+                    <option value = "Mustang 2nd">Mustang 2nd</option>
+                    <option value = "Mustang 1st">Mustang 1st</option>
+                </select>
             </div>
             <div class = "row flex flex-between wrap">
                 <div class = "col-3 col-grow fwc">

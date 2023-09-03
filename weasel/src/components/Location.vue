@@ -64,7 +64,6 @@ align-items: stretch!important;
 
 .left {
     background-color: var(--active-color);
-    width:100%;
     min-height:80%;
     border-radius:5px;
  }
