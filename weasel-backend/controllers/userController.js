@@ -30,6 +30,17 @@ const verifyTokenUser = asyncHandler(async (req, res, next) => {
     }
 })
 
+const createUser = asyncHandler(async (req, res) => {
+    const user = new User({
+        email: req.body.email,
+        password: req.body.password,
+        ward: req.body.ward,
+        organization: req.body.organization
+    })
+    await user.save()
+    res.status(201).json(user)
+})
+
 export {
     userLoginByEmail,
     verifyTokenUser
