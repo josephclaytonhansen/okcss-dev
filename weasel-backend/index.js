@@ -6,12 +6,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import rate_limit from 'express-rate-limit'
 
-import session from 'express-session'
 import passport from 'passport'
-
-import {
-    default as connectMongoDBSession
-} from 'connect-mongodb-session'
 
 import cookieParser from 'cookie-parser'
 
@@ -28,27 +23,6 @@ app.use(express.urlencoded({
 }))
 app.use(cookieParser(process.env.COOKIE_PARSER_SECRET))
 
-const MongoDBStore = connectMongoDBSession(session)
-
-const store = new MongoDBStore({
-    uri: process.env.MONGO_STRING,
-    databaseName: 'development',
-    collection: 'sessions'
-})
-
-app.use(session({
-    maxAge: 1000 * 60 * 60 * 24 * 5,
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        secure: process.env.ENV == 'production',
-        maxAge: 1000 * 60 * 60 * 24 * 5,
-    },
-    store: store
-}))
-
-app.use(passport.session())
 
 app.use(passport.initialize())
 

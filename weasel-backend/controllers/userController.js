@@ -43,5 +43,6 @@ const createUser = asyncHandler(async (req, res) => {
 
 export {
     userLoginByEmail,
-    verifyTokenUser
+    verifyTokenUser,
+    createUser
 }
