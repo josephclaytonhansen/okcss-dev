@@ -91,7 +91,7 @@ function splitEventsByCategory(events) {
                             </div>
                         </div>
                     </div>
-                    <div style = "height:1rem;"></div>
+                    <div style = "height:1.5rem;"></div>
                     <div class="tab-row row flex-between">
                         <div class="tab-row-tabs row tab-row-tabs-calendar wrap">
                             <div class="tab calendar-tab" :class="{activeTab: current_tab === 'worship'}" @click="current_tab = 'worship'">
