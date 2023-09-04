@@ -1,24 +1,17 @@
 import { createApp } from 'vue'
-import { createPinia, defineStore } from 'pinia'
+import { createPinia } from 'pinia'
+
+import piniaPluginPersistedState from "pinia-plugin-persistedstate"
+
 import { createRouter, createWebHistory } from 'vue-router'
+import { userStore } from './userStore'
 import App from './App.vue'
 import './style.css'
 
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedState)
 
-export const userStore = defineStore('user', {
-    state: () => ({
-        user: null,
-    }),
-    actions: (self) => ({
-        async login(data) {
-            self.user = data.user
-        },
-        async logout() {
-
-        },
-    }),
-})
+export { pinia}
 
 const app = createApp(App)
 
@@ -47,16 +40,9 @@ const router = createRouter({
 })
 
 router.beforeEach(async(to, from, next) => {
-    if (to.path.startsWith('/weasel')) {
-        try{
-        let user = await pinia.state.user.user}
-        catch(err){
-            if (to.path != '/weasel/login'){
-            next('/weasel/login')} else {
-                next()
-            }
-        }
-        if (!user) {
+    console.log(userStore.user)
+    if (to.path.startsWith('/weasel') && !to.path.startsWith('/weasel/login')) {
+        if (userStore.user === null || userStore.user === undefined) {
             next('/weasel/login')
         } else {
             next()
