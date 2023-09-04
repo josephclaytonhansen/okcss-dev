@@ -601,3 +601,11 @@ input:active, input:focus{
     padding-right:.25rem;
     font-weight: 600;
 }
+
+body.dark label{
+    color: var(--off-white);
+}
+
+body.light label{
+    color: var(--gray);
+}
