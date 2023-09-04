@@ -1,9 +1,9 @@
 <script setup>
-import worshipForm from '../components/worshipForm.vue'
+defineProps(['ward', 'organization'])
 </script>
 
 <template>
-    <div class = "container">
-        <worshipForm />
-    </div>
+    Worship
+    {{ ward }}
+    {{ organization }}
 </template>

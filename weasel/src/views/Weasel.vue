@@ -1,5 +1,10 @@
 <script setup>
-    import {ref, onBeforeMount, reactive} from 'vue'
+    import {ref, onBeforeMount, reactive, onMounted} from 'vue'
+    import Contacts from './Contacts.vue'
+    import Events from './Events.vue'
+    import Tools from './Tools.vue'
+    import Worship from './Worship.vue'
+
     import axios from 'axios'
     const current_ward = ref("")
     const current_tab = ref("")
@@ -44,6 +49,16 @@ function splitEventsByCategory(events) {
   return cat_match
 }
 
+const ward = ref("")
+const organization = ref("")
+
+onMounted(async () => {
+    let user = localStorage.getItem("user")
+    user = JSON.parse(user)
+    ward.value = user.user.ward
+    organization.value = user.user.organization
+})
+
 </script>
 
 <template>
@@ -57,6 +72,17 @@ function splitEventsByCategory(events) {
                 <div class="col-2"><img :src="weasel_img" class="img" alt="Weasel"></div>
             </div>
             <hr />
+
+            <section id = "weasel-body">
+                <div class="row flex-center center">
+
+                    <Worship :ward="ward" :organization="organization" />
+                    <Events :ward="ward" :organization="organization" />
+                    <Tools :ward="ward" :organization="organization" />
+                    <Contacts :ward="ward" :organization="organization" />
+
+                </div>
+            </section>
             
         </div>
     </div>
