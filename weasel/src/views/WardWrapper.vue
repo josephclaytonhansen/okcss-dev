@@ -52,18 +52,15 @@ onBeforeMount(async () => {
         const events_response = await axios.get('http://localhost:5220/api/events/ward/' + ward).then((response) => {
           events.data = response.data
           events.data = splitEventsByCategory(response.data)
-          console.log(events.data)
         })
 
         const contacts_response = await axios.get('http://localhost:5220/api/persons/ward/' + ward)
-        contacts.data = contacts_response.data[0]
+        console.log(contacts_response.data)
+        contacts.data = contacts_response.data
         const worship_response = await axios.get('http://localhost:5220/api/worships/ward/' + ward).then((response) => {
             worship.data = response.data[0]
         })
-        console.log(worship.data.time)
-
 })
-
 
 </script>
 
@@ -74,8 +71,6 @@ onBeforeMount(async () => {
           :events="events.data"
           :worship="worship.data"
           :organizations="['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s']"
-          :contacts="[
-            {id: 1, name: '', image: {src: '', alt: '', width: '100%', class: 'person-img square'}, position: '', email: '', phone: '', size:'', organization: '', bio: ''},
-            ]"
+          :contacts="contacts.data"
             />
 </template>

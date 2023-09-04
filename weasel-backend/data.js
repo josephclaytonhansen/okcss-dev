@@ -36,4 +36,23 @@ const events = [
     }
 ]
 
-export{tools, events}
+const contacts = [
+    {
+        name: "John Fellow",
+        ward: 'moore',
+        image: {
+            src: "https://picsum.photos/200",
+            alt: "John Fellow",
+            width: "100%",
+            class: "person-img square",
+        },
+        position: "Bishop",
+        email: "bishop@email.com",
+        phone: "555-555-5555",
+        size: "full",
+        organization: "Bishopric",
+        bio: "I am the bishop of the ward",
+    }
+]
+
+export{tools, events, contacts}
