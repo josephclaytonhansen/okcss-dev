@@ -12,6 +12,10 @@ const events = reactive({
     data: null,
 })
 
+const events_by_category = reactive({
+    data: null,
+})
+
 const contacts = reactive({
     data: null,
 })
@@ -20,14 +24,37 @@ const worship = reactive({
     data: null,
 })
 
+function splitEventsByCategory(events) {
+  let primary = []
+  let ward = []
+  let relief_society = []
+  let ywmym = []
+  let elders_quorum = []
+  let cat_match = {
+    'primary': primary,
+    'ward': ward,
+    'relief society': relief_society,
+    'ywym': ywmym,
+    'elder\'s quorum': elders_quorum
+  }
+  events.forEach((event) => {
+    cat_match[event.category].push(event)
+  })
+  return cat_match
+}
+
 
 onBeforeMount(async () => {
 
         const ward = route.params.ward
         const tools_response = await axios.get('http://localhost:5220/api/tools/ward/' + ward)
         tools.data = tools_response.data[0]
-        const events_response = await axios.get('http://localhost:5220/api/events/ward/' + ward)
-        events.data = events_response.data[0]
+        const events_response = await axios.get('http://localhost:5220/api/events/ward/' + ward).then((response) => {
+          events.data = response.data
+          events.data = splitEventsByCategory(response.data)
+          console.log(events.data)
+        })
+
         const contacts_response = await axios.get('http://localhost:5220/api/persons/ward/' + ward)
         contacts.data = contacts_response.data[0]
         const worship_response = await axios.get('http://localhost:5220/api/worships/ward/' + ward).then((response) => {

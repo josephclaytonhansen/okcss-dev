@@ -21,4 +21,19 @@ const tools = [
     }
 ]
 
-export{tools}
+const events = [
+    {
+        ward: 'moore',
+        time: {
+            start: '2023-09-01 10:00',
+            end: '2023-09-10 11:00',
+        },
+        title: 'Moore Ward Event',
+        description: 'This is a test event for the Moore Ward',
+        color: 'red',
+        category: 'ward',
+        isEditable: false,
+    }
+]
+
+export{tools, events}

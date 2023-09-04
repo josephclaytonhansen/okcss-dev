@@ -5,13 +5,15 @@ import Tool from './models/tool.js'
 import Worship from './models/worship.js'
 import db from './mongo.js'
 
-import {tools} from './data.js'
+import {tools, events} from './data.js'
 
 const importData = async () => {
     try {
         await Tool.deleteMany()
+        await Event.deleteMany()
         const createdTools = await Tool.insertMany(tools)
-        console.log(createdTools)
+        const createdEvents = await Event.insertMany(events)
+        console.log(createdTools, createdEvents)
         process.exit()
         
     } catch (error) {
