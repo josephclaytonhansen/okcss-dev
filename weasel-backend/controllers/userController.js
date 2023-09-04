@@ -7,7 +7,7 @@ const userLoginByEmail = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email: {$eq:req.body.email} })
     console.log(user, user.validPassword(req.body.password))
     if (user && user.validPassword(req.body.password)) {
-        let auth_token = createAuth(createToken(user.email))
+        let auth_token = createToken(user.email)
         res.json({auth_token: auth_token, email: user.email, organization: user.organization, ward: user.ward} )
     } else {
         res.status(401)
@@ -16,12 +16,14 @@ const userLoginByEmail = asyncHandler(async (req, res) => {
 
 })
 
-const verifyToken = asyncHandler(async (req, res, next) => {
+const verifyTokenUser = asyncHandler(async (req, res, next) => {
     const token = req.body.token || req.query.token
     const user = req.body.user || req.query.user
-    let decode = verifyAuth(verifyToken(token))
-    if (decode.email === user) {
-        next()
+    let decode = verifyToken(token)
+    let user_json = JSON.parse(user)
+    if (decode.email === user_json.user.email) {
+        res.status(200)
+        res.json({message:'success'})
     } else {
         res.status(401)
         throw new Error('Invalid credentials')
@@ -30,5 +32,5 @@ const verifyToken = asyncHandler(async (req, res, next) => {
 
 export {
     userLoginByEmail,
-    verifyToken
+    verifyTokenUser
 }

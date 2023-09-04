@@ -6,8 +6,8 @@ const userStore = defineStore('user', {
     }),
     actions: {
         async login(data) {
-            this.user = data
-            sessionStorage.setItem('token', data.auth_token)
+            this.user = {email: data.email, organization: data.organization, ward: data.ward}
+            localStorage.setItem('token', data.auth_token)
         },
         async logout() {
             this.user = null

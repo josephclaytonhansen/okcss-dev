@@ -3,10 +3,10 @@ const router = express.Router()
 
 import {
     userLoginByEmail,
-    verifyToken
+    verifyTokenUser
 } from '../controllers/userController.js'
 
 router.post('/login', userLoginByEmail)
-router.post('/verify', verifyToken)
+router.post('/verify', verifyTokenUser)
 
 export default router
