@@ -36,8 +36,8 @@ const attemptLogin = () => {
         console.log('Login successful')
         console.log(response.data)
         if (response.data) {
-
-            return store.login(response.data)
+            store.login(response.data)
+            window.location.href = '/weasel'
         }
     })
     .catch((error) => {
