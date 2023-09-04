@@ -57,69 +57,7 @@ function splitEventsByCategory(events) {
             </div>
             <p style="font-size:80%" class="small">*Ward Event and Services Electronic Listing</p>
             <hr />
-
-            <section class = "tabs" :class="ward" id="weasel-ward-tabs">
-                    <div class="tab-row row flex-between">
-                        <div class="tab-row-tabs row tab-row-tabs-calendar wrap">
-                            <div class="tab calendar-tab" :class="{activeTab: current_ward === 'choctaw'}" @click="current_ward = 'choctaw'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_ward === 'choctaw'}" />
-                                <h3>Choctaw</h3>
-                            </div>
-                            <div class="tab calendar-tab" :class="{activeTab: current_ward === 'moore'}" @click="current_ward = 'moore'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_ward === 'moore'}" />
-                                <h3>Moore</h3>
-                            </div>
-                            <div class="tab calendar-tab" :class="{activeTab: current_ward === 'mc'}" @click="current_ward = 'mc'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_ward === 'mc'}" />
-                                <h3>Midwest City</h3>
-                            </div>
-                            <div class="tab calendar-tab" :class="{activeTab: current_ward === 'o2'}" @click="current_ward = 'o2'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_ward === 'o2'}" />
-                                <h3>OKC 2nd</h3>
-                            </div>
-                            <div class="tab calendar-tab" :class="{activeTab: current_ward === 'o6b'}" @click="current_ward = 'o6b'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_ward === 'o6b'}" />
-                                <h3>OKC 6th Branch</h3>
-                            </div>
-                            <div class="tab calendar-tab" :class="{activeTab: current_ward === 'm2'}" @click="current_ward = 'm2'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_ward === 'm2'}" />
-                                <h3>Mustang 2nd</h3>
-                            </div>
-                            <div class="tab calendar-tab" :class="{activeTab: current_ward === 'mu1'}" @click="current_ward = 'mu1'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_ward === 'mu1'}" />
-                                <h3>Mustang 1st</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div style = "height:1.5rem;"></div>
-                    <div class="tab-row row flex-between">
-                        <div class="tab-row-tabs row tab-row-tabs-calendar wrap">
-                            <div class="tab calendar-tab" :class="{activeTab: current_tab === 'worship'}" @click="current_tab = 'worship'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_tab === 'worship'}" />
-                                <h3>Worship</h3>
-                            </div>
-                            <div class="tab calendar-tab" :class="{activeTab: current_tab === 'contacts'}" @click="current_tab = 'contacts'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_tab === 'contacts'}" />
-                                <h3>Contacts</h3>
-                            </div>
-                            <div class="tab calendar-tab" :class="{activeTab: current_tab === 'events'}" @click="current_tab = 'events'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_tab === 'events'}" />
-                                <h3>Events</h3>
-                            </div>
-                            <div class="tab calendar-tab" :class="{activeTab: current_tab === 'tools'}" @click="current_tab = 'tools'">
-                                <div class="tab-overlay calendar-tab-overlay" :class="{active: current_tab === 'tools'}" />
-                                <h3>Tools</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "tab-content">
-                    <div v-if="currentTab === 'worship'">
-                        <section>
-
-                        </section>
-                    </div>
-                </div>
-            </section>
+            
         </div>
     </div>
 </template>

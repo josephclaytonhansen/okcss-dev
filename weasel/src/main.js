@@ -1,10 +1,25 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createPinia, defineStore } from 'pinia'
 import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import './style.css'
 
 const pinia = createPinia()
+
+defineStore('user', {
+    state: () => ({
+        user: null,
+    }),
+    actions: (self) => ({
+        async login(username, password) {
+
+        },
+        async logout() {
+
+        },
+    }),
+})
+
 const app = createApp(App)
 
 import { ToastPlugin } from './plugins/toast'
@@ -29,6 +44,17 @@ const router = createRouter({
         {path: '/weasel/worship', component: () => import('./views/Worship.vue')},
         {path: '/weasel/tools', component: () => import('./views/Tools.vue')},
     ],
+})
+
+router.beforeEach(async(to, from, next) => {
+    if (to.path.startsWith('/weasel')) {
+        let user = await pinia.useStore('user').user
+        if (!user) {
+            next('/')
+        } else {
+            next()
+        }
+    }
 })
 
 app.use(router)
