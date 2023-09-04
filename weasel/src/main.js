@@ -13,7 +13,7 @@ app.use(ToastPlugin)
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: '/', component: () => import('./views/Home.vue'), props: (route) => {
+        { path: '/weasel', component: () => import('./views/Weasel.vue'), props: (route) => {
             return {ward: 'Moore'}
         } },
 

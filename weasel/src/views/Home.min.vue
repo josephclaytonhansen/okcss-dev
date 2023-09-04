@@ -1,1 +1,0 @@
-<script setup>import Ward from '../components/Ward.vue'</script><template></template>

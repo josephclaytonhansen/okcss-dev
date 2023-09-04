@@ -201,6 +201,10 @@ button:hover {
     align-items: stretch;
 }
 
+.center {
+    align-items: center;
+}
+
 .column {
     display: flex;
     flex-direction: column;
@@ -209,6 +213,10 @@ button:hover {
 
 .col-12{
     width: 100%;
+}
+
+.col-10 {
+    width: 83.33%;
 }
 
 .col-9 {
