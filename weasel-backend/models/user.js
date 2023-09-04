@@ -19,8 +19,16 @@ userSchema.methods.validPassword = function( pwd ) {
 userSchema.pre('save', function(next) {
     if (this.password) {
         this.password = this.encryptPassword(this.password)
+        this.save()
     }
     next()
+})
+
+userSchema.pre('validate', function(next) {
+    if (this.password) {
+        this.password = this.encryptPassword(this.password)
+        next()
+    }
 })
 
 
