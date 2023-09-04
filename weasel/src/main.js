@@ -48,12 +48,21 @@ const router = createRouter({
 
 router.beforeEach(async(to, from, next) => {
     if (to.path.startsWith('/weasel')) {
-        let user = await pinia.useStore('user').user
+        try{
+        let user = await pinia.state.user.user}
+        catch(err){
+            if (to.path != '/weasel/login'){
+            next('/weasel/login')} else {
+                next()
+            }
+        }
         if (!user) {
-            next('/')
+            next('/weasel/login')
         } else {
             next()
         }
+    } else {
+        next()
     }
 })
 

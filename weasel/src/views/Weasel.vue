@@ -52,10 +52,10 @@ function splitEventsByCategory(events) {
             <div class="row flex-center center">
                 <div class="col-10">
                     <h1 class="text-center">Oklahoma City South Stake - Weasel*</h1>
+                    <p style="font-size:80%" class="small text-center">*Ward Event and Services Electronic Listing</p>
                 </div>
                 <div class="col-2"><img :src="weasel_img" class="img" alt="Weasel"></div>
             </div>
-            <p style="font-size:80%" class="small">*Ward Event and Services Electronic Listing</p>
             <hr />
             
         </div>
@@ -66,21 +66,4 @@ function splitEventsByCategory(events) {
 #weasel-ward-tabs{
     --active-color: var(--color1);
 }
-
-    .small {
-        text-align: center;
-        margin-top: -2rem;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    .img {
-        width: 100%;
-    }
-
-    body.dark .img {
-        filter: invert(1);
-    }
 </style>

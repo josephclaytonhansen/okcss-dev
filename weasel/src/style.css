@@ -555,3 +555,49 @@ body.light .tab{
 body.dark .tab{
     border: solid 1px var(--gray);
 }
+
+.small {
+    margin-top: -1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.img {
+    width: 100%;
+}
+
+body.dark .img {
+    filter: invert(1);
+}
+
+hr{
+    margin-top:0;
+    margin-bottom:2rem;
+}
+
+.form-group{
+    width: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    accent-color: var(--active-color);
+}
+.form-group input{
+    flex-grow: 1;
+}
+
+input{
+    padding:.5rem!important;
+}
+
+input:active, input:focus{
+    outline-color: var(--active-color)!important;
+}
+
+.form-group label{
+    padding-right:.25rem;
+    font-weight: 600;
+}

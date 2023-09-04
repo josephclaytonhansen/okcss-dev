@@ -106,13 +106,4 @@ const submitForm = () => {
 </template>
 
 <style>
-    .form-group{
-        width: 100%;
-        margin-bottom: 1rem;
-        display: flex;
-        gap: 1rem;
-    }
-    .form-group input{
-        flex-grow: 1;
-    }
 </style>
