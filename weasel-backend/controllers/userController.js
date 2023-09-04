@@ -7,11 +7,13 @@ const getUserByEmail = asyncHandler(async (req, res) => {
 })
 
 const userLoginByEmail = asyncHandler(async (req, res) => {
-    const user = await User.findOne({ email: {$eq:req.params.email} })
-    if (user && user.validPassword(req.params.password)) {
+    console.log(req.body)
+    const user = await User.findOne({ email: {$eq:req.body.email} })
+    console.log(user, user.validPassword(req.body.password))
+    if (user && user.validPassword(req.body.password)) {
         res.json(user)
     } else {
-        res.status(404)
+        res.status(401)
         throw new Error('Invalid credentials')
     }
 

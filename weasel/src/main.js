@@ -6,13 +6,13 @@ import './style.css'
 
 const pinia = createPinia()
 
-defineStore('user', {
+export const userStore = defineStore('user', {
     state: () => ({
         user: null,
     }),
     actions: (self) => ({
-        async login(username, password) {
-
+        async login(data) {
+            self.user = data.user
         },
         async logout() {
 
