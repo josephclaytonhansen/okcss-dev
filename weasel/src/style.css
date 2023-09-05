@@ -116,6 +116,7 @@ body {
     height: 100vh;
     overflow-x: hidden;
     transition: .2s background-color;
+    --balloon-color: var(--active-color);
 }
 
 body.dark {

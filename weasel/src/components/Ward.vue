@@ -68,7 +68,7 @@ watch(currentTab, tabChanged)
 <template>
 <!------------------------------ Tab container ----------------------------- -->
 <section class = "tabs" :class="ward">
-    <div class = "tab-content">
+    <div class = "ç">
         <!------------------------------ Tab: Contacts ----------------------------- -->
         <div v-if="currentTab === 'contacts'">
             <div v-for = "organization in organizations">

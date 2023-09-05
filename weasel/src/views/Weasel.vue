@@ -1,4 +1,5 @@
 <script setup>
+    import 'balloon-css'
     import {ref, onBeforeMount, reactive, onMounted} from 'vue'
     import Contacts from './Contacts.vue'
     import Events from './Events.vue'
@@ -62,12 +63,16 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div class="row flex-center center">
+    <div class="row flex-center center" :class="ward">
         <div class="col-8 fwc">
             <div class="row flex-center center">
                 <div class="col-10">
-                    <h1 class="text-center">Oklahoma City South Stake - Weasel*</h1>
-                    <p style="font-size:80%" class="small text-center">*Ward Event and Services Electronic Listing</p>
+                    <h1 class="text-center">Oklahoma City South Stake - Weasel<span aria-label="Ward Events and Services Electronic List" data-balloon-pos="up">*</span></h1>
+                    <h2 class="text-center small">Your permissions: <em>{{//uppercase first letters in ward
+                        ward.split(" ").map((word) => {
+                            return word.charAt(0).toUpperCase() + word.slice(1)
+                        }).join(" ")
+                    }} ({{organization}})</em></h2>
                 </div>
                 <div class="col-2"><img :src="weasel_img" class="img" alt="Weasel"></div>
             </div>
@@ -117,9 +122,21 @@ onMounted(async () => {
 </template>
 
 <style>
+.small{
+    font-size: 120%;
+    margin-bottom: 0;
+}
 
 #weasel-tabs{
     margin-top:0;
+}
+
+#weasel-body-content{
+    border-top: solid 2px var(--active-color);
+    width:80vw;
+    overflow-x:hidden;
+    margin-top:-1rem;
+    padding:2rem;
 }
 
 </style>

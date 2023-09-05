@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive, inject, onMounted } from "vue"
+import 'balloon-css'
 import axios from "axios"
 import {userStore} from "../userStore"
 import {pinia} from '../main.js'
@@ -54,8 +55,7 @@ const attemptLogin = () => {
         <div class="col-8 fwc">
             <div class="row flex-center ">
                 <div class="col-10">
-                    <h1 class="">Login to Weasel*</h1>
-                    <p style="font-size:80%" class="small">*Ward Event and Services Electronic Listing</p>
+                    <h1 class="text-center">Oklahoma City South Stake - Weasel<span aria-label="Ward Events and Services Electronic List" data-balloon-pos="up">*</span></h1>
                 </div>
                 <div class="col-2"><img :src="weasel_img" class="img" alt="Weasel"></div>
             </div>
