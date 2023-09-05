@@ -92,4 +92,4 @@ Contact [communications@okcsouthstake.org](mailto:communications@okcsouthstake.o
 
 For technical questions, please reach out to [Joseph Hansen](https://github.com/josephclaytonhansen).
 
-If something isn't working right on the site, please open a GitHub issue on this repository to report it. Please do not email bug reports.
+If something isn't working right on the site, please open a GitHub issue on this repository to report it.
