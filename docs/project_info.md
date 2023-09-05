@@ -22,7 +22,7 @@ Seabass _(Simple Editor and Blog Application Server Software)_ is a web interfac
 #### Why create a new interface?
 Seabass differs significantly from similar interfaces such as WordPress or Ghost.org in that it is *writer* focused. Most content editing platforms are created by developers, for developers. Seabass is specifically designed to be easy for content writers to use and meet all their needs in the simplest way possible.
 
-_Big thanks to the Content Lead (and my lovely wife) on this project, Denise Hansen, for her direction and guidance on achieving these goals!_
+_Big thanks to the Content Lead on this project, Denise Hansen, for her direction and guidance on achieving these goals!_
 
 Seabass is also faster and smaller than other content editors, both on the server side and the client side. With lighter (and carefully engineered) network loads, Seabass is designed to work on anything from a desktop computer wired to fiber to a old mobile phone on the edge of cell coverage.
 
@@ -38,6 +38,10 @@ Seabass is also faster and smaller than other content editors, both on the serve
 Weasel _(Ward Events and Services Electronic Listings)_ is a single-page-application for viewing and, for users with permissions, editing ward events and services. 
 
 (Note: A *ward* is a congregation, a sub-unit of a *stake*.)
+
+#### Technical Details 
+* Stack: MongoDB, Vite, Vue, NodeJS
+* State: Pinia
 
 #### Weasel Viewer
 For a normal user, Weasel allows them to see **Contacts**, **Events**, **Tools**, and **Worship** location and time for their ward. Thus, there are many instances of Weasel Viewer active- one for each ward. These are accessible at okcsouthstake.org/:ward, or :ward.okcsouthstake.org (see links below.)
@@ -56,10 +60,6 @@ The Weasel Editor is accessed through [weasel.okcsouthstake.org](https://weasel.
 
 #### Permissions
 Permissions are granted to relevant organization members in each ward. If you lack permissions or require updated permissions, [email us](mailto:communications@okcsouthstake.org) with a detailed request. 
-
-#### Technical Details 
-* Stack: MongoDB, Vite, Vue, NodeJS
-* State: Pinia
 
 ## Usage expectations
 ### Normal access
@@ -86,3 +86,10 @@ Should permissions be removed from someone who is:
 Permissions may be restored to that user. There are *no* other circumstances where permissions will be restored. 
 
 If you believe your permissions have been wrongfully revoked, please reach out to the[ communication specialists](mailto:communications@okcsouthstake.org) and we can discuss your situation. 
+
+## Contact
+Contact [communications@okcsouthstake.org](mailto:communications@okcsouthstake.org) with any site inquiries.
+
+For technical questions, please reach out to [Joseph Hansen](https://github.com/josephclaytonhansen).
+
+If something isn't working right on the site, please open a GitHub issue on this repository to report it. Please do not email bug reports.
