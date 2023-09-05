@@ -38,4 +38,4 @@ If you're still not seeing your changes, please clear your cache and refresh aga
 -- -- --
 ## Contributor Expectations
 Please make a concerted effort to add helpful, correct, topical content only. 
-See [Project Info/Contribution Guidelines](project_info.md#cg) for more information.
+See [Project Info/Contribution Guidelines](project_info.md) for more information.
