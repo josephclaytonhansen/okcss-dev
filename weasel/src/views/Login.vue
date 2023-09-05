@@ -57,7 +57,7 @@ const attemptLogin = () => {
                 <div class="col-10">
                     <h1 class="text-center">Oklahoma City South Stake - Weasel<span aria-label="Ward Events and Services Electronic List" data-balloon-pos="up">*</span></h1>
                 </div>
-                <div class="col-2" aria-label = "From flaticon.com" data-balloon-pos="up"><img :src="weasel_img" class="img" alt="Weasel"></div>
+                <div class="col-2" aria-label = "Icon from flaticon.com" data-balloon-pos="up"><img :src="weasel_img" class="img" alt="Weasel"></div>
             </div>
             <hr />
             <section id = "form-container">
