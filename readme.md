@@ -1,19 +1,14 @@
 ## stacks
-### seabass
+### seabass/weasel-backend
+* MongoDB
 * Express
 * Node.js
 
-### weasel
+### weasel/public-facing-site
+* MongoDB
 * Vite
 * Vue
 * Pinia
-
-### database
-* MongoDB
-
-#### weasel-backend
-* Express
-* Node.js
 
 ## ports
 ### seabass
