@@ -79,7 +79,7 @@ const router = createRouter({
     ],
 })
 
-router.beforeEach(async (to, from, next) => {
+/* router.beforeEach(async (to, from, next) => {
     let user = localStorage.getItem('user')
     if (to.path.startsWith('/weasel') && !to.path.startsWith('/weasel/login')) {
 
@@ -112,7 +112,7 @@ router.beforeEach(async (to, from, next) => {
     } else {
         next()
     }
-})
+}) */
 
 app.use(router)
 app.use(pinia)

@@ -135,32 +135,4 @@ watch(currentTab, tabChanged)
     font-size:50%;
 
 }
-
-.choctaw{
-    --active-color: var(--color1);
-}
-
-.midwest-city{
-    --active-color: var(--color2);
-}
-
-.okc-2nd{
-    --active-color: var(--color3);
-}
-
-.moore{
-    --active-color: var(--color4);
-}
-
-.okc-6th-branch{
-    --active-color: var(--color5);
-}
-
-.mustang-2nd{
-    --active-color: var(--color6);
-}
-
-.mustang-1st{
-    --active-color: var(--color7);
-}
 </style>

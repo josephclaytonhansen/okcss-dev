@@ -21,7 +21,7 @@ const verifyTokenUser = asyncHandler(async (req, res, next) => {
     const user = req.body.user || req.query.user
     let decode = verifyToken(token)
     let user_json = JSON.parse(user)
-    if (decode.email === user_json.user.email) {
+    if (decode.email === user_json.user.email && decode.ward === user_json.user.ward && decode.organization === user_json.user.organization) {
         res.status(200)
         res.json({message:'success'})
     } else {
