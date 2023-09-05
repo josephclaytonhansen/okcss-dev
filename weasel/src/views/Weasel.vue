@@ -74,7 +74,7 @@ onMounted(async () => {
                         }).join(" ")
                     }} at a {{organization}} level</h2>
                 </div>
-                <div class="col-2"><img :src="weasel_img" class="img" alt="Weasel"></div>
+                <div class="col-2" aria-label = "From flaticon.com" data-balloon-pos="up"><img :src="weasel_img"  class="img" alt="Weasel"></div>
             </div>
             <hr />
 
