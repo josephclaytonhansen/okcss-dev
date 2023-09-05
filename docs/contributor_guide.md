@@ -22,7 +22,7 @@ The site will be "down" for a few seconds from time-to-time to perform tasks suc
 
 If a second attempt isn't successful, please clear your browser's cache or open Weasel in an incognito or private browsing window and try again. 
 
-If this third attempt fails, your credentials are invalid. Check that you've entered your username and password correctly, and note that your permissions may have been revoked. At this point, you should reach out to the [communication specialists](https://weasel.okcsouthstake.org) for futher help.
+If this third attempt fails, your credentials are invalid. Check that you've entered your username and password correctly, and note that your permissions may have been revoked. At this point, you should reach out to the [communication specialists](mailto:communications@okcsouthstake.org) for futher help.
 
 ## Make changes 
 // in progress
@@ -33,7 +33,7 @@ Now, you can navigate to your ward page (i.e., if your ward is Choctaw, you coul
 ### What if changes aren't showing up? 
 Please refresh your page. If this is unsucessful, please perform a "hard" refresh by pressing `Ctrl Shift R` on Windows or `Cmd Shift R` on Mac. 
 
-If you're still not seeing your changes, please clear your cache and refresh again. If this doesn't work, reach out to the [communication specialists](https://weasel.okcsouthstake.org) for futher help.
+If you're still not seeing your changes, please clear your cache and refresh again. If this doesn't work, reach out to the [communication specialists](mailto:communications@okcsouthstake.org) for futher help.
 
 -- -- --
 ## Contributor Expectations
