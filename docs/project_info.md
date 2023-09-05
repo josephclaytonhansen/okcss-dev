@@ -2,7 +2,7 @@
 ## Project Overview
 OKCSouthStake.org is the official website for the Oklahoma City South Stake of The Church of Jesus Christ of Latter-day Saints. _(Note: this site is not maintained or reviewed by the Church, nor is it representative of the church as an organization.)_
 
-This site was designed and built by [Joseph Hansen](github.com/josephclaytonhansen), a Communications Specialist for the Oklahoma City South Stake and full-stack web developer.
+This site was designed and built by [Joseph Hansen](https://github.com/josephclaytonhansen), a Communications Specialist for the Oklahoma City South Stake and full-stack web developer.
 
 ## Philosophy
 This site is built using open-source software. All the code for this site is freely available and licensed under the MIT license. 
@@ -17,7 +17,7 @@ This site is running on Ubuntu servers, with CloudFlare providing bot security a
 
 ## Components
 ### Seabass
-Seabass _(Simple Editor and Blog Application Server Software)_ is a web interface for creating and editing pages and posts on the main public-facing site. It is accessible at [seabass.okcsouthstake.org](seabass.okcsouthstake.org) to permitted users. 
+Seabass _(Simple Editor and Blog Application Server Software)_ is a web interface for creating and editing pages and posts on the main public-facing site. It is accessible at [seabass.okcsouthstake.org](https://seabass.okcsouthstake.org) to permitted users. 
 
 #### Why create a new interface?
 Seabass differs significantly from similar interfaces such as WordPress or Ghost.org in that it is *writer* focused. Most content editing platforms are created by developers, for developers. Seabass is specifically designed to be easy for content writers to use and meet all their needs in the simplest way possible.
@@ -29,7 +29,7 @@ Seabass is also faster and smaller than other content editors, both on the serve
 #### Technical Details
 * Stack: MongoDB, Express, NodeJS
 * Uses Nunjucks for templating
-* Uses icons from [Lucide](lucide.dev)
+* Uses icons from [Lucide](https://lucide.dev)
 
 #### Permissions
 **Permissions for this instance of Seabass are unlikely to be granted.** If you truly feel you need access to Seabass, you can reach out to the [Oklahoma South Stake Communications Specialists](mailto:communications@okcsouthstake.org) with a detailed request. Prepare to be disappointed unless your circumstances are, at a minimum, extraordinary.
@@ -45,14 +45,14 @@ For a normal user, Weasel allows them to see **Contacts**, **Events**, **Tools**
 ##### Link Example
 |Ward   | Sub-domain style | Page style |
 |---|---|---|
-| Choctaw | [choctaw.okcsouthstake.org](choctaw.okcsouthstake.org) | [okcsouthstake.org/choctaw](okcsouthstake.org/choctaw) |
-| OKC 2nd | [okc-2nd.okcsouthstake.org](okc-2nd.okcsouthstake.org) | [okcsouthstake.org/okc-2nd](okcsouthstake.org/okc-2nd)
+| Choctaw | [choctaw.okcsouthstake.org](https://choctaw.okcsouthstake.org) | [okcsouthstake.org/choctaw](https://okcsouthstake.org/choctaw) |
+| OKC 2nd | [okc-2nd.okcsouthstake.org](https://okc-2nd.okcsouthstake.org) | [okcsouthstake.org/okc-2nd](https://okcsouthstake.org/okc-2nd)
 ...
 
 #### Weasel Editor
 Users with elevated permissions can edit **Contacts**, **Events**, **Tools**, and **Worship** for their ward and organization. *(Note that not all organizations have access to edit **Worship** and **Tools**)*.
 
-The Weasel Editor is accessed through [weasel.okcsouthstake.org](weasel.okcsouthstake.org). 
+The Weasel Editor is accessed through [weasel.okcsouthstake.org](https://weasel.okcsouthstake.org). 
 
 #### Permissions
 Permissions are granted to relevant organization members in each ward. If you lack permissions or require updated permissions, [email us](mailto:communications@okcsouthstake.org) with a detailed request. 
