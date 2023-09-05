@@ -33,7 +33,7 @@ onMounted(async () => {
                         ward.split(" ").map((word) => {
                             return word.charAt(0).toUpperCase() + word.slice(1)
                         }).join(" ")
-                    }} at a {{organization}} level</h2>
+                    }} at the {{organization}} level</h2>
                 </div>
                 <div class="col-2" aria-label = "From flaticon.com" data-balloon-pos="up"><img :src="weasel_img"  class="img" alt="Weasel"></div>
             </div>
