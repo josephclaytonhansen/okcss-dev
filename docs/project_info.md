@@ -65,7 +65,7 @@ Permissions are granted to relevant organization members in each ward. If you la
 ### Normal access
 Normal users (users with viewing permissions only) are expected to be respectful of server resources. Massive request loads, DDoS attacks, or other malicious behavior will result in automatic blocking. 
 
-### Contributor access
+### Contributor guidelines
 Contributor permissions are given only to relevant members of the Oklahoma City South Stake.
 
 Users with contributor permissions, including editing or creating any aspect of the site, should be aware that the site content is closely monitored and any instance of abuse will result in an immediate withdrawal of permissions from the abusive user. 
