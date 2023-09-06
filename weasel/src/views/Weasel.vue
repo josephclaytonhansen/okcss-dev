@@ -1,9 +1,6 @@
 <script setup>
     import 'balloon-css'
     import {ref, onMounted, onBeforeMount, reactive, computed, watch} from 'vue'
-    import Contacts from './Contacts.vue'
-    import Events from './Events.vue'
-    import Tools from './Tools.vue'
     import Image from '../components/Image.vue'
 
     import axios from 'axios'
@@ -36,11 +33,50 @@ const worship = reactive({
     }
 })
 
+const tools = reactive({
+    stri: '',
+    sbu: '',
+    sbmr: '',
+    vtpc: '',
+    sutftm: ''
+})
+
+const tool_labels = reactive({
+    stri: 'Schedule temple recommend interview',
+    sbu: 'Schedule building use',
+    sbmr: 'Submit building maintenance request',
+    vtpc: 'View temple preparation classes',
+    sutftm: 'Sign up to feed the missionaries'
+})
+
+watch(tools, (newValue, oldValue) => {
+    var span = document.createElement('span')
+    for (var key in newValue) {
+        span.innerHTML = newValue[key]
+        newValue[key] = span.textContent || span.innerText
+
+        if (tools_embed_link[key]){
+            newValue[key] = newValue[key] + "___link___"
+    }
+
+    }
+    
+})
+
+const tools_embed_link = reactive({
+    stri: false,
+    sbu: false,
+    sbmr: false,
+    vtpc: false,
+    sutftm: false
+})
+
   onMounted( async() => {
     let user = localStorage.getItem("user")
     user = JSON.parse(user)
     ward.value = user.user.ward
     organization.value = user.user.organization
+
     await axios.get(`http://localhost:5220/api/worships/ward/${ward.value}`)
     .then((response) => {
       let response_object = response.data
@@ -53,11 +89,29 @@ const worship = reactive({
     worship.googleMapsLink = temp.googleMapsLink
     worship.image = temp.image
     })
+
+    await axios.get(`http://localhost:5220/api/tools/ward/${ward.value}`)
+    .then((response) => {
+        let response_object = response.data
+        localStorage.setItem("tools", JSON.stringify(response_object))
+        let temp = JSON.parse(localStorage.getItem("tools"))[0]
+        tools.stri = temp.stri
+        tools.sbu = temp.sbu
+        tools.sbmr = temp.sbmr
+        tools.vtpc = temp.vtpc
+        tools.sutftm = temp.sutftm
+    })
 })
 
 const updateWorship = async() => {
-    console.log(worship.id)
     await axios.put(`http://localhost:5220/api/worships/${worship.id}`, worship)
+    .then((response) => {
+        console.log(response)
+    })
+}
+
+const updateTools = async() => {
+    await axios.put(`http://localhost:5220/api/tools/${ward.value}`, tools)
     .then((response) => {
         console.log(response)
     })
@@ -82,7 +136,6 @@ const updateWorship = async() => {
             <hr />
 
             <section id = "weasel-body" class="row column">
-
                     <section class = "tabs" :class="ward" id="weasel-tabs">
                         <div class="tab-row row flex-between">
                             <div class="tab-row-tabs row tab-row-tabs-calendar wrap">
@@ -106,79 +159,95 @@ const updateWorship = async() => {
                         </div>
                     </section>
 
-                    <section id = "weasel-body-content" class="row flex-center col-10 fwc">
+                    <section id = "weasel-worship-content" class="row flex-center col-10 fwc" v-if="current_tab == 'worship'">
+                        <section class = "form-container">
+                            <h2>Worship details form</h2>
+                            <form class = "form">
+                                <div class = "row flex flex-between wrap rf">
+                                    <div class = "col-6 col-grow fwc">
+                                        <div class = "form-group">
+                                            <label for = "address">Address</label>
+                                            <input type = "text" id = "address" v-model = "worship.location.address">
+                                        </div>
+                                    </div>
+                                    <div class = "col-6 col-grow fwc">
+                                        <div class = "form-group">
+                                            <label for = "city">City</label>
+                                            <input type = "text" id = "city" v-model = "worship.location.city">
+                                        </div>
+                                    </div>
+                                    <div class = "col-6 col-grow fwc">
+                                        <div class = "form-group">
+                                            <label for = "state">State</label>
+                                            <input type = "text" id = "state" v-model = "worship.location.state">
+                                        </div>
+                                    </div>
+                                    <div class = "col-6 col-grow fwc">
+                                        <div class = "form-group">
+                                            <label for = "zip">Zip</label>
+                                            <input type = "text" id = "zip" v-model = "worship.location.zip">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "row flex-between wrap">
+                                    <div class = "col-6 col-grow fwc">
+                                        <div class = "form-group">
+                                            <label for = "phone">Phone</label>
+                                            <input type = "text" id = "phone" v-model = "worship.location.phone">
+                                        </div>
+                                    </div>
+                                    <div class = "col-6 col-grow fwc">
+                                        <div class = "form-group">
+                                            <label for = "googleMapsLink">Google Maps Link</label>
+                                            <input type = "text" id = "googleMapsLink" v-model = "worship.googleMapsLink">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "form-group">
+                                    <label for = "time">Time</label>
+                                    <input type = "text" id = "time" v-model = "worship.time">
+                                </div>
+                                <hr>
+                                <h3>Meetinghouse Image</h3>
+                                <p class = "small">This should be an outside photo, showing what the building looks like from the street</p>
+                                <div style = 'min-height:10rem'>
+                                    <Image :src="worship.image.src" :class="worship.image.class" />
+                                </div>
+                                <div class = "row flex-between wrap">
+                                    <div class = "col-12 fwc">
+                                        <div class = "form-group">
+                                            <label for = "imageSrc">Image Source</label>
+                                            <input type = "text" id = "imageSrc" v-model = "worship.image.src">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button 
+                                    @click = "updateWorship"
+                                >Submit</button>
+                            </form>
+                        </section>
+                    </section>
 
-                        <div v-if="current_tab == 'worship'">
-                            <section class = "form-container">
-                                <h2>Worship details form</h2>
-                                <form class = "form">
-                                    <div class = "row flex flex-between wrap rf">
-                                        <div class = "col-6 col-grow fwc">
-                                            <div class = "form-group">
-                                                <label for = "address">Address</label>
-                                                <input type = "text" id = "address" v-model = "worship.location.address">
-                                            </div>
-                                        </div>
-                                        <div class = "col-6 col-grow fwc">
-                                            <div class = "form-group">
-                                                <label for = "city">City</label>
-                                                <input type = "text" id = "city" v-model = "worship.location.city">
-                                            </div>
-                                        </div>
-                                        <div class = "col-6 col-grow fwc">
-                                            <div class = "form-group">
-                                                <label for = "state">State</label>
-                                                <input type = "text" id = "state" v-model = "worship.location.state">
-                                            </div>
-                                        </div>
-                                        <div class = "col-6 col-grow fwc">
-                                            <div class = "form-group">
-                                                <label for = "zip">Zip</label>
-                                                <input type = "text" id = "zip" v-model = "worship.location.zip">
-                                            </div>
-                                        </div>
+                    <section id = "weasel-tools-content" class="row flex-center col-10 fwc" v-if="current_tab == 'tools'">
+                        <div class = "col-12" id = 'itc' style = "text-align: left;">
+                            <h2>Tools</h2>
+
+                            <div v-for="(value, key) in tools" class = "form-group row flex-between col-12 wrap">
+                                <label :for = "key" class = "col-4 fwc">{{tool_labels[key]}}</label>
+                                <div class = "fwc row flex-center" id = 'rb'>
+                                    <div class = "row">
+                                        <input type = "radio" :name = "key" checked :checked="tools_embed_link[value]  === false">
+                                        <label class = "col-grow">Text<span aria-label="This tool will be shown to the user as plain, non-interactive text" data-balloon-pos = 'up'>*</span></label>
                                     </div>
-                                    <div class = "row flex-between wrap">
-                                        <div class = "col-6 col-grow fwc">
-                                            <div class = "form-group">
-                                                <label for = "phone">Phone</label>
-                                                <input type = "text" id = "phone" v-model = "worship.location.phone">
-                                            </div>
-                                        </div>
-                                        <div class = "col-6 col-grow fwc">
-                                            <div class = "form-group">
-                                                <label for = "googleMapsLink">Google Maps Link</label>
-                                                <input type = "text" id = "googleMapsLink" v-model = "worship.googleMapsLink">
-                                            </div>
-                                        </div>
+                                    <div class = "row">
+                                        <input type = "radio" :name = "key" :checked="tools_embed_link[value]  === true">
+                                        <label class = "col-grow">Link<span aria-label="This tool is interactive (such as a calendar)- add the link here" data-balloon-pos = 'up'>*</span></label>
                                     </div>
-                                    <div class = "form-group">
-                                        <label for = "time">Time</label>
-                                        <input type = "text" id = "time" v-model = "worship.time">
-                                    </div>
-                                    <hr>
-                                    <h3>Meetinghouse Image</h3>
-                                    <p class = "small">This should be an outside photo, showing what the building looks like from the street</p>
-                                    <div style = 'min-height:10rem'>
-                                        <Image :src="worship.image.src" :class="worship.image.class" />
-                                    </div>
-                                    <div class = "row flex-between wrap">
-                                        <div class = "col-12 fwc">
-                                            <div class = "form-group">
-                                                <label for = "imageSrc">Image Source</label>
-                                                <input type = "text" id = "imageSrc" v-model = "worship.image.src">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button 
-                                        @click = "updateWorship"
-                                    >Submit</button>
-                                </form>
-                            </section>
+                                </div>
+                                <input type = "text" :id = "key" v-model = "tools[key]">
+                            </div>
+                            <button @click = "updateTools">Submit</button>
                         </div>
-                        <Contacts v-if="current_tab == 'contacts'" :ward="ward" :organization="organization" />
-                        <Events v-if="current_tab == 'events'" :ward="ward" :organization="organization" />
-                        <Tools v-if="current_tab == 'tools'" :ward="ward" :organization="organization" />
                     </section>
             </section>
 
@@ -210,13 +279,19 @@ p.small{
     margin-top:0;
 }
 
-#weasel-body-content{
+#weasel-worship-content{
     border-top: solid 2px var(--active-color);
     overflow-x:hidden;
     overflow-y:auto;
     height:100%;
     margin-top:-1rem;
     padding:2rem;
+}
+
+#weasel-tools-content{
+    max-height:80vh;
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 
 #weasel-body{
@@ -232,21 +307,34 @@ p.small{
     width:100%
 }
 
+#rb .row{
+    gap: .25rem;
+}
+
 @media screen and (max-width: 1000px) {
     .form-group{
         flex-wrap:wrap;
         flex-direction: column;
         width:100%!important;
-        margin-top:0;
-        margin-bottom:0;
+
     }
-    .form-group input{
+    .form-group input:not([type='radio']){
         width:80%!important;
     }
     .rf{
         flex-direction: column;
         width:100%;
         margin-top:25rem;
+    }
+    #itc{
+        margin-top:13rem;
+    }
+    #rb .row{
+        width:100%;
+    }
+    #rb .row input[type='radio']{
+        max-width:1rem;
+        padding:0!important;
     }
 }
 .img-container .church-img{
