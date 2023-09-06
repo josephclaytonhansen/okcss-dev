@@ -106,10 +106,25 @@ watch(tools, (newValue, oldValue) => {
         let temp = JSON.parse(localStorage.getItem("tools"))[0]
         tool_id.value = temp._id
         tools.stri = temp.stri.replaceAll("___link___", "")
+        if (tools.stri !== temp.stri){
+            tools_embed_link.stri = true
+        }
         tools.sbu = temp.sbu.replaceAll("___link___", "")
+        if (tools.sbu !== temp.sbu){
+            tools_embed_link.sbu = true
+        }
         tools.sbmr = temp.sbmr.replaceAll("___link___", "")
+        if (tools.sbmr !== temp.sbmr){
+            tools_embed_link.sbmr = true
+        }
         tools.vtpc = temp.vtpc.replaceAll("___link___", "")
+        if (tools.vtpc !== temp.vtpc){
+            tools_embed_link.vtpc = true
+        }
         tools.sutftm = temp.sutftm.replaceAll("___link___", "")
+        if (tools.sutftm !== temp.sutftm){
+            tools_embed_link.sutftm = true
+        }
     })
 })
 
