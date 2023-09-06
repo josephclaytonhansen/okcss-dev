@@ -92,6 +92,7 @@ router.beforeEach(async (to, from, next) => {
             catch(err){next('/weasel/login')}
             
         } else {
+            localStorage.clear()
             next('/weasel/login')
         }
     } else {

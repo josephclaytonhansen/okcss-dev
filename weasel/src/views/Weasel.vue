@@ -277,7 +277,7 @@ h2.small{
 
 p.small{
     font-size:70%;
-    margin-top:-1.25rem;
+    margin-top:-1.2rem;
     text-align: left;
 }
 
@@ -298,6 +298,8 @@ p.small{
     max-height:80vh;
     overflow-y:auto;
     overflow-x:hidden;
+    border-top: solid 2px var(--active-color);
+    margin-top:-1rem;
 }
 
 #weasel-body{
