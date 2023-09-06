@@ -12,7 +12,7 @@ const getEventsByWard = asyncHandler(async (req, res) => {
 })
 
 const getEventsByWardandOrganization = asyncHandler(async (req, res) => {
-    const events = await Event.find({ ward: req.params.ward, organization: req.params.organization })
+    const events = await Event.find({ ward: req.params.ward, category: req.params.organization })
     res.json(events)
 })
 
@@ -46,7 +46,7 @@ const updateEvent = asyncHandler(async (req, res) => {
 const deleteEvent = asyncHandler(async (req, res) => {
     const event = await Event.findById(req.params.id)
     if (event) {
-        await event.remove()
+        await Event.deleteOne(event)
         res.json({ message: 'Event removed' })
     } else {
         res.status(404)

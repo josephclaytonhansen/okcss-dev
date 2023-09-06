@@ -240,15 +240,6 @@ button:hover {
     width: calc(40% - 2rem);
 }
 
-@media screen and (max-width: 1000px) {
-    .fwc{
-        width: 100%!important;
-    }
-    .tab-row-tabs{
-        margin-top:0rem!important;
-    }
-}
-
 .col-4 {
     width: calc(33.33% - 2rem);
 }
@@ -590,12 +581,20 @@ hr{
     flex-grow: 1;
 }
 
-input{
+input:not[type="radio"]{
     padding:.5rem!important;
+    font-family: 'PT Sans', sans-serif;
+    font-size:100%;
+    width:100%;
 }
 
 input:active, input:focus{
     outline-color: var(--active-color)!important;
+}
+
+input[type='date'], input[type='time']{
+    font-family: 'PT Sans', sans-serif;
+    width:100%;
 }
 
 .form-group label{
@@ -609,6 +608,21 @@ body.dark label{
 
 body.light label{
     color: var(--gray);
+}
+
+@media screen and (max-width: 1000px) {
+    .fwc{
+        width: 100%!important;
+    }
+    .tab-row-tabs{
+        margin-top:0rem!important;
+    }
+    .wrap-t{
+        flex-wrap:wrap!important;
+    }
+    .wrap-t input{
+        width:95%;
+    }
 }
 
 .choctaw{
