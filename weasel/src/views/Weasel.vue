@@ -1,10 +1,11 @@
 <script setup>
     import 'balloon-css'
-    import {ref, onMounted} from 'vue'
+    import {ref, onMounted, onBeforeMount, reactive, computed, watch} from 'vue'
     import Contacts from './Contacts.vue'
     import Events from './Events.vue'
     import Tools from './Tools.vue'
-    import Worship from './Worship.vue'
+
+    import axios from 'axios'
 
     const current_tab = ref("events")
     const weasel_img = ref(
@@ -14,11 +15,41 @@
 const ward = ref("")
 const organization = ref("")
 
-onMounted(async () => {
+const worship = reactive({
+    ward: '',
+    location: {
+      address: '',
+      city: '',
+      state: '',
+      zip: '',
+      phone: ''
+    },
+    time: '',
+    googleMapsLink: '',
+    image: {
+      src: '',
+      alt: '',
+      width: '',
+      class: ''
+    }
+})
+
+  onMounted( async() => {
     let user = localStorage.getItem("user")
     user = JSON.parse(user)
     ward.value = user.user.ward
     organization.value = user.user.organization
+    await axios.get(`http://localhost:5220/api/worships/ward/${ward.value}`)
+    .then((response) => {
+      let response_object = response.data
+    localStorage.setItem("worship", JSON.stringify(response_object))
+    let temp = JSON.parse(localStorage.getItem("worship"))[0]
+    worship.ward = temp.ward
+    worship.location = temp.location
+    worship.time = temp.time
+    worship.googleMapsLink = temp.googleMapsLink
+    worship.image = temp.image
+    })
 })
 
 </script>
@@ -65,7 +96,60 @@ onMounted(async () => {
                     </section>
 
                     <section id = "weasel-body-content" class="row flex-center center col-10 fwc">
-                        <Worship v-if="current_tab == 'worship'" :ward="ward" :organization="organization" />
+
+                        <div v-if="current_tab == 'worship'">
+                            <section class = "form-container">
+                                <h2>Worship details form</h2>
+                                <form class = "form" method="post"
+                                :action = "() => submitForm()"
+                                >
+                                    <div class = "row flex flex-between wrap rf">
+                                        <div class = "col-6 col-grow fwc">
+                                            <div class = "form-group">
+                                                <label for = "address">Address</label>
+                                                <input type = "text" id = "address" v-model = "worship.location.address">
+                                            </div>
+                                        </div>
+                                        <div class = "col-6 col-grow fwc">
+                                            <div class = "form-group">
+                                                <label for = "city">City</label>
+                                                <input type = "text" id = "city" v-model = "worship.location.city">
+                                            </div>
+                                        </div>
+                                        <div class = "col-6 col-grow fwc">
+                                            <div class = "form-group">
+                                                <label for = "state">State</label>
+                                                <input type = "text" id = "state" v-model = "worship.location.state">
+                                            </div>
+                                        </div>
+                                        <div class = "col-6 col-grow fwc">
+                                            <div class = "form-group">
+                                                <label for = "zip">Zip</label>
+                                                <input type = "text" id = "zip" v-model = "worship.location.zip">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class = "row flex-between wrap">
+                                        <div class = "col-6 col-grow fwc">
+                                            <div class = "form-group">
+                                                <label for = "phone">Phone</label>
+                                                <input type = "text" id = "phone" v-model = "worship.location.phone">
+                                            </div>
+                                        </div>
+                                        <div class = "col-6 col-grow fwc">
+                                            <div class = "form-group">
+                                                <label for = "googleMapsLink">Google Maps Link</label>
+                                                <input type = "text" id = "googleMapsLink" v-model = "worship.googleMapsLink">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class = "form-group">
+                                        <label for = "time">Time</label>
+                                        <input type = "text" id = "time" v-model = "worship.time">
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
                         <Contacts v-if="current_tab == 'contacts'" :ward="ward" :organization="organization" />
                         <Events v-if="current_tab == 'events'" :ward="ward" :organization="organization" />
                         <Tools v-if="current_tab == 'tools'" :ward="ward" :organization="organization" />
@@ -112,6 +196,32 @@ p.small{
 #weasel-body{
     height:70vh;
     align-items:start;
+}
+
+.form-container{
+    margin-top:-12rem;
+}
+
+.form{
+    width:100%
+}
+
+@media screen and (max-width: 1000px) {
+    .form-group{
+        flex-wrap:wrap;
+        flex-direction: column;
+        width:100%!important;
+        margin-top:0;
+        margin-bottom:0;
+    }
+    .form-group input{
+        width:100%!important;
+    }
+    .rf{
+        flex-direction: column;
+        width:100%;
+        margin-top:15rem;
+    }
 }
 
 </style>

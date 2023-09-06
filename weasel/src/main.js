@@ -60,26 +60,11 @@ const router = createRouter({
             path: '/weasel/login',
             component: () => import('./views/Login.vue')
         },
-        {
-            path: '/weasel/events',
-            component: () => import('./views/Events.vue')
-        },
-        {
-            path: '/weasel/contacts',
-            component: () => import('./views/Contacts.vue')
-        },
-        {
-            path: '/weasel/worship',
-            component: () => import('./views/Worship.vue')
-        },
-        {
-            path: '/weasel/tools',
-            component: () => import('./views/Tools.vue')
-        },
+
     ],
 })
 
-/* router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     let user = localStorage.getItem('user')
     if (to.path.startsWith('/weasel') && !to.path.startsWith('/weasel/login')) {
 
@@ -112,7 +97,7 @@ const router = createRouter({
     } else {
         next()
     }
-}) */
+})
 
 app.use(router)
 app.use(pinia)
