@@ -157,8 +157,11 @@ const updateWorship = async() => {
                                         <input type = "text" id = "time" v-model = "worship.time">
                                     </div>
                                     <hr>
-                                    {{ worship.image.class }}
-                                    <Image :src="worship.image.src" :class="worship.image.class" />
+                                    <h3>Meetinghouse Image</h3>
+                                    <p class = "small">This should be an outside photo, showing what the building looks like from the street</p>
+                                    <div style = 'min-height:10rem'>
+                                        <Image :src="worship.image.src" :class="worship.image.class" />
+                                    </div>
                                     <div class = "row flex-between wrap">
                                         <div class = "col-12 fwc">
                                             <div class = "form-group">
