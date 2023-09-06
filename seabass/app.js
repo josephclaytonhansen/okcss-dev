@@ -126,6 +126,13 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.options('*', cors(corsOptions))
 
+app.use((req, res, next) => {
+    if (req.headers.origin != process.env.ORIGIN) {
+        res.status(403).send('Forbidden')
+    } else {
+        next()
+    }
+})
 
 const nenv = nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
     autoescape: true,

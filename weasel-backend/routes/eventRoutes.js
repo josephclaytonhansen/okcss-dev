@@ -5,6 +5,7 @@ import {
     getEvents,
     getEventById,
     getEventsByWard,
+    getEventsByWardandOrganization,
     createEvent,
     updateEvent,
     deleteEvent
@@ -13,5 +14,6 @@ import {
 router.route('/').get(getEvents).post(createEvent)
 router.route('/:id').get(getEventById).put(updateEvent).delete(deleteEvent)
 router.route('/ward/:ward').get(getEventsByWard)
+router.route('/ward/:ward/organization/:organization').get(getEventsByWardandOrganization)
 
 export default router

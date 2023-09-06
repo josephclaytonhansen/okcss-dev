@@ -43,6 +43,15 @@ app.use(express.urlencoded({
     extended: false
 }))
 
+//block all requests from origins != process.env.ORIGIN
+app.use((req, res, next) => {
+    if (req.headers.origin != process.env.ORIGIN) {
+        res.status(403).send('Forbidden')
+    } else {
+        next()
+    }
+})
+
 const corsOptions = {
     origin: process.env.ORIGIN,
     credentials: true,
