@@ -83,7 +83,8 @@ watch(tools, (newValue, oldValue) => {
     ward.value = user.user.ward
     organization.value = user.user.organization
 
-    current_tab.value = localStorage.getItem("current_tab") 
+    if (localStorage.getItem("current_tab") === null) {localStorage.setItem("current_tab", "events")} else {
+    current_tab.value = localStorage.getItem("current_tab") }
 
     await axios.get(`http://localhost:5220/api/worships/ward/${ward.value}`)
     .then((response) => {
