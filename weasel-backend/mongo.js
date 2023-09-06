@@ -6,7 +6,7 @@ const MONGO_STRING = process.env.MONGO_STRING
 
 const connectWithRetry = async () => {
     console.log('MongoDB connection with retry')
-    return mongoose.connect(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "weasel-backend-dev", keepAlive:true, keepAliveInitialDelay:300000, retryReads:true, retryWrites:true }).catch((err) => {
+    return mongoose.connect(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "weasel-backend-dev",retryReads:true, retryWrites:true }).catch((err) => {
         console.log('MongoDB connection unsuccessful, retry after 1 seconds.')
         setTimeout(connectWithRetry, 1000)
     })
@@ -18,7 +18,10 @@ const db = mongoose.connection
 
 db.on('error', (error) => {
     console.log(error)
-    mongoose.disconnect()
+    mongoose.disconnect().then(() => {
+        console.log('Database disconnected')
+        connectWithRetry()
+    })
 })
 
 db.on('connected', () => {
@@ -26,7 +29,7 @@ db.on('connected', () => {
 })
 
 db.on('disconnected', () => {
-    connectWithRetry()
+    if (db.readyState === 0) {connectWithRetry()}
 })
 
 db.ObjectId = mongoose.Types.ObjectId
