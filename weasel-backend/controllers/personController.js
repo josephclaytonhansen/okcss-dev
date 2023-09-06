@@ -16,11 +16,6 @@ const getPersonsByWard = asyncHandler(async (req, res) => {
     res.json(persons)
 })
 
-const getPersonsByWardAndOrganization = asyncHandler(async (req, res) => {
-    const persons = await Person.find({ ward: req.params.ward, category: req.params.organization })
-    res.json(persons)
-})
-
 const createPerson = asyncHandler(async (req, res) => {
     const person = await Person.create(req.body)
     res.json(person)
@@ -61,7 +56,6 @@ export {
     getPersons,
     getPersonById,
     getPersonsByWard,
-    getPersonsByWardAndOrganization,
     createPerson,
     updatePerson,
     deletePerson

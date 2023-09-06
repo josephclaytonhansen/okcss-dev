@@ -82,8 +82,6 @@ const events = reactive([])
 
 const events_time_splits = reactive({})
 
-const contacts = reactive([])
-
 const addEvent = async() => {
     await axios.post(`http://localhost:5220/api/events`, {
         ward: ward.value,
@@ -162,13 +160,6 @@ const addEvent = async() => {
         if (tools.sutftm !== temp.sutftm){
             tools_embed_link.sutftm = true
         }
-    })
-
-    await axios.get(`http://localhost:5220/api/persons/ward/${ward.value}/organization/${organization.value}`).then((response) => {
-        let response_object = response.data
-        localStorage.setItem("contacts", JSON.stringify(response_object))
-        let temp = JSON.parse(localStorage.getItem("contacts"))
-        contacts.push(...temp)
     })
 
     await axios.get(`http://localhost:5220/api/events/ward/${ward.value}/organization/${organization.value}`).then((response) => {
@@ -444,11 +435,6 @@ p.small{
     max-height:80vh;
     overflow-y:auto;
     overflow-x:hidden;
-    border-top: solid 2px var(--active-color);
-    margin-top:-1rem;
-}
-
-#weasel-events-content{
     border-top: solid 2px var(--active-color);
     margin-top:-1rem;
 }
