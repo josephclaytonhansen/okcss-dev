@@ -27,7 +27,7 @@ const props = defineProps({
     <div class = "row parent wrap">
         <div class = "left column flex-evenly col-4 fwc">
             <div class = "img-cw">
-                <Image :src="image.src" :alt="image.alt" :width="image.width" :class="image.class"/>
+                <Image :src="image.src" :alt="image.alt" :width="0" :class="image.class"/>
             </div>
             <div class = "loc-text">
                 <h2 id = "time">{{ time }}</h2>

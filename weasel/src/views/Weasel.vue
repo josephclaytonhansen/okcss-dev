@@ -157,6 +157,7 @@ const updateWorship = async() => {
                                         <input type = "text" id = "time" v-model = "worship.time">
                                     </div>
                                     <hr>
+                                    {{ worship.image.class }}
                                     <Image :src="worship.image.src" :class="worship.image.class" />
                                     <div class = "row flex-between wrap">
                                         <div class = "col-12 fwc">
@@ -244,6 +245,9 @@ p.small{
         width:100%;
         margin-top:25rem;
     }
+}
+.img-container .church-img{
+    width:100%!important;
 }
 
 </style>

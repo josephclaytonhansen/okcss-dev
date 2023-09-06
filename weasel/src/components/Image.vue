@@ -9,6 +9,7 @@ const props = defineProps({
 
 <template>
     <div class = 'img-container'>
-        <img :src="src" :alt="alt" :width="width" :class="class">
+        <img v-if="width === 100" :src="src" :alt="alt" style="width:100%" :class="class">
+        <img v-else :src="src" :alt="alt" :class="class">
     </div>
 </template>
