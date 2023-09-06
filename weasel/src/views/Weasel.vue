@@ -4,6 +4,7 @@
     import Contacts from './Contacts.vue'
     import Events from './Events.vue'
     import Tools from './Tools.vue'
+    import Image from '../components/Image.vue'
 
     import axios from 'axios'
 
@@ -105,7 +106,7 @@ const updateWorship = async() => {
                         </div>
                     </section>
 
-                    <section id = "weasel-body-content" class="row flex-center center col-10 fwc">
+                    <section id = "weasel-body-content" class="row flex-center col-10 fwc">
 
                         <div v-if="current_tab == 'worship'">
                             <section class = "form-container">
@@ -154,6 +155,16 @@ const updateWorship = async() => {
                                     <div class = "form-group">
                                         <label for = "time">Time</label>
                                         <input type = "text" id = "time" v-model = "worship.time">
+                                    </div>
+                                    <hr>
+                                    <Image :src="worship.image.src" :class="worship.image.class" />
+                                    <div class = "row flex-between wrap">
+                                        <div class = "col-12 fwc">
+                                            <div class = "form-group">
+                                                <label for = "imageSrc">Image Source</label>
+                                                <input type = "text" id = "imageSrc" v-model = "worship.image.src">
+                                            </div>
+                                        </div>
                                     </div>
                                     <button 
                                         @click = "updateWorship"
@@ -210,7 +221,7 @@ p.small{
 }
 
 .form-container{
-    margin-top:-12rem;
+    margin-top:12rem;
 }
 
 .form{
@@ -226,12 +237,12 @@ p.small{
         margin-bottom:0;
     }
     .form-group input{
-        width:100%!important;
+        width:80%!important;
     }
     .rf{
         flex-direction: column;
         width:100%;
-        margin-top:15rem;
+        margin-top:25rem;
     }
 }
 
