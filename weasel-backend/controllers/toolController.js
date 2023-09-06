@@ -33,6 +33,7 @@ const updateTool = asyncHandler(async (req, res) => {
         tool.sutftm = req.body.sutftm || tool.sutftm
         tool.vso = req.body.vso || tool.vso
         const updatedTool = await tool.save()
+        console.log(updatedTool)
         res.json(updatedTool)
     } else {
         res.status(404)

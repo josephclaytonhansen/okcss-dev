@@ -7,10 +7,15 @@ mongoose.connect(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true
 const db = mongoose.connection
 db.on('error', (error) => {
     console.log(error)
+    mongoose.disconnect()
 })
 
-db.once('connected', () => {
+db.on('connected', () => {
     console.log('Database Connected');
+})
+
+db.on('disconnected', () => {
+    mongoose.connect(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "weasel-backend-dev", keepAlive:true, keepAliveInitialDelay:300000, retryReads:true, retryWrites:true })
 })
 
 db.ObjectId = mongoose.Types.ObjectId

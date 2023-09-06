@@ -42,8 +42,10 @@ const tools = reactive({
     sbu: '',
     sbmr: '',
     vtpc: '',
-    sutftm: ''
+    sutftm: '',
 })
+
+const tool_id = ref('')
 
 const tool_labels = reactive({
     stri: 'Schedule temple recommend interview',
@@ -51,20 +53,6 @@ const tool_labels = reactive({
     sbmr: 'Submit building maintenance request',
     vtpc: 'View temple preparation classes',
     sutftm: 'Sign up to feed the missionaries'
-})
-
-watch(tools, (newValue, oldValue) => {
-    var span = document.createElement('span')
-    for (var key in newValue) {
-        span.innerHTML = newValue[key]
-        newValue[key] = span.textContent || span.innerText
-
-        if (tools_embed_link[key]){
-            newValue[key] = "___link___" + newValue[key] + "___link___"
-    }
-
-    }
-    
 })
 
 const tools_embed_link = reactive({
@@ -75,7 +63,21 @@ const tools_embed_link = reactive({
     sutftm: false
 })
 
-  onMounted( async() => {
+
+watch(tools, (newValue, oldValue) => {
+    var span = document.createElement('span')
+    console.log(tools_embed_link)
+    for (var key in newValue) {
+        try{
+            newValue[key] = newValue[key].replaceAll("___link___", "")
+        }catch{}
+        span.innerHTML = newValue[key]
+        newValue[key] = span.textContent || span.innerText
+    }
+    
+})
+
+  onBeforeMount( async() => {
     let user = localStorage.getItem("user")
     user = JSON.parse(user)
     ward.value = user.user.ward
@@ -101,11 +103,12 @@ const tools_embed_link = reactive({
         let response_object = response.data
         localStorage.setItem("tools", JSON.stringify(response_object))
         let temp = JSON.parse(localStorage.getItem("tools"))[0]
-        tools.stri = temp.stri
-        tools.sbu = temp.sbu
-        tools.sbmr = temp.sbmr
-        tools.vtpc = temp.vtpc
-        tools.sutftm = temp.sutftm
+        tool_id.value = temp._id
+        tools.stri = temp.stri.replaceAll("___link___", "")
+        tools.sbu = temp.sbu.replaceAll("___link___", "")
+        tools.sbmr = temp.sbmr.replaceAll("___link___", "")
+        tools.vtpc = temp.vtpc.replaceAll("___link___", "")
+        tools.sutftm = temp.sutftm.replaceAll("___link___", "")
     })
 })
 
@@ -117,7 +120,14 @@ const updateWorship = async() => {
 }
 
 const updateTools = async() => {
-    await axios.put(`http://localhost:5220/api/tools/${ward.value}`, tools)
+    //loop through tools- if tools_embed_link[key] is true, wrap the value in "___link___"
+    for (var key in tools) {
+        if (tools_embed_link[key] === true) {
+            tools[key] = `___link___${tools[key]}___link___`
+        }
+    
+    }
+    await axios.put(`http://localhost:5220/api/tools/${tool_id.value}`, tools)
     .then((response) => {
         console.log(response)
     })
@@ -242,11 +252,11 @@ const updateTools = async() => {
                                 <label :for = "key" class = "col-4 fwc">{{tool_labels[key]}}</label>
                                 <div class = "fwc row flex-center" id = 'rb'>
                                     <div class = "row">
-                                        <input type = "radio" :name = "key" checked :checked="tools_embed_link[value]  === false">
+                                        <input type = "radio" :name = "key" checked v-model="tools_embed_link[key]" :value="false">
                                         <label class = "col-grow">Text<span aria-label="This tool will be shown to the user as plain, non-interactive text" data-balloon-pos = 'up'>*</span></label>
                                     </div>
                                     <div class = "row">
-                                        <input type = "radio" :name = "key" :checked="tools_embed_link[value]  === true">
+                                        <input type = "radio" :name = "key" v-model= "tools_embed_link[key]" :value="true">
                                         <label class = "col-grow">Link<span aria-label="This tool is interactive (such as a calendar)- add the link here" data-balloon-pos = 'up'>*</span></label>
                                     </div>
                                 </div>
