@@ -252,6 +252,10 @@ button:hover {
     width: calc(16.66% - 2rem);
 }
 
+.col-1{
+    width: calc(8.33% - 2rem);
+}
+
 .col-17 {
     width: calc(14.28% - 2rem);
 }

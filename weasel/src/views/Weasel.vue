@@ -82,6 +82,10 @@ const events = reactive([])
 
 const events_time_splits = reactive({})
 
+const persons = reactive([])
+
+const organizations=['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s']
+
 const addEvent = async() => {
     await axios.post(`http://localhost:5220/api/events`, {
         ward: ward.value,
@@ -162,6 +166,13 @@ const addEvent = async() => {
         }
     })
 
+    await axios.get(`http://localhost:5220/api/persons/ward/${ward.value}`).then((response)=>{
+        let response_object = response.data
+        localStorage.setItem("persons", JSON.stringify(response_object))
+        let temp = JSON.parse(localStorage.getItem("persons"))
+        persons.push(...temp)
+    })
+
     await axios.get(`http://localhost:5220/api/events/ward/${ward.value}/organization/${organization.value}`).then((response) => {
         let response_object = response.data
         localStorage.setItem("events", JSON.stringify(response_object))
@@ -223,9 +234,9 @@ const updateTools = async() => {
 
 <template>
     <div class="row flex-center" :class="ward">
-        <div class="col-8 fwc">
+        <div class="col-10 fwc">
             <div class="row flex-center">
-                <div class="col-10">
+                <div class="col-8 col-grow">
                     <h1 class="">Oklahoma City South Stake - Weasel<span aria-label="Ward Events and Services Electronic List" data-balloon-pos="up">*</span></h1>
                     <h2 class="small">Editing {{//uppercase first letters in ward
                         ward.split(" ").map((word) => {
@@ -233,7 +244,7 @@ const updateTools = async() => {
                         }).join(" ")
                     }} at the {{organization}} level</h2>
                 </div>
-                <div class="col-2" aria-label = "Icon from flaticon.com" data-balloon-pos="up"><img :src="weasel_img"  class="img" alt="Weasel"></div>
+                <div class="col-1" aria-label = "Icon from flaticon.com" data-balloon-pos="up"><img :src="weasel_img"  class="img" alt="Weasel"></div>
             </div>
             <hr />
 
@@ -392,6 +403,48 @@ const updateTools = async() => {
 
                 </section>
 
+                <section id = "weasel-contacts-content" class = "col-12" v-if="current_tab==='contacts'">
+                    
+                    <div class="col-12 flex-between row">
+                        <div class = "col-6">
+                            <h2 v-if="events.length <= 0">No contacts</h2>
+                            <h2 v-else>Contacts</h2>
+                        </div>
+                        <div class = "row flex-between col-6 wrap">
+                            <button class = "col-4 col-grow fwc" @click = "addContact">+ Add contact</button>
+                            <button class = "col-8 col-grow fwc" @click = "updateContacts">Save changes</button>
+                        </div>
+                    </div>
+
+                    <div class = "events">
+                        <div class = "row flex-between col-12 nm">
+                            <div class = "col-1"><h3>Name</h3></div>
+                            <div class = "col-1"><h3>Position</h3></div>
+                            <div class = "col-1"><h3>Org.</h3></div>
+                            <div class = "col-1"><h3>Phone</h3></div>
+                            <div class = "col-1 col-grow"><h3>Email</h3></div>
+                            <div class = "col-4 col-grow"><h3>Bio</h3></div>
+                            <div class = "col-1 col-grow"><h3>Image</h3></div>
+                            <div class = ""><h3>Size</h3></div>
+                            <div class = "event-delete col-shrink"></div>
+
+                        </div>
+                        <hr>
+                        <div v-for="(person, index) in persons" class = "row flex-between col-12 event wrap-t">
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.name"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.position"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.organization"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.phone"></p></div>
+                            <div class = "col-1 fwc col-grow"><p><input class = "ei" type="email" v-model="person.email"></p></div>
+                            <div class = "col-4 fwc col-grow"><p><input class = "ei" v-model="person.bio"></p></div>
+                            <div class = "col-1 fwc col-grow"><p><input class = "ei" v-model="person.image.src"></p></div>
+                            <div class = "fwc"><p><select v-model="person.size"><option>full</option><option>small</option></select></p></div>
+                            <div class = "event-delete col-shrink" @click="deleteContact(person._id)"><Trash2/></div>
+                        </div>
+                    </div>
+
+                </section>
+
             </section>
 
             <hr>
@@ -424,14 +477,12 @@ p.small{
 
 #weasel-worship-content{
     border-top: solid 2px var(--active-color);
-    overflow-x:hidden;
-    overflow-y:auto;
     height:100%;
-    margin-top:-1rem;
     padding:2rem;
 }
 
-#weasel-tools-content{
+
+#weasel-contacts-content, #weasel-worship-content, #weasel-tools-content, #weasel-events-content{
     max-height:80vh;
     overflow-y:auto;
     overflow-x:hidden;

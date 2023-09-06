@@ -11,7 +11,7 @@ import {
 } from '../controllers/personController.js'
 
 router.route('/').get(getPersons).post(createPerson)
-router.route('/:id').get(getPersonById).put(updatePerson).delete(deletePerson)
 router.route('/ward/:ward').get(getPersonsByWard)
+router.route('/:id').get(getPersonById).put(updatePerson).delete(deletePerson)
 
 export default router
