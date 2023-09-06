@@ -16,6 +16,7 @@ const ward = ref("")
 const organization = ref("")
 
 const worship = reactive({
+    id: '',
     ward: '',
     location: {
       address: '',
@@ -44,6 +45,7 @@ const worship = reactive({
       let response_object = response.data
     localStorage.setItem("worship", JSON.stringify(response_object))
     let temp = JSON.parse(localStorage.getItem("worship"))[0]
+    worship.id = temp._id
     worship.ward = temp.ward
     worship.location = temp.location
     worship.time = temp.time
@@ -51,6 +53,14 @@ const worship = reactive({
     worship.image = temp.image
     })
 })
+
+const updateWorship = async() => {
+    console.log(worship.id)
+    await axios.put(`http://localhost:5220/api/worships/${worship.id}`, worship)
+    .then((response) => {
+        console.log(response)
+    })
+}
 
 </script>
 
@@ -100,9 +110,7 @@ const worship = reactive({
                         <div v-if="current_tab == 'worship'">
                             <section class = "form-container">
                                 <h2>Worship details form</h2>
-                                <form class = "form" method="post"
-                                :action = "() => submitForm()"
-                                >
+                                <form class = "form">
                                     <div class = "row flex flex-between wrap rf">
                                         <div class = "col-6 col-grow fwc">
                                             <div class = "form-group">
@@ -147,6 +155,9 @@ const worship = reactive({
                                         <label for = "time">Time</label>
                                         <input type = "text" id = "time" v-model = "worship.time">
                                     </div>
+                                    <button 
+                                        @click = "updateWorship"
+                                    >Submit</button>
                                 </form>
                             </section>
                         </div>
