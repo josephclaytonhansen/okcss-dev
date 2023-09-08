@@ -1,5 +1,5 @@
 import asyncHandler from '../middleware/asyncHandler.min.js'
-import Event from '../models/Event.js'
+import Event from '../models/event.js'
 
 const getEvents = asyncHandler(async (req, res) => {
     const events = await Event.find()
