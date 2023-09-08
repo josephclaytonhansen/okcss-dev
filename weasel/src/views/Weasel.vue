@@ -102,7 +102,7 @@ const addEvent = async() => {
             let response_object = response.data
             localStorage.setItem("events", JSON.stringify(response_object))
             let temp = JSON.parse(localStorage.getItem("events"))
-            events = temp
+            events.push(...temp)
             events.forEach(event => {
             events_time_splits[event._id] = {
                 date: event.time.start.split(" ")[0],
