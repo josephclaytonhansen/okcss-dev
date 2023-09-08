@@ -19,12 +19,12 @@ router.get('/dashboard', async (req, res) => {
             let thumbnails_slugs = []
 
 
-            await axios.get('https://localhost:5920/uploaded-media-thumbnails').then((response) => {
+            await axios.get('https://178.128.224.147:5920/uploaded-media-thumbnails').then((response) => {
                 thumbnails_slugs = response.data.slugs
             })
 
             for (let i = 0; i < thumbnails_slugs.length; i++) {
-                await axios.get('https://localhost:5920/uploaded-media/' + thumbnails_slugs[i]).then((response) => {
+                await axios.get('https://178.128.224.147:5920/uploaded-media/' + thumbnails_slugs[i]).then((response) => {
                     thumbnails.push(response.data)
                 })
             }
@@ -179,12 +179,12 @@ router.get('/edit/post/:id', async (req, res) => {
         let thumbnails = []
         if (!req.session.thumbnails) {
             let thumbnails_slugs = []
-            await axios.get('https://localhost:5920/uploaded-media-thumbnails').then((response) => {
+            await axios.get('https://178.128.224.147:5920/uploaded-media-thumbnails').then((response) => {
                 thumbnails_slugs = response.data.slugs
             })
 
             for (let i = 0; i < thumbnails_slugs.length; i++) {
-                await axios.get('https://localhost:5920/uploaded-media/' + thumbnails_slugs[i]).then((response) => {
+                await axios.get('https://178.128.224.147:5920/uploaded-media/' + thumbnails_slugs[i]).then((response) => {
                     thumbnails.push(response.data)
                 })
             }
@@ -219,12 +219,12 @@ router.get('/edit/page/:id', async (req, res) => {
         if (!req.session.thumbnails) {
             let thumbnails_slugs = []
 
-            await axios.get('https://localhost:5920/uploaded-media-thumbnails').then((response) => {
+            await axios.get('https://178.128.224.147:5920/uploaded-media-thumbnails').then((response) => {
                 thumbnails_slugs = response.data.slugs
             })
 
             for (let i = 0; i < thumbnails_slugs.length; i++) {
-                await axios.get('https://localhost:5920/uploaded-media/' + thumbnails_slugs[i]).then((response) => {
+                await axios.get('https://178.128.224.147:5920/uploaded-media/' + thumbnails_slugs[i]).then((response) => {
                     thumbnails.push(response.data)
                 })
             }
@@ -248,19 +248,19 @@ router.get('/edit/page/:id', async (req, res) => {
 
 router.get('/refresh-session', async (req, res) => {
     //get users, posts, pages, comments, categories from the database, replacing existing req.session values
-    let users = await axios.get('https://localhost:5920/user/').then((response) => {
+    let users = await axios.get('https://178.128.224.147:5920/user/').then((response) => {
         return response.data
     })
     req.session.users = users
-    let posts = await axios.get('https://localhost:5920/post/').then((response) => {
+    let posts = await axios.get('https://178.128.224.147:5920/post/').then((response) => {
         return response.data
     })
     req.session.posts = posts
-    let pages = await axios.get('https://localhost:5920/page/').then((response) => {
+    let pages = await axios.get('https://178.128.224.147:5920/page/').then((response) => {
         return response.data
     })
     req.session.pages = pages
-    let comments = await axios.get('https://localhost:5920/comment/').then((response) => {
+    let comments = await axios.get('https://178.128.224.147:5920/comment/').then((response) => {
         return response.data
     })
     req.session.comments = comments

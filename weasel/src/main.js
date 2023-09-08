@@ -78,7 +78,7 @@ router.beforeEach(async (to, from, next) => {
                     'Access-Control-Allow-Origin': '*'
                 }
             }
-            let url = 'https://localhost:5220/api/users/verify'
+            let url = 'https://178.128.224.147:5220/api/users/verify'
             let params = {
                 token: token,
                 user: user

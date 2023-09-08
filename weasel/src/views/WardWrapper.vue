@@ -47,17 +47,17 @@ function splitEventsByCategory(events) {
 onBeforeMount(async () => {
 
         const ward = route.params.ward
-        const tools_response = await axios.get('https://localhost:5220/api/tools/ward/' + ward)
+        const tools_response = await axios.get('https://178.128.224.147:5220/api/tools/ward/' + ward)
         tools.data = tools_response.data[0]
-        const events_response = await axios.get('https://localhost:5220/api/events/ward/' + ward).then((response) => {
+        const events_response = await axios.get('https://178.128.224.147:5220/api/events/ward/' + ward).then((response) => {
           events.data = response.data
           events.data = splitEventsByCategory(response.data)
         })
 
-        const contacts_response = await axios.get('https://localhost:5220/api/persons/ward/' + ward)
+        const contacts_response = await axios.get('https://178.128.224.147:5220/api/persons/ward/' + ward)
         console.log(contacts_response.data)
         contacts.data = contacts_response.data
-        const worship_response = await axios.get('https://localhost:5220/api/worships/ward/' + ward).then((response) => {
+        const worship_response = await axios.get('https://178.128.224.147:5220/api/worships/ward/' + ward).then((response) => {
             worship.data = response.data[0]
         })
 })
