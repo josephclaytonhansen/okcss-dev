@@ -182,3 +182,4 @@ public-facing-site/src/style.css.map
 public-facing-site/src/style.min.scss
 *.map
 *.*.map
+*map*
