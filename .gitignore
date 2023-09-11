@@ -172,6 +172,7 @@ out
 # *.css but not *.min.css
 *.css
 !*.min.css
+*.min.scss
 
 # *.js but not *.min.js
 *.js
