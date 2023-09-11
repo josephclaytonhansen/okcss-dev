@@ -6,4 +6,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
-@import "bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: none!important;
+  -moz-appearance: none!important;
+  appearance: none!important;
+}
