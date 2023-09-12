@@ -23,34 +23,47 @@
             </p>
         </div>
 
-        <div class = " col col-6 text-center ">
+        <div class = " col col-4 text-center ">
             <img class = "img-fluid mt-2"  style = "max-height:320px;" src = "https://assets.churchofjesuschrist.org/29/80/2980fa992b83004a4dbe5b471d800452c466ea99/church_jesus_christ_lowfidelity_symbol.png">
             
         </div>
 
-        <div class = "col col-3">
-            <div class = "row justify-content-evenly align-items-center">
-                <div class = "col col-3">
-                    <menu style ="text-align: left;">
-                        <li class = "list-unstyled"><a class = "link" href = "#">Home</a></li>
-                        <li class = "list-unstyled"><a class = "link" href = "#">About</a></li>
-                        <li class = "list-unstyled"><a class = "link" href = "#">Contact</a></li>
-                        <li class = "list-unstyled"><a class = "link" href = "#">Blog</a></li>
+        <div class = "col col-3 py-3 px-5 mt-1">
+            <div class = "row align-items-start justify-content-start">
+                <div class = "col-6">
+                    <h5 class = "w-100 text-muted">Navigation</h5>
+                    <menu>
+                        <ul class="nav list-unstyled d-flex flex-column w-100" style = "margin-left:-3rem;">
+                            <li class="ms-2"><a class="link" href="#">Home</a></li>
+                            <li class="ms-2"><a class="link" href="#">About Us</a></li>
+                            <li class="ms-2"><a class="link" href="#">Our Beliefs</a></li>
+                            <li class="ms-2"><a class="link" href="#">Missionaries</a></li>
+                            <li class="ms-2"><a class="link" href="#">Service</a></li>
+                            <li class="ms-2"><a class="link" href="#">Contact Us</a></li>
+                            <li class="ms-2"><a class="link" href="#">Blog</a></li>
+                        </ul>
                     </menu>
                 </div>
-                <div class = "col col-3">
-                    <menu style ="text-align: left;">
-                        <li class = "list-unstyled"><a class = "link" href = "#">Home</a></li>
-                        <li class = "list-unstyled"><a class = "link" href = "#">About</a></li>
-                        <li class = "list-unstyled"><a class = "link" href = "#">Contact</a></li>
-                        <li class = "list-unstyled"><a class = "link" href = "#">Blog</a></li>
+                <div class = "col-6">
+                    <h5 class = "w-100 text-muted">Wards</h5>
+                    <menu>
+                        <ul class="nav list-unstyled d-flex flex-column w-100" style = "margin-left:-3rem;">
+                            <li class="ms-2"><a class="link" href="#">Choctaw</a></li>
+                            <li class="ms-2"><a class="link" href="#">Midwest City</a></li>
+                            <li class="ms-2"><a class="link" href="#">OKC 2nd</a></li>
+                            <li class="ms-2"><a class="link" href="#">Moore</a></li>
+                            <li class="ms-2"><a class="link" href="#">OKC 6th Branch</a></li>
+                            <li class="ms-2"><a class="link" href="#">Mustang 2nd</a></li>
+                            <li class="ms-2"><a class="link" href="#">Mustang 1st</a></li>
+                        </ul>
                     </menu>
                 </div>
             </div>
         </div>
 
         <div class = "w-100 text-align-center d-flex flex-wrap justify-content-center align-items-center mt-3">
-            <span class="mb-3 mb-md-0 me-2 ms-2 text-muted small border-top py-1" style = "margin-top:.125rem;">{{year}} Oklahoma City South Stake | OKCSouthStake.org is not edited, reviewed, or maintained by The Church of Jesus Christ of Latter Day Saints.</span>
+            <span class="mb-3 mb-md-0 me-2 ms-2 text-muted small border-top py-1" style = "margin-top:.125rem;">
+                ©{{year}} Oklahoma City South Stake | OKCSouthStake.org is not edited, reviewed, or maintained by The Church of Jesus Christ of Latter Day Saints.</span>
         </div>
   </footer>
 </template>
