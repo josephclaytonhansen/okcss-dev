@@ -71,3 +71,12 @@ a{
   position:fixed;
   top: 7%;
 }
+
+body *::selection{
+  background-color: $secondary;
+  color:white;
+}
+
+body *{
+  accent-color: $primary;
+}
