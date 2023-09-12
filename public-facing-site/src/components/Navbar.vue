@@ -37,19 +37,21 @@ const props = defineProps({
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Wards</a>
                     <ul class="dropdown-menu"  style = "left:58.3vw">
                             <li v-for = "ward in wards"><a class="dropdown-item" href="#">{{ward}}</a></li>
+                            <div class = "dropdown-divider"/>
+                            <li class="ms-2"><a class="dropdown-item" href="#">Stake</a></li>
                     </ul>
                 </li>
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link" href="#">Contact Us</a>
-                </li>
-                <li class="nav-item col-3 text-center">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">OKC Temple</a>
-                    <ul class="dropdown-menu"  style = "left:78.3vw">
+                    <ul class="dropdown-menu"  style = "left:66.8vw">
                             <li v-for = "temple in temples"><a class="dropdown-item" href="#">{{temple}}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="#">News</a>
+                </li>
+                <li class="nav-item col-3 text-center">
+                    <a class="nav-link" href="#">Contact Us</a>
                 </li>
             </ul>
         </div>
