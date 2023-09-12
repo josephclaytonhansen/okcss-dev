@@ -13,10 +13,18 @@ const count = ref(0)
 
   <div class="card">
     <a class="btn btn-primary" type="button" @click="count++">count is {{ count }}</a>
-    <p>
+    <a class="btn btn-secondary" type="button" @click="count++">count is {{ count }}</a>
+    <a class="btn btn-danger" type="button" @click="count++">count is {{ count }}</a>
+    <a class="btn btn-warning" type="button" @click="count++">count is {{ count }}</a>
+    <a class="btn btn-info" type="button" @click="count++">count is {{ count }}</a>
+    <a class="btn btn-light" type="button" @click="count++">count is {{ count }}</a>
+    <a class="btn btn-dark" type="button" @click="count++">count is {{ count }}</a>
+    <a class="btn btn-success" type="button" @click="count++">count is {{ count }}</a>
+
+    <h1>
       Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
+      <a href="">components/HelloWorld.vue</a> to test HMR
+    </h1>
   </div>
 
   <p>
