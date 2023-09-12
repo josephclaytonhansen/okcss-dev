@@ -52,6 +52,17 @@ function showToast(){
 
 <button @click="showToast" type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
 
+<p>
+    <br/>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl.
+    <br/><br/>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl.
+    <br/><br/>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl.
+    <br/><br/>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl.
+  </p>
+
 <div class="toast-container position-fixed top-0 end-0 p-3">
   <div class="toast align-items-center text-bg-info border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
     <div class="d-flex">

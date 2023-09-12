@@ -66,3 +66,8 @@ a{
 .btn-primary:hover{
   color: white;
 }
+
+.dropdown-menu.show{
+  position:fixed;
+  top: 7%;
+}
