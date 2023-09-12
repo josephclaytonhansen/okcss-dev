@@ -20,6 +20,8 @@ $headings-font-family:                'Vollkorn', serif;
 $headings-color:                    #26282A;
 $light: seashell;
 
+$transition-base: all 0.2s cubic-bezier(.47,.65,.65,.41);
+
 
 :root {
   
@@ -53,4 +55,5 @@ button,
 
 a{
   font-weight:700;
+  transition: color cubic-bezier(.47,.65,.65,.41) 0.15s;
 }
