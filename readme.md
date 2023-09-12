@@ -1,14 +1,20 @@
-## stacks
+## stacks/frameworks
 ### seabass/weasel-backend
-* MongoDB
 * Express
-* Node.js
 
 ### weasel/public-facing-site
-* MongoDB
 * Vite
 * Vue
 * Pinia
+
+### public-facing-site
+* Bootstrap
+* Sass
+
+### all
+* Lucide
+* Node.js
+* MongoDB
 
 ## ports
 ### public-facing-site
