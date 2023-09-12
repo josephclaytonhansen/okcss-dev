@@ -1,4 +1,4 @@
-$primary: hsl(198, 54%, 48%);
+$primary: hsl(198, 54%, 47%);
 $secondary: hsl(16, 31%, 45%);
 $dark: #273147;
 $success: hsl(77, 33%, 46%);
@@ -56,4 +56,12 @@ button,
 a{
   font-weight:700;
   transition: color cubic-bezier(.47,.65,.65,.41) 0.15s;
+}
+
+.btn-primary{
+  color: $light;
+}
+
+.btn-primary:hover{
+  color: white;
 }
