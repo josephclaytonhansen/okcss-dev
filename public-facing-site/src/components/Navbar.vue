@@ -1,8 +1,12 @@
 <script setup>
 import {ref, reactive} from 'vue'
-const wards = ref(["Choctaw", "Midwest City", "OKC 2nd", "Moore", "OKC 6th Branch", "Mustang 2nd", "Mustang 1st"])
 const events = ref(["Stake events", "Classes"])
 const temples = ref(["Temple info", "Schedule appointment", "What are temples?"])
+
+const props = defineProps({
+    wards: Array,
+})
+
 </script>
 
 <template>
