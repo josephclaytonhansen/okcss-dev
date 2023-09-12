@@ -9,9 +9,9 @@
 
 <template>
     <footer class="d-flex flex-wrap justify-content-center align-items-start py-3 mt-5 my-4 border-top row mx-3 pb-0 mb-0" style = 'overflow:hidden;'>
-        <div class="col col-3 text-align-left align-items-start py-3 px-5 mt-1">
+
+        <div class="col col-lg-3 col-md-12 col-sm-12 text-align-left align-items-start py-3 px-5 mt-1">
             <h1 class = "" style = "line-height:0.5;"><span class="text-center" style = "font-size:84px;line-height:1">OKC</span><br><span style = "font-size:32px">South Stake</span></h1>
-            
             <ul class="nav list-unstyled d-flex pt-3">
                 <li class="ms-2"><a class="link" href="#"><Instagram/></a></li>
                 <li class="ms-2"><a class="link" href="#"><Facebook/></a></li>
@@ -23,12 +23,11 @@
             </p>
         </div>
 
-        <div class = " col col-4 text-center ">
-            <img class = "img-fluid mt-2"  style = "max-height:320px;" src = "https://assets.churchofjesuschrist.org/29/80/2980fa992b83004a4dbe5b471d800452c466ea99/church_jesus_christ_lowfidelity_symbol.png">
-            
+        <div class = " col col-lg-4 col-md-12 col-sm-12 text-center">
+            <img class = "img-fluid mt-2"  style = "max-height:320px;min-width:100px;" src = "https://assets.churchofjesuschrist.org/29/80/2980fa992b83004a4dbe5b471d800452c466ea99/church_jesus_christ_lowfidelity_symbol.png">
         </div>
 
-        <div class = "col col-3 py-3 px-5 mt-1">
+        <div class = "col col-lg-3 col-md-12 col-sm-12 py-3 px-5 mt-1">
             <div class = "row align-items-start justify-content-start">
                 <div class = "col-6">
                     <h5 class = "w-100 text-muted">Navigation</h5>
@@ -44,7 +43,7 @@
                         </ul>
                     </menu>
                 </div>
-                <div class = "col-6">
+                <div class = "col-lg-6 col-md-12 col-sm-12">
                     <h5 class = "w-100 text-muted">Wards</h5>
                     <menu>
                         <ul class="nav list-unstyled d-flex flex-column w-100" style = "margin-left:-3rem;">
