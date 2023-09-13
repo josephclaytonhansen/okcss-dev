@@ -1,20 +1,21 @@
 <script setup>
     import { ref, reactive, onMounted } from 'vue'
+    import {
+        contentURLMappings,
+        externalURLMappings,
+        ig_link,
+        fb_link,
+        phone,
+        email,
+        weaselLoc,
+        seabassLoc,
+        wards,
+        blurb,
+        blogsPerPage
+    } from './constants.js'
 
-    /* -------------------- User set or import from database -------------------- */
-    const ig_link = ref("https://www.instagram.com/okcsouthstake/")
-    const fb_link = ref("https://www.facebook.com/okcsouthstake")
-    const phone = ref("405-555-5555")
-    const email = ref("contact@okcsouthstake.org")
-    const blurb = ref('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl.')
-
-    const wards = ref(["Choctaw", "Midwest City", "OKC 2nd", "Moore", "OKC 6th Branch", "Mustang 2nd", "Mustang 1st"])
-
-    const blogsPerPage = ref(5);
-
-    const weaselLoc = ref("https://localhost:5186/")
-    const seabassLoc = ref("https://localhost:5920/")
-    /* -------------------- End user set or import from database -------------------- */
+    /* ----------- constants.js should be changed directly or via API ----------- */
+    /* ------------------------- Do not modify this file ------------------------ */
 
     import Toast from './components/Toast.vue'
     import Navbar from './components/Navbar.vue'
@@ -41,50 +42,6 @@
 
     const currentURL = ref(window.location.pathname)
     const currentContent = ref("home")
-
-    const contentURLMappings = {
-        "/": "home",
-        "/home": "home",
-        "/blog": "news",
-        "/news": "news",
-        "/about": "contact-us",
-        "/contact": "contact-us",
-        "contact-us": "contact-us",
-        "/calendar": "events",
-        "/events": "events",
-        "/classes": "classes",
-        "/temple-prep": "classes",
-        "/self-reliance": "classes",
-        "/beliefs": "beliefs",
-        "/our-beliefs": "beliefs",
-        "/what-we-believe": "beliefs",
-        "/missionaries": "missionaries",
-        "/service": "service",
-        "/service-opportunities": "service",
-        "/temple": "okc-temple",
-        "/temple-info": "okc-temple",
-        "/okc-temple": "okc-temple",
-        "/what-are-temples": "what-are-temples",
-        "/what-is-a-temple": "what-are-temples",
-        "/what-is-the-temple": "what-are-temples",
-    }
-
-    const externalURLMappings = {
-        "/weasel": weaselLoc.value+"weasel",
-        "/weasel/login": weaselLoc.value+"weasel/login",
-        "/seabass": seabassLoc.value,
-        "/instagram": ig_link.value,
-        "/facebook": fb_link.value,
-        "/phone": "tel:"+phone.value,
-        "/email": "mailto:"+email.value,
-        "/choctaw": weaselLoc.value+"choctaw",
-        "/midwest-city": weaselLoc.value+"midwest-city",
-        "/okc-2nd": weaselLoc.value+"okc-2nd",
-        "/moore": weaselLoc.value+"moore",
-        "/okc-6th-branch": weaselLoc.value+"okc-6th-branch",
-        "/mustang-2nd": weaselLoc.value+"mustang-2nd",
-        "/mustang-1st": weaselLoc.value+"mustang-1st",
-    }
 
 const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()

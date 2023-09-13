@@ -176,6 +176,7 @@ out
 
 # *.js but not *.min.js
 *.js
+!constants.js
 !*.min.js
 public-facing-site/src/style.css
 public-facing-site/src/style.css.map

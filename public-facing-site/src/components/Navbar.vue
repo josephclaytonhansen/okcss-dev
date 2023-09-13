@@ -49,7 +49,7 @@ function wardURL(weaselLoc, ward){
                     <ul class="dropdown-menu" id = "dd2">
                             <li v-for = "ward in wards"><a class="dropdown-item" :href = "wardURL(weaselLoc, ward)">{{ward}}</a></li>
                             <div class = "dropdown-divider"/>
-                            <li class="ms-2"><a class="dropdown-item" href="#">Stake</a></li>
+                            <li class="ms-2"><a class="dropdown-item" href="/stake">Stake</a></li>
                     </ul>
                 </li>
                 <li class="nav-item col-3 text-center">
