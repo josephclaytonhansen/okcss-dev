@@ -51,7 +51,7 @@
         "/beliefs": "beliefs",
         "/our-beliefs": "beliefs",
         "/what-we-believe": "beliefs",
-        "missionaries": "missionaries",
+        "/missionaries": "missionaries",
         "/service": "service",
         "/service-opportunities": "service",
         "/temple": "okc-temple",
@@ -63,7 +63,7 @@
     }
 
 const getCurrentPage = () => {
-    currentURL.value = window.location.pathname
+    currentURL.value = window.location.pathname.toLowerCase()
     return contentURLMappings[currentURL.value]
 }
 
