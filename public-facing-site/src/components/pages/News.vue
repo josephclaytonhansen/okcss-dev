@@ -1,7 +1,8 @@
 <script setup>
 import {ref, reactive, onMounted} from 'vue'
+import Post from './Post.vue'
 
-const posts = reactive([1,2,3,4,5,6,7,8,9,10,11])
+const posts = reactive(["Blog 1","Blog 2","Blog 3","Blog 4","Blog 5","Blog 6","Blog 7"])
 
 const props = defineProps({
     seabassLoc: String,
@@ -25,7 +26,9 @@ const currentPage = ref(1);
     </div>
 
     <div id="blogs">
-        <div v-for="(item, index) in posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`" :item="item">{{ item }}</div>
+        <Post v-for="(item, index) in posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`" :item="item">
+            <template #content>{{ item }}</template>
+        </Post>
     </div>
 
     <div id = "pagination-container">
