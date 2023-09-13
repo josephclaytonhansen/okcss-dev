@@ -70,19 +70,20 @@
     }
 
     const externalURLMappings = {
-        "/weasel": weaselLoc.value,
+        "/weasel": weaselLoc.value+"weasel",
+        "/weasel/login": weaselLoc.value+"weasel/login",
         "/seabass": seabassLoc.value,
         "/instagram": ig_link.value,
         "/facebook": fb_link.value,
         "/phone": "tel:"+phone.value,
         "/email": "mailto:"+email.value,
-        "/choctaw": weaselLoc.value+"/choctaw",
-        "/midwest-city": weaselLoc.value+"/midwest-city",
-        "/okc-2nd": weaselLoc.value+"/okc-2nd",
-        "/moore": weaselLoc.value+"/moore",
-        "/okc-6th-branch": weaselLoc.value+"/okc-6th-branch",
-        "/mustang-2nd": weaselLoc.value+"/mustang-2nd",
-        "/mustang-1st": weaselLoc.value+"/mustang-1st",
+        "/choctaw": weaselLoc.value+"choctaw",
+        "/midwest-city": weaselLoc.value+"midwest-city",
+        "/okc-2nd": weaselLoc.value+"okc-2nd",
+        "/moore": weaselLoc.value+"moore",
+        "/okc-6th-branch": weaselLoc.value+"okc-6th-branch",
+        "/mustang-2nd": weaselLoc.value+"mustang-2nd",
+        "/mustang-1st": weaselLoc.value+"mustang-1st",
     }
 
 const getCurrentPage = () => {
