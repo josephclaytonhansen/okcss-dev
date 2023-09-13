@@ -30,11 +30,11 @@ const currentPage = ref(1);
 
     <div id = "pagination-container">
         <div id = "pagination" class = "row justify-content-evenly align-items-center">
-            <a class = "btn col col-auto btn-primary pg-pn" :class = "{disabled: currentPage === 1}" @click = "currentPage--">Previous</a>
+            <a class = "btn col col-auto border-1 border border-light-gray pg-pn" :class = "{disabled: currentPage === 1}" @click = "currentPage--">Newer</a>
             <div class = "col row justify-content-center flex-wrap">
                 <a class =  'btn pg-b border-bottom border-1 border-white' :class = "{'btn-primary': currentPage === page}" v-for="page in Math.ceil(posts.length / itemsPerPage)" :key="page" @click = "currentPage = page">{{page}}</a>
             </div>
-            <a class = "btn col col-auto btn-primary pg-pn" :class = "{disabled: currentPage === Math.ceil(posts.length / itemsPerPage)}" @click = "currentPage++">Next</a>
+            <a class = "btn col border-1 border border-light-gray col-auto pg-pn" :class = "{disabled: currentPage === Math.ceil(posts.length / itemsPerPage)}" @click = "currentPage++">Older</a>
         </div>
     </div>
 
@@ -43,6 +43,14 @@ const currentPage = ref(1);
 <style scoped>
     .pg-pn{
         height:fit-content;
+    }
+    .pg-pn:hover, .pg-pn:focus{
+        border:solid 1px hsl(198, 54%, 47%)!important;
+    }
+    .pg-pn.disabled{
+        border:none!important;
+        pointer-events:none;
+        color:white!important;
     }
     .pg-b{
         width: 50px;
