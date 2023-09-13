@@ -2,5 +2,5 @@
 </script>
 
 <template>
-    Hello world!
+    Contact us/ about
 </template>

@@ -20,19 +20,19 @@ function slugifyWard(ward){
         <div class="container-fluid align-middle py-0 mt-3 row" style = "flex-direction: row!important;">
             <ul class="navbar-nav me-auto row col-5 mb-3" style = "flex-direction: row!important;">
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Events</a>
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="">Events</a>
                     <ul class="dropdown-menu"  style = "left:1vw">
                             <li v-for = "event in events"><a class="dropdown-item" :href = "events_links[event]">{{event}}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link" href="#">Our Beliefs</a>
+                    <a class="nav-link" href="/beliefs">Our Beliefs</a>
                 </li>
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link" href="#">Missionaries</a>
+                    <a class="nav-link" href="/missionaries">Missionaries</a>
                 </li>
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link" href="#">Service</a>
+                    <a class="nav-link" href="/service">Service</a>
                 </li>
             </ul>
             <a class ="navbar-brand col-2" href="/">
@@ -40,7 +40,7 @@ function slugifyWard(ward){
             </a>
             <ul class="navbar-nav me-auto row col-5 mb-3" style = "flex-direction: row!important;">
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Wards</a>
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="">Wards</a>
                     <ul class="dropdown-menu"  style = "left:58.3vw">
                             <li v-for = "ward in wards"><a class="dropdown-item" :href = "slugifyWard(ward)">{{ward}}</a></li>
                             <div class = "dropdown-divider"/>
@@ -48,16 +48,16 @@ function slugifyWard(ward){
                     </ul>
                 </li>
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">OKC Temple</a>
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="">OKC Temple</a>
                     <ul class="dropdown-menu"  style = "left:66.8vw">
                             <li v-for = "temple in temples"><a class="dropdown-item" :href="temples_links[temple]">{{temple}}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link" href="#">News</a>
+                    <a class="nav-link" href="/news">News</a>
                 </li>
                 <li class="nav-item col-3 text-center">
-                    <a class="nav-link" href="#">Contact Us</a>
+                    <a class="nav-link" href="/contact-us">Contact Us</a>
                 </li>
             </ul>
         </div>

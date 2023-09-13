@@ -2,5 +2,5 @@
 </script>
 
 <template>
-    Hello world!
+    Beliefs
 </template>

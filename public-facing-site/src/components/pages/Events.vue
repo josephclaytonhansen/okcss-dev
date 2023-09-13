@@ -2,5 +2,5 @@
 </script>
 
 <template>
-    Hello world! Events
+    Events
 </template>

@@ -88,9 +88,4 @@ const getCurrentPage = () => {
         <Toast :toast="toast"/>
         <Footer :wards="wards" :ig_link="ig_link" :fb_link="fb_link" :phone="phone" :email="email" :blurb="blurb"/>
     </div>
-
 </template>
-
-<style scoped>
-
-</style>
