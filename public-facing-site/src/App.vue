@@ -1,4 +1,20 @@
 <script setup>
+    import { ref, reactive, onMounted } from 'vue'
+
+    /* -------------------- User set or import from database -------------------- */
+    const ig_link = ref("https://www.instagram.com/okcsouthstake/")
+    const fb_link = ref("https://www.facebook.com/okcsouthstake")
+    const phone = ref("405-555-5555")
+    const email = ref("contact@okcsouthstake.org")
+    const blurb = ref('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl.')
+
+    const wards = ref(["Choctaw", "Midwest City", "OKC 2nd", "Moore", "OKC 6th Branch", "Mustang 2nd", "Mustang 1st"])
+
+    const blogsPerPage = ref(5);
+
+    const weaselLoc = ref("https://localhost:5186/")
+    const seabassLoc = ref("https://localhost:5920/")
+    /* -------------------- End user set or import from database -------------------- */
 
     import Toast from './components/Toast.vue'
     import Navbar from './components/Navbar.vue'
@@ -16,16 +32,6 @@
     import Service from './components/pages/Service.vue'
     import OKCTemple from './components/pages/OKCTemple.vue'
     import WhatAreTemples from './components/pages/WhatAreTemples.vue'
-
-    import { ref, reactive, onMounted } from 'vue'
-
-    const ig_link = ref("https://www.instagram.com/okcsouthstake/")
-    const fb_link = ref("https://www.facebook.com/okcsouthstake")
-    const phone = ref("405-555-5555")
-    const email = ref("contact@okcsouthstake.org")
-    const blurb = ref('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl.')
-
-    const wards = ref(["Choctaw", "Midwest City", "OKC 2nd", "Moore", "OKC 6th Branch", "Mustang 2nd", "Mustang 1st"])
 
     const toast = reactive({
         duration: 2000,
@@ -73,8 +79,6 @@ onMounted(() => {
     currentContent.value = getCurrentPage()
 })
 
-const weaselLoc = ref("https://localhost:5186/")
-
 </script>
 
 <template>
@@ -83,7 +87,7 @@ const weaselLoc = ref("https://localhost:5186/")
         <MobileNavbar :wards="wards" :weaselLoc="weaselLoc"/>
         <Main>
             <Home v-if = "currentContent === 'home'"/>
-            <News v-else-if = "currentContent === 'news'"/>
+            <News v-else-if = "currentContent === 'news'" :seabassLoc="seabassLoc" :itemsPerPage="blogsPerPage"/>
             <ContactUs v-else-if = "currentContent === 'contact-us'"/>
             <Events v-else-if = "currentContent === 'events'"/>
             <Classes v-else-if = "currentContent === 'classes'"/>
