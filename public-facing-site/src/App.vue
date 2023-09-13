@@ -5,6 +5,17 @@
     import Footer from './components/Footer.vue'
     import Main from './components/Main.vue'
 
+    import Home from './components/pages/Home.vue'
+    import News from './components/pages/News.vue'
+    import ContactUs from './components/pages/ContactUs.vue'
+    import Events from './components/pages/Events.vue'
+    import Classes from './components/pages/Classes.vue'
+    import Beliefs from './components/pages/Beliefs.vue'
+    import Missionaries from './components/pages/Missionaries.vue'
+    import Service from './components/pages/Service.vue'
+    import OKCTemple from './components/pages/OKCTemple.vue'
+    import WhatAreTemples from './components/pages/WhatAreTemples.vue'
+
     import { ref, reactive } from 'vue'
 
     const ig_link = ref("https://www.instagram.com/okcsouthstake/")
