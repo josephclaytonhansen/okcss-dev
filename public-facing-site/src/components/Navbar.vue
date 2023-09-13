@@ -22,11 +22,11 @@ function wardURL(weaselLoc, ward){
 
 <template>
     <nav class="navbar border-2 border d-sm-none d-lg-flex d-none">
-        <div class="container-fluid align-middle py-0 mt-3 row" style = "flex-direction: row!important;">
-            <ul class="navbar-nav me-auto row col-5 mb-3" style = "flex-direction: row!important;">
+        <div class="container-fluid align-middle py-0 mt-3 row fd-row">
+            <ul class="navbar-nav me-auto row col-5 mb-3 fd-row">
                 <li class="nav-item col-3 text-center">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="">Events</a>
-                    <ul class="dropdown-menu"  style = "left:1vw">
+                    <ul class="dropdown-menu" id = "dd1">
                             <li v-for = "event in events"><a class="dropdown-item" :href = "events_links[event]">{{event}}</a></li>
                     </ul>
                 </li>
@@ -43,10 +43,10 @@ function wardURL(weaselLoc, ward){
             <a class ="navbar-brand col-2" href="/">
                 <h1 class = "text-center" style = "line-height:0.5;"><span>OKC</span><br><span class = "fs-6">South Stake</span></h1>
             </a>
-            <ul class="navbar-nav me-auto row col-5 mb-3" style = "flex-direction: row!important;">
+            <ul class="navbar-nav me-auto row col-5 mb-3 fd-row">
                 <li class="nav-item col-3 text-center">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="">Wards</a>
-                    <ul class="dropdown-menu"  style = "left:58.3vw">
+                    <ul class="dropdown-menu" id = "dd2">
                             <li v-for = "ward in wards"><a class="dropdown-item" :href = "wardURL(weaselLoc, ward)">{{ward}}</a></li>
                             <div class = "dropdown-divider"/>
                             <li class="ms-2"><a class="dropdown-item" href="#">Stake</a></li>
@@ -54,7 +54,7 @@ function wardURL(weaselLoc, ward){
                 </li>
                 <li class="nav-item col-3 text-center">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="">OKC Temple</a>
-                    <ul class="dropdown-menu"  style = "left:66.8vw">
+                    <ul class="dropdown-menu" id = "dd3">
                             <li v-for = "temple in temples"><a class="dropdown-item" :href="temples_links[temple]">{{temple}}</a></li>
                     </ul>
                 </li>
@@ -73,6 +73,21 @@ function wardURL(weaselLoc, ward){
 .dropdown-menu.show{
   position:fixed;
   top: 7%;
+}
+.fd-row{
+    flex-direction: row!important;
+}
+
+#dd1{
+    left: 1vw!important;
+}
+
+#dd2{
+    left: 58.3vw!important;
+}
+
+#dd3{
+    left: 66.8vw!important;
 }
 
 </style>
