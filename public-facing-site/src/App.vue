@@ -17,7 +17,7 @@
     import OKCTemple from './components/pages/OKCTemple.vue'
     import WhatAreTemples from './components/pages/WhatAreTemples.vue'
 
-    import { ref, reactive } from 'vue'
+    import { ref, reactive, onMounted } from 'vue'
 
     const ig_link = ref("https://www.instagram.com/okcsouthstake/")
     const fb_link = ref("https://www.facebook.com/okcsouthstake")
@@ -34,6 +34,7 @@
     })
 
     const currentURL = ref(window.location.pathname)
+    const currentContent = ref("home")
 
     const contentURLMappings = {
         "/": "home",
@@ -64,8 +65,13 @@
 
 const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()
-    return contentURLMappings[currentURL.value]
+    let r = contentURLMappings[currentURL.value]
+    return r
 }
+
+onMounted(() => {
+    currentContent.value = getCurrentPage()
+})
 
 const weaselLoc = ref("https://localhost:5186/")
 
@@ -76,16 +82,16 @@ const weaselLoc = ref("https://localhost:5186/")
         <Navbar :wards="wards" :weaselLoc="weaselLoc"/>
         <MobileNavbar :wards="wards" :weaselLoc="weaselLoc"/>
         <Main>
-            <Home v-if = "getCurrentPage() === 'home'"/>
-            <News v-else-if = "getCurrentPage() === 'news'"/>
-            <ContactUs v-else-if = "getCurrentPage() === 'contact-us'"/>
-            <Events v-else-if = "getCurrentPage() === 'events'"/>
-            <Classes v-else-if = "getCurrentPage() === 'classes'"/>
-            <Beliefs v-else-if = "getCurrentPage() === 'beliefs'"/>
-            <Missionaries v-else-if = "getCurrentPage() === 'missionaries'"/>
-            <Service v-else-if = "getCurrentPage() === 'service'"/>
-            <OKCTemple v-else-if = "getCurrentPage() === 'okc-temple'"/>
-            <WhatAreTemples v-else-if = "getCurrentPage() === 'what-are-temples'"/>
+            <Home v-if = "currentContent === 'home'"/>
+            <News v-else-if = "currentContent === 'news'"/>
+            <ContactUs v-else-if = "currentContent === 'contact-us'"/>
+            <Events v-else-if = "currentContent === 'events'"/>
+            <Classes v-else-if = "currentContent === 'classes'"/>
+            <Beliefs v-else-if = "currentContent === 'beliefs'"/>
+            <Missionaries v-else-if = "currentContent === 'missionaries'"/>
+            <Service v-else-if = "currentContent === 'service'"/>
+            <OKCTemple v-else-if = "currentContent === 'okc-temple'"/>
+            <WhatAreTemples v-else-if = "currentContent === 'what-are-temples'"/>
             <Home v-else/>
         </Main>
         <Toast :toast="toast"/>
