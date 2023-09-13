@@ -1,7 +1,7 @@
 <script setup>
 import {ref, reactive, onMounted} from 'vue'
 
-const posts = reactive([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36])
+const posts = reactive([1,2,3,4,5,6,7,8,9,10,11])
 
 const props = defineProps({
     seabassLoc: String,
@@ -10,8 +10,8 @@ const props = defineProps({
 
 onMounted(async () => {
     const response = await fetch(props.seabassLoc+'post')
-    const data = await response.json()
-    return data
+    const data = response.json()
+    posts.value = data
 })
 
 const currentPage = ref(1);

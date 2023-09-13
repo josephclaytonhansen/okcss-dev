@@ -69,9 +69,32 @@
         "/what-is-the-temple": "what-are-temples",
     }
 
+    const externalURLMappings = {
+        "/weasel": weaselLoc.value,
+        "/seabass": seabassLoc.value,
+        "/instagram": ig_link.value,
+        "/facebook": fb_link.value,
+        "/phone": "tel:"+phone.value,
+        "/email": "mailto:"+email.value,
+        "/choctaw": weaselLoc.value+"/choctaw",
+        "/midwest-city": weaselLoc.value+"/midwest-city",
+        "/okc-2nd": weaselLoc.value+"/okc-2nd",
+        "/moore": weaselLoc.value+"/moore",
+        "/okc-6th-branch": weaselLoc.value+"/okc-6th-branch",
+        "/mustang-2nd": weaselLoc.value+"/mustang-2nd",
+        "/mustang-1st": weaselLoc.value+"/mustang-1st",
+    }
+
 const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()
     let r = contentURLMappings[currentURL.value]
+    if (r === undefined) {
+        r = externalURLMappings[currentURL.value]
+        window.location.href = r
+        if (r === undefined) {
+            window.location.href = "/"
+        }
+    }
     return r
 }
 
