@@ -7,10 +7,15 @@ const temples_links = reactive({'Temple info':"/okc-temple", 'Schedule appointme
 
 const props = defineProps({
     wards: Array,
+    weaselLoc: String,
 })
 
 function slugifyWard(ward){
     return ward.toLowerCase().replace(/ /g, "-").replace(/'/g, "")
+}
+
+function wardURL(weaselLoc, ward){
+    return weaselLoc + slugifyWard(ward)
 }
 
 </script>
@@ -42,7 +47,7 @@ function slugifyWard(ward){
                 <li class="nav-item col-3 text-center">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="">Wards</a>
                     <ul class="dropdown-menu"  style = "left:58.3vw">
-                            <li v-for = "ward in wards"><a class="dropdown-item" :href = "slugifyWard(ward)">{{ward}}</a></li>
+                            <li v-for = "ward in wards"><a class="dropdown-item" :href = "wardURL(weaselLoc, ward)">{{ward}}</a></li>
                             <div class = "dropdown-divider"/>
                             <li class="ms-2"><a class="dropdown-item" href="#">Stake</a></li>
                     </ul>

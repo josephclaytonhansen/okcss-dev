@@ -66,12 +66,13 @@ const getCurrentPage = () => {
     return contentURLMappings[currentURL.value]
 }
 
+const weaselLoc = ref("https://localhost:5186/")
 
 </script>
 
 <template>
     <div id = "app">
-        <Navbar :wards="wards"/>
+        <Navbar :wards="wards" :weaselLoc="weaselLoc"/>
         <Main>
             <Home v-if = "getCurrentPage() === 'home'"/>
             <News v-else-if = "getCurrentPage() === 'news'"/>
@@ -86,6 +87,6 @@ const getCurrentPage = () => {
             <Home v-else/>
         </Main>
         <Toast :toast="toast"/>
-        <Footer :wards="wards" :ig_link="ig_link" :fb_link="fb_link" :phone="phone" :email="email" :blurb="blurb"/>
+        <Footer :wards="wards" :ig_link="ig_link" :fb_link="fb_link" :phone="phone" :email="email" :blurb="blurb" :weaselLoc="weaselLoc"/>
     </div>
 </template>

@@ -9,11 +9,16 @@
         fb_link: String,
         phone: String,
         email: String,
-        blurb: String
+        blurb: String,
+        weaselLoc: String,
     })
 
     function slugifyWard(ward){
         return ward.toLowerCase().replace(/ /g, "-").replace(/'/g, "")
+    }
+
+    function wardURL(weaselLoc, ward){
+        return weaselLoc + slugifyWard(ward)
     }
 
 </script>
@@ -55,7 +60,7 @@
                     <h5 class = "w-100 text-muted">Wards</h5>
                     <menu>
                         <ul class="nav list-unstyled d-flex flex-column w-100" style = "margin-left:-3rem;">
-                            <li v-for = "ward in wards" class="ms-2"><a class="link" :href="slugifyWard(ward)">{{ward}}</a></li>
+                            <li v-for = "ward in wards" class="ms-2"><a class="link" :href="wardURL(weaselLoc, ward)">{{ward}}</a></li>
                         </ul>
                     </menu>
                 </div>
