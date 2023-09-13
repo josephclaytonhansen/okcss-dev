@@ -70,5 +70,9 @@ function wardURL(weaselLoc, ward){
 </template>
 
 <style scoped>
+.dropdown-menu.show{
+  position:fixed;
+  top: 7%;
+}
 
 </style>

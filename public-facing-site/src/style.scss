@@ -67,11 +67,6 @@ a{
   color: white;
 }
 
-.dropdown-menu.show{
-  position:fixed;
-  top: 7%;
-}
-
 body *::selection{
   background-color: $secondary;
   color:white;

@@ -2,6 +2,7 @@
 
     import Toast from './components/Toast.vue'
     import Navbar from './components/Navbar.vue'
+    import MobileNavbar from './components/MobileNavbar.vue'
     import Footer from './components/Footer.vue'
     import Main from './components/Main.vue'
 
@@ -73,6 +74,7 @@ const weaselLoc = ref("https://localhost:5186/")
 <template>
     <div id = "app">
         <Navbar :wards="wards" :weaselLoc="weaselLoc"/>
+        <MobileNavbar :wards="wards" :weaselLoc="weaselLoc"/>
         <Main>
             <Home v-if = "getCurrentPage() === 'home'"/>
             <News v-else-if = "getCurrentPage() === 'news'"/>
