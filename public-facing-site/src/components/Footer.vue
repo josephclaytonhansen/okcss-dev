@@ -32,8 +32,8 @@
             <ul class="nav list-unstyled d-flex pt-3">
                 <li class="ms-2"><a class="link" :href="ig_link"><Instagram/></a></li>
                 <li class="ms-2"><a class="link" :href="fb_link"><Facebook/></a></li>
-                <li class="ms-2"><a class="link" href="#"><Phone/></a></li>
-                <li class="ms-2"><a class="link" href="#"><Mail/></a></li>
+                <li class="ms-2"><a class="link" :href="'tel:'+phone"><Phone/></a></li>
+                <li class="ms-2"><a class="link" :href="'mailto:'+email"><Mail/></a></li>
             </ul>
             <p class = "text mt-3 small">
                 {{blurb}}
