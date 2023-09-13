@@ -41,13 +41,13 @@
                     <h5 class = "w-100 text-muted">Navigation</h5>
                     <menu>
                         <ul class="nav list-unstyled d-flex flex-column w-100" style = "margin-left:-3rem;">
-                            <li class="ms-2"><a class="link" href="#">Home</a></li>
-                            <li class="ms-2"><a class="link" href="#">About Us</a></li>
-                            <li class="ms-2"><a class="link" href="#">Our Beliefs</a></li>
-                            <li class="ms-2"><a class="link" href="#">Missionaries</a></li>
-                            <li class="ms-2"><a class="link" href="#">Service</a></li>
-                            <li class="ms-2"><a class="link" href="#">Contact Us</a></li>
-                            <li class="ms-2"><a class="link" href="#">Blog</a></li>
+                            <li class="ms-2"><a class="link" href="/">Home</a></li>
+                            <li class="ms-2"><a class="link" href="/contact-us">About Us</a></li>
+                            <li class="ms-2"><a class="link" href="/beliefs">Our Beliefs</a></li>
+                            <li class="ms-2"><a class="link" href="/missionaries">Missionaries</a></li>
+                            <li class="ms-2"><a class="link" href="/service">Service</a></li>
+                            <li class="ms-2"><a class="link" href="/news">News</a></li>
+                            <li class="ms-2"><a class="link" href="/contact-us">Contact Us</a></li>
                         </ul>
                     </menu>
                 </div>

@@ -52,7 +52,7 @@
         "/what-we-believe": "beliefs",
         "missionaries": "missionaries",
         "/service": "service",
-        "/service-oppurtunities": "service",
+        "/service-opportunities": "service",
         "/temple": "okc-temple",
         "/temple-info": "okc-temple",
         "/okc-temple": "okc-temple",

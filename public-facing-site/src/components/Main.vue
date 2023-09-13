@@ -7,4 +7,8 @@
     </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+    main{
+        min-height: 45vh;
+    }
+</style>
