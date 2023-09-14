@@ -17,6 +17,12 @@ function filterWards(wards, filter){
     return wards.filter(ward => !ward.includes(filter))
 }
 
+function recentPosts(posts){
+    let filteredPosts = posts.filter(post => post.date !== undefined)
+    filteredPosts.sort((a,b) => new Date(b.date) - new Date(a.date))
+    return filteredPosts.slice(0,3)
+}
+
 </script>
 
 <template>
