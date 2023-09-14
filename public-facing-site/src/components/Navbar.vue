@@ -41,7 +41,7 @@ function wardURL(weaselLoc, ward){
                 </li>
             </ul>
             <a class ="navbar-brand col-2" href="/">
-                <h1 class = "text-center" style = "line-height:0.5;"><span>OKC</span><br><span class = "fs-6">South Stake</span></h1>
+                <h1 class = "text-center" style = "line-height:0.5;"><span>OKC</span><br><span class = "fs-6">South Stake</span><br><span style = "font-size: 25%;text-align: center;" class="text-muted">The Church of Jesus Christ of Latter-Day Saints</span></h1>
             </a>
             <ul class="navbar-nav me-auto row col-5 mb-3 fd-row">
                 <li class="nav-item col-3 text-center">

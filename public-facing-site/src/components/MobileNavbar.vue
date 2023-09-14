@@ -23,7 +23,7 @@ function wardURL(weaselLoc, ward){
 <template>
     <nav class="navbar border-2 border d-md-flex d-lg-none d-flex">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><h3 class = "mt-2">OKC South Stake</h3></a>
+            <a class="navbar-brand" href="#"><h3 class = "mt-2">OKC South Stake<br><span class='text-small small text-muted'>of The Church of Jesus Christ of Latter-Day Saints</span></h3></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
