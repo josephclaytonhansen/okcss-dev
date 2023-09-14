@@ -56,5 +56,10 @@ onMounted(() => {
 
 .button-moon, .button-sun{
     color:gray;
+    transform: scale(.7) translateX(.5rem);
+}
+
+.dropdown-toggle::after{
+    color:gray;
 }
 </style>
