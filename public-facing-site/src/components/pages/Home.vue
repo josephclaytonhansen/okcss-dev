@@ -158,7 +158,7 @@ onMounted(async () => {
             <div class="col col-12" id="message-row-inner">
                 <div class="row">
                     <div class="col col-8 mt-1 col-md-8 col-sm-12">
-                        <h4>Service Opportunities in Your Community</h4>
+                        <h4 id = "always-black">Service Opportunities in Your Community</h4>
                     </div>
                     <div class="col col-4 col-md-4 col-sm-12">
                         <a class="btn btn-primary" href="/service">Learn More</a>
@@ -220,6 +220,10 @@ onMounted(async () => {
 
 <style scoped>
 
+#always-black{
+    color: #26282a!important;
+}
+
 #instagram {
     height:500px;
     overflow-y:scroll;
@@ -234,7 +238,7 @@ onMounted(async () => {
 }
 
 #message-row-row{
-    background-color: #f5f5f5;
+    background-color: hsl(0, 0%, 92%);
 }
 
 .row-title{
