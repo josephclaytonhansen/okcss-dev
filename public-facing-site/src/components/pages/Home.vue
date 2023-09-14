@@ -29,7 +29,7 @@ function filterWards(wards, filter){
             <h1 id="title" class="mb-0 py-0">
                 Join Us to Worship<br /><span id='title-small'>Our Savior Jesus Christ</span>
             </h1>
-            <p id="hero-text" class="mt-5">
+            <p class="mt-5 hero-text">
                 All are welcome. We invite you to join us for Christ-centered worship and study. Learn about the Savior
                 in a
                 loving community.
@@ -103,8 +103,8 @@ function filterWards(wards, filter){
             <h2 id="beliefs-row-title" class="mb-0 py-0 row-title">
                 What Do We Believe?
             </h2>
-            <p id="hero-text" class="mt-5">
-                Our beliefs are centered around God and Jesus Christ. We strive to follow the words of God. Learn more
+            <p class="mt-5 hero-text">
+                <span class = "lead">Our beliefs are centered around God and Jesus Christ.</span><br><br>We strive to follow the words of God. Learn more
                 about what we believe and how our beliefs can inspire you to live a Christ-centered life.
             </p>
             <a id="hero-button" class="btn btn-primary" href="/beliefs">Learn More</a>
@@ -127,7 +127,7 @@ function filterWards(wards, filter){
         <div class="col col-12">
             <h2 class="text-center row-title mb-4">Follow Our Social Media</h2>
         </div>
-        <div class="row align-items-center justify-content-center flex-wrap py-2" id="social-media-row">
+        <div class="row align-items-stretch justify-content-center flex-wrap py-2" id="social-media-row">
             <div class="col-12 col-md-6 col-sm-12 socialmedia-card border border-1 border-light-gray" id = "instagram">
                 <iframe src="https://www.instagram.com/okcsouthstake/embed/" frameborder="0"><script async src="https://www.instagram.com/embed.js"></script></iframe>
             </div>
@@ -207,7 +207,7 @@ function filterWards(wards, filter){
 #instagram iframe{
     width:100%;
     height:fit-content;
-    min-height:300px;
+    min-height:500px;
 }
 
 .event-card{
@@ -272,7 +272,7 @@ function filterWards(wards, filter){
     margin-left:-100vw;
     margin-right:-100vw;
 }
-#hero-spacer{
+.hero-spacer{
     height:100%;
     min-height:3rem;
 }
@@ -314,5 +314,9 @@ left: 0;
 background-color: gray;
 /* let's see it! */
 color: white;
+}
+
+.hero-text:has(.lead){
+    margin-top:1rem!important;
 }
 </style>
