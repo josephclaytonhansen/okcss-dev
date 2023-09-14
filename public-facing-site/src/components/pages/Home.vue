@@ -26,10 +26,10 @@ function recentPosts(posts){
 }
 
 onMounted(async () => {
-    let recaptchaScript = document.createElement('script')
-      recaptchaScript.setAttribute('src', 'https://w.behold.so/widget.js')
-      recaptchaScript.setAttribute('type', 'module')
-      document.head.appendChild(recaptchaScript)
+    let igEmbed = document.createElement('script')
+    igEmbed.setAttribute('src', 'https://w.behold.so/widget.js')
+    igEmbed.setAttribute('type', 'module')
+    document.head.appendChild(igEmbed)
 })
 
 </script>
