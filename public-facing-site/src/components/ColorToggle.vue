@@ -53,6 +53,12 @@ onMounted(() => {
     list-style-type: none;
 }
 
+@media screen and (max-width: 768px) {
+    #picker{
+        display:none;
+    }
+}
+
 .button-moon, .button-sun{
     color:gray;
     transform: scale(.7) translateX(.5rem);
