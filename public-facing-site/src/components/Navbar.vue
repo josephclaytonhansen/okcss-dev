@@ -21,7 +21,7 @@ function wardURL(weaselLoc, ward){
 </script>
 
 <template>
-    <nav class="navbar border-2 border d-sm-none d-lg-flex d-none">
+    <nav class="navbar border-2 border d-sm-none d-lg-flex d-none" id = 'navbar'>
         <div class="container-fluid align-middle py-0 mt-3 row fd-row">
             <ul class="navbar-nav me-auto row col-5 mb-3 fd-row">
                 <li class="nav-item col-3 text-center">
@@ -70,6 +70,9 @@ function wardURL(weaselLoc, ward){
 </template>
 
 <style scoped>
+#navbar{
+    width:100.5%;
+}
 .dropdown-menu.show{
   position:fixed;
   top: 7%;

@@ -22,6 +22,7 @@
     import MobileNavbar from './components/MobileNavbar.vue'
     import Footer from './components/Footer.vue'
     import Main from './components/Main.vue'
+    import ColorToggle from './components/ColorToggle.vue'
 
     import Home from './components/pages/Home.vue'
     import News from './components/pages/News.vue'
@@ -64,6 +65,7 @@ onMounted(() => {
 
 <template>
     <div id = "app">
+        <ColorToggle/>
         <Navbar :wards="wards" :weaselLoc="weaselLoc"/>
         <MobileNavbar :wards="wards" :weaselLoc="weaselLoc"/>
         <Main>
