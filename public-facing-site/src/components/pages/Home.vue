@@ -1,4 +1,6 @@
 <script setup>
+import { onMounted } from 'vue';
+
 
 const props = defineProps({
     wards: Array,
@@ -22,6 +24,13 @@ function recentPosts(posts){
     filteredPosts.sort((a,b) => new Date(b.date) - new Date(a.date))
     return filteredPosts.slice(0,3)
 }
+
+onMounted(async () => {
+    let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', 'https://w.behold.so/widget.js')
+      recaptchaScript.setAttribute('type', 'module')
+      document.head.appendChild(recaptchaScript)
+})
 
 </script>
 
@@ -135,7 +144,8 @@ function recentPosts(posts){
         </div>
         <div class="row align-items-stretch justify-content-center flex-wrap py-2" id="social-media-row">
             <div class="col-12 col-md-6 col-sm-12 socialmedia-card border border-1 border-light-gray" id = "instagram">
-                <iframe src="https://www.instagram.com/okcsouthstake/embed/" frameborder="0"><script async src="https://www.instagram.com/embed.js"></script></iframe>
+                    <figure data-behold-id="9ug8AII6JrLwdEToTRtv"></figure>
+                    <a href = "https://www.instagram.com/okcsouthstake/" class = "link w-100 text-center mt-3 d-block">View More</a>
             </div>
             <div class="col-12 col-md-5 col-sm-12 socialmedia-card border border-1 border-light-gray" id = "facebook">
                 <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fokcsouthstake&tabs=timeline&width=2200&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&lazy=true&appId" width = "2200" height="500" style="border:none;overflow:hidden;width:100%!important;min-width:100%!important;padding-right:0px;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
@@ -210,10 +220,9 @@ function recentPosts(posts){
 
 <style scoped>
 
-#instagram iframe{
-    width:100%;
-    height:fit-content;
-    min-height:500px;
+#instagram {
+    height:500px;
+    overflow-y:scroll;
 }
 
 .event-card{
