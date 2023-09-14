@@ -67,7 +67,7 @@ onMounted(() => {
         <Navbar :wards="wards" :weaselLoc="weaselLoc"/>
         <MobileNavbar :wards="wards" :weaselLoc="weaselLoc"/>
         <Main>
-            <Home v-if = "currentContent === 'home'"/>
+            <Home v-if = "currentContent === 'home'" :wards="wards" :weaselLoc="weaselLoc"/>
             <News v-else-if = "currentContent === 'news'" :seabassLoc="seabassLoc" :itemsPerPage="blogsPerPage"/>
             <ContactUs v-else-if = "currentContent === 'contact-us'"/>
             <Events v-else-if = "currentContent === 'events'"/>

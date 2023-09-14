@@ -1,4 +1,22 @@
 <script setup>
+
+const props = defineProps({
+    wards: Array,
+    weaselLoc: String,
+})
+
+function slugifyWard(ward){
+    return ward.toLowerCase().replace(/ /g, "-").replace(/'/g, "")
+}
+
+function wardURL(weaselLoc, ward){
+    return weaselLoc + slugifyWard(ward)
+}
+
+function filterWards(wards, filter){
+    return wards.filter(ward => !ward.includes(filter))
+}
+
 </script>
 
 <template>
@@ -16,7 +34,17 @@
                 in a
                 loving community.
             </p>
-            <a id="hero-button" class="btn btn-primary" href="">Find Your Congregation</a>
+            <div class="dropdown dropdown-center">
+                <a class="btn btn-primary dropdown-toggle" id="hero-button" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Find Your Congregation
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li v-for = "ward in filterWards(wards, 'OKC 6th Branch')"><a class="dropdown-item" :href="wardURL(weaselLoc, ward)">{{ward}}</a></li>
+                    <li><a class = "dropdown-item" :href = "wardURL(weaselLoc, 'OKC 6th Branch')">OKC 6th Branch (en español)</a></li>
+                    
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -26,9 +54,9 @@
                 <h2 class="text-light py-1 mb-4 row-title">Upcoming Events</h2>
                 <div class="row align-items-center justify-content-center flex-wrap" id="events-card-row">
 
-                    <div class="col col-4 card">
+                    <div class="col col-4 card event-card">
                         <div class="square-img-container">
-                            <img src="https://picsum.photos/200/300" class="card-img-top square-img" alt="...">
+                            <img class="card-img-top square-img placeholder" alt="...">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
@@ -39,9 +67,9 @@
                         </div>
                     </div>
 
-                    <div class="col col-4 card">
+                    <div class="col col-4 card event-card">
                         <div class="square-img-container">
-                            <img src="https://picsum.photos/200/300" class="card-img-top square-img" alt="...">
+                            <img class="card-img-top square-img placeholder" alt="...">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
@@ -52,9 +80,9 @@
                         </div>
                     </div>
 
-                    <div class="col col-4 card">
+                    <div class="col col-4 card event-card">
                         <div class="square-img-container">
-                            <img src="https://picsum.photos/200/300" class="card-img-top square-img" alt="...">
+                            <img class="card-img-top square-img placeholder" alt="...">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
@@ -92,11 +120,16 @@
 
     <div class="row align-items-center justify-content-center py-5">
         <div class="col col-12">
-            <h2 class="text-center row-title mb-3">Follow Our Social Media</h2>
+            <h2 class="text-center row-title mb-4">Follow Our Social Media</h2>
         </div>
         <div class="row align-items-center justify-content-center flex-wrap py-2" id="social-media-row">
-            <div class="col col-6 socialmedia-card border border-1 border-light-gray"></div>
-            <div class="col col-6 socialmedia-card border border-1 border-light-gray"></div>
+            <div class="col-12 col-md-5 col-sm-12 socialmedia-card border border-1 border-light-gray" id = "instagram">
+                <iframe src="https://www.instagram.com/okcsouthstake/embed/" frameborder="0"><script async src="https://www.instagram.com/embed.js"></script></iframe>
+            </div>
+            <div class = "col-1 col-sm-0 col-md-1"></div>
+            <div class="col-12 col-md-5 col-sm-12 socialmedia-card border border-1 border-light-gray" id = "facebook">
+                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fokcsouthstake&tabs=timeline&width=2200&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&lazy=true&appId" width = "2200" height="500" style="border:none;overflow:hidden;width:100%!important;min-width:100%!important;padding-right:0px;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+            </div>
         </div>
     </div>
 
@@ -122,7 +155,7 @@
                 <div class="col-4 col-md-4 col-sm-12">
 
                     <div class="square-img-container">
-                        <img src="https://picsum.photos/200/300" class="card-img-top square-img" alt="...">
+                        <img class="card-img-top square-img placeholder">
                     </div>
                     <div class="card-body py-2">
                         <h5 class="card-title">Card title</h5>
@@ -135,7 +168,7 @@
                 <div class="col-4 col-md-4 col-sm-12">
 
                     <div class="square-img-container">
-                        <img src="https://picsum.photos/200/300" class="card-img-top square-img" alt="...">
+                        <img class="card-img-top square-img placeholder">
                     </div>
                     <div class="card-body py-2">
                         <h5 class="card-title">Card title</h5>
@@ -148,7 +181,7 @@
                 <div class="col-4 col-md-4 col-sm-12">
 
                     <div class="square-img-container">
-                        <img src="https://picsum.photos/200/300" class="card-img-top square-img" alt="...">
+                        <img class="card-img-top square-img placeholder">
                     </div>
                     <div class="card-body py-2">
                         <h5 class="card-title">Card title</h5>
@@ -166,6 +199,17 @@
 </template>
 
 <style scoped>
+
+#instagram iframe{
+    width:100%;
+    height:fit-content;
+    min-height:300px;
+}
+
+.event-card{
+    padding:1rem;
+}
+
 #news-row{
     text-align: center;
 }
@@ -201,70 +245,70 @@
   border-radius:8px;
 }
 
-    #events-card-row, #social-media-row{
-        gap:2rem;
-    }
-    #social-media-row .col{
-        width: calc(1/2 * 100% - 2rem);
-        min-width: 300px;
-        min-height:300px;
-        border-radius:8px;
-    }
-    #events-card-row .card{
-        width: calc(1/3 * 100% - 2rem);
-        min-width: 300px;
-    }
-    #events-row-inner, #message-row-inner{
-        width:80vw;
-        max-width:1320px;
-        margin:auto;
-        text-align: center;
-    }
-    #events-row, #message-row{
-        margin-left:-100vw;
-        margin-right:-100vw;
-    }
-    #hero-spacer{
-        height:100%;
-        min-height:3rem;
+#events-card-row, #social-media-row{
+    gap:2rem;
+}
+#social-media-row .col{
+    width: calc(1/2 * 100% - 2rem);
+    min-width: 300px;
+    min-height:300px;
+    border-radius:8px;
+}
+#events-card-row .card{
+    width: calc(1/3 * 100% - 2rem);
+    min-width: 300px;
+}
+#events-row-inner, #message-row-inner{
+    width:80vw;
+    max-width:1320px;
+    margin:auto;
+    text-align: center;
+}
+#events-row, #message-row{
+    margin-left:-100vw;
+    margin-right:-100vw;
+}
+#hero-spacer{
+    height:100%;
+    min-height:3rem;
+}
+#title{
+    font-size:4.2rem;
+    line-height:.8;
+}
+#title-small{
+    font-size:2.5rem!important;
+    line-height:.8;
+}
+#hero-image {
+width: calc(5/12 * 100%);
+display: inline-block;
+position: relative;
+}
+@media screen and (max-width: 768px) {
+    #hero-image{
+        width:100%;
     }
     #title{
-        font-size:4.2rem;
-        line-height:.8;
+        line-height:1;
     }
-    #title-small{
-        font-size:2.5rem!important;
-        line-height:.8;
-    }
-    #hero-image {
-    width: calc(5/12 * 100%);
-    display: inline-block;
-    position: relative;
-    }
-    @media screen and (max-width: 768px) {
-        #hero-image{
-            width:100%;
-        }
-        #title{
-            line-height:1;
-        }
-    }
-    #hero-image:after {
-    padding-top: calc(3/4 * 100%);
-    /* 16:9 ratio */
-    display: block;
-    content: '';
-    }
-    #hero-image-inner {
-    border-radius:8px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    /* fill parent */
-    background-color: gray;
-    /* let's see it! */
-    color: white;
-    }
+}
+#hero-image:after {
+padding-top: calc(3/4 * 100%);
+/* 16:9 ratio */
+display: block;
+content: '';
+}
+#hero-image-inner {
+border-radius:8px;
+position: absolute;
+top: 0;
+bottom: 0;
+right: 0;
+left: 0;
+/* fill parent */
+background-color: gray;
+/* let's see it! */
+color: white;
+}
 </style>
