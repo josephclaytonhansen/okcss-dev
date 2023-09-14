@@ -49,7 +49,7 @@ function filterWards(wards, filter){
     </div>
 
     <div id="events-row">
-        <div class="row align-items-center justify-content-center bg-dark py-5">
+        <div class="row align-items-center justify-content-center bg-dark py-5 mb-2">
             <div class="col col-12" id="events-row-inner">
                 <h2 class="text-light py-1 mb-4 row-title">Upcoming Events</h2>
                 <div class="row align-items-center justify-content-center flex-wrap" id="events-card-row">
@@ -96,7 +96,7 @@ function filterWards(wards, filter){
             </div>
         </div>
     </div>
-
+    
     <div class="row align-items-center py-5" id="beliefs-row">
 
         <div class="col col-md-6 col-sm-12 col-12">
@@ -118,15 +118,19 @@ function filterWards(wards, filter){
 
     </div>
 
+    <div class = "my-3 w-100 d-flex justify-content-center">
+        <hr class = "w-50">
+    </div>
+
+
     <div class="row align-items-center justify-content-center py-5">
         <div class="col col-12">
             <h2 class="text-center row-title mb-4">Follow Our Social Media</h2>
         </div>
         <div class="row align-items-center justify-content-center flex-wrap py-2" id="social-media-row">
-            <div class="col-12 col-md-5 col-sm-12 socialmedia-card border border-1 border-light-gray" id = "instagram">
+            <div class="col-12 col-md-6 col-sm-12 socialmedia-card border border-1 border-light-gray" id = "instagram">
                 <iframe src="https://www.instagram.com/okcsouthstake/embed/" frameborder="0"><script async src="https://www.instagram.com/embed.js"></script></iframe>
             </div>
-            <div class = "col-1 col-sm-0 col-md-1"></div>
             <div class="col-12 col-md-5 col-sm-12 socialmedia-card border border-1 border-light-gray" id = "facebook">
                 <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fokcsouthstake&tabs=timeline&width=2200&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&lazy=true&appId" width = "2200" height="500" style="border:none;overflow:hidden;width:100%!important;min-width:100%!important;padding-right:0px;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
