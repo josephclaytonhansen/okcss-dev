@@ -10,7 +10,7 @@ const fb_link = ref("https://www.facebook.com/okcsouthstake")
 const phone = ref("405-555-5555")
 const email = ref("contact@okcsouthstake.org")
 
-const blurb = ref('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl. Sed euismod, nisl quis tincidunt aliquam, nunc nisl ultrices nunc, quis aliquam nisl nunc vel nisl.')
+const blurb = ref('A Christian church servicing the areas of Choctaw, Moore, Midwest City, Mustang, and Oklahoma City.')
 
 const wards = ref(["Choctaw", "Midwest City", "OKC 2nd", "Moore", "OKC 6th Branch", "Mustang 2nd", "Mustang 1st"])
 

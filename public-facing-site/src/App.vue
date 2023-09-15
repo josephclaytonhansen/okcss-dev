@@ -12,7 +12,7 @@
         wards,
         blurb,
         blogsPerPage
-    } from './constants.js'
+    } from './plugins/constants.js'
 
     /* ----------- constants.js should be changed directly or via API ----------- */
     /* ------------------------- Do not modify this file ------------------------ */

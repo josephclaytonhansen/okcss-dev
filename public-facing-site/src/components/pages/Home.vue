@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from 'vue';
-
+import '../../plugins/colortheme.js';
 
 const props = defineProps({
     wards: Array,
@@ -30,6 +30,9 @@ onMounted(async () => {
     igEmbed.setAttribute('src', 'https://w.behold.so/widget.js')
     igEmbed.setAttribute('type', 'module')
     document.head.appendChild(igEmbed)
+    let colorTheme = document.createElement('script')
+    colorTheme.innerHTML = exportTheme
+    document.head.appendChild(colorTheme)
 })
 
 </script>
