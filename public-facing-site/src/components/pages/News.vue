@@ -2,31 +2,115 @@
 import {ref, reactive, onMounted} from 'vue'
 import BlogCard from '../page_components/blogCard.vue'
 
-const posts = reactive(["Blog 1","Blog 2","Blog 3","Blog 4","Blog 5","Blog 6","Blog 7"])
+const posts = reactive([
+    {
+        "category": "Graduations",
+    },
+    {
+        "category": "Weddings",
+    },
+    {
+        "category": "Graduations",
+    },
+    {
+        "category": "Graduations",
+    },
+    {
+        "category": "Stake Events",
+    },
+    {
+        "category": "Graduations",
+    },
+    {
+        "category": "Stake Events",
+    },
+    {
+        "category": "Funerals",
+    },
+    {
+        "category": "Stake Events",
+    },
+
+])
+
+const working_posts = ref([
+    {
+        "category": "Graduations",
+    },
+    {
+        "category": "Weddings",
+    },
+    {
+        "category": "Graduations",
+    },
+    {
+        "category": "Graduations",
+    },
+    {
+        "category": "Stake Events",
+    },
+    {
+        "category": "Graduations",
+    },
+    {
+        "category": "Stake Events",
+    },
+    {
+        "category": "Funerals",
+    },
+    {
+        "category": "Stake Events",
+    },
+
+])
 
 const props = defineProps({
     seabassLoc: String,
     itemsPerPage: Number
 })
 
-onMounted(async () => {
+/* onMounted(async () => {
     const response = await fetch(props.seabassLoc+'post')
     const data = response.json()
     posts.value = data
-})
+    working_posts = posts.value
+}) */
 
 const currentPage = ref(1);
+
+const allCategories = reactive([])
+
+onMounted(() => {
+    posts.forEach(post => {
+        if (!allCategories.includes(post.category)){
+            allCategories.push(post.category)
+        }
+    })
+})
+
+const filterPosts = (category) => {
+    if (category === "All"){
+        working_posts.value = posts
+    } else {
+        working_posts.value = posts.filter(post => post.category === category)
+    }
+}
 
 </script>
 
 <template>
 
-    <div id="blog-gallery-header">
+    <div id="blog-gallery-header" class = "text-center py-3 mt-3">
         <h1>News</h1>
+        <hr class = "w-25 mx-auto">
+        <div class = "row justify-content-center flex-wrap">
+            <a class = "btn btn-light m-1 col small cat-btn" key="All" @click = 'filterPosts("All")'>All</a>
+            <a class = "btn btn-light m-1 col small cat-btn" v-for="category in allCategories" @click = 'filterPosts(category)' :key="category">{{category}}</a>
+        </div>
     </div>
 
-    <div id="blogs" class = "row justify-content-evenly flex-wrap mb-5 gy-3">
-        <BlogCard v-for="(item, index) in posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`" :item="item" :border="true" :size="3">
+    <div id="blogs" class = "row justify-content-evenly flex-wrap mb-5 py-3 gy-3">
+        <BlogCard v-for="(item, index) in working_posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`" :category="item.category" :border="true" :size="3">
             <template #content>{{ item }}</template>
         </BlogCard>
     </div>
@@ -35,15 +119,23 @@ const currentPage = ref(1);
         <div id = "pagination" class = "row justify-content-start align-items-center">
             <a class = "btn col col-auto border-1 border border-light-gray pg-pn" :class = "{disabled: currentPage === 1}" @click = "currentPage--">Newer</a>
             <div class = "col row justify-content-center flex-wrap">
-                <a class =  'btn pg-b border-bottom border-1 border-white' :class = "{'btn-primary': currentPage === page}" v-for="page in Math.ceil(posts.length / itemsPerPage)" :key="page" @click = "currentPage = page">{{page}}</a>
+                <a class =  'btn pg-b border-bottom border-1 border-white' :class = "{'btn-primary': currentPage === page}" v-for="page in Math.ceil(working_posts.length / itemsPerPage)" :key="page" @click = "currentPage = page">{{page}}</a>
             </div>
-            <a class = "btn col border-1 border border-light-gray col-auto pg-pn" :class = "{disabled: currentPage === Math.ceil(posts.length / itemsPerPage)}" @click = "currentPage++">Older</a>
+            <a class = "btn col border-1 border border-light-gray col-auto pg-pn" :class = "{disabled: currentPage === Math.ceil(working_posts.length / itemsPerPage)}" @click = "currentPage++">Older</a>
         </div>
     </div>
 
 </template>
 
 <style scoped>
+    .cat-btn{
+        flex-grow:0;
+        width:fit-content;
+        white-space: nowrap;
+    }
+    .cat-btn a{
+        white-space: nowrap;
+    }
     .pg-pn{
         height:fit-content;
     }

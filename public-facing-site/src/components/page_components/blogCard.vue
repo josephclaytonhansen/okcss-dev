@@ -4,6 +4,7 @@ import { computed } from 'vue'
 const props = defineProps({
     border: Boolean,
     size: Number,
+    category: String,
 })
 
 const sizeIs = computed(() => {
@@ -27,9 +28,9 @@ const sizeIs = computed(() => {
             </div>
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle text-muted small mb-2"><em>{{category}}</em></h6>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                    of
-                    the card's content.</p>
+                    of the card's content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
         </div>
@@ -42,8 +43,7 @@ const sizeIs = computed(() => {
         </div>
             <div class="card-body py-2">
                 <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                    the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="link">Go somewhere</a>
             </div>
         </div>
