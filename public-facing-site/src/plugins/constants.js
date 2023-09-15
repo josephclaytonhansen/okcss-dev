@@ -14,7 +14,7 @@ const blurb = ref('A Christian church servicing the areas of Choctaw, Moore, Mid
 
 const wards = ref(["Choctaw", "Midwest City", "OKC 2nd", "Moore", "OKC 6th Branch", "Mustang 2nd", "Mustang 1st"])
 
-const blogsPerPage = ref(4);
+const blogsPerPage = ref(8);
 
 const contentURLMappings = {
     "/": "home",

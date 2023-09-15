@@ -89,6 +89,12 @@ onMounted(() => {
 })
 
 const filterPosts = (category) => {
+    let categoryButtons = document.querySelectorAll('.cat-btn')
+    categoryButtons.forEach(button => {
+        button.classList.remove('btn-primary')
+    })
+    let thisButton = document.getElementById('cat-'+category)
+    thisButton.classList.add('btn-primary')
     if (category === "All"){
         working_posts.value = posts
     } else {
@@ -104,8 +110,8 @@ const filterPosts = (category) => {
         <h1>News</h1>
         <hr class = "w-25 mx-auto">
         <div class = "row justify-content-center flex-wrap">
-            <a class = "btn btn-light m-1 col small cat-btn" key="All" @click = 'filterPosts("All")'>All</a>
-            <a class = "btn btn-light m-1 col small cat-btn" v-for="category in allCategories" @click = 'filterPosts(category)' :key="category">{{category}}</a>
+            <a class = "btn btn-primary pg-b m-1 col small cat-btn" key="All" id = "cat-All" @click = 'filterPosts("All")'>All</a>
+            <a class = "btn m-1 pg-b col small cat-btn" v-for="category in allCategories" :id = "'cat-'+category" @click = 'filterPosts(category)' :key="category">{{category}}</a>
         </div>
     </div>
 
@@ -119,7 +125,7 @@ const filterPosts = (category) => {
         <div id = "pagination" class = "row justify-content-start align-items-center">
             <a class = "btn col col-auto border-1 border border-light-gray pg-pn" :class = "{disabled: currentPage === 1}" @click = "currentPage--">Newer</a>
             <div class = "col row justify-content-center flex-wrap">
-                <a class =  'btn pg-b border-bottom border-1 border-white' :class = "{'btn-primary': currentPage === page}" v-for="page in Math.ceil(working_posts.length / itemsPerPage)" :key="page" @click = "currentPage = page">{{page}}</a>
+                <a class =  'btn pg-b w50px border-bottom border-1 border-white' :class = "{'btn-primary': currentPage === page}" v-for="page in Math.ceil(working_posts.length / itemsPerPage)" :key="page" @click = "currentPage = page">{{page}}</a>
             </div>
             <a class = "btn col border-1 border border-light-gray col-auto pg-pn" :class = "{disabled: currentPage === Math.ceil(working_posts.length / itemsPerPage)}" @click = "currentPage++">Older</a>
         </div>
@@ -148,9 +154,12 @@ const filterPosts = (category) => {
         color:white!important;
     }
     .pg-b{
-        width: 50px;
         margin: 0 5px;
         transition: border-color 0.2s;
+    }
+
+    .w50px{
+        width: 50px;
     }
 
     .pg-b:hover, .pg-b:focus{
