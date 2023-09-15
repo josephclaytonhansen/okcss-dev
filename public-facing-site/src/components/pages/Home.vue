@@ -1,6 +1,9 @@
 <script setup>
-import { onMounted } from 'vue';
-import '../../plugins/colortheme.js';
+import { onMounted } from 'vue'
+import '../../plugins/colortheme.js'
+
+import '../page_components/blogCard.vue'
+import BlogCard from '../page_components/blogCard.vue';
 
 const props = defineProps({
     wards: Array,
@@ -72,44 +75,12 @@ onMounted(async () => {
                 <h2 class="text-light py-1 mb-4 row-title">Upcoming Events</h2>
                 <div class="row align-items-center justify-content-center flex-wrap" id="events-card-row">
 
-                    <div class="col col-4 card event-card">
-                        <div class="square-img-container">
-                            <img class="card-img-top square-img placeholder" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
+                    <BlogCard :border="true"/>
 
-                    <div class="col col-4 card event-card">
-                        <div class="square-img-container">
-                            <img class="card-img-top square-img placeholder" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
+                    <BlogCard :border="true"/>
 
-                    <div class="col col-4 card event-card">
-                        <div class="square-img-container">
-                            <img class="card-img-top square-img placeholder" alt="...">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
+                    <BlogCard :border="true"/>
+
                 </div>
             </div>
         </div>
@@ -175,45 +146,11 @@ onMounted(async () => {
         <div class="col col-12">
             <h2 class="text-center row-title mb-3">News</h2>
             <div class="row align-items-center justify-content-center">
-                <div class="col-4 col-md-4 col-sm-12">
 
-                    <div class="square-img-container">
-                        <img class="card-img-top square-img placeholder">
-                    </div>
-                    <div class="card-body py-2">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="link">Go somewhere</a>
-                    </div>
-
-                </div>
-                <div class="col-4 col-md-4 col-sm-12">
-
-                    <div class="square-img-container">
-                        <img class="card-img-top square-img placeholder">
-                    </div>
-                    <div class="card-body py-2">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="link">Go somewhere</a>
-                    </div>
-
-                </div>
-                <div class="col-4 col-md-4 col-sm-12">
-
-                    <div class="square-img-container">
-                        <img class="card-img-top square-img placeholder">
-                    </div>
-                    <div class="card-body py-2">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="link">Go somewhere</a>
-                    </div>
-
-                    </div>
+                <BlogCard :border="false"/>
+                <BlogCard :border="false"/>
+                <BlogCard :border="false"/>
+                
             </div>
             <a href = "/news" class = "btn btn-primary mt-4 col-3">View More</a>
         </div>
@@ -230,10 +167,6 @@ onMounted(async () => {
 #instagram {
     height:500px;
     overflow-y:scroll;
-}
-
-.event-card{
-    padding:1rem;
 }
 
 #news-row{
@@ -279,10 +212,6 @@ onMounted(async () => {
     min-width: 300px;
     min-height:300px;
     border-radius:8px;
-}
-#events-card-row .card{
-    width: calc(1/3 * 100% - 2rem);
-    min-width: 300px;
 }
 #events-row-inner, #message-row-inner{
     width:80vw;
