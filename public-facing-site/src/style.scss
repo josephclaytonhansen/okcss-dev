@@ -82,3 +82,14 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
+.wide-row-inner{
+  width:80vw;
+  max-width:1320px;
+  margin:auto;
+  text-align: center;
+}
+.wide-row{
+  margin-left:-100vw;
+  margin-right:-100vw;
+}

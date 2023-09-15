@@ -67,9 +67,9 @@ onMounted(async () => {
         </div>
     </div>
 
-    <div id="events-row">
+    <div id="events-row" class = 'wide-row'>
         <div class="row align-items-center justify-content-center bg-dark py-5 mb-2">
-            <div class="col col-12" id="events-row-inner">
+            <div class="col col-12 wide-row-inner" id="events-row-inner">
                 <h2 class="text-light py-1 mb-4 row-title">Upcoming Events</h2>
                 <div class="row align-items-center justify-content-center flex-wrap" id="events-card-row">
 
@@ -125,9 +125,9 @@ onMounted(async () => {
         </div>
     </div>
 
-    <div id="message-row">
+    <div id="message-row" class="wide-row">
         <div class="row align-items-center justify-content-center py-4" id="message-row-row">
-            <div class="col col-12" id="message-row-inner">
+            <div class="col col-12 wide-row-inner" id="message-row-inner">
                 <div class="row">
                     <div class="col col-8 mt-1 col-md-8 col-sm-12">
                         <h4 id = "always-black">Service Opportunities in Your Community</h4>
@@ -211,16 +211,7 @@ onMounted(async () => {
     min-height:300px;
     border-radius:8px;
 }
-#events-row-inner, #message-row-inner{
-    width:80vw;
-    max-width:1320px;
-    margin:auto;
-    text-align: center;
-}
-#events-row, #message-row{
-    margin-left:-100vw;
-    margin-right:-100vw;
-}
+
 .hero-spacer{
     height:100%;
     min-height:3rem;
