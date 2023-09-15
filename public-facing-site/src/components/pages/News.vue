@@ -89,6 +89,7 @@ onMounted(() => {
 })
 
 const filterPosts = (category) => {
+    currentPage.value = 1
     let categoryButtons = document.querySelectorAll('.cat-btn')
     categoryButtons.forEach(button => {
         button.classList.remove('btn-primary')

@@ -76,7 +76,7 @@ function wardURL(weaselLoc, ward){
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/contact-us">Contact</a>
+                        <a class="nav-link" href="/contact">Contact</a>
                     </li>
                     
                 </ul>

@@ -47,12 +47,12 @@
                     <menu>
                         <ul class="nav list-unstyled d-flex flex-column w-100 footer-nav-lc">
                             <li class="ms-2"><a class="link" href="/">Home</a></li>
-                            <li class="ms-2"><a class="link" href="/contact-us">About Us</a></li>
+                            <li class="ms-2"><a class="link" href="/contact">About Us</a></li>
                             <li class="ms-2"><a class="link" href="/beliefs">Our Beliefs</a></li>
                             <li class="ms-2"><a class="link" href="/missionaries">Missionaries</a></li>
                             <li class="ms-2"><a class="link" href="/service">Service</a></li>
                             <li class="ms-2"><a class="link" href="/news">News</a></li>
-                            <li class="ms-2"><a class="link" href="/contact-us">Contact Us</a></li>
+                            <li class="ms-2"><a class="link" href="/contact">Contact Us</a></li>
                         </ul>
                     </menu>
                 </div>

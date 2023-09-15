@@ -64,7 +64,7 @@ const sizeIs = computed(() => {
 .square-img-container::after {
   content: "";
   display: block;
-  padding-bottom: 100%;
+  padding-bottom: 75%;
 }
 
 .square-img {

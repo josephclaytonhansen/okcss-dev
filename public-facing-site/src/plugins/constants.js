@@ -8,7 +8,7 @@ const seabassLoc = ref("https://localhost:5920/")
 const ig_link = ref("https://www.instagram.com/okcsouthstake/")
 const fb_link = ref("https://www.facebook.com/okcsouthstake")
 const phone = ref("405-555-5555")
-const email = ref("contact@okcsouthstake.org")
+const email = ref("communications@okcsouthstake.org")
 
 const blurb = ref('A Christian church servicing the areas of Choctaw, Moore, Midwest City, Mustang, and Oklahoma City.')
 
