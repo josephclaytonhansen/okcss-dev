@@ -117,9 +117,11 @@ const filterPosts = (category) => {
     </div>
 
     <div id="blogs" class = "row justify-content-evenly flex-wrap mb-5 py-3 gy-3">
+        <TransitionGroup name = "list">
         <BlogCard v-for="(item, index) in working_posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`" :category="item.category" :border="true" :size="3">
             <template #content>{{ item }}</template>
         </BlogCard>
+        </TransitionGroup>
     </div>
 
     <div id = "pagination-container">
@@ -135,6 +137,20 @@ const filterPosts = (category) => {
 </template>
 
 <style scoped>
+.list-move, .list-enter-active,
+.list-leave-active {
+  transition: transform 0.7s ease, opacity 0.2s ease-out;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.list-leave-active {
+  position: absolute;
+}
+
     .cat-btn{
         flex-grow:0;
         width:fit-content;
