@@ -1,6 +1,6 @@
 <script setup>
 import {ref, reactive, onMounted} from 'vue'
-import Post from './Post.vue'
+import BlogCard from '../page_components/blogCard.vue'
 
 const posts = reactive(["Blog 1","Blog 2","Blog 3","Blog 4","Blog 5","Blog 6","Blog 7"])
 
@@ -25,14 +25,14 @@ const currentPage = ref(1);
         <h1>News</h1>
     </div>
 
-    <div id="blogs">
-        <Post v-for="(item, index) in posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`" :item="item">
+    <div id="blogs" class = "row justify-content-evenly flex-wrap mb-5 gy-3">
+        <BlogCard v-for="(item, index) in posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`" :item="item" :border="true" :size="3">
             <template #content>{{ item }}</template>
-        </Post>
+        </BlogCard>
     </div>
 
     <div id = "pagination-container">
-        <div id = "pagination" class = "row justify-content-evenly align-items-center">
+        <div id = "pagination" class = "row justify-content-start align-items-center">
             <a class = "btn col col-auto border-1 border border-light-gray pg-pn" :class = "{disabled: currentPage === 1}" @click = "currentPage--">Newer</a>
             <div class = "col row justify-content-center flex-wrap">
                 <a class =  'btn pg-b border-bottom border-1 border-white' :class = "{'btn-primary': currentPage === page}" v-for="page in Math.ceil(posts.length / itemsPerPage)" :key="page" @click = "currentPage = page">{{page}}</a>

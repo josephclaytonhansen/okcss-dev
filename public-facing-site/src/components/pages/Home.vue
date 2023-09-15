@@ -1,9 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import '../../plugins/colortheme.js'
-
-import '../page_components/blogCard.vue'
-import BlogCard from '../page_components/blogCard.vue';
+import BlogCard from '../page_components/blogCard.vue'
 
 const props = defineProps({
     wards: Array,
@@ -150,7 +148,7 @@ onMounted(async () => {
                 <BlogCard :border="false"/>
                 <BlogCard :border="false"/>
                 <BlogCard :border="false"/>
-                
+
             </div>
             <a href = "/news" class = "btn btn-primary mt-4 col-3">View More</a>
         </div>

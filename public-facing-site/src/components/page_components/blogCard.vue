@@ -1,14 +1,28 @@
 <script setup>
+import { computed } from 'vue'
 
 const props = defineProps({
     border: Boolean,
+    size: Number,
+})
+
+const sizeIs = computed(() => {
+    if (props.size === 4){
+        return "col-4 col-md-4 col-sm-12"
+    } else if (props.size === 3){
+        return "col-3 col-md-3 col-sm-12"
+    } else if(props.size === 2){
+        return "col-2 col-md-2 col-sm-12"
+    } else {
+        return "col-4 col-md-4 col-sm-12"
+    }
 })
 </script>
 
 <template>
 
-        <div v-if="border" class="col col-4 card event-card">
-            <div class="square-img-container">
+        <div v-if="border" class="col card event-card" :class="sizeIs">
+            <div class="square-img-container d-none d-md-block d-sm-none">
                 <img class="card-img-top square-img placeholder" alt="...">
             </div>
             <div class="card-body">
@@ -21,9 +35,9 @@ const props = defineProps({
         </div>
 
 
-        <div v-else class="col-4 col-md-4 col-sm-12">
+        <div v-else :class="sizeIs">
 
-        <div class="square-img-container">
+        <div class="square-img-container d-none d-md-block d-sm-none">
             <img class="card-img-top square-img placeholder">
         </div>
             <div class="card-body py-2">
@@ -62,9 +76,22 @@ const props = defineProps({
   border-radius:8px;
 }
 
-.card{
+.card.col-4, .card.col-md-4{
     width: calc(1/3 * 100% - 2rem);
-    min-width: 300px;
+    min-width:300px;
 }
+.card.col-3, .card.col-md-3{
+    width: calc(1/4 * 100% - 2rem);
+    min-width:300px;
+}
+
+.card.col-2, .card.col-md-2{
+    width: calc(1/6 * 100% - 2rem);
+    min-width:300px;
+}
+
+@media screen and (max-width:768px){.card.col-sm-12{
+    width: 100%;
+}}
 
 </style>
