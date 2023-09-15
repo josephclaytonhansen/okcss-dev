@@ -75,3 +75,10 @@ body *::selection{
 body *{
   accent-color: $primary;
 }
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
