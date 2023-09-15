@@ -174,9 +174,7 @@ out
 !*.min.css
 *.min.scss
 
-# *.js but not *.min.js
-*.js
-!constants.js
+!plugins/*.js
 !*.min.js
 public-facing-site/src/style.css
 public-facing-site/src/style.css.map
