@@ -1,4 +1,4 @@
-import mongoose from mongoose
+import mongoose from 'mongoose'
 const internalMissionarySchema = new mongoose.Schema({
     name1: String,
     name2: String,

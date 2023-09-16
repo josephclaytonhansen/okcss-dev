@@ -1,5 +1,5 @@
 import asyncHandler from '../middleware/asyncHandler.min.js'
-import OutgoingMissionary from '../models/outgoingMissionary.js'
+import OutgoingMissionary from '../models/outgoing_missionary.js'
 
 const getOutgoingMissionaries = asyncHandler(async (req, res) => {
     const outgoingMissionaries = await OutgoingMissionary.find()

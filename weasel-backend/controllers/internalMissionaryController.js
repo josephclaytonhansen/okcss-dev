@@ -1,5 +1,5 @@
 import asyncHandler from '../middleware/asyncHandler.min.js'
-import InternalMissionary from '../models/internalMissionary.js'
+import InternalMissionary from '../models/internal_missionaries.js'
 
 const getInternalMissionaries = asyncHandler(async (req, res) => {
     const internalMissionaries = await InternalMissionary.find()
