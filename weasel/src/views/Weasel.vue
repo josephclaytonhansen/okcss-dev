@@ -87,7 +87,7 @@ const persons = reactive([])
 const organizations=['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s']
 
 const addEvent = async() => {
-    await axios.post(`http://178.128.224.147:5220/api/events`, {
+    await axios.post(`http://localhost:5220/api/events`, {
         ward: ward.value,
         category: organization.value,
         title: "New Event",
@@ -98,7 +98,7 @@ const addEvent = async() => {
         },
     })
     .then((response) => {
-        axios.get(`http://178.128.224.147:5220/api/events/ward/${ward.value}/organization/${organization.value}`).then((response) => {
+        axios.get(`http://localhost:5220/api/events/ward/${ward.value}/organization/${organization.value}`).then((response) => {
             let response_object = response.data
             localStorage.setItem("events", JSON.stringify(response_object))
             let temp = JSON.parse(localStorage.getItem("events"))
@@ -125,7 +125,7 @@ const addEvent = async() => {
     if (localStorage.getItem("current_tab") === null) {localStorage.setItem("current_tab", "events")} else {
     current_tab.value = localStorage.getItem("current_tab") }
 
-    await axios.get(`http://178.128.224.147:5220/api/worships/ward/${ward.value}`)
+    await axios.get(`http://localhost:5220/api/worships/ward/${ward.value}`)
     .then((response) => {
       let response_object = response.data
     localStorage.setItem("worship", JSON.stringify(response_object))
@@ -138,7 +138,7 @@ const addEvent = async() => {
     worship.image = temp.image
     })
 
-    await axios.get(`http://178.128.224.147:5220/api/tools/ward/${ward.value}`)
+    await axios.get(`http://localhost:5220/api/tools/ward/${ward.value}`)
     .then((response) => {
         let response_object = response.data
         localStorage.setItem("tools", JSON.stringify(response_object))
@@ -166,14 +166,14 @@ const addEvent = async() => {
         }
     })
 
-    await axios.get(`http://178.128.224.147:5220/api/persons/ward/${ward.value}`).then((response)=>{
+    await axios.get(`http://localhost:5220/api/persons/ward/${ward.value}`).then((response)=>{
         let response_object = response.data
         localStorage.setItem("persons", JSON.stringify(response_object))
         let temp = JSON.parse(localStorage.getItem("persons"))
         persons.push(...temp)
     })
 
-    await axios.get(`http://178.128.224.147:5220/api/events/ward/${ward.value}/organization/${organization.value}`).then((response) => {
+    await axios.get(`http://localhost:5220/api/events/ward/${ward.value}/organization/${organization.value}`).then((response) => {
         let response_object = response.data
         localStorage.setItem("events", JSON.stringify(response_object))
         let temp = JSON.parse(localStorage.getItem("events"))
@@ -191,7 +191,7 @@ const addEvent = async() => {
 })
 
 const updateWorship = async() => {
-    await axios.put(`http://178.128.224.147:5220/api/worships/${worship.id}`, worship)
+    await axios.put(`http://localhost:5220/api/worships/${worship.id}`, worship)
     .then((response) => {
         console.log(response)
     })
@@ -201,7 +201,7 @@ const updateEvents = async() => {
     events.forEach(event => {
         event.time.start = `${events_time_splits[event._id].date} ${events_time_splits[event._id].time}`
         event.time.end = `${events_time_splits[event._id].e_date} ${events_time_splits[event._id].e_time}`
-        axios.put(`http://178.128.224.147:5220/api/events/${event._id}`, event)
+        axios.put(`http://localhost:5220/api/events/${event._id}`, event)
         .then((response) => {
             console.log(response)
         })
@@ -209,7 +209,7 @@ const updateEvents = async() => {
 }
 
 const deleteEvent = async(id) => {
-    await axios.delete(`http://178.128.224.147:5220/api/events/${id}`)
+    await axios.delete(`http://localhost:5220/api/events/${id}`)
     .then((response) => {
         console.log(response)
     })
@@ -224,7 +224,7 @@ const updateTools = async() => {
         }
     
     }
-    await axios.put(`http://178.128.224.147:5220/api/tools/${tool_id.value}`, tools)
+    await axios.put(`http://localhost:5220/api/tools/${tool_id.value}`, tools)
     .then((response) => {
         console.log(response)
     })

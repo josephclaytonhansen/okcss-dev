@@ -15,6 +15,8 @@ import person_routes from './routes/personRoutes.js'
 import worship_routes from './routes/worshipRoutes.js'
 import tool_routes from './routes/toolRoutes.js'
 import user_routes from './routes/userRoutes.js'
+import outgoing_missionary_routes from './routes/outgoingMissionaryRoutes.js'
+import internal_missionary_routes from './routes/internalMissionaryRoutes.js'
 
 const app = express()
 
@@ -81,6 +83,8 @@ app.use('/api/persons', person_routes)
 app.use('/api/worships', worship_routes)
 app.use('/api/tools', tool_routes)
 app.use('/api/users', user_routes)
+app.use('/api/outgoing-missionaries', outgoing_missionary_routes)
+app.use('/api/internal-missionaries', internal_missionary_routes)
 
 app.listen(process.env.PORT, () => {
     console.log('Server is running on port ' + process.env.PORT)
