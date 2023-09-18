@@ -62,7 +62,7 @@ a:hover {
 }
 
 a:visited {
-    color: var(--dark-blue);
+    color: var(--active-color);
 }
 
 body.dark h1 {
