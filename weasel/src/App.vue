@@ -10,6 +10,7 @@ const darklight = ref(
 
 <template>
     <body :class = 'darklight'>
+      
       <div class = "container page">
       <DarkModeToggle :darklight = 'darklight' @update = '(data) => darklight = data'/>
         <router-view />

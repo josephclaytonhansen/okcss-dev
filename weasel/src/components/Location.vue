@@ -68,6 +68,11 @@ align-items: stretch!important;
     border-radius:5px;
  }
 
+ .loc-text ::selection{
+    background-color: var(--off-white);
+    color: var(--gray);
+ }
+
 .img-cw{
     border-radius:5px;
     height: 50%;

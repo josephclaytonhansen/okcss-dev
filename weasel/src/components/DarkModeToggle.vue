@@ -38,5 +38,7 @@ function toggle() {
     right: .25rem;
     z-index: 100;
     transform: scale(75%);
+    background-color: transparent;
+    color: #999;
 }
 </style>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://178.128.224.147:5220/api'
+const API_URL = 'http://localhost:5220/api'
 
 const _get = (ward, type) => {
     if (type === 'events'){

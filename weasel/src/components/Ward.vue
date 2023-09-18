@@ -3,7 +3,7 @@
     import PersonCard from './PersonCard.vue'
     import Location from './Location.vue'
     import Tools from './Tools.vue'
-    import {Contact2, Calendar, HeartHandshake, ListTodo} from 'lucide-vue-next'
+    import {Contact2, Calendar, HeartHandshake, ListTodo, Home} from 'lucide-vue-next'
     import CCalendar from './CCalendar.vue'
 
 const props = defineProps({
@@ -61,14 +61,20 @@ function filterContactsByOrganization(organization) {
     return props.contacts.filter(contact => contact.organization === organization)
 }
 
+function goHome(){
+    window.location.href = 'http://localhost:5280'
+}
+
 watch(currentTab, tabChanged)
 
 </script>
 
 <template>
+    
 <!------------------------------ Tab container ----------------------------- -->
 <section class = "tabs" :class="ward">
-    <div class = "ç">
+    <div class = "">
+        <button id = "home" class = 'button' @click="goHome"><Home/><span id = 'home-text'>OKC South Stake</span></button>
         <!------------------------------ Tab: Contacts ----------------------------- -->
         <div v-if="currentTab === 'contacts'">
             <div v-for = "organization in organizations">
@@ -124,7 +130,7 @@ watch(currentTab, tabChanged)
 
 </template>
 
-<style>
+<style scoped>
 
 #submit-correction{
     align-self:start;
@@ -133,6 +139,21 @@ watch(currentTab, tabChanged)
 
 #disclaimer{
     font-size:50%;
+
+}
+#home{
+    position: fixed;
+    top: .25rem;
+    left: .25rem;
+    z-index: 100;
+    background-color: transparent;
+    color: #999;
+    display:flex;
+    align-items:center;
+}
+#home-text{
+    padding-left:.3rem;
+    margin-top:.1rem;
 
 }
 </style>
