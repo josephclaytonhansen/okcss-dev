@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5220/api'
+const API_URL = 'https://weasel.okcsouthstake.org//api'
 
 const _get = (ward, type) => {
     if (type === 'events'){
