@@ -71,13 +71,13 @@ app.get('/', (req, res) => {
 
 //block API requests from origins != process.env.ORIGIN
 
-/* app.use('/api', (req, res, next) => {
+app.use('/api', (req, res, next) => {
     if (req.headers.origin != process.env.ORIGIN) {
         res.status(403).send('Forbidden')
     } else {
         next()
     }
-}) */
+})
 
 app.use('/api/events', event_routes)
 app.use('/api/persons', person_routes)
