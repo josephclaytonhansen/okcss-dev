@@ -70,7 +70,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', (req, res, next) => {
-    if (req.headers.origin != 'https://weasel.okcsouthstake.org') {
+    if (!req.headers.origin.startsWith('https://weasel.okcsouthstake.org') || !req.headers.origin.startsWith('172.67.145.139')) {
         res.status(403).send('Forbidden')
     } else {
         next()
