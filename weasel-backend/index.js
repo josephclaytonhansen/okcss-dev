@@ -69,10 +69,8 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-//block API requests from origins != process.env.ORIGIN
-
 app.use('/api', (req, res, next) => {
-    if (req.headers.origin != process.env.ORIGIN) {
+    if (req.headers.origin != 'https://weasel.okcsouthstake.org') {
         res.status(403).send('Forbidden')
     } else {
         next()
