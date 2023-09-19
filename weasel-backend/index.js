@@ -69,15 +69,6 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use('/api', (req, res, next) => {
-    console.log(req.headers.origin)
-    if (!req.headers.origin.startsWith('https://weasel.okcsouthstake.org') || !req.headers.origin.startsWith('172.67.145.139')) {
-        res.status(403).send('Forbidden')
-    } else {
-        next()
-    }
-})
-
 app.use('/api/events', event_routes)
 app.use('/api/persons', person_routes)
 app.use('/api/worships', worship_routes)
