@@ -390,7 +390,11 @@ const updateTools = async() => {
                             <div class = "col-2 event-title col-shrink fwc"><p><input class = "ei" v-model="event.title"></p></div>
                             <div class = "col-5 event-description col-grow fwc"><p><input class = "ei" v-model="event.description"></p></div>
                             <div class = "col-2 event-time-start fwc">
-                                <input type = "time" v-model="events_time_splits[event._id]['time']">
+                                <input type = "time" v-model="events_time_splits[event._id]['time']" list = "event-start">
+                                <datalist id = "event-start">
+                                    <option label = "Youth activity">19:00</option>
+                                    <option label = "Morning">10:00</option>
+                                </datalist>
                                 <input type = "date" v-model="events_time_splits[event._id]['date']">
                             </div>
                             <div class = "col-2 event-time-end fwc">
@@ -407,7 +411,7 @@ const updateTools = async() => {
                     
                     <div class="col-12 flex-between row">
                         <div class = "col-6">
-                            <h2 v-if="events.length <= 0">No contacts</h2>
+                            <h2 v-if="contacts.length <= 0">No contacts</h2>
                             <h2 v-else>Contacts</h2>
                         </div>
                         <div class = "row flex-between col-6 wrap">
