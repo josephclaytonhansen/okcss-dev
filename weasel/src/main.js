@@ -27,11 +27,6 @@ export {
 
 const app = createApp(App)
 
-import {
-    ToastPlugin
-} from './plugins/toast'
-app.use(ToastPlugin)
-
 const router = createRouter({
     history: createWebHistory(),
     routes: [{
@@ -78,7 +73,7 @@ router.beforeEach(async (to, from, next) => {
                     'Access-Control-Allow-Origin': '*'
                 }
             }
-            let url = 'https://weasel.okcsouthstake.org//api/users/verify'
+            let url = 'https://weasel.okcsouthstake.org/api/users/verify'
             let params = {
                 token: token,
                 user: user
