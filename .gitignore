@@ -181,3 +181,7 @@ public-facing-site/src/style.min.scss
 *.map
 *.*.map
 *map*
+
+# ignore CSS files unless they're in /dist
+*.css
+!dist/**/*.css
