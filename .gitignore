@@ -168,8 +168,10 @@ out
 .yarn/install-state.gz
 .pnp.*
 
+# *.css but not *.min.css
+*.css
+!*.min.css
 *.min.scss
-
 
 !plugins/*.js
 !*.min.js
