@@ -2,11 +2,10 @@
   "name": "editorjs-testing",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd .. && python3 seabass/dist_compiler.py && python3 seabass/src/assets/lucide/compiler.py && cd seabass && nodemon app.js"
+    "start": "nodemon app.min.js"
   },
   "author": "Joseph Hansen (josephclaytonhansen@gmail.com)",
   "license": "MIT",
