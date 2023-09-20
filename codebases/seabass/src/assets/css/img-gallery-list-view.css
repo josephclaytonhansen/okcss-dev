@@ -1,0 +1,113 @@
+.gallery{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: .5rem;
+    flex-wrap: wrap;
+    top: 2rem;
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+
+.list-view{
+    min-height: 200px;
+    background-color: #eee!important;
+    top: 2rem;
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+
+.gallery-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gallery-top button{
+    max-height:70%;
+}
+
+.gallery .img-container{
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gallery:has(:hover) .img-container:not(:hover){
+    opacity: 0.7;
+}
+
+#list-view, #gallery-view{
+    cursor: pointer;
+}
+
+#list-view .lucide, #gallery-view .lucide{
+    transition: 0.2s all;
+}
+
+#list-view:hover .lucide, #gallery-view:hover .lucide{
+    background-color: rgb(49, 152, 196);
+}
+
+.list{
+    width:100%;
+}
+
+.img-list-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: .5rem;
+    flex-wrap: nowrap;
+    text-overflow: ellipsis;
+    text-wrap: wrap;
+    width: 100%;
+    font-size:85%;
+    transition: all 0.2s;
+}
+
+.img-list-row #name{
+    flex-grow: 5;
+    flex-basis: 250%;
+}
+
+.img-list-row div:not(.img-container){
+    flex-grow:1;
+    border:none!important;
+}
+
+.img-list-row .img-container{
+    height: 50px;
+    min-width:50px;
+    width:50px;
+    cursor:pointer;
+}
+
+.img-list-row .img-container::after{
+    width:50px!important;
+}
+
+.list-view, .list, .img-list-row{
+    border: none!important;
+    background-color:white;
+}
+
+.list .row-even, .list .row-even div{
+    background-color: #eee;
+}
+
+.list:has(:hover) .img-list-row:not(:hover){
+    opacity: 0.7;
+}
+
+
+.slug{
+    cursor: pointer;
+}
+
+.slug:hover{
+    color: rgb(49, 152, 196);
+}

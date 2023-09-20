@@ -1,0 +1,43 @@
+.bar{
+    background-color: rgb(49, 152, 196);
+    padding: 0.25rem;
+    border-radius: 5px 5px 0 0;
+    padding-bottom: 0;
+    position: relative;
+    bottom: -1rem;
+    animation: grow 1s;
+    display: flex;
+    justify-content: center;
+}
+
+.chart{
+    width: 100%;
+    align-items: normal;
+}
+
+.bar-chart{
+    border-bottom: 1px solid #eee;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+.chart-labels{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content:space-around;
+    font-size:80%;
+}
+
+@keyframes grow{
+    0% {transform: translateY(100%);}
+    100% {transform: translateY(0%);}
+}
+
+.label{
+    text-align:center;
+    position:relative;
+    bottom:1.5rem;
+    font-size:80%;
+
+}
