@@ -19,7 +19,9 @@ const importData = async () => {
         console.log(createdTools, createdEvents, createdContacts)
 
         users.forEach(user => {
-            if (!User.exists()){
+            if (!User.exists(
+                {email: {$eq: user.email}}
+            )){
                 const newUser = new User({
                     email: user.email,
                     password: user.password,
