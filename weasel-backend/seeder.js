@@ -16,21 +16,10 @@ const importData = async () => {
         const createdTools = await Tool.insertMany(tools)
         const createdEvents = await Event.insertMany(events)
         const createdContacts = await Person.insertMany(contacts)
-        console.log(createdTools, createdEvents, createdContacts)
+        const createdUsers = await User.insertMany(users)
+        console.log(createdTools, createdEvents, createdContacts, createdUsers)
 
-        users.forEach(user => {
-            if (!User.exists(
-                {email: {$eq: user.email}}
-            )){
-                const newUser = new User({
-                    email: user.email,
-                    password: user.password,
-                    ward: user.ward,
-                    organization: user.organization
-                })
-                newUser.save()
-            }
-        })
+        
         
         process.exit()
         
