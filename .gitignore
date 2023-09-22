@@ -176,3 +176,6 @@ public-facing-site/src/style.min.scss
 *.map
 *.*.map
 *map*
+
+data.js
+data.min.js
