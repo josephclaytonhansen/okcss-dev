@@ -92,7 +92,7 @@ const prettifyDate = (date) => {
                     <h3 class="event-title">{{event.title}} <br/> {{ prettifyDate(event.time) }}</h3>
                     <p class = "event-description">{{ event.description }}</p>
                     <add-to-calendar-button
-                    name="Sample Event"
+                    name={{event.title}}
                     description="Play with me!"
                     startDate="2023-10-13"
                     startTime="10:15"
