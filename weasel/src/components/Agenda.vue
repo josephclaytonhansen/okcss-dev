@@ -30,37 +30,47 @@ onMounted(() => {
     let month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     month_name.value.textContent = month_names[today.month-1]
     day.value.textContent = " - " + today.day + " - "
-    getTodaysEvents()
+    
 
 })
 
-const getTodaysEvents = () => {
-    let events = props.events
-    let todaysEvents = []
-    if (events){
-        //sort events by time.start
-        events.sort((a,b) => {
-            let aTime = new Date(a.time.start)
-            let bTime = new Date(b.time.start)
-            return aTime - bTime
-        })
-        //push the first three events during or after today to nextThreeEvents
-        for (let i = 0; i < events.length; i++){
-            let event = events[i]
-            let eventDate = new Date(event.time.start)
-            eventDate.setDate(eventDate.getDate() - 1)
-            if (eventDate >= new Date(today.year, today.month-1, today.day)){
-                todaysEvents.push(event)
-            }
-            if (todaysEvents.length === 3){
-                break
-            }
+const eventsWithinAWeek = (events) => {
+    let today = new Date()
+    let weekFromToday = new Date(today.getTime() + 604800000)
+    let eventsWithinAWeek = []
+    for (let i = 0; i < events.length; i++) {
+        let eventDate = new Date(events[i].time.start)
+        if (eventDate < weekFromToday) {
+            eventsWithinAWeek.push(events[i])
         }
-
-
     }
-    console.log(todaysEvents)
-    return todaysEvents
+    return eventsWithinAWeek
+}
+
+const prettifyDate = (date) => {
+    //convert 2023-09-29 10:00 to Sep. 29, 10:00 AM
+    let dates = [date.start, date.end]
+    let prettyDates = []
+    dates.forEach(date => {
+        let d = new Date(date)
+        let month = d.getMonth()
+        let day = d.getDate()
+        let hour = d.getHours()
+        let minute = d.getMinutes()
+        let ampm = 'AM'
+        if (hour > 12) {
+            hour = hour - 12
+            ampm = 'PM'
+        }
+        if (minute < 10) {
+            minute = '0' + minute
+        }
+        let prettyDate = month + '/' + day + ' ' + hour + ':' + minute + ' ' + ampm
+        prettyDates.push(prettyDate)
+    })
+    date.start = prettyDates[0]
+    date.end = prettyDates[1]
+    return date.start + ' - ' + date.end
 }
 
 </script>
@@ -74,10 +84,11 @@ const getTodaysEvents = () => {
         <hr style = "width:90%; margin-top:2rem;margin-bottom:2rem;"/>
         <div class = "events col-grow">
             <ul>
-                <li class = "event" v-for = "event in props.events">
-                    <h3 class="event-title">{{event.title}}</h3>
+                <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
+                    <h3 class="event-title">{{event.title}} - {{ prettifyDate(event.date) }}</h3>
                     <p class = "event-description">{{ event.description }}</p>
                 </li>
+                <hr style = "width:90%;margin:auto;"/>
             </ul>
     </div>
     </div>
@@ -109,6 +120,11 @@ const getTodaysEvents = () => {
     border-radius:5px;
     padding:1rem;
     width: 90%;
+}
+
+.event{
+    list-style: none;
+    padding-inline-start: 0;
 }
 
 .today{
