@@ -29,7 +29,7 @@ function setClassBySizeProp() {
 
 <template>
     <div :class = "classes" style = "border-bottom: solid 10px var(--active-color)">
-        <div v-if="size === 'full'" class = "col-3 person-image" style='background-color: var(--lighter-gray);'>
+        <div v-if="size === 'full'" class = "col-3 person-image">
             <Image :src="image.src" :alt="image.alt" :width="100" :class="image.class"/>
         </div>
         <div class = "col-9 col-grow">
@@ -160,6 +160,7 @@ body.light .person{
 
 .person-image{
     min-width:120px;
+    background-color: var(--lighter-gray);
 }
 
 .ic{

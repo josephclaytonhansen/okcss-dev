@@ -82,13 +82,13 @@ const prettifyDate = (date) => {
             <h2 ref = "day"></h2>
             <h3 ref = "month_name"></h3>
         </div>
-        <hr style = "width:90%; margin-top:2rem;margin-bottom:2rem;"/>
+        <hr/>
         <div class = "events col-grow">
             <ul>
                 <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
                     <h3 class="event-title">{{event.title}} <br/> {{ prettifyDate(event.time) }}</h3>
                     <p class = "event-description">{{ event.description }}</p>
-                    <div title="Add to my Calendar" class="addeventatc" data-styling="none" style = "margin-bottom:8px;">
+                    <div title="Add to my Calendar" class="addeventatc" data-styling="none">
                         Add to my Calendar
                         <span class="arrow">&nbsp;</span>
                         <span class="start">
@@ -108,13 +108,26 @@ const prettifyDate = (date) => {
                         </span>
                     </div>
                 </li>
-                <hr style = "width:90%;margin:auto;"/>
+                <hr class = "m-n"/>
             </ul>
     </div>
     </div>
 </template>
 
-<style>
+<style scoped>
+hr{
+    width:90%;
+    margin-top:2rem;
+    margin-bottom:2rem;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+hr.m-n{
+    margin-top:.25rem;
+    margin-bottom:.25rem;
+}
+
 .agenda {
     height: 95%;
     width: calc(100% - 4rem);
@@ -122,6 +135,8 @@ const prettifyDate = (date) => {
     background-color: var(--active-color);
     border-radius: 5px;
     padding: 1rem;
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 
 @media screen and (max-width: 1000px) {
@@ -167,5 +182,6 @@ const prettifyDate = (date) => {
 
 .addeventatc{
     background-color: var(--active-color)!important;
+    margin-bottom:8px;
 }
 </style>
