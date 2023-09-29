@@ -45,20 +45,12 @@ app.use(express.urlencoded({
     extended: false
 }))
 
-const corsOptions = {
-    origin: process.env.ORIGIN,
-    credentials: true,
-    optionSuccessStatus: 200
-}
+app.use(cors({
+    origin: '*'
+}))
 
-app.use(cors(corsOptions))
-app.options('*', cors(corsOptions))
-
-//set Access-Control-Allow-Origin header for every request
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', process.env.ORIGIN)
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
-    res.header('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Origin', '*')
     next()
 })
 
