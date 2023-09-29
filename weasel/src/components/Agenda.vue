@@ -54,6 +54,8 @@ const prettifyDate = (date) => {
     dates.forEach(date => {
         let d = new Date(date)
         let month = d.getMonth()
+        let month_short_names = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
+        month = month_short_names[month + 1]
         let day = d.getDate()
         let hour = d.getHours()
         let minute = d.getMinutes()
@@ -65,7 +67,7 @@ const prettifyDate = (date) => {
         if (minute < 10) {
             minute = '0' + minute
         }
-        let prettyDate = month + '/' + day + ' ' + hour + ':' + minute + ' ' + ampm
+        let prettyDate = month + " " + day + ', ' + hour + ':' + minute + ' ' + ampm
         prettyDates.push(prettyDate)
     })
 
@@ -84,7 +86,7 @@ const prettifyDate = (date) => {
         <div class = "events col-grow">
             <ul>
                 <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
-                    <h3 class="event-title">{{event.title}} - {{ prettifyDate(event.time) }}</h3>
+                    <h3 class="event-title">{{event.title}} <br/> {{ prettifyDate(event.time) }}</h3>
                     <p class = "event-description">{{ event.description }}</p>
                 </li>
                 <hr style = "width:90%;margin:auto;"/>
