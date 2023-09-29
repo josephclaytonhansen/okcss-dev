@@ -17,7 +17,9 @@ export default {
     },
     props: {
         events: Array,
-        config: Object
+        config: {
+          defaultMode: 'month'
+        }
     }
 }
 </script>
