@@ -10,7 +10,7 @@
         </div>
         <div class = "col-12 col-md-6 col-sm-12">
             <div  class ='content'>
-                <h1 id = "title-small">Service Opportunities</h1>
+                <h1 id = "">Service Opportunities</h1>
                 <p class = "py-2 hero-text">
                     Loving God and loving our neighbor are the two great commandments (Matthew 22:37-40). Loving and serving our neighbor is how we can follow the example of Jesus Christ. There are always opportunities to serve—in our homes, our communities, and our world. As we serve those around us, we brighten hearts and lift burdens.
                 </p>
