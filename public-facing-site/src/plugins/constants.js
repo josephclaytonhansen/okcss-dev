@@ -2,7 +2,7 @@ import { ref } from "vue"
 
 /* ---------------------- Make changes here or from API --------------------- */
 
-const weaselLoc = ref("http://localhost:5186/")
+const weaselLoc = ref("https://wards.okcsouthstake.org/")
 const seabassLoc = ref("http://localhost:5920/")
 
 const ig_link = ref("https://www.instagram.com/okcsouthstake/")
