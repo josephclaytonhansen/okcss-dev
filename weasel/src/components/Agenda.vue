@@ -177,7 +177,7 @@ hr.m-n{
     font-weight: 500;
 }
 
-.atcb-button atcb-click{
+.atcb-button{
     background-color: var(--active-color)!important;
     margin-bottom:8px;
     box-shadow:none;
