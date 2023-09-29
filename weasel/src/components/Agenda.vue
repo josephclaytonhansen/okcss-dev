@@ -92,11 +92,13 @@ const prettifyDate = (date) => {
                     <h3 class="event-title">{{event.title}} <br/> {{ prettifyDate(event.time) }}</h3>
                     <p class = "event-description">{{ event.description }}</p>
                     <add-to-calendar-button
-                    name={{event.title}}
-                    description="Play with me!"
-                    startDate="2023-10-13"
-                    startTime="10:15"
-                    endTime="17:45"
+                    :name="event.title"
+                    label="Add to my calendar"
+                    :description="event.description"
+                    :startDate="event.time.start.split(' ')[0]"
+                    :startTime="event.time.start.split(' ')[1]"
+                    :endDate="event.time.end.split(' ')[0]"
+                    :endTime="event.time.end.split(' ')[1]"
                     timeZone="America/Chicago"
                     location="World Wide Web"
                     options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365'"
