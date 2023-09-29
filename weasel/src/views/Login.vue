@@ -30,7 +30,7 @@ const attemptLogin = () => {
             'Access-Control-Allow-Origin': '*'
             } 
         }  
-    let url = 'https://weasel.okcsouthstake.org//api/users/login'
+    let url = 'https://weasel.okcsouthstake.org/api/users/login'
     try{
     axios.post(url, params, config)
     .then((response) => {
