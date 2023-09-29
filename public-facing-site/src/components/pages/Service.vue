@@ -69,32 +69,5 @@
             line-height:1;
         }
     }
-    .square-img-container {
-    position: relative;
-    }
 
-    .hd-img-container{
-        position:relative;
-    }
-
-    .square-img-container::after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-    }
-
-    .hd-img-container::after{
-        content: "";
-        display: block;
-        padding-bottom: 56%;
-    }
-
-    .square-img {
-    position: absolute;
-    left:0%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius:8px;
-    }
 </style>
