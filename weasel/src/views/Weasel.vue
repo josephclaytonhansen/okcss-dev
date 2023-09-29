@@ -230,6 +230,15 @@ const updateTools = async() => {
     })
 }
 
+const peoplesLength = computed(() => {
+    try {
+        return persons.length
+    } catch (error) {
+        return 0
+    }
+    
+})
+
 </script>
 
 <template>
@@ -411,7 +420,7 @@ const updateTools = async() => {
                     
                     <div class="col-12 flex-between row">
                         <div class = "col-6">
-                            <h2 v-if="contacts.length <= 0">No contacts</h2>
+                            <h2 v-if="peoplesLength() <= 0">No contacts</h2>
                             <h2 v-else>Contacts</h2>
                         </div>
                         <div class = "row flex-between col-6 wrap">
