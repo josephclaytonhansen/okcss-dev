@@ -88,7 +88,7 @@ const prettifyDate = (date) => {
                 <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
                     <h3 class="event-title">{{event.title}} <br/> {{ prettifyDate(event.time) }}</h3>
                     <p class = "event-description">{{ event.description }}</p>
-                    <div title="Add to my Calendar" class="addeventatc" data-styling="none">
+                    <div title="Add to my Calendar" class="addeventatc" data-styling="none" style = "margin-bottom:8px;">
                         Add to my Calendar
                         <span class="arrow">&nbsp;</span>
                         <span class="start">
@@ -163,5 +163,9 @@ const prettifyDate = (date) => {
     margin-top:-1rem;
     font-size: 200%;
     font-weight: 500;
+}
+
+.addeventatc{
+    background-color: var(--active-color)!important;
 }
 </style>
