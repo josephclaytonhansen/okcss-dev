@@ -85,7 +85,7 @@ const prettifyDate = (date) => {
         <div class = "events col-grow">
             <ul>
                 <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
-                    <h3 class="event-title">{{event.title}} - {{ prettifyDate(event.date) }}</h3>
+                    <h3 class="event-title">{{event.title}} - {{ prettifyDate(event.time) }}</h3>
                     <p class = "event-description">{{ event.description }}</p>
                 </li>
                 <hr style = "width:90%;margin:auto;"/>
