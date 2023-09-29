@@ -39,7 +39,9 @@
 <div class="col col-1 col-sm-12 col-md-1" id="hero-spacer"></div>
 
 <div class="col col-md-5 col-12 col-sm-12" id="hero-image">
-    <div id="hero-image-inner" />
+    <div class = "hd-img-container">
+                <img class = "square-img" src = "https://picsum.photos/200/300"/>
+            </div>
 </div>
 
 </div>
