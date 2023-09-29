@@ -35,14 +35,27 @@ const getTodaysEvents = () => {
     let events = props.events
     let todaysEvents = []
     if (events){
-    events.forEach(event => {
-        let start = new Date(event.time.start)
-        let end = new Date(event.time.end)
-        let today = new Date()
-        if (start <= today && end >= today) {
-            todaysEvents.push(event)
+        //sort events by time.start
+        events.sort((a,b) => {
+            let aTime = new Date(a.time.start)
+            let bTime = new Date(b.time.start)
+            return aTime - bTime
+        })
+        //push the first three events during or after today to nextThreeEvents
+        for (let i = 0; i < events.length; i++){
+            let event = events[i]
+            let eventDate = new Date(event.time.start)
+            eventDate.setDate(eventDate.getDate() - 1)
+            if (eventDate >= new Date(today.year, today.month-1, today.day)){
+                todaysEvents.push(event)
+            }
+            if (todaysEvents.length === 3){
+                break
+            }
         }
-    })}
+
+
+    }
     return todaysEvents
 }
 
