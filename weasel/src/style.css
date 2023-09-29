@@ -544,6 +544,7 @@ body.light .calendar-root{
 
 .date-picker__value-display-text, .calendar-header__mode-value, .date-picker__value-display *, .calendar-header__period *{
     color: var(--off-white);
+    background-color: var(--dark-blue);
 }
 
 body.dark .calendar-root{
