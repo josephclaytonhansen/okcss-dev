@@ -48,17 +48,7 @@ const eventsWithinAWeek = (events) => {
     return eventsWithinAWeek
 }
 
-const convertDateToDateAndTime = (date) => {
 
-    let convertedDates = []
-
-        convertedDates.push([
-            date.split(' ')[0],
-            date.split(' ')[1]
-    ])
-        
-    return convertedDates
-}
 
 const prettifyDate = (date) => {
     //convert 2023-09-29 10:00 to Sep. 29, 10:00 AM
@@ -102,17 +92,18 @@ const prettifyDate = (date) => {
                     <h3 class="event-title">{{event.title}} <br/> {{ prettifyDate(event.time) }}</h3>
                     <p class = "event-description">{{ event.description }}</p>
                     <add-to-calendar-button
-                        name={{ event.title }}
-                        options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365'"
-                        buttonStyle="flat"
-                        trigger="click"
-                        hideBackground
-                        startDate={{convertDateToDateAndTime(event.time.start[0])}}
-                        endDate={{convertDateToDateAndTime(event.time.end[0])}}
-                        startTime={{convertDateToDateAndTime(event.time.start[1])}}
-                        endTime={{convertDateToDateAndTime(event.time.start[1])}}
-                        timeZone="America/Chicago"
-                        ></add-to-calendar-button>
+                    name="Sample Event"
+                    description="Play with me!"
+                    startDate="2023-10-13"
+                    startTime="10:15"
+                    endTime="17:45"
+                    timeZone="America/Chicago"
+                    location="World Wide Web"
+                    options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365'"
+                    buttonStyle="flat"
+                    trigger="click"
+                    hideBackground
+                    ></add-to-calendar-button>
                 </li>
                 <hr class = "m-n"/>
             </ul>
