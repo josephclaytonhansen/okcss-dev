@@ -100,7 +100,6 @@ const prettifyDate = (date) => {
                     :endDate="event.time.end.split(' ')[0]"
                     :endTime="event.time.end.split(' ')[1]"
                     timeZone="America/Chicago"
-                    location="World Wide Web"
                     options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365'"
                     buttonStyle="flat"
                     trigger="click"
