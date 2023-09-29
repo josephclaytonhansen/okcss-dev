@@ -74,7 +74,7 @@ const getTodaysEvents = () => {
         <hr style = "width:90%; margin-top:2rem;margin-bottom:2rem;"/>
         <div class = "events col-grow">
             <ul>
-                <li class = "event" v-for = "event in today_events">
+                <li class = "event" v-for = "event in props.events">
                     <h3 class="event-title">{{event.title}}</h3>
                     <p class = "event-description">{{ event.description }}</p>
                 </li>
