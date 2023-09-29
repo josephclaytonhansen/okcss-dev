@@ -420,8 +420,7 @@ const peoplesLength = computed(() => {
                     
                     <div class="col-12 flex-between row">
                         <div class = "col-6">
-                            <h2 v-if="peoplesLength() <= 0">No contacts</h2>
-                            <h2 v-else>Contacts</h2>
+                            <h2>Contacts</h2>
                         </div>
                         <div class = "row flex-between col-6 wrap">
                             <button class = "col-4 col-grow fwc" @click = "addContact">+ Add contact</button>
