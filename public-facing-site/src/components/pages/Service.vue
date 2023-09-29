@@ -17,4 +17,82 @@
             </div>
         </div>
     </div>
+
+    <hr class = "w-50 mx-auto"/>
+
+    <div class="row align-items-center py-5" id="beliefs-row">
+
+<div class="col col-md-6 col-sm-12 col-12">
+    <h2 id="beliefs-row-title" class="mb-0 py-0 row-title">
+        JustServe: Our Tool for Local Service
+    </h2>
+    <p class="mt-5 hero-text">
+        <a href = "https://justserve.org">JustServe</a> is a tool that brings together volunteers and organizations that need help. Faith-based organizations, government, nonprofits, and community organizations all need people willing to help. You can make a difference wherever you are.
+        <br/><br/>
+        Organizations can request volunteers and supplies they need right on JustServe. The community can sign up and show up on their own schedule.
+        <br/><br/>
+        The Church of Jesus Christ of Latter-Day Saints provides JustServe as a tool to help people follow the example of Jesus Christ and love their neighbor. It provides opportunities to relieve suffering, care for the poor and needy, and improve the quality of life for their community. JustServe is not a tool for proselyting or preaching the gospel. Its only goal is making service accessible for every community.
+    </p>
+    <a id="hero-button" class="btn btn-primary" href="https://www.justserve.org/signin">Register for JustServe</a>
+</div>
+
+<div class="col col-1 col-sm-12 col-md-1" id="hero-spacer"></div>
+
+<div class="col col-md-5 col-12 col-sm-12" id="hero-image">
+    <div id="hero-image-inner" />
+</div>
+
+</div>
 </template>
+
+<style scoped>
+    #bios{
+        gap:1rem;
+        justify-content: stretch;
+    }
+    .content{
+        padding-left:2rem;
+        width: calc(100% - 2rem);
+
+    }
+    #title{
+        font-size:3.2rem;
+    }
+    #title-small{
+        font-size:1.6rem!important;
+    }
+
+    @media screen and (max-width: 768px) {
+        #title{
+            line-height:1;
+        }
+    }
+    .square-img-container {
+    position: relative;
+    }
+
+    .hd-img-container{
+        position:relative;
+    }
+
+    .square-img-container::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+    }
+
+    .hd-img-container::after{
+        content: "";
+        display: block;
+        padding-bottom: 56%;
+    }
+
+    .square-img {
+    position: absolute;
+    left:0%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius:8px;
+    }
+</style>
