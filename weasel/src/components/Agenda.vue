@@ -23,12 +23,15 @@ const getToday = () => {
 
 const day = ref(null)
 const month_name = ref(null)
+const today_events = ref(null)
 
 onMounted(() => {
     getToday()
     let month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     month_name.value.textContent = month_names[today.month-1]
     day.value.textContent = " - " + today.day + " - "
+    getTodaysEvents()
+
 })
 
 const getTodaysEvents = () => {
@@ -71,7 +74,7 @@ const getTodaysEvents = () => {
         <hr style = "width:90%; margin-top:2rem;margin-bottom:2rem;"/>
         <div class = "events col-grow">
             <ul>
-                <li class = "event" v-for = "event in getTodaysEvents()">
+                <li class = "event" v-for = "event in today_events">
                     <h3 class="event-title">{{event.title}}</h3>
                     <p class = "event-description">{{ event.description }}</p>
                 </li>
