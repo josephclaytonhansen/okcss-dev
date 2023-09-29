@@ -13,12 +13,10 @@ const importData = async () => {
         await Tool.deleteMany()
         await Event.deleteMany()
         await Person.deleteMany()
-        await User.deleteMany()
         const createdTools = await Tool.insertMany(tools)
         const createdEvents = await Event.insertMany(events)
         const createdContacts = await Person.insertMany(contacts)
-        const createdUsers = await User.insertMany(users)
-        console.log(createdTools, createdEvents, createdContacts, createdUsers)
+        console.log(createdTools, createdEvents, createdContacts)
 
         
         
