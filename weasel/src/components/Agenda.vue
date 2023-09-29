@@ -68,9 +68,8 @@ const prettifyDate = (date) => {
         let prettyDate = month + '/' + day + ' ' + hour + ':' + minute + ' ' + ampm
         prettyDates.push(prettyDate)
     })
-    date.start = prettyDates[0]
-    date.end = prettyDates[1]
-    return date.start + ' - ' + date.end
+
+    return prettyDates[0] + ' - ' +prettyDates[1]
 }
 
 </script>
