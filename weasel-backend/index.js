@@ -45,22 +45,10 @@ app.use(express.urlencoded({
     extended: false
 }))
 
-app.use(cors(
-    {
-        origin: '*',
-        credentials: false,
-    }
-))
-
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Credentials', false)
-    res.setHeader('Access-Control-Allow-Methods', '*')
-    res.setHeader('Access-Control-Allow-Headers', '*')
-    res.setHeader('Access-Control-Expose-Headers', '*')
-    next()
-})
-
+app.use(cors({
+    origin: 'https://wards.okcsouthstake.org',
+    credentials: true
+}))
 
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
