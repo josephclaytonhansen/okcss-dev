@@ -56,6 +56,7 @@ const getTodaysEvents = () => {
 
 
     }
+    console.log(todaysEvents)
     return todaysEvents
 }
 
