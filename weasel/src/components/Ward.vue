@@ -62,7 +62,7 @@ function filterContactsByOrganization(organization) {
 }
 
 function goHome(){
-    window.location.href = 'http://localhost:5280'
+    window.location.href = 'https://okcsouthstake.org'
 }
 
 watch(currentTab, tabChanged)
@@ -124,7 +124,7 @@ watch(currentTab, tabChanged)
                 <div class="tab-overlay" :class="{active: currentTab === 'tools'}"/>
                 <h3><ListTodo style = "margin-bottom:-.25rem;" class="ht"/> Tools</h3></div>
         </div>
-        <p id = "submit-correction">Contact<a href = "mailto:josephclaytonhansen@gmail.com">Joseph Hansen</a>to request edit access.<br/><span id = 'disclaimer'><a href = "http://localhost:5280">OKCSouthStake.org</a> is not edited, reviewed, or maintained by The Church of Jesus Christ of Latter Day Saints.</span></p>
+        <p id = "submit-correction">Contact<a href = "mailto:josephclaytonhansen@gmail.com">Joseph Hansen</a>to request edit access.<br/><span id = 'disclaimer'><a href = "https://okcsouthstake.org">OKCSouthStake.org</a> is not edited, reviewed, or maintained by The Church of Jesus Christ of Latter Day Saints.</span></p>
     </div>
 </section>
 
