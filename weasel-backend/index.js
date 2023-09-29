@@ -45,10 +45,6 @@ app.use(express.urlencoded({
     extended: false
 }))
 
-app.use(cors({
-    origin: '*'
-}))
-
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Credentials', true)
@@ -57,6 +53,8 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use(cors())
+
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
     max: 400,
@@ -64,9 +62,9 @@ const limiter = rate_limit({
     legacyHeaders: false,
 })
 
-if (process.env.ENV == 'production') {
-    app.use(limiter)
-}
+
+app.use(limiter)
+
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
