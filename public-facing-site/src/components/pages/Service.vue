@@ -4,7 +4,9 @@
 <template>
 <div class = "row align-items-center py-5 gy-3" id = 'hero-row'>
         <div class = "col-12 col-md-6 col-sm-12">
+            <div class = "tall-img-container">
                 <img class = "square-img" src = "/assets/Pictures/Service/christ.png"/>
+            </div>
 
         </div>
         <div class = "col-12 col-md-6 col-sm-12">
@@ -91,6 +93,12 @@ img.rounded {
     content: "";
     display: block;
     padding-bottom: 100%;
+}
+
+.tall-img-container::after {
+    content: "";
+    display: block;
+    padding-bottom: 150%;
 }
 
 .hd-img-container::after {
