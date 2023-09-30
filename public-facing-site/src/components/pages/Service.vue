@@ -4,8 +4,8 @@
 <template>
 <div class = "row align-items-center py-5 gy-3" id = 'hero-row'>
         <div class = "col-12 col-md-6 col-sm-12">
-            <div class = "square-img-container">
-                <img class = "square-img" src = "/assets/Pictures/Service/service.jpg"/>
+            <div class = "hd-img-container">
+                <img class = "square-img" src = "/assets/Pictures/Service/christ.png"/>
             </div>
         </div>
         <div class = "col-12 col-md-6 col-sm-12">
@@ -39,8 +39,8 @@
 <div class="col col-1 col-sm-12 col-md-1" id="hero-spacer"></div>
 
 <div class="col col-md-5 col-12 col-sm-12" id="hero-image">
-    <div class = "hd-img-container">
-                <img class = "square-img" src = "https://picsum.photos/200/300"/>
+    <div class = "square-img-container">
+                <img class = "square-img" src = "/assets/Pictures/Service/service.jpg"/>
             </div>
 </div>
 
