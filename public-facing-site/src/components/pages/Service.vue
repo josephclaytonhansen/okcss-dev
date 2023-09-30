@@ -4,9 +4,8 @@
 <template>
 <div class = "row align-items-center py-5 gy-3" id = 'hero-row'>
         <div class = "col-12 col-md-6 col-sm-12">
-            <div class = "img-container">
-                <img class = "square-img" src = "/assets/Pictures/Service/christ.png"/>
-            </div>
+                <img class = "square-img" src = "/assets/Pictures/Service/christ.png" style = "height:100%"/>
+
         </div>
         <div class = "col-12 col-md-6 col-sm-12">
             <div  class ='content'>
