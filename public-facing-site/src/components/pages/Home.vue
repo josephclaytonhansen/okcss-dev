@@ -41,7 +41,9 @@ onMounted(async () => {
 <template>
     <div class="row align-items-center py-5">
         <div class="col col-md-5 col-12 col-sm-12" id="hero-image">
-            <div id="hero-image-inner" />
+            <div class = "square-img-container">
+                <img src = "/assets/Pictures/Home/hero.png" class = "square-img" />
+            </div>
         </div>
         <div class="col col-1 col-sm-12 col-md-1" id="hero-spacer"></div>
         <div class="col col-md-6 col-sm-12 col-12">
