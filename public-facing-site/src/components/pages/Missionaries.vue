@@ -4,8 +4,8 @@
 <template>
     <div class = "row align-items-center py-5 gy-3" id = 'hero-row'>
         <div class = "col-12 col-md-6 col-sm-12">
-            <div class = "hd-img-container">
-                <img class = "square-img" src = "https://picsum.photos/200/300"/>
+            <div class = "square-img-container">
+                <img class = "square-img" src = "/assets/Pictures/Missionaries/hero.png"/>
             </div>
         </div>
         <div class = "col-12 col-md-6 col-sm-12">
