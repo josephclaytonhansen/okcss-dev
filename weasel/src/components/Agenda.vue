@@ -100,9 +100,10 @@ const prettifyDate = (date) => {
                     :endDate="event.time.end.split(' ')[0]"
                     :endTime="event.time.end.split(' ')[1]"
                     timeZone="America/Chicago"
-                    options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365'"
+                    options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365','MicrosoftTeams'"
                     buttonStyle="flat"
                     trigger="click"
+                    size="4"
                     hideBackground
                     ></add-to-calendar-button>
                 </li>
