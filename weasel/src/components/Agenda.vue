@@ -58,7 +58,7 @@ const prettifyDate = (date) => {
         let d = new Date(date)
         let month = d.getMonth()
         let month_short_names = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
-        month = month_short_names[month + 1]
+        month = month_short_names[month]
         let day = d.getDate()
         let hour = d.getHours()
         let minute = d.getMinutes()
