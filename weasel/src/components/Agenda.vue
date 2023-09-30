@@ -103,7 +103,7 @@ const prettifyDate = (date) => {
                     options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365','MicrosoftTeams'"
                     buttonStyle="flat"
                     trigger="click"
-                    size="4"
+                    size="3"
                     hideBackground
                     ></add-to-calendar-button>
                 </li>
