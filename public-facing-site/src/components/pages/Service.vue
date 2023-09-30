@@ -48,6 +48,82 @@
 </template>
 
 <style scoped>
+.img-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.img-container:has(.square)::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.img-container img.square {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.img-container img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.img-container:has(img.rounded) {
+    border-radius: 8px;
+}
+
+img.rounded {
+    border-radius: 8px;
+}
+
+.square-img-container {
+    position: relative;
+}
+
+.hd-img-container {
+    position: relative;
+}
+
+.square-img-container::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.hd-img-container::after {
+    content: "";
+    display: block;
+    padding-bottom: 56%;
+}
+
+.square-img {
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.img-container {
+    position: relative;
+    height: 100%;
+    width: 100%
+}
+
+
+.img-container img {
+    object-fit: cover;
+    height: 100%
+}
+
+.img-container:has(img.rounded) {
+    border-radius: 8px
+}
     #bios{
         gap:1rem;
         justify-content: stretch;
