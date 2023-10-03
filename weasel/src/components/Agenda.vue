@@ -104,7 +104,7 @@ const prettifyDate = (date) => {
                         buttonStyle="flat"
                         trigger="click"
                         size="1"
-                        pastDateHandling="disable"
+                        pastDateHandling="hide"
                         hideBackground
                         ></add-to-calendar-button>
                     </div>
@@ -119,16 +119,13 @@ const prettifyDate = (date) => {
 
 <style scoped>
 hr{
-    width:90%;
     margin-top:2rem;
     margin-bottom:2rem;
-    margin-left:auto;
-    margin-right:auto;
 }
 
 hr.m-n{
     margin-top:.25rem;
-    margin-bottom:.25rem;
+    margin-bottom:.5rem;
 }
 
 .agenda {
