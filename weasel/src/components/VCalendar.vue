@@ -33,12 +33,6 @@ export default {
     --qalendar-theme-color: var(--active-color);
   }
 
-  @media screen and (max-width: 1000px) {
-    .calendar-wrapper {
-        height: 144vh;
-    }
-  }
-
 .calendar-wrapper *{
     font-family: 'Mulish'
 }
