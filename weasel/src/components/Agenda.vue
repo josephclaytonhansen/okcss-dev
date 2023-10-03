@@ -135,8 +135,6 @@ hr.m-n{
     background-color: var(--active-color);
     border-radius: 5px;
     padding: 1rem;
-    overflow-y:auto;
-    overflow-x:hidden;
 }
 
 @media screen and (max-width: 1000px) {
@@ -155,6 +153,8 @@ hr.m-n{
     border-radius:5px;
     padding:1rem;
     width: 90%;
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 
 .event{
