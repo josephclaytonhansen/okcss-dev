@@ -90,7 +90,7 @@ const prettifyDate = (date) => {
             <ul>
                 <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
                     <div class = "row">
-                        <div><b><h3 class="event-title">{{event.title}}</h3></b><br/><h4>{{ prettifyDate(event.time) }}</h4></div>
+                        <div class = "no-margin"><b><h3 class="event-title">{{event.title}}</h3></b><h4>{{ prettifyDate(event.time) }}</h4></div>
                         <add-to-calendar-button
                         :name="event.title"
                         label="Add to my calendar"
@@ -191,5 +191,10 @@ hr.m-n{
     border:none;
     color: var(--off-white)!important;
     border-radius: 5px;
+}
+
+.no-margin h3, .no-margin h4{
+    margin-bottom:0;
+    margin-top:0;
 }
 </style>
