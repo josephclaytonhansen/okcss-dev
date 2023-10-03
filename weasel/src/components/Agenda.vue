@@ -169,10 +169,11 @@ hr.m-n{
 
 .today{
     text-align: center;
+    margin-bottom: 2rem;
 }
 
 .today h2 {
-    font-size: 500%;
+    font-size: 400%;
     font-weight: 500;
     margin-bottom:0;
     margin-top:0;
