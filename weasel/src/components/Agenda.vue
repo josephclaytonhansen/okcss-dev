@@ -135,7 +135,7 @@ hr.m-n{
     border-radius: 5px;
     padding: 1rem;
 }
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1500px) {
     #title-and-add{
         flex-direction:column;
     }
