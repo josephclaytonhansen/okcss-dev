@@ -90,7 +90,7 @@ const prettifyDate = (date) => {
             <ul>
                 <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
                     <div class = "row">
-                        <h3 class="event-title">{{event.title}} <br/> {{ prettifyDate(event.time) }}</h3>
+                        <div><b><h3 class="event-title">{{event.title}}</h3></b><br/><h4>{{ prettifyDate(event.time) }}</h4></div>
                         <add-to-calendar-button
                         :name="event.title"
                         label="Add to my calendar"
