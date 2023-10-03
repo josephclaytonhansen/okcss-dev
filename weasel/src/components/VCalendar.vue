@@ -29,7 +29,7 @@ export default {
   
   .calendar-wrapper {
     width: 99%;
-    height:70vh;
+    height:80vh;
     --qalendar-theme-color: var(--active-color);
   }
 

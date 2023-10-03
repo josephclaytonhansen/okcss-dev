@@ -16,7 +16,7 @@
 
 <template>
     <div>
-        <div class = "row stretch wrap">
+        <div class = "row stretch wrap" id = "calendar-container">
             <div class = "col-4 fwc">
                 <Agenda :events="events.ward" :ward="ward"/>
             </div>
@@ -27,5 +27,8 @@
     </div>
 </template>
 
-<style>
+<style scoped>
+#calendar-container{
+    height:82vh;
+}
 </style>
