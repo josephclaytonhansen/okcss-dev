@@ -148,7 +148,7 @@ watch(currentTab, tabChanged)
 }
 #home{
     top: .25rem;
-    left: 1.75rem;
+    left: 2.5rem;
 }
 #home, #goweasel{
     position: fixed;
