@@ -3,7 +3,7 @@
     import PersonCard from './PersonCard.vue'
     import Location from './Location.vue'
     import Tools from './Tools.vue'
-    import {Contact2, Calendar, HeartHandshake, ListTodo, Home} from 'lucide-vue-next'
+    import {Contact2, Calendar, HeartHandshake, ListTodo, Home, Pencil} from 'lucide-vue-next'
     import CCalendar from './CCalendar.vue'
 
 const props = defineProps({
@@ -65,6 +65,10 @@ function goHome(){
     window.location.href = 'https://okcsouthstake.org'
 }
 
+function goWeasel(){
+    window.location.href = 'https://wards.okcsouthstake.org/weasel'
+}
+
 watch(currentTab, tabChanged)
 
 </script>
@@ -75,6 +79,7 @@ watch(currentTab, tabChanged)
 <section class = "tabs" :class="ward">
     <div class = "">
         <button id = "home" class = 'button' @click="goHome"><Home/><span id = 'home-text'>OKC South Stake</span></button>
+        <button id = "goweasel" class = 'button' @click="goWeasel"><Pencil/></button>
         <!------------------------------ Tab: Contacts ----------------------------- -->
         <div v-if="currentTab === 'contacts'">
             <div v-for = "organization in organizations">
@@ -142,15 +147,22 @@ watch(currentTab, tabChanged)
 
 }
 #home{
-    position: fixed;
     top: .25rem;
     left: .25rem;
+}
+#home, #goweasel{
+    position: fixed;
     z-index: 100;
     background-color: transparent;
     color: #999;
     display:flex;
     align-items:center;
 }
+#goweasel{
+    top: .25rem;
+    left: 1.75rem;
+}
+
 #home-text{
     padding-left:.3rem;
     margin-top:.1rem;
