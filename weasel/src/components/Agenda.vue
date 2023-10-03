@@ -197,4 +197,8 @@ hr.m-n{
     margin-bottom:0;
     margin-top:0;
 }
+
+.no-margin{
+    min-width:fit-content;
+}
 </style>
