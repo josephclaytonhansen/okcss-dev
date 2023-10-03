@@ -89,7 +89,7 @@ const prettifyDate = (date) => {
         <div class = "events col-grow">
             <ul>
                 <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
-                    <div class = "row">
+                    <div class = "row" id = "title-and-add">
                         <div class = "no-margin"><b><h3 class="event-title">{{event.title}}</h3></b><h4>{{ prettifyDate(event.time) }}</h4></div>
                         <add-to-calendar-button
                         :name="event.title"
@@ -139,12 +139,18 @@ hr.m-n{
     border-radius: 5px;
     padding: 1rem;
 }
+@media screen and (max-width: 1400px) {
+    #title-and-add{
+        flex-direction:column;
+    }
+}
 
 @media screen and (max-width: 1000px) {
     .agenda {
         min-height:500px;
 
     }
+    
 }
 
 .today * {
