@@ -86,8 +86,7 @@ const prettifyDate = (date) => {
             <h3 ref = "month_name"></h3>
         </div>
         <div class = "events col-grow">
-            <ul>
-                <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
+                <div class = "event" v-for = "event in eventsWithinAWeek(props.events)">
                     <div class = "row" id = "title-and-add">
                         <div class = "no-margin"><b><h3 class="event-title">{{event.title}}</h3></b><h4>{{ prettifyDate(event.time) }}</h4></div>
                         <add-to-calendar-button
@@ -109,9 +108,8 @@ const prettifyDate = (date) => {
                     </div>
                     <p class = "event-description">{{ event.description }}</p>
                     <hr class = "m-n"/>
-                </li>
+                </div>
                 
-            </ul>
     </div>
     </div>
 </template>
