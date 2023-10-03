@@ -37,6 +37,10 @@ export default {
     font-family: 'Mulish'
 }
 
+.calendar-month__event-title{
+    max-width: 65%;
+}
+
   .calendar-wrapper .is-today .week-timeline__date{
     background-color: var(--active-color)!important;
     color: var(--off-white);
