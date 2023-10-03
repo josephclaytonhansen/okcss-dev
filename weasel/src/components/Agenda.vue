@@ -174,7 +174,7 @@ hr.m-n{
 }
 
 .today h3 {
-    margin-bottom:0;
+    margin-bottom:-1rem;
     margin-top:-1rem;
     font-size: 200%;
     font-weight: 500;
