@@ -41,7 +41,7 @@ const eventsWithinAWeek = (events) => {
     let eventsWithinAWeek = []
     for (let i = 0; i < events.length; i++) {
         let eventDate = new Date(events[i].time.start)
-        if (eventDate < weekFromToday) {
+        if (eventDate <= weekFromToday) {
             eventsWithinAWeek.push(events[i])
         }
     }
