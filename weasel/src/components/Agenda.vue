@@ -85,7 +85,6 @@ const prettifyDate = (date) => {
             <h2 ref = "day"></h2>
             <h3 ref = "month_name"></h3>
         </div>
-        <hr/>
         <div class = "events col-grow">
             <ul>
                 <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
