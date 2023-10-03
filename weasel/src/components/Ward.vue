@@ -78,8 +78,8 @@ watch(currentTab, tabChanged)
 <!------------------------------ Tab container ----------------------------- -->
 <section class = "tabs" :class="ward">
     <div class = "">
-        <button id = "home" class = 'button' @click="goHome"><Home/><span id = 'home-text'>OKC South Stake</span></button>
         <button id = "goweasel" class = 'button' @click="goWeasel"><Pencil/></button>
+        <button id = "home" class = 'button' @click="goHome"><Home/><span id = 'home-text'>OKC South Stake</span></button>
         <!------------------------------ Tab: Contacts ----------------------------- -->
         <div v-if="currentTab === 'contacts'">
             <div v-for = "organization in organizations">
@@ -148,7 +148,7 @@ watch(currentTab, tabChanged)
 }
 #home{
     top: .25rem;
-    left: .25rem;
+    left: 1.75rem;
 }
 #home, #goweasel{
     position: fixed;
@@ -160,7 +160,7 @@ watch(currentTab, tabChanged)
 }
 #goweasel{
     top: .25rem;
-    left: 1.75rem;
+    left: .25rem;
 }
 
 #home-text{
