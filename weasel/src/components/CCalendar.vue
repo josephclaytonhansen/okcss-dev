@@ -29,12 +29,6 @@
 
 <style scoped>
 #calendar-container{
-    height:82vh;
-}
-
-@media screen and (max-width: 1000px) {
-    #calendar-container{
-        height: 144vh;
-    }
+    height:auto;
 }
 </style>
