@@ -89,23 +89,26 @@ const prettifyDate = (date) => {
         <div class = "events col-grow">
             <ul>
                 <li class = "event" v-for = "event in eventsWithinAWeek(props.events)">
-                    <h3 class="event-title">{{event.title}} <br/> {{ prettifyDate(event.time) }}</h3>
+                    <div class = "row">
+                        <h3 class="event-title">{{event.title}} <br/> {{ prettifyDate(event.time) }}</h3>
+                        <add-to-calendar-button
+                        :name="event.title"
+                        label="Add to my calendar"
+                        :description="event.description"
+                        :startDate="event.time.start.split(' ')[0]"
+                        :startTime="event.time.start.split(' ')[1]"
+                        :endDate="event.time.end.split(' ')[0]"
+                        :endTime="event.time.end.split(' ')[1]"
+                        timeZone="America/Chicago"
+                        options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365','MicrosoftTeams'"
+                        buttonStyle="flat"
+                        trigger="click"
+                        size="1"
+                        pastDateHandling="disable"
+                        hideBackground
+                        ></add-to-calendar-button>
+                    </div>
                     <p class = "event-description">{{ event.description }}</p>
-                    <add-to-calendar-button
-                    :name="event.title"
-                    label="Add to my calendar"
-                    :description="event.description"
-                    :startDate="event.time.start.split(' ')[0]"
-                    :startTime="event.time.start.split(' ')[1]"
-                    :endDate="event.time.end.split(' ')[0]"
-                    :endTime="event.time.end.split(' ')[1]"
-                    timeZone="America/Chicago"
-                    options="'Apple','Google','iCal','Outlook.com','Yahoo','Microsoft365','MicrosoftTeams'"
-                    buttonStyle="flat"
-                    trigger="click"
-                    size="2"
-                    hideBackground
-                    ></add-to-calendar-button>
                     <hr class = "m-n"/>
                 </li>
                 
