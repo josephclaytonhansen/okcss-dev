@@ -580,28 +580,6 @@ body.dark .tab:hover {
     transform: translateY(2rem);
 }
 
-body.light .calendar-root {
-    background-color: var(--off-white);
-    color: var(--gray);
-}
-
-.week-timeline__day-name {
-    color: var(--gray);
-}
-
-.date-picker__value-display-text,
-.calendar-header__mode-value,
-.date-picker__value-display *,
-.calendar-header__period *,
-.event-flyout__info-wrapper {
-    color: var(--off-white);
-    background-color: var(--dark-blue);
-}
-
-body.dark .calendar-root {
-    background-color: var(--dark-gray);
-}
-
 .activeTab .tab-overlay {
     transform: translateY(-2rem);
 }
