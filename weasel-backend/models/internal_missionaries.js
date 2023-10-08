@@ -1,8 +1,5 @@
 import mongoose from 'mongoose'
 const internalMissionarySchema = new mongoose.Schema({
-    name1: String,
-    name2: String,
-    name3: String,
     phone: String,
     ward: String,
 })
