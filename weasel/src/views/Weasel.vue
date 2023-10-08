@@ -115,10 +115,6 @@ const addEvent = async() => {
             }
         })
         })
-        //after 1 second, reload the page
-        setTimeout(() => {
-            window.location.reload()
-        }, 2000)
     })
 }
 
