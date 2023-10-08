@@ -115,7 +115,10 @@ const addEvent = async() => {
             }
         })
         })
-        window.location.reload()
+        //after 1 second, reload the page
+        setTimeout(() => {
+            window.location.reload()
+        }, 1000)
     })
 }
 
@@ -216,7 +219,9 @@ const deleteEvent = async(id) => {
     .then((response) => {
         toast.warning("Event deleted")
     })
-    window.location.reload()
+    setTimeout(() => {
+        window.location.reload()
+    }, 1000)
 }
 
 const updateTools = async() => {

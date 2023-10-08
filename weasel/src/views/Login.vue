@@ -12,7 +12,7 @@ const weasel_img = ref(
 
 onMounted(() => {
     document.getElementById('username').focus()
-    console.log('Please login to continue')
+    toast.info('Please login to continue')
 })
 
 const attemptLogin = () => {
@@ -38,7 +38,9 @@ const attemptLogin = () => {
         toast.success('Login successful')
         if (response.data) {
             store.login(response.data)
-            window.location.href = '/weasel'
+            setTimeout(() => {
+                window.location.href = '/weasel'
+            }, 1000)
         }
     })
     .catch((error) => {
