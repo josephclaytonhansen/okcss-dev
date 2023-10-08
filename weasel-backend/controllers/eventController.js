@@ -35,6 +35,7 @@ const updateEvent = asyncHandler(async (req, res) => {
         event.description = req.body.description || event.description
         event.color = req.body.color || event.color
         event.category = req.body.category || event.category
+        event.organization = req.body.organization || event.organization
         const updatedEvent = await event.save()
         res.json(updatedEvent)
     } else {
