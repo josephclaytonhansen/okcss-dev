@@ -3,6 +3,8 @@
     import {ref, onMounted, onBeforeMount, reactive, computed, watch} from 'vue'
     import Image from '../components/Image.vue'
     import { Trash2 } from 'lucide-vue-next'
+    import { useToast } from "vue-toastification"
+    const toast = useToast()
 
     import axios from 'axios'
 
@@ -100,6 +102,7 @@ const addEvent = async() => {
     .then((response) => {
         axios.get(`https://weasel.okcsouthstake.org/api/events/ward/${ward.value}/organization/${organization.value}`).then((response) => {
             let response_object = response.data
+            toast.info("Event added")
             localStorage.setItem("events", JSON.stringify(response_object))
             let temp = JSON.parse(localStorage.getItem("events"))
             events.push(...temp)
@@ -193,7 +196,7 @@ const addEvent = async() => {
 const updateWorship = async() => {
     await axios.put(`https://weasel.okcsouthstake.org/api/worships/${worship.id}`, worship)
     .then((response) => {
-        console.log(response)
+        toast.success("Details updated")
     })
 }
 
@@ -203,7 +206,7 @@ const updateEvents = async() => {
         event.time.end = `${events_time_splits[event._id].e_date} ${events_time_splits[event._id].e_time}`
         axios.put(`https://weasel.okcsouthstake.org/api/events/${event._id}`, event)
         .then((response) => {
-            console.log(response)
+            toast.success("Event details updated")
         })
     })
 }
@@ -211,7 +214,7 @@ const updateEvents = async() => {
 const deleteEvent = async(id) => {
     await axios.delete(`https://weasel.okcsouthstake.org/api/events/${id}`)
     .then((response) => {
-        console.log(response)
+        toast.warning("Event deleted")
     })
     window.location.reload()
 }
@@ -226,7 +229,7 @@ const updateTools = async() => {
     }
     await axios.put(`https://weasel.okcsouthstake.org/api/tools/${tool_id.value}`, tools)
     .then((response) => {
-        console.log(response)
+        toast.success("Tools updated")
     })
 }
 
