@@ -40,7 +40,7 @@ const attemptLogin = () => {
             store.login(response.data)
             setTimeout(() => {
                 window.location.href = '/weasel'
-            }, 1000)
+            }, 2000)
         }
     })
     .catch((error) => {

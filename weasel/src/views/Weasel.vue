@@ -118,7 +118,7 @@ const addEvent = async() => {
         //after 1 second, reload the page
         setTimeout(() => {
             window.location.reload()
-        }, 1000)
+        }, 2000)
     })
 }
 
@@ -221,7 +221,7 @@ const deleteEvent = async(id) => {
     })
     setTimeout(() => {
         window.location.reload()
-    }, 1000)
+    }, 2000)
 }
 
 const updateTools = async() => {
