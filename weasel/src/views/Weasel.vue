@@ -407,7 +407,7 @@ const peoplesLength = computed(() => {
                         </div>
                         <hr>
                         <div v-for="(event, index) in events" class = "row flex-between col-12 event wrap-t">
-                            <div class = "col-2 event-title col-shrink fwc"><p><input class = "ei" v-model="event.title" id = '{{event._id}}+"-title"'></p></div>
+                            <div class = "col-2 event-title col-shrink fwc"><p><input class = "ei" v-model="event.title" :id = "event._id + '-title'"></p></div>
                             <div class = "col-5 event-description col-grow fwc"><p><input class = "ei" v-model="event.description" id = '{{event._id}}+"-description"'></p></div>
                             <div class = "col-2 event-time-start fwc">
                                 <input type = "time" v-model="events_time_splits[event._id]['time']" list = "event-start">
