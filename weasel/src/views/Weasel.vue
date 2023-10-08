@@ -115,6 +115,7 @@ const addEvent = async() => {
             }
         })
         })
+            window.location.reload()
     })
 }
 
