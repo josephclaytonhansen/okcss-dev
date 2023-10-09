@@ -40,7 +40,7 @@ function splitEventsByCategory(events) {
     'Elder\'s Quorum': elders_quorum
   }
   events.forEach((event) => {
-    cat_match[event.category].push(event)
+    cat_match[event.organization].push(event)
   })
   return cat_match
 }
