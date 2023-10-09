@@ -39,7 +39,7 @@ const eventsWithinAWeek = (events) => {
     let today = new Date()
     let weekFromToday = new Date(today.getTime() + 2592000000)
     let eventsWithinAWeek = []
-    if (events === null) {
+    if (events === null || events === undefined) {
         return []
     } else if (events.length === 0) {
         return []
