@@ -52,14 +52,10 @@
                 <div v-if = "currentOrganization === 'ward'">
                     <Agenda :events="events.ward" :ward="ward"/>
                 </div>
-
-                
                 
             </div>
             <div class = "col-8 fwc">
-                <VCalendar v-if = "currentOrganization === 'primary'" :events="events.primary" :config="config"/>
                 <VCalendar v-if = "currentOrganization === 'ward'" :events="events.ward" :config="config"/>
-                
             </div>
         </div>
     </div>
