@@ -39,6 +39,9 @@ const eventsWithinAWeek = (events) => {
     let today = new Date()
     let weekFromToday = new Date(today.getTime() + 2592000000)
     let eventsWithinAWeek = []
+    if (events === null) {
+        return []
+    }
     for (let i = 0; i < events.length; i++) {
         let eventDate = new Date(events[i].time.start)
         if (eventDate <= weekFromToday) {
