@@ -50,6 +50,9 @@ const eventsWithinAWeek = (events) => {
             eventsWithinAWeek.push(events[i])
         }
     }
+    if (eventsWithinAWeek.length === 0) {
+        return []
+    }
     return eventsWithinAWeek
 }
     
@@ -93,7 +96,11 @@ const prettifyDate = (date) => {
             <h3 ref = "month_name"></h3>
         </div>
         <div class = "events col-grow">
-                <div class = "event" v-for = "event in eventsWithinAWeek(props.events)">
+            <div v-if = "eventsWithinAWeek(props.events).length === 0">
+            <p>
+                No events for this organization within the next week
+            </p></div>
+                <div class = "event" v-for = "event in eventsWithinAWeek(props.events)" v-if = "eventsWithinAWeek(props.events).length > 0">
                     <div class = "row" id = "title-and-add">
                         <div class = "no-margin"><b><h3 class="event-title">{{event.title}}</h3></b><h4>{{ prettifyDate(event.time) }}</h4></div>
                         <add-to-calendar-button
