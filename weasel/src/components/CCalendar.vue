@@ -50,12 +50,12 @@
         <div class = "row stretch wrap" id = "calendar-container">
             <div class = "col-4 fwc">
                 <div v-if = "currentOrganization === 'ward'">
-                    <Agenda :events="events.ward" :ward="ward"/>
+                    <Agenda :events="events.Ward" :ward="ward"/>
                 </div>
                 
             </div>
             <div class = "col-8 fwc">
-                <VCalendar v-if = "currentOrganization === 'ward'" :events="events.ward" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'ward'" :events="events.Ward" :config="config"/>
             </div>
         </div>
     </div>
