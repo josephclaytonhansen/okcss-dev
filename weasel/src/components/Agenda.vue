@@ -41,7 +41,9 @@ const eventsWithinAWeek = (events) => {
     let eventsWithinAWeek = []
     if (events === null) {
         return []
-    }
+    } else if (events.length === 0) {
+        return []
+    } else {
     for (let i = 0; i < events.length; i++) {
         let eventDate = new Date(events[i].time.start)
         if (eventDate <= weekFromToday) {
@@ -49,6 +51,8 @@ const eventsWithinAWeek = (events) => {
         }
     }
     return eventsWithinAWeek
+}
+    
 }
 
 
