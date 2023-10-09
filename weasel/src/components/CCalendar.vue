@@ -12,6 +12,8 @@
     const changeOrganization = (org) => {
         currentOrganization.value = org
     }
+
+
 </script>
 
 <template>
@@ -25,9 +27,13 @@
                 <div class="tab-overlay calendar-tab-overlay" :class="{active: currentOrganization === 'primary'}"/>
                 <h3>Primary</h3>
             </div>
-            <div class = "tab calendar-tab" :class = "{activeTab: currentOrganization === 'ywym'}" @click = "currentOrganization = 'ywym'">
-                <div class="tab-overlay calendar-tab-overlay" :class="{active: currentOrganization === 'ywym'}"/>
-                <h3>YW/YM</h3>
+            <div class = "tab calendar-tab" :class = "{activeTab: currentOrganization === 'yw'}" @click = "currentOrganization = 'yw'">
+                <div class="tab-overlay calendar-tab-overlay" :class="{active: currentOrganization === 'yw'}"/>
+                <h3>Young Women's</h3>
+            </div>
+            <div class = "tab calendar-tab" :class = "{activeTab: currentOrganization === 'ym'}" @click = "currentOrganization = 'ym'">
+                <div class="tab-overlay calendar-tab-overlay" :class="{active: currentOrganization === 'ym'}"/>
+                <h3>Young Men's</h3>
             </div>
             <div class = "tab calendar-tab" :class = "{activeTab: currentOrganization === 'relief society'}" @click = "currentOrganization = 'relief society'">
                 <div class="tab-overlay calendar-tab-overlay" :class="{active: currentOrganization === 'relief society'}"/>
@@ -43,10 +49,35 @@
     <div>
         <div class = "row stretch wrap" id = "calendar-container">
             <div class = "col-4 fwc">
-                <Agenda :events="events.ward" :ward="ward"/>
+                <div v-if = "currentOrganization === 'ward'">
+                    <Agenda :events="events.ward" :ward="ward"/>
+                </div>
+                <div v-if = "currentOrganization === 'primary'">
+                    <Agenda :events="events.primary" :ward="ward"/>
+                </div>
+                <div v-if = "currentOrganization === 'relief society'">
+                    <Agenda :events="events.relief_society" :ward="ward"/>
+                </div>
+                <div v-if = "currentOrganization === 'yw'">
+                    <Agenda :events="events.yw" :ward="ward"/>
+                </div>
+                <div v-if = "currentOrganization === 'ym'">
+                    <Agenda :events="events.ym" :ward="ward"/>
+                </div>
+                <div v-if = "currentOrganization === 'elder\'s quorum'">
+                    <Agenda :events="events.elders_quorum" :ward="ward"/>
+                </div>
+                
+                
             </div>
             <div class = "col-8 fwc">
-                <VCalendar :events="events.ward" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'primary'" :events="events.primary" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'ward'" :events="events.ward" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'relief society'" :events="events.relief_society" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'yw'" :events="events.yw" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'ym'" :events="events.ym" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'elder\'s quorum'" :events="events.elders_quorum" :config="config"/>
+                
             </div>
         </div>
     </div>

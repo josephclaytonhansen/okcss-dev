@@ -28,14 +28,16 @@ function splitEventsByCategory(events) {
   let primary = []
   let ward = []
   let relief_society = []
-  let ywmym = []
+  let yw = []
+  let ym = []
   let elders_quorum = []
   let cat_match = {
-    'primary': primary,
-    'ward': ward,
-    'relief society': relief_society,
-    'ywym': ywmym,
-    'elder\'s quorum': elders_quorum
+    'Primary': primary,
+    'Ward': ward,
+    'Relief Society': relief_society,
+    'Young Women\'s': yw,
+    'Young Men\'s': ym,
+    'Elder\'s Quorum': elders_quorum
   }
   events.forEach((event) => {
     cat_match[event.category].push(event)
