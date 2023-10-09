@@ -13,8 +13,6 @@
         currentOrganization.value = org
     }
 
-    console.log(props.events)
-
 
 </script>
 

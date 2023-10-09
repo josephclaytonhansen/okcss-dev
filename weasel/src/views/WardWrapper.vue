@@ -42,6 +42,7 @@ function splitEventsByCategory(events) {
   events.forEach((event) => {
     cat_match[event.organization].push(event)
   })
+  console.log(cat_match)
   return cat_match
 }
 
