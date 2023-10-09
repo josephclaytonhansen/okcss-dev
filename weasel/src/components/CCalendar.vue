@@ -55,12 +55,30 @@
                 <div v-if = "currentOrganization === 'primary'">
                     <Agenda :events="events.Primary" :ward="ward"/>
                 </div>
+                <div v-if = "currentOrganization === 'yw'">
+                    <Agenda :events="events.yw" :ward="ward"/>
+                </div>
+                <div v-if = "currentOrganization === 'ym'">
+                    <Agenda :events="events.ym" :ward="ward"/>
+                </div>
+                <div v-if = "currentOrganization === 'relief society'">
+                    <Agenda :events="events.rs" :ward="ward"/>
+                </div>
+                <div v-if = "currentOrganization === 'elder\'s quorum'">
+                    <Agenda :events="events.eq" :ward="ward"/>
+                </div>
+
                 
                 
             </div>
             <div class = "col-8 fwc">
                 <VCalendar v-if = "currentOrganization === 'ward'" :events="events.Ward" :config="config"/>
                 <VCalendar v-if = "currentOrganization === 'primary'" :events="events.Primary" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'yw'" :events="events.yw" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'ym'" :events="events.ym" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'relief society'" :events="events.rs" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'elder\'s quorum'" :events="events.eq" :config="config"/>
+                
             </div>
         </div>
     </div>

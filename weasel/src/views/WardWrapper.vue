@@ -42,6 +42,11 @@ function splitEventsByCategory(events) {
   events.forEach((event) => {
     cat_match[event.organization].push(event)
   })
+  cat_match['yw'] = cat_match['Young Women\'s']
+  cat_match['ym'] = cat_match['Young Men\'s']
+  cat_match['rs'] = cat_match['Relief Society']
+  cat_match['eq'] = cat_match['Elder\'s Quorum']
+
   console.log(cat_match)
   return cat_match
 }
