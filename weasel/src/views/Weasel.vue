@@ -88,11 +88,11 @@ const persons = reactive([])
 
 const organizations=['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s']
 
-const organizationsFilter = computed(() => {
+const organizationsFilter = (organizations) => {
     return organizations.filter((organization) => {
         return organization !== "Bishopric"
     })
-})
+}
 
 const addEvent = async() => {
     await axios.post(`https://weasel.okcsouthstake.org/api/events`, {
