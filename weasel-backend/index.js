@@ -17,6 +17,7 @@ import tool_routes from './routes/toolRoutes.js'
 import user_routes from './routes/userRoutes.js'
 import outgoing_missionary_routes from './routes/outgoingMissionaryRoutes.js'
 import internal_missionary_routes from './routes/internalMissionaryRoutes.js'
+import hc_report_routes from './routes/hc_reportRoutes.js'
 
 const app = express()
 
@@ -72,6 +73,15 @@ app.use('/api/tools', tool_routes)
 app.use('/api/users', user_routes)
 app.use('/api/outgoing-missionaries', outgoing_missionary_routes)
 app.use('/api/internal-missionaries', internal_missionary_routes)
+
+app.use('/api/hc-reports', (req, res, next) => {
+    if (req.headers.origin === 'https://highcouncil.okcsouthstake.org') {
+        next()
+    } else {
+        res.status(403).send('Forbidden')
+    }
+})
+app.use('/api/hc-reports', hc_report_routes)
 
 app.listen(process.env.PORT, () => {
     console.log('Server is running on port ' + process.env.PORT)
