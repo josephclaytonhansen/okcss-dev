@@ -1,6 +1,5 @@
 <script setup>
 
-import PinEntry from "./PinEntry.vue";
 import Reports from "./Reports.vue";
 
 import axios from "axios"
@@ -25,7 +24,7 @@ const comparePin = async () => {
 <template>
     <div>
         <div v-if = "currentComponent === 'pin'">
-            <PinEntry :enteredPin="enteredPin" :comparePin="comparePin"/>
+            <input type="password" v-model="enteredPin" @keyup.enter="comparePin">
         </div>
         <div v-if = "currentComponent === 'reports'">
             <Reports/>
