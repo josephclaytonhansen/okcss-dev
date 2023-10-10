@@ -1,16 +1,4 @@
-
-import {
-    createPinia
-} from 'pinia'
-
 import axios from 'axios'
-
-const pinia = createPinia()
-pinia.use(piniaPluginPersistedState)
-
-export {
-    pinia
-}
 
 import {createApp} from "vue"
 import * as bootstrap from 'bootstrap'
