@@ -6,23 +6,27 @@ import axios from "axios"
 import { ref } from 'vue'
 const enteredPin = ref('')
 const currentComponent = ref('pin')
-
+const pinCorrect = ref(false)
 const reportsData = ref([])
 
 const getPinFromApi = async () => {
-    const response = await axios.get('https://weasel.okcsouthstake.org/api/hc-reports/pin/get')
-    return response.data
+    const response = await axios.post('https://weasel.okcsouthstake.org/api/hc-reports/pin/check', {pin: enteredPin.value})
+    if (response.status === 200 && response.data['message'] === 'Valid PIN') {
+        pinCorrect.value = true
+    } else {
+        pinCorrect.value = false
+    }
 }
 
 const getReportsFromApi = async () => {
-    const response = await axios.get('https://weasel.okcsouthstake.org/api/hc-reports/')
+    const response = await axios.post('https://weasel.okcsouthstake.org/api/hc-reports/', {pin: enteredPin.value})
     return response.data
 }
 
 const comparePin = async () => {
     enteredPinLength.value = enteredPin.value.length
     const pin = await getPinFromApi()
-    if (enteredPin.value === pin) {
+    if (pinCorrect.value) {
         currentComponent.value = 'reports'
         reportsData.value = await getReportsFromApi()
     }

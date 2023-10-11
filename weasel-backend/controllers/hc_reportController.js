@@ -1,9 +1,16 @@
 import asyncHandler from '../middleware/asyncHandler.min.js'
 import HighCouncilReport from '../models/high_council_report.js'
+import 'dotenv'
+dotenv.config()
 
 const getHighCouncilReports = asyncHandler(async (req, res) => {
-    const highCouncilReports = await HighCouncilReport.find()
-    res.json(highCouncilReports)
+    // this is a post request- check 'pin' in body against process.env.HC_PIN
+    if (req.body.pin === process.env.HC_PIN) {
+        const highCouncilReports = await HighCouncilReport.find()
+        res.json(highCouncilReports)
+    } else {
+        res.status(403).send({ message: 'Forbidden' })
+    }
 })
 
 const getHighCouncilReportById = asyncHandler(async (req, res) => {

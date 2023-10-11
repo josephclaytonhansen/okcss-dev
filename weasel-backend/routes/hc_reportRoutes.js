@@ -11,13 +11,18 @@ import {
     createHighCouncilReport
 } from '../controllers/hc_reportController.js'
 
-router.route('/').get(getHighCouncilReports).post(createHighCouncilReport)
+router.route('/').post(getHighCouncilReports)
 router.route('/:id').get(getHighCouncilReportById)
 router.route('/counselor/:counselor').get(getHighCouncilReportsByCounselor)
 router.route('/date/:date').get(getHighCouncilReportsByDate)
 const hc_pin = process.env.HC_PIN
-router.route('/pin/get').get((req, res) => {
-    res.json(hc_pin)
+router.route('/pin/check').post((req, res) => {
+    if (req.body.pin === hc_pin) {
+        res.status(200).send({ message: 'Valid PIN' })
+    } else {
+        res.status(401).send({ message: 'Invalid PIN' })
+    }
 })
+router.route('/create/new').post(createHighCouncilReport)
 
 export default router
