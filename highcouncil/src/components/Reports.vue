@@ -15,6 +15,17 @@ const weeksWithReports = ref([
 
 const currentWeek = ref('')
 const currentCounselor = ref('')
+const allCounselors = ref([])
+
+const getAllCounselors = () => {
+    let counselors = []
+    props.reports.forEach(report => {
+        if (!counselors.includes(report.counselor)) {
+            counselors.push(report.counselor)
+        }
+    })
+    return counselors
+}
 
 const isCurrentWeek = (week) => {
     return week === currentWeek.value
@@ -75,6 +86,8 @@ onMounted(() => {
     setUpWeeks()
     //set currentWeek to the most recent week
     currentWeek.value = weeks.value[0]
+    allCounselors.value = getAllCounselors()
+    currentCounselor.value = 'All'
 })
 
 const decrementCurrentWeek = () => {
@@ -113,6 +126,9 @@ const filteredReports = computed(() => {
     let combinedFilter = currentWeekFilter.filter(report => {
         return currentCounselorFilter.includes(report)
     })
+    if (currentCounselor.value === 'All') {
+        combinedFilter = currentWeekFilter
+    }
     return combinedFilter
 
 })
@@ -130,14 +146,12 @@ const filteredReports = computed(() => {
                     <div class = "col-6 px-4">
                         <div class="dropdown-counselor">
                             <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Counselor
+                                {{currentCounselor}}
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" @click = "currentCounselor = 'All'">All</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">All</a></li>
+                                <li v-for = "counselor in allCounselors" :key = "counselor"><a class="dropdown-item" @click = "currentCounselor = counselor">{{counselor}}</a></li>
                             </ul>
                         </div>
                     </div>
