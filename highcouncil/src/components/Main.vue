@@ -1,6 +1,6 @@
 <script setup>
 
-import Reports from "./Reports.vue";
+import Reports from "./Reports.vue"
 
 import axios from "axios"
 import { ref } from 'vue'
@@ -24,7 +24,11 @@ const comparePin = async () => {
 <template>
     <div>
         <div v-if = "currentComponent === 'pin'">
-            <input type="password" v-model="enteredPin" @keyup.enter="comparePin">
+            <div class = "container">
+                <h1>High Council Reports</h1>
+                <h2>Enter PIN</h2>
+                <input type="password" v-model="enteredPin" @keyup="comparePin">
+            </div>
         </div>
         <div v-if = "currentComponent === 'reports'">
             <Reports/>
