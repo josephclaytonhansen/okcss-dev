@@ -77,9 +77,21 @@ const setUpWeeks = () => {
 
 
     //divide weeks into three parts
+    try{
     weeksPartOne.value = weeks.value.slice(0, Math.ceil(weeks.value.length / 3))
+    } catch {
+        weeksPartOne.value = weeks.value
+    }
+    try{
     weeksPartTwo.value = weeks.value.slice(Math.ceil(weeks.value.length / 3), Math.ceil(weeks.value.length / 3) * 2)
+    } catch {
+        weeksPartTwo.value = []
+    }
+    try{
     weeksPartThree.value = weeks.value.slice(Math.ceil(weeks.value.length / 3) * 2, weeks.value.length)
+    } catch {
+        weeksPartThree.value = []
+    }
 }
 
 onMounted(() => {
