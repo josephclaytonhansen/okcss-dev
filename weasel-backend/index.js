@@ -85,6 +85,19 @@ app.use('/api/hc-reports', (req, res, next) => {
         res.status(403).send('Forbidden')
     }
 })
+
+if (process.env.NODE_ENV === 'production') {
+    app.use('/api', (req, res, next) => {
+        let validOriginPatternSubdomain = /^https:\/\/[a-z0-9]+\.okcsouthstake\.org$/
+        let validOriginPattern = /^https:\/\/okcsouthstake\.org$/
+        if (validOriginPattern.test(req.headers.origin) || validOriginPatternSubdomain.test(req.headers.origin)) {
+            next()
+        } else {
+            res.status(403).send('Forbidden')
+        }
+    })
+}
+
 app.use('/api/hc-reports', hc_report_routes)
 
 app.listen(process.env.PORT, () => {
