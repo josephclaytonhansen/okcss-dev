@@ -213,32 +213,29 @@ const filteredReports = computed(() => {
         <hr style = "width:103.5%"/>
 
         <div class = "reports-container">
-            <table class = "table">
+            <table class = "table table-striped table-responsive">
                 <colgroup>
                         <col style = "width:10%"/>
                         <col style = "width:10%"/>
-                        <col style = "width:70%"/>
-                        <col style = "width:10%"/>
+                        <col style = "width:80%"/>
                     </colgroup>
                 <thead>
                     <tr>
                         <th scope = "col">Week</th>
                         <th scope = "col">Counselor</th>
                         <th scope = "col">Content</th>
-                        <th scope = "col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for = "report in filteredReports" :key = "report.id">
+                    <tr v-for = "report in filteredReports()" :key = "report.id">
                         <td>{{report.week}}</td>
                         <td>{{report.counselor}}</td>
                         <td>
                             <details>
                                 <summary>View</summary>
-                                {{report.content_text}}
+                                <div v-html = "report.content_text" :id="report.id"/>
                             </details>
                         </td>
-                        <td><a v-if="report.content_link" :href = "report.content_link" target="_blank">View as document</a></td>
                     </tr>
                 </tbody>
 
