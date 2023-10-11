@@ -4,8 +4,7 @@ import 'dotenv'
 dotenv.config()
 
 const getHighCouncilReports = asyncHandler(async (req, res) => {
-    // this is a post request- check 'pin' in body against process.env.HC_PIN
-    if (req.body.pin === process.env.HC_PIN) {
+        if (req.body.pin === process.env.HC_PIN) {
         const highCouncilReports = await HighCouncilReport.find()
         res.json(highCouncilReports)
     } else {
