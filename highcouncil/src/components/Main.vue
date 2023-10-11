@@ -25,11 +25,13 @@ const getReportsFromApi = async () => {
 
 const comparePin = async () => {
     enteredPinLength.value = enteredPin.value.length
+    if (enteredPin.value.length === 6) {
+
     const pin = await getPinFromApi()
     if (pinCorrect.value) {
         currentComponent.value = 'reports'
         reportsData.value = await getReportsFromApi()
-    }
+    }}
 }
 
 const enteredPinLength = ref(0)
