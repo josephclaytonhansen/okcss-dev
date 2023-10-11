@@ -24,11 +24,15 @@ const comparePin = async () => {
 <template>
     <div>
         <div v-if = "currentComponent === 'pin'">
-            <div class = "container">
-                <h1>High Council Reports</h1>
-                <h2>Enter PIN</h2>
-                <input type="password" v-model="enteredPin" @keyup="comparePin">
+            <div class = "container d-flex justify-content-center align-items-center" style="height:100vh;">
+                <div class = "card p-5" >
+                    <div class = "card-body text-center">
+                        <h1>High Council Reports</h1>
+                        <p class = "fs-4 text-muted">Enter PIN</p>
+                        <input type="password" v-model="enteredPin" @keyup="comparePin" class="input-group p-3 fs-2 text-center mx-auto" style = "width:9rem;">
+                    </div>
             </div>
+        </div>
         </div>
         <div v-if = "currentComponent === 'reports'">
             <Reports/>
