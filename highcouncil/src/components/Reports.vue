@@ -1,4 +1,7 @@
 <script setup>
+
+const props = defineProps(['reports'])
+
 </script>
 
 <template>

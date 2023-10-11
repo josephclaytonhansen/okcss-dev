@@ -7,8 +7,15 @@ import { ref } from 'vue'
 const enteredPin = ref('')
 const currentComponent = ref('pin')
 
+const reportsData = ref([])
+
 const getPinFromApi = async () => {
     const response = await axios.get('https://weasel.okcsouthstake.org/api/hc-reports/pin/get')
+    return response.data
+}
+
+const getReportsFromApi = async () => {
+    const response = await axios.get('https://weasel.okcsouthstake.org/api/hc-reports/')
     return response.data
 }
 
@@ -17,6 +24,7 @@ const comparePin = async () => {
     const pin = await getPinFromApi()
     if (enteredPin.value === pin) {
         currentComponent.value = 'reports'
+        reportsData.value = await getReportsFromApi()
     }
 }
 
@@ -39,7 +47,7 @@ const enteredPinLength = ref(0)
         </div>
         </div>
         <div v-if = "currentComponent === 'reports'">
-            <Reports/>
+            <Reports :reports="reportsData"/>
         </div>
     </div>
 
