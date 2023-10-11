@@ -7,14 +7,14 @@ import {
     getHighCouncilReports,
     getHighCouncilReportById,
     getHighCouncilReportsByCounselor,
-    getHighCouncilReportsByDate,
+    getHighCouncilReportsByWeek,
     createHighCouncilReport
 } from '../controllers/hc_reportController.js'
 
 router.route('/').post(getHighCouncilReports)
 router.route('/:id').get(getHighCouncilReportById)
 router.route('/counselor/:counselor').get(getHighCouncilReportsByCounselor)
-router.route('/date/:date').get(getHighCouncilReportsByDate)
+router.route('/week/:week').get(getHighCouncilReportsByWeek)
 const hc_pin = process.env.HC_PIN
 router.route('/pin/check').post((req, res) => {
     if (req.body.pin === hc_pin) {

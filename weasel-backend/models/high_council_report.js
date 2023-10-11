@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const highCouncilReportSchema = new mongoose.Schema({
     counselor: String,
-    date: Date,
+    week: String,
     content_text: String,
     content_link: String
 })

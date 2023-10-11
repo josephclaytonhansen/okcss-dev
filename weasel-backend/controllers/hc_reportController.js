@@ -22,8 +22,8 @@ const getHighCouncilReportsByCounselor = asyncHandler(async (req, res) => {
     res.json(highCouncilReports)
 })
 
-const getHighCouncilReportsByDate = asyncHandler(async (req, res) => {
-    const highCouncilReports = await HighCouncilReport.find({ date: req.params.date })
+const getHighCouncilReportsByWeek = asyncHandler(async (req, res) => {
+    const highCouncilReports = await HighCouncilReport.find({ week: req.params.week })
     res.json(highCouncilReports)
 })
 
@@ -36,7 +36,7 @@ export {
     getHighCouncilReports,
     getHighCouncilReportById,
     getHighCouncilReportsByCounselor,
-    getHighCouncilReportsByDate,
+    getHighCouncilReportsByWeek,
     createHighCouncilReport
 }
 

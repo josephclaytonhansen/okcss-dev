@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 const props = defineProps(['reports'])
 const weeks = ref([])
 const weeksPartOne = ref([])
@@ -14,6 +14,8 @@ const weeksWithReports = ref([
 ])
 
 const currentWeek = ref('')
+const currentCounselor = ref('')
+
 const isCurrentWeek = (week) => {
     return week === currentWeek.value
 }
@@ -99,6 +101,22 @@ const setCurrentWeekFromDropdown = (week) => {
     currentWeek.value = week
 }
 
+const filteredReports = computed(() => {
+    //this should have two filters; current week and counselor
+    let currentWeekFilter = props.reports.filter(report => {
+        return report.week === currentWeek.value
+    })
+    let currentCounselorFilter = currentWeekFilter.filter(report => {
+        return report.counselor === currentCounselor.value
+    })
+    // perform an AND operation on the two filters
+    let combinedFilter = currentWeekFilter.filter(report => {
+        return currentCounselorFilter.includes(report)
+    })
+    return combinedFilter
+
+})
+
 </script>
 
 <template>
@@ -166,7 +184,42 @@ const setCurrentWeekFromDropdown = (week) => {
                 </div>
             </div>
         </div>
-        <hr style = "width:102%"/>
+        <hr style = "width:103.5%"/>
+
+        <div class = "reports-container">
+            <table class = "table">
+                <colgroup>
+                        <col style = "width:10%"/>
+                        <col style = "width:10%"/>
+                        <col style = "width:70%"/>
+                        <col style = "width:10%"/>
+                    </colgroup>
+                <thead>
+                    <tr>
+                        <th scope = "col">Week</th>
+                        <th scope = "col">Counselor</th>
+                        <th scope = "col">Content</th>
+                        <th scope = "col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for = "report in filteredReports" :key = "report.id">
+                        <td>{{report.week}}</td>
+                        <td>{{report.counselor}}</td>
+                        <td>
+                            <details>
+                                <summary>View</summary>
+                                {{report.content_text}}
+                            </details>
+                        </td>
+                        <td><a v-if="report.content_link" :href = "report.content_link" target="_blank">View as document</a></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>        
+
     </div>
 </template>
 
