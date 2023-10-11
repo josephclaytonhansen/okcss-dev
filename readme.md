@@ -2,7 +2,7 @@
 ### seabass/weasel-backend
 * Express
 
-### weasel/public-facing-site
+### weasel/public-facing-site/highcouncil
 * Vite
 * Vue
 * Pinia
