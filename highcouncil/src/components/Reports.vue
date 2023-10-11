@@ -15,6 +15,7 @@ const weeksWithReports = ref([
 
 const currentWeek = ref('')
 const currentCounselor = ref('')
+const enteredCounselor = ref('')
 const allCounselors = ref([])
 
 const getAllCounselors = () => {
@@ -155,7 +156,10 @@ const filteredReports = computed(() => {
             </div>
             <div class = "col-12 col-sm-12 col-md-auto">
                 <div class = "row align-items-center" style = "margin-top:-.6rem;">
-                    <div class = "col-6 px-4">
+                    <div class = "col-2">
+                        <button class = "btn btn-info"  data-bs-toggle="modal" data-bs-target="#exampleModal">New</button>
+                    </div>
+                    <div class = "col-4 px-4">
                         <div class="dropdown-counselor">
                             <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{currentCounselor}}
@@ -244,9 +248,66 @@ const filteredReports = computed(() => {
         </div>        
 
     </div>
+    <div class="modal" id = "exampleModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-3">Create new report</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                        <ul class="dropdown-menu">
+                            <li v-for = "counselor in allCounselors" :key = "counselor"><a class="dropdown-item" @click = "enteredCounselor = counselor">{{counselor}}</a></li>
+                        </ul>
+                        <label class="input-group-text" for="inputGroupSelect01">Counselor</label>
+                        <input type="text" class="form-control" aria-label="Counselor entry with dropdown" v-model="enteredCounselor">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Week</label>
+                        <select class="form-select" id="inputGroupSelect01">
+                            <option v-for = "week in weeks" :key = "week" :selected = "week == weeks[0]">{{week}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text align-items-start">Content</span>
+                        <textarea class="form-control" aria-label="With textarea" aria-describedby="contentHelp"></textarea>
+                        
+                    </div>
+                    <div id="contentHelp" class="form-text">
+                            <p>Enter the content of the report here. This is a plain text editor- however, you can use HTML formatting to format the text. The simplest option is to paste your report in from your normal text editor (i.e. Microsoft Word, Google Docs, etc).</p>
+                            <details>
+                                <summary>Click here to see simple HTML formatting</summary>
+                                <p>Use <code>&lt;b&gt;bold text&lt;/b&gt;</code> for bold text, <code>&lt;i&gt;italicized text&lt;/i&gt;</code> for italicized text, and <code>&lt;u&gt;underlined text&lt;/u&gt;</code> for underlined text.
+                            For line breaks, use <code>&lt;br&gt;</code>.</p>
+                            <p>For headings, use <code>&lt;h1&gt;heading&lt;/h1&gt;</code>, <code>&lt;h2&gt;heading&lt;/h2&gt;</code>, etc,  through <code>&lt;h6&gt;heading&lt;/h6&gt;</code>.</p>
+
+                            <p>For lists, use <code>&lt;ul&gt;&lt;li&gt;list item 1&lt;/li&gt;&lt;li&gt;list item 2&lt;/li&gt;&lt;/ul&gt;</code>.</p>
+                            <p>If you prefer, you can use a site such as this: <a target="_blank" href = "https://onlinehtmleditor.dev/">https://onlinehtmleditor.dev/</a> to write rich text, then copy the HTML output (click 'edit HTML source code') over to here, or you can convert Word documents to HTML tags here: <a target = "_blank" href = "https://convertio.co/docx-html/">https://convertio.co/docx-html/</a></p>
+                            <p>If you use Google Docs, you can export your file as HTML, and copy that over to here.</p>
+                            </details>
+                            <br/>
+
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
+pre, code{
+    display:inline;
+    
+}
+
 .current-week-indicator{
     display:inline-block;
     width:.5rem;
