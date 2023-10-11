@@ -32,7 +32,7 @@ const enteredPinLength = ref(0)
                     <div class = "card-body text-center">
                         <h1>High Council Reports</h1>
                         <p class = "fs-4 text-muted">Enter PIN</p>
-                        <input type="password" v-model="enteredPin" @keyup="comparePin" class="input-group p-3 fs-2 text-center mx-auto" style = "width:9rem;">
+                        <input v-model="enteredPin" @keyup="comparePin" class="input-group py-2 fs-5 text-center mx-auto" style = "width:7rem;">
                         <p class = "text-muted text-small small mt-2">{{enteredPinLength.valueOf()}}/6</p>
                     </div>
             </div>
