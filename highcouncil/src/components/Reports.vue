@@ -213,7 +213,7 @@ const filteredReports = computed(() => {
         <hr style = "width:103.5%"/>
 
         <div class = "reports-container">
-            <table class = "table table-striped table-responsive">
+            <table class = "table table-striped table-sm">
                 <colgroup>
                         <col style = "width:10%"/>
                         <col style = "width:10%"/>
