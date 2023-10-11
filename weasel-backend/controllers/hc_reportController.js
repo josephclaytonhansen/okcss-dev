@@ -1,6 +1,6 @@
 import asyncHandler from '../middleware/asyncHandler.min.js'
 import HighCouncilReport from '../models/high_council_report.js'
-import 'dotenv'
+import dotenv from 'dotenv'
 dotenv.config()
 
 const getHighCouncilReports = asyncHandler(async (req, res) => {
