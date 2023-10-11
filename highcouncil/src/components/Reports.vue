@@ -227,7 +227,7 @@ const filteredReports = computed(() => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for = "report in filteredReports()" :key = "report.id">
+                    <tr v-for = "report in filteredReports" :key = "report.id">
                         <td>{{report.week}}</td>
                         <td>{{report.counselor}}</td>
                         <td>
