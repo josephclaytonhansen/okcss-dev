@@ -14,18 +14,6 @@ const weeksWithReports = ref([
 const currentWeek = ref('')
 const currentCounselor = ref('')
 const enteredCounselor = ref('')
-const allCounselors = ref([])
-
-const getAllCounselors = () => {
-    let counselors = []
-    props.reports.forEach(report => {
-        console.log(report.counselor)
-        if (!counselors.includes(report.counselor)) {
-            counselors.push(report.counselor)
-        }
-    })
-    allCounselors.value = counselors
-}
 
 const isCurrentWeek = (week) => {
     return week === currentWeek.value
@@ -98,7 +86,6 @@ onMounted(() => {
     setUpWeeks()
     //set currentWeek to the most recent week
     currentWeek.value = weeks.value[0]
-    getAllCounselors()
     currentCounselor.value = 'All'
     props.reports.forEach(report => {
         console.log(report.week)
@@ -149,6 +136,16 @@ const filteredReports = computed(() => {
     }
     return combinedFilter
 
+})
+
+const allCounselors = computed(() => {
+    let counselors = []
+    props.reports.forEach(report => {
+        if (!counselors.includes(report.counselor)) {
+            counselors.push(report.counselor)
+        }
+    })
+    return counselors
 })
 
 const createReport = () => {
