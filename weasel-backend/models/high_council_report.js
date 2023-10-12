@@ -29,6 +29,10 @@ highCouncilReportSchema.pre('save', function (next) {
 
     this.content_text = this.content_text.replace(/style="[^"]*"/gi, '')
     this.content_text = this.content_text.replace(/on\w+="[^"]*"/gi, '')
+    this.content_text = this.content_text.replace(/on\w+='[^']*'/gi, '')
+
+    this.content_text = this.content_text.replace(/<a href="[^"]*" download>/gi, '')
+    this.content_text = this.content_text.replace(/<a href='[^']*' download>/gi, '')
 
     let headStart = this.content_text.indexOf('<head>')
     let headEnd = this.content_text.indexOf('</head>')
