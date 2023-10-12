@@ -175,7 +175,7 @@ const deleteReport = (id) => {
     let response = axios.delete(`https://weasel.okcsouthstake.org/api/hc-reports/${id}`).then(response => {
         if (response.status === 200) {
             //hide the row with the id of id
-            document.querySelector(`#${id}`).style.display = 'none'
+            document.querySelector(`#report-${id}`).style.display = 'none'
         }
     })
 }
@@ -271,7 +271,7 @@ const deleteReport = (id) => {
                         <td>
                             <details>
                                 <summary>View</summary>
-                                <div v-html = "report.content_text" :id="report.id" class = "report-content"/>
+                                <div v-html = "report.content_text" :id="'report-' + report.id" class = "report-content"/>
                                 <hr/>
                                 <button class = "btn btn-danger small" @click = "deleteReport(report._id)">Delete</button>
                             </details>
