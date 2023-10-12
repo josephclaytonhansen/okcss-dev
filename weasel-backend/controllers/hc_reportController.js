@@ -32,12 +32,23 @@ const createHighCouncilReport = asyncHandler(async (req, res) => {
     res.json(highCouncilReport)
 })
 
+const deleteHighCouncilReport = asyncHandler(async (req, res) => {
+    const highCouncilReport = await HighCouncilReport.findById(req.params.id)
+    if (highCouncilReport) {
+        await highCouncilReport.remove()
+        res.json({ message: 'Report removed' })
+    } else {
+        res.status(404).json({ message: 'Report not found' })
+    }
+})
+
 export {
     getHighCouncilReports,
     getHighCouncilReportById,
     getHighCouncilReportsByCounselor,
     getHighCouncilReportsByWeek,
-    createHighCouncilReport
+    createHighCouncilReport,
+    deleteHighCouncilReport
 }
 
 

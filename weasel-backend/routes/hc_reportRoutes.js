@@ -8,11 +8,12 @@ import {
     getHighCouncilReportById,
     getHighCouncilReportsByCounselor,
     getHighCouncilReportsByWeek,
-    createHighCouncilReport
+    createHighCouncilReport,
+    deleteHighCouncilReport
 } from '../controllers/hc_reportController.js'
 
 router.route('/').post(getHighCouncilReports)
-router.route('/:id').get(getHighCouncilReportById)
+router.route('/:id').get(getHighCouncilReportById).delete(deleteHighCouncilReport)
 router.route('/counselor/:counselor').get(getHighCouncilReportsByCounselor)
 router.route('/week/:week').get(getHighCouncilReportsByWeek)
 const hc_pin = process.env.HC_PIN

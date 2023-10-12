@@ -169,7 +169,17 @@ const createReport = () => {
         }, 1900)
     }
     })
-    
+}
+
+const deleteReport = (id) => {
+    let response = axios.delete(`https://weasel.okcsouthstake.org/api/hc-reports/${id}`).then(response => {
+        if (response.status === 200) {
+            //if the report was deleted successfully, remove it from the reports array
+            props.reports = props.reports.filter(report => {
+                return report.id !== id
+            })
+        }
+    })
 }
 
 </script>
@@ -264,6 +274,8 @@ const createReport = () => {
                             <details>
                                 <summary>View</summary>
                                 <div v-html = "report.content_text" :id="report.id" class = "report-content"/>
+                                <hr/>
+                                <button class = "btn btn-danger small" @click = "deleteReport(report.id)">Delete</button>
                             </details>
                         </td>
                     </tr>
