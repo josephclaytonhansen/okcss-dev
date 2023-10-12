@@ -363,6 +363,8 @@ pre, code{
     }
     .report-content{
         width:100%;
+        margin-left: -20%;
+        margin-top: 10%;
     }
 }
 </style>
