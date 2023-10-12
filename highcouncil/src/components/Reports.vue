@@ -174,10 +174,9 @@ const createReport = () => {
 const deleteReport = (id) => {
     let response = axios.delete(`https://weasel.okcsouthstake.org/api/hc-reports/${id}`).then(response => {
         if (response.status === 200) {
-            //if the report was deleted successfully, remove it from the reports array
-            props.reports = props.reports.filter(report => {
-                return report._id !== id
-            })
+            //hide the row with the id of id
+            document.querySelector(`#${id}`).style.display = 'none'
+
         }
     })
 }
@@ -267,7 +266,7 @@ const deleteReport = (id) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for = "report in filteredReports" :key = "report.id">
+                    <tr v-for = "report in filteredReports" :key = "report.id" :id="report._id">
                         <td>{{report.week}}</td>
                         <td>{{report.counselor}}</td>
                         <td>
