@@ -146,6 +146,27 @@ const filteredReports = computed(() => {
 
 })
 
+const createReport = () => {
+    let newReport = {
+        week: currentWeek.value,
+        counselor: enteredCounselor.value,
+        content_text: document.querySelector('#reportContent').value
+    }
+    let response = axios.post('https://weasel.okcsouthstake.org/api/hc-reports/create/new', newReport)
+    if (response.status === 200) {
+        //if the report was created successfully, add it to the reports array
+        props.reports.push(newReport)
+        //change Save button text to Saved! and class to btn-success
+        document.querySelector('.modal-footer .btn-primary').innerHTML = 'Saved!'
+        document.querySelector('.modal-footer .btn-primary').classList.remove('btn-primary')
+        document.querySelector('.modal-footer .btn-primary').classList.add('btn-success')
+        //wait 2 seconds, then close the modal
+        setTimeout(() => {
+            document.querySelector('.modal-footer .btn-success').click()
+        }, 2000)
+    }
+}
+
 </script>
 
 <template>
@@ -273,7 +294,7 @@ const filteredReports = computed(() => {
                     </div>
                     <div class="input-group">
                         <span class="input-group-text align-items-start">Content</span>
-                        <textarea class="form-control" aria-label="With textarea" aria-describedby="contentHelp"></textarea>
+                        <textarea class="form-control" aria-label="With textarea" aria-describedby="contentHelp" id ="reportContent"></textarea>
                         
                     </div>
                     <div id="contentHelp" class="form-text">
@@ -295,7 +316,7 @@ const filteredReports = computed(() => {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" @click="createReport">Save changes</button>
             </div>
             </div>
         </div>
