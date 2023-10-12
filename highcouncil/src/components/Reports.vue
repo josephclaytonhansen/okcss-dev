@@ -165,7 +165,7 @@ const createReport = () => {
         //wait 2 seconds, then close the modal
         setTimeout(() => {
             document.querySelector('#close-modal').click()
-        }, 2000)
+        }, 1900)
     }
     })
     
