@@ -176,7 +176,7 @@ const deleteReport = (id) => {
         if (response.status === 200) {
             //if the report was deleted successfully, remove it from the reports array
             props.reports = props.reports.filter(report => {
-                return report.id !== id
+                return report._id !== id
             })
         }
     })
