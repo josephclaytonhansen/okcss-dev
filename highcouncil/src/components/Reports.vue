@@ -263,7 +263,7 @@ const createReport = () => {
                         <td>
                             <details>
                                 <summary>View</summary>
-                                <div v-html = "report.content_text" :id="report.id"/>
+                                <div v-html = "report.content_text" :id="report.id" class = "report-content"/>
                             </details>
                         </td>
                     </tr>
@@ -360,6 +360,9 @@ pre, code{
 @media screen and (max-width: 1000px) {
     #week-buttons {
         margin-left:-4rem;
+    }
+    .report-content{
+        width:100%;
     }
 }
 </style>
