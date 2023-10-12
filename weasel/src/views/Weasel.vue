@@ -153,26 +153,6 @@ const addEvent = async() => {
         localStorage.setItem("tools", JSON.stringify(response_object))
         let temp = JSON.parse(localStorage.getItem("tools"))[0]
         tool_id.value = temp._id
-        tools.stri = temp.stri.replaceAll("___link___", "")
-        if (tools.stri !== temp.stri){
-            tools_embed_link.stri = true
-        }
-        tools.sbu = temp.sbu.replaceAll("___link___", "")
-        if (tools.sbu !== temp.sbu){
-            tools_embed_link.sbu = true
-        }
-        tools.sbmr = temp.sbmr.replaceAll("___link___", "")
-        if (tools.sbmr !== temp.sbmr){
-            tools_embed_link.sbmr = true
-        }
-        tools.vtpc = temp.vtpc.replaceAll("___link___", "")
-        if (tools.vtpc !== temp.vtpc){
-            tools_embed_link.vtpc = true
-        }
-        tools.sutftm = temp.sutftm.replaceAll("___link___", "")
-        if (tools.sutftm !== temp.sutftm){
-            tools_embed_link.sutftm = true
-        }
     })
 
     await axios.get(`https://weasel.okcsouthstake.org/api/persons/ward/${ward.value}`).then((response)=>{
@@ -232,13 +212,6 @@ const deleteEvent = async(id) => {
 }
 
 const updateTools = async() => {
-    //loop through tools- if tools_embed_link[key] is true, wrap the value in "___link___"
-    for (var key in tools) {
-        if (tools_embed_link[key] === true) {
-            tools[key] = `___link___${tools[key]}___link___`
-        }
-    
-    }
     await axios.put(`https://weasel.okcsouthstake.org/api/tools/${tool_id.value}`, tools)
     .then((response) => {
         toast.success("Tools updated")
@@ -371,17 +344,7 @@ const peoplesLength = computed(() => {
 
                         <div v-for="(value, key) in tools" class = "form-group row flex-between col-12 wrap">
                             <label :for = "key" class = "col-4 fwc">{{tool_labels[key]}}</label>
-                            <div class = "fwc row flex-center" id = 'rb'>
-                                <div class = "row">
-                                    <input type = "radio" :name = "key" checked v-model="tools_embed_link[key]" :value="false">
-                                    <label class = "col-grow">Text<span aria-label="This tool will be shown to the user as plain, non-interactive text" data-balloon-pos = 'up'>*</span></label>
-                                </div>
-                                <div class = "row">
-                                    <input type = "radio" :name = "key" v-model= "tools_embed_link[key]" :value="true">
-                                    <label class = "col-grow">Link<span aria-label="This tool is interactive (such as a calendar)- add the link here" data-balloon-pos = 'up'>*</span></label>
-                                </div>
-                            </div>
-                            <input type = "text" :id = "key" v-model = "tools[key]">
+                            <textarea :id = "key" v-model = "tools[key]"></textarea>
                         </div>
                         <button @click = "updateTools">Submit</button>
                     </div>
