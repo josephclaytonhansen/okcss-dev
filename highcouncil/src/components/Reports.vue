@@ -153,19 +153,21 @@ const createReport = () => {
         counselor: enteredCounselor.value,
         content_text: document.querySelector('#reportContent').value
     }
-    let response = axios.post('https://weasel.okcsouthstake.org/api/hc-reports/create/new', newReport)
-    if (response.status === 200) {
+    let response = axios.post('https://weasel.okcsouthstake.org/api/hc-reports/create/new', newReport).then(response => {
+        if (response.status === 200) {
         //if the report was created successfully, add it to the reports array
         props.reports.push(newReport)
         //change Save button text to Saved! and class to btn-success
-        document.querySelector('.modal-footer .btn-primary').innerHTML = 'Saved!'
-        document.querySelector('.modal-footer .btn-primary').classList.remove('btn-primary')
-        document.querySelector('.modal-footer .btn-primary').classList.add('btn-success')
+        document.querySelector('#create-new-report').innerHTML = 'Saved!'
+        document.querySelector('#create-new-report').classList.remove('btn-primary')
+        document.querySelector('#create-new-report').classList.add('btn-success')
         //wait 2 seconds, then close the modal
         setTimeout(() => {
-            document.querySelector('.modal-footer .btn-success').click()
+            document.querySelector('#close-modal').click()
         }, 2000)
     }
+    })
+    
 }
 
 </script>
@@ -316,8 +318,8 @@ const createReport = () => {
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" @click="createReport">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id = "close-modal">Close</button>
+                <button type="button" class="btn btn-primary" id = "create-new-report" @click="createReport">Save changes</button>
             </div>
             </div>
         </div>
