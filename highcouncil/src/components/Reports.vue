@@ -176,7 +176,6 @@ const deleteReport = (id) => {
         if (response.status === 200) {
             //hide the row with the id of id
             document.querySelector(`#${id}`).style.display = 'none'
-
         }
     })
 }
