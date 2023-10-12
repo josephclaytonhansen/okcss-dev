@@ -78,6 +78,7 @@ align-items: stretch!important;
     border-radius:5px;
     height: 50%;
     width: auto;
+    max-width:100%;
 }
 
 .img-cw img{

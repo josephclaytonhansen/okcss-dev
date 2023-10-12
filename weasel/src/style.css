@@ -382,6 +382,7 @@ body.light .card:hover h2 {
     position: relative;
     height: 100%;
     width: 100%;
+    overflow:hidden;
 }
 
 .img-container:has(.square)::after {
