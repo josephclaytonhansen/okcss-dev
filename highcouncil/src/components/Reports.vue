@@ -1,6 +1,7 @@
 <script setup>
 
 import { ref, onMounted, computed } from 'vue'
+import axios from 'axios'
 const props = defineProps(['reports'])
 const weeks = ref([])
 const weeksPartOne = ref([])
