@@ -275,7 +275,7 @@ const deleteReport = (id) => {
                                 <summary>View</summary>
                                 <div v-html = "report.content_text" :id="report.id" class = "report-content"/>
                                 <hr/>
-                                <button class = "btn btn-danger small" @click = "deleteReport(report.id)">Delete</button>
+                                <button class = "btn btn-danger small" @click = "deleteReport(report._id)">Delete</button>
                             </details>
                         </td>
                     </tr>
