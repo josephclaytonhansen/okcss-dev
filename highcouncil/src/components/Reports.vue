@@ -24,7 +24,7 @@ const getAllCounselors = () => {
             counselors.push(report.counselor)
         }
     })
-    return counselors
+    allCounselors.value = counselors
 }
 
 const isCurrentWeek = (week) => {
@@ -98,9 +98,10 @@ onMounted(() => {
     setUpWeeks()
     //set currentWeek to the most recent week
     currentWeek.value = weeks.value[0]
-    allCounselors.value = getAllCounselors()
+    getAllCounselors()
     currentCounselor.value = 'All'
     props.reports.forEach(report => {
+        console.log(report.week)
         if (!weeksWithReports.value.includes(report.week)) {
             weeksWithReports.value.push(report.week)
         }
