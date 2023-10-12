@@ -362,8 +362,8 @@ pre, code{
         margin-left:-4rem;
     }
     .report-content{
-        width:100%;
-        margin-left: -20%;
+        width:120%;
+        margin-left: -30%;
         margin-top: 10%;
     }
 }
