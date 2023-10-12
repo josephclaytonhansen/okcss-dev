@@ -11,14 +11,6 @@ const weeksPartThree = ref([])
 const weeksWithReports = ref([
 ])
 
-const setWeeksWithReports = () => {
-    props.reports.forEach(report => {
-        if (!weeksWithReports.value.includes(report.week)) {
-            weeksWithReports.value.push(report.week)
-        }
-    })
-}
-
 const currentWeek = ref('')
 const currentCounselor = ref('')
 const enteredCounselor = ref('')
@@ -108,7 +100,11 @@ onMounted(() => {
     currentWeek.value = weeks.value[0]
     allCounselors.value = getAllCounselors()
     currentCounselor.value = 'All'
-    setWeeksWithReports()
+    props.reports.forEach(report => {
+        if (!weeksWithReports.value.includes(report.week)) {
+            weeksWithReports.value.push(report.week)
+        }
+    })
 })
 
 const decrementCurrentWeek = () => {
