@@ -72,12 +72,12 @@ function goWeasel(){
 function toggleDropdown(){
     if (document.getElementById('wards-dropdown').classList.contains('show')){
         document.getElementById('wards-dropdown').classList.remove('show')
-        document.getElementById('dd-down').classList.remove('show')
-        document.getElementById('dd-up').classList.add('show')
+        document.getElementById('dd-up').classList.remove('show')
+        document.getElementById('dd-down').classList.add('show')
     } else {
         document.getElementById('wards-dropdown').classList.add('show')
-        document.getElementById('dd-down').classList.add('show')
-        document.getElementById('dd-up').classList.remove('show')
+        document.getElementById('dd-up').classList.add('show')
+        document.getElementById('dd-down').classList.remove('show')
     }
 }
 
@@ -180,6 +180,7 @@ watch(currentTab, tabChanged)
 
 #dd-up, #dd-down{
     opacity:0;
+    position:absolute;
 }
 
 .show{
