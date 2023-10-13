@@ -325,25 +325,9 @@ const peoplesLength = computed(() => {
                     <div class = "col-12" id = 'itc' style = "text-align: left;">
                         <h2>Tools</h2>
 
-                        <div>
-                            <label for = "stri">Schedule temple recommend interview</label>
-                            <input type = "text" id = "stri" v-model = "tools.stri">
-                        </div>
-                        <div>
-                            <label for = "sbu">Schedule building use</label>
-                            <input type = "text" id = "sbu" v-model = "tools.sbu">
-                        </div>
-                        <div>
-                            <label for = "sbmr">Submit building maintenance request</label>
-                            <input type = "text" id = "sbmr" v-model = "tools.sbmr">
-                        </div>
-                        <div>
-                            <label for = "vtpc">View temple preparation classes</label>
-                            <input type = "text" id = "vtpc" v-model = "tools.vtpc">
-                        </div>
-                        <div>
-                            <label for = "sutftm">Sign up to feed the missionaries</label>
-                            <input type = "text" id = "sutftm" v-model = "tools.sutftm">
+                        <div v-for="(value, key) in tools" class = "form-group row flex-between col-12 wrap">
+                            
+                            <textarea type = "text" :id = "key" v-model = "tools[key]"></textarea>
                         </div>
 
                         <button @click = "updateTools">Submit</button>
