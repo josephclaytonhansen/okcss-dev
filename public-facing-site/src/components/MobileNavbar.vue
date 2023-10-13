@@ -61,7 +61,7 @@ function wardURL(weaselLoc, ward){
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/beliefs">Our Beliefs</a>
+                        <a class="nav-link" href="https://www.churchofjesuschrist.org/welcome/what-do-latter-day-saints-believe?lang=eng">Our Beliefs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/missionaries">Missionaries</a>
