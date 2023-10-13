@@ -88,7 +88,7 @@ watch(currentTab, tabChanged)
     <div class = "">
         <button id = "goweasel" class = 'button' @click="goWeasel"><Pencil/></button>
         <div id = "ward-select"><p id = "ward-name">{{ward}}</p>
-            <button class = "button" @click = "toggleDropdown"><ChevronDown/></button>
+            <button class = "button" id = "dropdown" @click = "toggleDropdown"><ChevronDown/></button>
             <div id = "wards-dropdown">
                 <a href = "https://wards.okcsouthstake.org/choctaw">Choctaw</a>
                 <a href = "https://wards.okcsouthstake.org/midwest-city">Midwest City</a>
@@ -170,7 +170,7 @@ watch(currentTab, tabChanged)
     opacity:0;
 }
 .show{
-    opacity:1;
+    opacity:1!important;
 }
 
 #submit-correction{
@@ -186,7 +186,7 @@ watch(currentTab, tabChanged)
     top: .25rem;
     left: 2.5rem;
 }
-#home, #goweasel, #ward-select{
+#home, #goweasel, #ward-select, #dropdown{
     position: fixed;
     z-index: 100;
     background-color: transparent;
