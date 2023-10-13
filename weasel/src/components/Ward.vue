@@ -153,15 +153,20 @@ watch(currentTab, tabChanged)
 
 <style scoped>
 #wards-dropdown{
-    display:none;
-    position: relative;
+    position: fixed;
     background-color: #f9f9f9;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    left:50vw;
+    top: 3rem;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: .5rem;
+    opacity:0;
 }
 .show{
-    display:block;
+    opacity:1;
 }
 
 #submit-correction{
