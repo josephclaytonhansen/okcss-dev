@@ -338,7 +338,7 @@ const peoplesLength = computed(() => {
                         <div>
                             <details>
                                 <summary>
-                                    <h3 class = "text-muted small">Instructions</h3>
+                                    <h3 style = "margin-left:1rem;" class = "text-muted small">Instructions</h3>
                                 </summary>
                                 <p>
                                         For simple tools that are just text, type the text in enclosed in<code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags. For example, to share the phone number of the building scheduler, you could type <code>&lt;p&gt;Call the building scheduler at 405-555-5555&lt;/p&gt;</code>.
@@ -455,7 +455,12 @@ const peoplesLength = computed(() => {
 </template>
 
 <style>
-
+code{
+    background-color:var(--gray);
+    padding:0.25rem;
+    border-radius:0.25rem;
+    color:var(--active-color);
+}
 
 h2.small{
     font-size: 120%;
