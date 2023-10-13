@@ -43,7 +43,16 @@ const router = createRouter({
             component: () => import('./views/Weasel.vue'),
             props: (route) => {
                 return {
-                    ward: 'Moore'
+                    ward: 'Choctaw'
+                }
+            }
+        },
+        {
+            path: '/',
+            component: () => import('./views/Weasel.vue'),
+            props: (route) => {
+                return {
+                    ward: 'Choctaw'
                 }
             }
         },

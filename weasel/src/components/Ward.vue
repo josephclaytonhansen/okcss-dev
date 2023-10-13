@@ -96,7 +96,7 @@ watch(currentTab, tabChanged)
 <section class = "tabs" :class="ward">
     <div class = "">
         <button id = "goweasel" class = 'button' @click="goWeasel"><Pencil/></button>
-        <div id = "ward-select"><p id = "ward-name">{{unslugifyWard(ward)}}</p>
+        <div id = "ward-select"><p id = "ward-name">Current ward: {{unslugifyWard(ward)}}</p>
             <button class = "button" id = "dropdown" @click = "toggleDropdown"><ChevronDown id = "dd-down" class="show"/><ChevronUp id = "dd-up"/></button>
             <div id = "wards-dropdown">
                 <a href = "https://wards.okcsouthstake.org/choctaw">Choctaw</a>
