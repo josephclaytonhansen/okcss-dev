@@ -70,7 +70,11 @@ function goWeasel(){
 }
 
 function toggleDropdown(){
-    document.getElementById('wards-dropdown').classList.toggle('show')
+    if (document.getElementById('wards-dropdown').classList.contains('show')){
+        document.getElementById('wards-dropdown').classList.remove('show')
+    } else {
+        document.getElementById('wards-dropdown').classList.add('show')
+    }
 }
 
 watch(currentTab, tabChanged)
@@ -197,6 +201,10 @@ watch(currentTab, tabChanged)
 #ward-select{
     top: .25rem;
     left: 50vw;
+}
+
+#ward-select p{
+    color: #999;
 }
 
 #home-text{
