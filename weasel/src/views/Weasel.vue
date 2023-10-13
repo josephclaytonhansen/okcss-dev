@@ -130,6 +130,11 @@ const addEvent = async() => {
         let response_object = response.data
         localStorage.setItem("tools", JSON.stringify(response_object))
         let temp = JSON.parse(localStorage.getItem("tools"))[0]
+        tools.stri = temp.stri
+        tools.sbu = temp.sbu
+        tools.sbmr = temp.sbmr
+        tools.vtpc = temp.vtpc
+        tools.sutftm = temp.sutftm
         tool_id.value = temp._id
     })
 
