@@ -152,8 +152,13 @@ watch(currentTab, tabChanged)
 </template>
 
 <style scoped>
-.wards-dropdown{
+#wards-dropdown{
     display:none;
+    position: relative;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .show{
     display:block;
