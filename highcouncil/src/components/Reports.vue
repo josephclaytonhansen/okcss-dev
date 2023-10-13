@@ -262,7 +262,7 @@ const deleteReport = (id) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for = "report in filteredReports" :key = "report.id" :id="'report-' + report.id">
+                    <tr v-for = "report in filteredReports" :key = "report._id" :id="'report-' + report._id">
                         <td>{{report.week}}</td>
                         <td>{{report.counselor}}</td>
                         <td>
