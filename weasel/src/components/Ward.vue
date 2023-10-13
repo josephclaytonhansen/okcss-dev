@@ -81,8 +81,9 @@ function toggleDropdown(){
     }
 }
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+function unslugifyWard(string) {
+    return string.replace(/-/g, ' ').replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+
 }
 
 watch(currentTab, tabChanged)
@@ -95,7 +96,7 @@ watch(currentTab, tabChanged)
 <section class = "tabs" :class="ward">
     <div class = "">
         <button id = "goweasel" class = 'button' @click="goWeasel"><Pencil/></button>
-        <div id = "ward-select"><p id = "ward-name">{{capitalizeFirstLetter(ward)}}</p>
+        <div id = "ward-select"><p id = "ward-name">{{unslugifyWard(ward)}}</p>
             <button class = "button" id = "dropdown" @click = "toggleDropdown"><ChevronDown id = "dd-down" class="show"/><ChevronUp id = "dd-up"/></button>
             <div id = "wards-dropdown">
                 <a href = "https://wards.okcsouthstake.org/choctaw">Choctaw</a>
