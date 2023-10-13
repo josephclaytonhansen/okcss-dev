@@ -339,7 +339,8 @@ const peoplesLength = computed(() => {
                             <details>
                                 <summary>
                                     <h3 class = "text-muted small">Instructions</h3>
-                                    <p>
+                                </summary>
+                                <p>
                                         For simple tools that are just text, type the text in enclosed in<code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags. For example, to share the phone number of the building scheduler, you could type <code>&lt;p&gt;Call the building scheduler at 405-555-5555&lt;/p&gt;</code>.
                                     </p>
                                     <p>
@@ -348,7 +349,6 @@ const peoplesLength = computed(() => {
                                     <p>
                                         Embedded tools should be put in an iframe. For example, to embed a website, you could type <code>&lt;iframe style="min-width:400px;width:30vw;" height="700px" src="https://example.com"&gt;&lt;/iframe&gt;</code>. 
                                     </p>
-                                </summary>
                             </details>
                         </div>
                 </section>
