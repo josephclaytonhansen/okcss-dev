@@ -456,7 +456,7 @@ const peoplesLength = computed(() => {
 
 <style>
 code{
-    background-color:var(--gray);
+    background-color:var(--lightest-gray);
     padding:0.25rem;
     border-radius:0.25rem;
     color:var(--active-color);
