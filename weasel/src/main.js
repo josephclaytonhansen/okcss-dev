@@ -40,16 +40,11 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [{
             path: '/weasel',
-            component: () => import('./views/Weasel.vue'),
-            props: (route) => {
-                return {
-                    ward: 'Choctaw'
-                }
-            }
+            component: () => import('./views/Login.vue'),
         },
         {
             path: '/',
-            component: () => import('./views/Weasel.vue'),
+            component: () => import('./views/WardWrapper.vue'),
             props: (route) => {
                 return {
                     ward: 'Choctaw'
