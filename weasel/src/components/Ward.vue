@@ -3,7 +3,7 @@
     import PersonCard from './PersonCard.vue'
     import Location from './Location.vue'
     import Tools from './Tools.vue'
-    import {Contact2, Calendar, HeartHandshake, ListTodo, Home, Pencil} from 'lucide-vue-next'
+    import {Contact2, Calendar, HeartHandshake, ListTodo, Home, Pencil, ChevronDown} from 'lucide-vue-next'
     import CCalendar from './CCalendar.vue'
 
 const props = defineProps({
@@ -69,6 +69,10 @@ function goWeasel(){
     window.location.href = 'https://wards.okcsouthstake.org/weasel'
 }
 
+function toggleDropdown(){
+    document.getElementById('wards-dropdown').classList.toggle('show')
+}
+
 watch(currentTab, tabChanged)
 
 </script>
@@ -79,6 +83,18 @@ watch(currentTab, tabChanged)
 <section class = "tabs" :class="ward">
     <div class = "">
         <button id = "goweasel" class = 'button' @click="goWeasel"><Pencil/></button>
+        <div id = "ward-select"><p id = "ward-name">{{ward}}</p>
+            <ChevronDown @click = "toggleDropdown"/>
+            <div id = "wards-dropdown">
+                <a href = "https://wards.okcsouthstake.org/choctaw">Choctaw</a>
+                <a href = "https://wards.okcsouthstake.org/midwest-city">Midwest City</a>
+                <a href = "https://wards.okcsouthstake.org/moore">Moore</a>
+                <a href = "https://wards.okcsouthstake.org/okc-2nd">OKC 2nd</a>
+                <a href = "https://wards.okcsouthstake.org/mustang-2nd">Mustang 2nd</a>
+                <a href = "https://wards.okcsouthstake.org/mustang-1st">Mustang 1st</a>
+                <a href = "https://wards.okcsouthstake.org/okc-6th-branch">OKC 6th Branch</a>
+            </div>
+        </div>
         <button id = "home" class = 'button' @click="goHome"><Home/><span id = 'home-text'>OKC South Stake</span></button>
         <!------------------------------ Tab: Contacts ----------------------------- -->
         <div v-if="currentTab === 'contacts'">
@@ -136,6 +152,12 @@ watch(currentTab, tabChanged)
 </template>
 
 <style scoped>
+.wards-dropdown{
+    display:none;
+}
+.show{
+    display:block;
+}
 
 #submit-correction{
     align-self:start;
@@ -150,7 +172,7 @@ watch(currentTab, tabChanged)
     top: .25rem;
     left: 2.5rem;
 }
-#home, #goweasel{
+#home, #goweasel, #ward-select{
     position: fixed;
     z-index: 100;
     background-color: transparent;
@@ -161,6 +183,10 @@ watch(currentTab, tabChanged)
 #goweasel{
     top: .25rem;
     left: .25rem;
+}
+#ward-select{
+    top: .25rem;
+    left: 50vw;
 }
 
 #home-text{
