@@ -172,11 +172,8 @@ const createReport = () => {
 }
 
 const deleteReport = (id) => {
+    document.querySelector(`#report-${id}`).style.display = 'none'
     let response = axios.delete(`https://weasel.okcsouthstake.org/api/hc-reports/${id}`).then(response => {
-        if (response.status === 200) {
-            //hide the row with the id of id
-            document.querySelector(`#report-${id}`).style.display = 'none'
-        }
     })
 }
 
