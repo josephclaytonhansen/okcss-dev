@@ -88,7 +88,7 @@ watch(currentTab, tabChanged)
     <div class = "">
         <button id = "goweasel" class = 'button' @click="goWeasel"><Pencil/></button>
         <div id = "ward-select"><p id = "ward-name">{{ward}}</p>
-            <ChevronDown @click = "toggleDropdown"/>
+            <button class = "button" @click = "toggleDropdown"><ChevronDown/></button>
             <div id = "wards-dropdown">
                 <a href = "https://wards.okcsouthstake.org/choctaw">Choctaw</a>
                 <a href = "https://wards.okcsouthstake.org/midwest-city">Midwest City</a>
