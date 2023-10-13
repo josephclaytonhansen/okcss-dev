@@ -3,7 +3,7 @@
     import PersonCard from './PersonCard.vue'
     import Location from './Location.vue'
     import Tools from './Tools.vue'
-    import {Contact2, Calendar, HeartHandshake, ListTodo, Home, Pencil, ChevronDown} from 'lucide-vue-next'
+    import {Contact2, Calendar, HeartHandshake, ListTodo, Home, Pencil, ChevronDown, ChevronUp} from 'lucide-vue-next'
     import CCalendar from './CCalendar.vue'
 
 const props = defineProps({
@@ -72,8 +72,12 @@ function goWeasel(){
 function toggleDropdown(){
     if (document.getElementById('wards-dropdown').classList.contains('show')){
         document.getElementById('wards-dropdown').classList.remove('show')
+        document.getElementById('dd-down').classList.remove('show')
+        document.getElementById('dd-up').classList.add('show')
     } else {
         document.getElementById('wards-dropdown').classList.add('show')
+        document.getElementById('dd-down').classList.add('show')
+        document.getElementById('dd-up').classList.remove('show')
     }
 }
 
@@ -92,7 +96,7 @@ watch(currentTab, tabChanged)
     <div class = "">
         <button id = "goweasel" class = 'button' @click="goWeasel"><Pencil/></button>
         <div id = "ward-select"><p id = "ward-name">{{capitalizeFirstLetter(ward)}}</p>
-            <button class = "button" id = "dropdown" @click = "toggleDropdown"><ChevronDown/></button>
+            <button class = "button" id = "dropdown" @click = "toggleDropdown"><ChevronDown id = "dd-down" class="show"/><ChevronUp id = "dd-up"/></button>
             <div id = "wards-dropdown">
                 <a href = "https://wards.okcsouthstake.org/choctaw">Choctaw</a>
                 <a href = "https://wards.okcsouthstake.org/midwest-city">Midwest City</a>
@@ -173,6 +177,11 @@ watch(currentTab, tabChanged)
     padding: .5rem;
     opacity:0;
 }
+
+#dd-up, #dd-down{
+    opacity:0;
+}
+
 .show{
     opacity:1!important;
 }
