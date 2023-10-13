@@ -332,7 +332,7 @@ const peoplesLength = computed(() => {
                         </div>
                         </div>
                         <button @click = "updateTools">Submit</button>
-                    </div>
+                    
                 </section>
 
                 <section id = "weasel-events-content" class = "col-12" v-if="current_tab==='events'">
