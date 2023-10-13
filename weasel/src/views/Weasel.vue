@@ -328,10 +328,12 @@ const peoplesLength = computed(() => {
                         <div v-for="(value, key) in tools" class = "form-group row flex-between col-12 wrap">
                             <label :for = "key" class = "col-4 fwc">{{tool_labels[key]}}</label>
                             
-                            <textarea class="col-8 fwc" type = "text" :id = "key" v-model = "tools[key]"></textarea>
+                            <textarea class="col-8 fwc tool-ta" type = "text" :id = "key" v-model = "tools[key]"></textarea>
                         </div>
                         </div>
-                        <button @click = "updateTools">Submit</button>
+                        <div class = "row flex-between col-12 wrap">
+                            <button class = "col-4 col-grow fwc" @click = "updateTools">Submit</button>
+                        </div>
                     
                 </section>
 
@@ -570,6 +572,10 @@ body.light .event:hover{
 }
 .img-container .church-img{
     width:100%!important;
+}
+
+.tool-ta{
+   height:fit-content; 
 }
 
 </style>
