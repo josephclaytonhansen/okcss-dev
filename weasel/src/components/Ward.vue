@@ -208,6 +208,12 @@ watch(currentTab, tabChanged)
     display:flex;
     align-items:center;
 }
+
+#dropdown{
+    position: relative!important;
+    padding-left:0;
+}
+
 #goweasel{
     top: .25rem;
     left: .25rem;
@@ -219,10 +225,6 @@ watch(currentTab, tabChanged)
 
 #ward-select p{
     color: #999;
-}
-
-#dropdown{
-    left: calc(50vw + 3rem);
 }
 
 #home-text{
