@@ -326,10 +326,11 @@ const peoplesLength = computed(() => {
                         <h2>Tools</h2>
 
                         <div v-for="(value, key) in tools" class = "form-group row flex-between col-12 wrap">
+                            <label :for = "key" class = "col-4 fwc">{{tool_labels[key]}}</label>
                             
-                            <textarea type = "text" :id = "key" v-model = "tools[key]"></textarea>
+                            <textarea class="col-8 fwc" type = "text" :id = "key" v-model = "tools[key]"></textarea>
                         </div>
-
+                        </div>
                         <button @click = "updateTools">Submit</button>
                     </div>
                 </section>
