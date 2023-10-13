@@ -77,6 +77,10 @@ function toggleDropdown(){
     }
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 watch(currentTab, tabChanged)
 
 </script>
@@ -87,7 +91,7 @@ watch(currentTab, tabChanged)
 <section class = "tabs" :class="ward">
     <div class = "">
         <button id = "goweasel" class = 'button' @click="goWeasel"><Pencil/></button>
-        <div id = "ward-select"><p id = "ward-name">{{ward}}</p>
+        <div id = "ward-select"><p id = "ward-name">{{capitalizeFirstLetter(ward)}}</p>
             <button class = "button" id = "dropdown" @click = "toggleDropdown"><ChevronDown/></button>
             <div id = "wards-dropdown">
                 <a href = "https://wards.okcsouthstake.org/choctaw">Choctaw</a>
@@ -205,6 +209,10 @@ watch(currentTab, tabChanged)
 
 #ward-select p{
     color: #999;
+}
+
+#dropdown{
+    left: calc(50vw + 3rem);
 }
 
 #home-text{
