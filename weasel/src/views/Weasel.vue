@@ -344,7 +344,7 @@ const peoplesLength = computed(() => {
 
                         <div v-for="(value, key) in tools" class = "form-group row flex-between col-12 wrap">
                             <label :for = "key" class = "col-4 fwc">{{tool_labels[key]}}</label>
-                            <textarea :id = "key" :value="tools[key]"></textarea>
+                            <div :id = "key" contenteditable>{{ tools[key] }}</div>
                         </div>
                         <button @click = "updateTools">Submit</button>
                     </div>
