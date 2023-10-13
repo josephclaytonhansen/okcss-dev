@@ -321,7 +321,7 @@ const peoplesLength = computed(() => {
                     </section>
                 </section>
 
-                <section id = "weasel-tools-content" class="flex-center col-10 fwc" v-if="current_tab == 'tools'">
+                <section id = "weasel-tools-content" class="flex-center col-12 fwc" v-if="current_tab == 'tools'">
                     <div class = "col-12" id = 'itc' style = "text-align: left;">
                         <h2>Tools</h2>
 
