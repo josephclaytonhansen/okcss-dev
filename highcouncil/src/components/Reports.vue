@@ -262,13 +262,13 @@ const deleteReport = (id) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for = "report in filteredReports" :key = "report.id" :id="report._id">
+                    <tr v-for = "report in filteredReports" :key = "report.id" :id="'report-' + report.id">
                         <td>{{report.week}}</td>
                         <td>{{report.counselor}}</td>
                         <td>
                             <details>
                                 <summary>View</summary>
-                                <div v-html = "report.content_text" :id="'report-' + report.id" class = "report-content"/>
+                                <div v-html = "report.content_text" class = "report-content"/>
                                 <hr/>
                                 <button class = "btn btn-danger small" @click = "deleteReport(report._id)">Delete</button>
                             </details>
