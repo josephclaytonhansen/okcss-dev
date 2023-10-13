@@ -334,7 +334,23 @@ const peoplesLength = computed(() => {
                         <div class = "row flex-between col-12 wrap">
                             <button class = "col-4 fwc" @click = "updateTools">Submit</button>
                         </div>
-                    
+                        
+                        <div>
+                            <details>
+                                <summary>
+                                    <h3 class = "text-muted small">Instructions</h3>
+                                    <p>
+                                        For simple tools that are just text, type the text in enclosed in<code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags. For example, to share the phone number of the building scheduler, you could type <code>&lt;p&gt;Call the building scheduler at 405-555-5555&lt;/p&gt;</code>.
+                                    </p>
+                                    <p>
+                                        For tools that include links, type the text enclosed in <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags, and then type the link enclosed in <code>&lt;a href="link"&gt;</code> and <code>&lt;/a&gt;</code> tags. For example, to share the link to the building scheduler's email, you could type <code>&lt;p&gt;Email the building scheduler at &lt;a href="mailto:example@example.com"&gt;example@example.com&lt;/a&gt;&lt;/p&gt;</code>.
+                                    </p>
+                                    <p>
+                                        Embedded tools should be put in an iframe. For example, to embed a website, you could type <code>&lt;iframe style="min-width:400px;width:30vw;" height="700px" src="https://example.com"&gt;&lt;/iframe&gt;</code>. 
+                                    </p>
+                                </summary>
+                            </details>
+                        </div>
                 </section>
 
                 <section id = "weasel-events-content" class = "col-12" v-if="current_tab==='events'">
