@@ -22,7 +22,6 @@
     const createExternalMissionary = async () => {
         const response = await axios.post('https://weasel.okcsouthstake.org/api/missionaries/external', {
             email: '',
-            ward: '',
             name: '',
             location: {
                 city: '',
@@ -78,14 +77,12 @@
 
     const updateExternalMissionary = async (missionary) => {
         let email = document.getElementById('email-'+missionary._id).value
-        let ward = document.getElementById('ward-'+missionary._id).value
         let name = document.getElementById('name-'+missionary._id).value
         let city = document.getElementById('city-'+missionary._id).value
         let state = document.getElementById('state-'+missionary._id).value
         let country = document.getElementById('country-'+missionary._id).value
         await axios.put(`https://weasel.okcsouthstake.org/api/missionaries/external/${missionary._id}`, {
             email: email,
-            ward: ward,
             name: name,
             location: {
                 city: city,
@@ -158,18 +155,14 @@
                         <input type = 'text' class = 'form-control' placeholder = 'Email' :value="missionary.email" :id="'email-'+external_missionaries[index]._id" />
                     </div>
                     <div class = 'col-2'>
-                        <label for = 'ward'>Ward</label>
-                        <input type = 'text' class = 'form-control' placeholder = 'Ward' :value="missionary.ward" :id="'ward-'+external_missionaries[index]._id"/>
-                    </div>
-                    <div class = 'col-2'>
                         <label for = 'name'>Name</label>
                         <input type = 'text' class = 'form-control' placeholder = 'Name' :value="missionary.name" :id="'name-'+external_missionaries[index]._id"/>
                     </div>
-                    <div class = 'col-1'>
+                    <div class = 'col-2'>
                         <label for = 'city'>City</label>
                         <input type = 'text' class = 'form-control' placeholder = 'City' :value="missionary.location.city" :id="'city-'+external_missionaries[index]._id"/>
                     </div>
-                    <div class = 'col-1'>
+                    <div class = 'col-2'>
                         <label for = 'state'>State</label>
                         <input type = 'text' class = 'form-control' placeholder = 'State' :value="missionary.location.state" :id="'state-'+external_missionaries[index]._id"/>
                     </div>
