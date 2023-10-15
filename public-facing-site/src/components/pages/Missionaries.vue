@@ -52,7 +52,7 @@ onBeforeMount(async () => {
         <p class = "text-center">Missionaries serving from the Oklahoma City area have been sent around the world.<br> They have limited communication with their family and friends, so email is always appreciated.</p>
         
             <div class = "row" id = "bios justify-content-center">
-                <div v-for = "missionary in external_missionaries" class = "col-6 col-sm-6 col-md-3">
+                <div v-for = "missionary in external_missionaries" class = "col-12 col-sm-6 col-md-3">
                     <h4 id = "title-small" class = "text-center">{{missionary.name}}</h4>
                     <h5 class = "text-muted text-center">{{missionary.location.city}} {{missionary.location.state}} {{ missionary.location.country }} </h5>
                     <p class = "text-center"><a
