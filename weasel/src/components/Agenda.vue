@@ -53,6 +53,12 @@ const eventsWithinAWeek = (events) => {
     if (eventsWithinAWeek.length === 0) {
         return []
     }
+    //sort events by date
+    eventsWithinAWeek.sort((a, b) => {
+        let aDate = new Date(a.time.start)
+        let bDate = new Date(b.time.start)
+        return aDate - bDate
+    })
     return eventsWithinAWeek
 }
     
@@ -98,7 +104,7 @@ const prettifyDate = (date) => {
         <div class = "events col-grow">
             <div v-if = "eventsWithinAWeek(props.events).length === 0">
             <p>
-                No events for this organization within the next week
+                No events for this organization within the next month
             </p></div>
                 <div class = "event" v-for = "event in eventsWithinAWeek(props.events)" v-if = "eventsWithinAWeek(props.events).length > 0">
                     <div class = "row" id = "title-and-add">
