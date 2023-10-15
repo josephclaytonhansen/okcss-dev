@@ -53,7 +53,7 @@
                     <a @click="updateInternalMissionary(missionary._id)" class = 'btn btn-primary btn-block mt-4'>Update</a>
                 </div>
                 <div class = 'col-sm-auto'>
-                    <a href = '#' class = 'btn btn-secondary btn-block mt-4'>Add</a>
+                    <a @click="createInternalMissionary" class = 'btn btn-secondary btn-block mt-4'>Add</a>
                 </div>
             </div>
         </form>
