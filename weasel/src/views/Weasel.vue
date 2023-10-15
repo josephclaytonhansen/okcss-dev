@@ -218,8 +218,7 @@ const peoplesLength = computed(() => {
             <div class="row flex-center">
                 <div class="col-8 col-grow">
                     <h1 class="">Oklahoma City South Stake - Weasel<span aria-label="Ward Events and Services Electronic List" data-balloon-pos="up">*</span></h1>
-                    <h2 class="small">Editing {{organization}} details
-                    <a :href="`https://wards.okcsouthstake.org/${ward}`">{{ward.split(" ").map((word) => {return word.charAt(0).toUpperCase() + word.slice(1)}).join(" ")}}</a> at the {{organization}} level</h2>
+                    <h2 class="small">Editing <a :href="`https://wards.okcsouthstake.org/${ward}`">{{ward.split(" ").map((word) => {return word.charAt(0).toUpperCase() + word.slice(1)}).join(" ")}}</a> at the {{organization}} level</h2>
                 </div>
                 <div class="col-1" aria-label = "Icon from flaticon.com" data-balloon-pos="up"><img :src="weasel_img"  class="img" alt="Weasel"></div>
             </div>
