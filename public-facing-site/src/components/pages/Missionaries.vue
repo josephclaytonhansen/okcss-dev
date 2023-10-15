@@ -31,11 +31,11 @@ onBeforeMount(async () => {
 
     <hr class = "w-50 mx-auto"/>
 
-    <div class = "row align-items-center py-5 justify-content-center">
+    <div class = "row align-items-center py-5 ">
         <h2 id = "title" class = "text-center">Missionaries in the Stake</h2>
         <p class = "text-center">We have missionaries from around the country and the world serving in our area.</p>
         
-            <div class = "row gy-3" id = "bios">
+            <div class = "row" id = "bios justify-content-center">
                 <div v-for = "missionary in internal_missionaries" class = "col-6 col-sm-6 col-md-3">
                     <h4 id = "title-small" class = "text-center">{{missionary.ward}}</h4>
                     <p class = "text-center"><a
