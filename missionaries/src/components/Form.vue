@@ -25,6 +25,18 @@
         await axios.put(`https://weasel.okcsouthstake.org/api/missionaries/internal/${missionary._id}`, {
             phone: phone,
             ward: ward
+        }).catch.then((response) => {
+            //update text of button to say "updated" and class to be btn-success
+            let updateButton = document.getElementById('update-'+missionary._id)
+            updateButton.innerText = 'Updated!'
+            updateButton.classList.add('btn-success')
+            updateButton.classList.remove('btn-primary')
+            //after two seconds, change text back to "update" and class back to btn-primary
+            setTimeout(() => {
+                updateButton.innerText = 'Update'
+                updateButton.classList.add('btn-primary')
+                updateButton.classList.remove('btn-success')
+            }, 2000)
         })
     }
 
@@ -50,7 +62,7 @@
                     <a id = 'delete' href = '#' class = 'btn btn-primary btn-block mt-4'>Delete</a>
                 </div>
                 <div class = 'col-1'>
-                    <a @click="updateInternalMissionary(internal_missionaries[index])" class = 'btn btn-primary btn-block mt-4'>Update</a>
+                    <a :id="'update-'+internal_missionaries[index]._id" @click="updateInternalMissionary(internal_missionaries[index])" class = 'btn btn-primary btn-block mt-4'>Update</a>
                 </div>
             </div>
             <div class = "row">
