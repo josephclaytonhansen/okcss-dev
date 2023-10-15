@@ -36,22 +36,22 @@
         <form>
             <h2 class = 'text-center'>Edit Missionary Companionships</h2>
             <div v-for = '(missionary, index) in internal_missionaries' :key = 'index' class = 'row'>
-                <div class = 'col-12 col-sm-12 col-md-5'>
+                <div class = 'col-5'>
                     <label for = 'phone'>Phone Number</label>
                     <input type = 'text' class = 'form-control' placeholder = 'Phone Number' :value="missionary.phone" :id="'phone-'+missionary._id" />
                 </div>
-                <div class = 'col-12 col-sm-12 col-md-6'>
+                <div class = 'col-5'>
                     <label for = 'ward'>Ward</label>
                     <input type = 'text' class = 'form-control' placeholder = 'Ward' :value="missionary.ward" :id="'ward-'+missionary._id"/>
                 </div>
-                <div class = 'col-12 col-sm-12 col-md-1'>
+                <div class = 'col-1'>
                     <a id = 'delete' href = '#' class = 'btn btn-primary btn-block mt-4'>Delete</a>
+                </div>
+                <div class = 'col-1'>
+                    <a @click="updateInternalMissionary(missionary._id)" class = 'btn btn-primary btn-block mt-4'>Update</a>
                 </div>
             </div>
             <div class = "row">
-                <div class = 'col-sm-auto'>
-                    <a @click="updateInternalMissionary(missionary._id)" class = 'btn btn-primary btn-block mt-4'>Update</a>
-                </div>
                 <div class = 'col-sm-auto'>
                     <a @click="createInternalMissionary" class = 'btn btn-secondary btn-block mt-4'>Add</a>
                 </div>
