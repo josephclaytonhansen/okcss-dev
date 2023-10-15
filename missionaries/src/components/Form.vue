@@ -20,9 +20,11 @@
     }
 
     const updateInternalMissionary = async (missionary) => {
+        let phone = document.getElementById('phone-'+missionary._id).value
+        let ward = document.getElementById('ward-'+missionary._id).value
         await axios.put(`https://weasel.okcsouthstake.org/api/missionaries/internal/${missionary._id}`, {
-            phone: missionary.phone,
-            ward: missionary.ward
+            phone: phone,
+            ward: ward
         })
     }
 
