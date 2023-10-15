@@ -96,7 +96,7 @@ onMounted(async () => {
                 <span class = "lead">Our beliefs are centered around God and Jesus Christ.</span><br><br>We strive to follow the words of God. Learn more
                 about what we believe and how our beliefs can inspire you to live a Christ-centered life.
             </p>
-            <a id="hero-button" class="btn btn-primary" href="/beliefs">Learn More</a>
+            <a id="hero-button" class="btn btn-primary" href="https://www.churchofjesuschrist.org/welcome/what-do-latter-day-saints-believe?lang=eng">Learn More</a>
         </div>
 
         <div class="col col-1 col-sm-12 col-md-1" id="hero-spacer"></div>
