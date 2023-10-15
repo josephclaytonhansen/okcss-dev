@@ -177,6 +177,7 @@ watch(currentTab, tabChanged)
     border-radius: 5px;
     padding: .5rem;
     opacity:0;
+    pointer-events: none;
 }
 
 #dd-up, #dd-down{
@@ -186,6 +187,7 @@ watch(currentTab, tabChanged)
 
 .show{
     opacity:1!important;
+    pointer-events: all!important;
 }
 
 #submit-correction{
