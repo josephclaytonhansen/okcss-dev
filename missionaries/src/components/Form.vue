@@ -158,7 +158,7 @@
                         <label for = 'name'>Name</label>
                         <input type = 'text' class = 'form-control' placeholder = 'Name' :value="missionary.name" :id="'name-'+external_missionaries[index]._id"/>
                     </div>
-                    <div class = 'col-6 col-sm-6 col-md-2'>
+                    <div class = 'col-4 col-sm-4 col-md-2'>
                         <label for = 'city'>City</label>
                         <input type = 'text' class = 'form-control' placeholder = 'City' :value="missionary.location.city" :id="'city-'+external_missionaries[index]._id"/>
                     </div>
