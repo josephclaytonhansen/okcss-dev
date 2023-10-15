@@ -2,7 +2,7 @@
 ### seabass/weasel-backend
 * Express
 
-### weasel/public-facing-site/highcouncil
+### weasel/public-facing-site/highcouncil/missionaries
 * Vite
 * Vue
 * Pinia
@@ -15,3 +15,11 @@
 * Lucide
 * Node.js
 * MongoDB
+
+## subdomains
+* weasel
+* wards
+* :ward
+* highcouncil
+* missionaries
+* seabass
