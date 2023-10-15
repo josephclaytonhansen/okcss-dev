@@ -233,6 +233,14 @@ watch(currentTab, tabChanged)
 #home-text{
     padding-left:.3rem;
     margin-top:.1rem;
+}
 
+@media screen and (max-width: 1000px) {
+    #home-text{
+        display:none;
+    }
+    #ward-select{
+        left: 20vw;
+    }
 }
 </style>
