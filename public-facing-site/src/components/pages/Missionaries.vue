@@ -49,7 +49,7 @@ onBeforeMount(async () => {
 
     <div class = "row align-items-center py-5 ">
         <h2 id = "title" class = "text-center">Missionaries from the Stake</h2>
-        <p class = "text-center">Missionaries serving from the Oklahoma City area have been sent around the world. They have limited communication with their family and friends, so email is always appreciated.</p>
+        <p class = "text-center">Missionaries serving from the Oklahoma City area have been sent around the world.<br> They have limited communication with their family and friends, so email is always appreciated.</p>
         
             <div class = "row" id = "bios justify-content-center">
                 <div v-for = "missionary in external_missionaries" class = "col-6 col-sm-6 col-md-3">
