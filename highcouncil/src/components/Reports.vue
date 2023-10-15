@@ -187,10 +187,10 @@ const deleteReport = (id) => {
             </div>
             <div class = "col-12 col-sm-12 col-md-auto">
                 <div class = "row align-items-center" style = "margin-top:-.6rem;">
-                    <div class = "col-2">
+                    <div class = "col-12 col-sm-12 col-md-2">
                         <button class = "btn btn-info"  data-bs-toggle="modal" data-bs-target="#exampleModal">New</button>
                     </div>
-                    <div class = "col-4 px-4">
+                    <div class = "col-12 col-sm-12 col-md-4 px-4">
                         <div class="dropdown-counselor">
                             <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{currentCounselor}}
@@ -202,7 +202,7 @@ const deleteReport = (id) => {
                             </ul>
                         </div>
                     </div>
-                    <div class = "col-6">
+                    <div class = "col-12 col-sm-12 col-md-6">
                         <div class = "row align-items-center" style = "flex-wrap:nowrap" id = "week-buttons">
                             <div class = "col px-0 week-button">
                                 <a class = "btn btn-info" @click = "decrementCurrentWeek">&#9664;</a>
