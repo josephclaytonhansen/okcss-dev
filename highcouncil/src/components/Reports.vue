@@ -370,5 +370,9 @@ pre, code{
         margin-left: -30%;
         margin-top: 10%;
     }
+    .btn, button{
+        width:100%;
+        margin-bottom:.25rem;
+    }
 }
 </style>
