@@ -51,8 +51,8 @@ app.use("/api/persons",cors({origin: 'https://wards.okcsouthstake.org',credentia
 app.use("/api/worships",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
 app.use("/api/tools",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
 app.use("/api/users",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
-app.use("/api/outgoing-missionaries",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
-app.use("/api/internal-missionaries",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
+app.use("/api/outgoing-missionaries",cors({origin: 'https://missionaries.okcsouthstake.org',credentials: true}))
+app.use("/api/internal-missionaries",cors({origin: 'https://missionaries.okcsouthstake.org',credentials: true}))
 app.use("/api/hc-reports",cors({origin: 'https://highcouncil.okcsouthstake.org',credentials: true}))
 
 const limiter = rate_limit({
