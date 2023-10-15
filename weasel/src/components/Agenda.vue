@@ -147,6 +147,8 @@ hr.m-n{
 
 .agenda {
     height: 95%;
+    max-height:74vh;
+    overflow-y:scroll;
     width: calc(100% - 4rem);
     margin-left:2rem;
     background-color: var(--active-color);
@@ -162,6 +164,7 @@ hr.m-n{
 @media screen and (max-width: 1000px) {
     .agenda {
         min-height:500px;
+        max-height:unset;
 
     }
     
