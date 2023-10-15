@@ -20,7 +20,7 @@
     }
 
     const updateInternalMissionary = async (missionary) => {
-        await axios.put(`https://weasel.okcsouthstake.org/api/missionaries/internal/${missionary.id}`, {
+        await axios.put(`https://weasel.okcsouthstake.org/api/missionaries/internal/${missionary._id}`, {
             phone: missionary.phone,
             ward: missionary.ward
         })
@@ -38,17 +38,17 @@
             <div v-for = '(missionary, index) in internal_missionaries' :key = 'index' class = 'row'>
                 <div class = 'col-5'>
                     <label for = 'phone'>Phone Number</label>
-                    <input type = 'text' class = 'form-control' placeholder = 'Phone Number' :value="missionary.phone" :id="'phone-'+missionary._id" />
+                    <input type = 'text' class = 'form-control' placeholder = 'Phone Number' :value="missionary.phone" :id="'phone-'+internal_missionaries[index]._id" />
                 </div>
                 <div class = 'col-5'>
                     <label for = 'ward'>Ward</label>
-                    <input type = 'text' class = 'form-control' placeholder = 'Ward' :value="missionary.ward" :id="'ward-'+missionary._id"/>
+                    <input type = 'text' class = 'form-control' placeholder = 'Ward' :value="missionary.ward" :id="'ward-'+internal_missionaries[index]._id"/>
                 </div>
                 <div class = 'col-1'>
                     <a id = 'delete' href = '#' class = 'btn btn-primary btn-block mt-4'>Delete</a>
                 </div>
                 <div class = 'col-1'>
-                    <a @click="updateInternalMissionary(missionary._id)" class = 'btn btn-primary btn-block mt-4'>Update</a>
+                    <a @click="updateInternalMissionary(internal_missionaries[index])" class = 'btn btn-primary btn-block mt-4'>Update</a>
                 </div>
             </div>
             <div class = "row">
