@@ -25,7 +25,7 @@
         await axios.put(`https://weasel.okcsouthstake.org/api/missionaries/internal/${missionary._id}`, {
             phone: phone,
             ward: ward
-        }).catch.then((response) => {
+        }).then((response) => {
             //update text of button to say "updated" and class to be btn-success
             let updateButton = document.getElementById('update-'+missionary._id)
             updateButton.innerText = 'Updated!'
