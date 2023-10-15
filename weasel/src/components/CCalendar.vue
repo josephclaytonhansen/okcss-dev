@@ -67,6 +67,9 @@
                 <div v-if = "currentOrganization === 'elder\'s quorum'">
                     <Agenda :events="events.eq" :ward="ward"/>
                 </div>
+                <div v-if = "currentOrganization === 'youth'">
+                    <Agenda :events="events.Youth" :ward="ward"/>
+                </div>
 
                 
                 
@@ -78,6 +81,7 @@
                 <VCalendar v-if = "currentOrganization === 'ym'" :events="events.ym" :config="config"/>
                 <VCalendar v-if = "currentOrganization === 'relief society'" :events="events.rs" :config="config"/>
                 <VCalendar v-if = "currentOrganization === 'elder\'s quorum'" :events="events.eq" :config="config"/>
+                <VCalendar v-if = "currentOrganization === 'youth'" :events="events.Youth" :config="config"/>
                 
             </div>
         </div>
