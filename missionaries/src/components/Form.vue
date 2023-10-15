@@ -31,11 +31,19 @@
             updateButton.innerText = 'Updated!'
             updateButton.classList.add('btn-success')
             updateButton.classList.remove('btn-primary')
+            internal_missionaries.value = internal_missionaries.value.map((missionary) => {
+                if (missionary._id === response.data._id) {
+                    return response.data
+                } else {
+                    return missionary
+                }
+            })
             //after two seconds, change text back to "update" and class back to btn-primary
             setTimeout(() => {
                 updateButton.innerText = 'Update'
                 updateButton.classList.add('btn-primary')
                 updateButton.classList.remove('btn-success')
+                
             }, 2000)
         })
     }
