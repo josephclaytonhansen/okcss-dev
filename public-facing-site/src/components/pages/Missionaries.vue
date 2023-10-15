@@ -34,14 +34,14 @@ onBeforeMount(async () => {
     <div class = "row align-items-center py-5 gy-3">
         <h2 id = "title" class = "text-center">Missionaries in the Stake</h2>
         <p class = "text-center">We have missionaries from around the country and the world serving in our area.</p>
-        <div class = "col-6 col-sm-6 col-md-4">
+        
             <div class = "row gy-3" id = "bios">
                 <div v-for = "missionary in internal_missionaries" class = "col-6 col-sm-6 col-md-3">
                     <h4 id = "title-small" class = "text-center">{{missionary.ward}}</h4>
                     <p class = "text-center">{{missionary.phone}}</p>
                 </div>
             </div>
-        </div>
+
     </div>
 
 </template>
