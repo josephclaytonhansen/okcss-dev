@@ -75,8 +75,8 @@ app.use('/api/persons', person_routes)
 app.use('/api/worships', worship_routes)
 app.use('/api/tools', tool_routes)
 app.use('/api/users', user_routes)
-app.use('/api/outgoing-missionaries', outgoing_missionary_routes)
-app.use('/api/internal-missionaries', internal_missionary_routes)
+app.use('/api/missionaries/outgoing', outgoing_missionary_routes)
+app.use('/api/missionaries/internal', internal_missionary_routes)
 
 app.use('/api/hc-reports', (req, res, next) => {
     if (req.headers.origin === 'https://highcouncil.okcsouthstake.org') {
