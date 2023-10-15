@@ -43,6 +43,10 @@
                 <div class="tab-overlay calendar-tab-overlay" :class="{active: currentOrganization === 'elder\'s quorum'}"/>
                 <h3>Elder's Quorum</h3>
             </div>
+            <div class = "tab calendar-tab" :class = "{activeTab: currentOrganization === 'youth'}" @click = "currentOrganization = 'youth'">
+                <div class="tab-overlay calendar-tab-overlay" :class="{active: currentOrganization === 'youth'}"/>
+                <h3>Youth</h3>
+            </div> 
         </div>
 
     </div>
