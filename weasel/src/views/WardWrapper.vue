@@ -31,13 +31,15 @@ function splitEventsByCategory(events) {
   let yw = []
   let ym = []
   let elders_quorum = []
+  let youth = []
   let cat_match = {
     'Primary': primary,
     'Ward': ward,
     'Relief Society': relief_society,
     'Young Women\'s': yw,
     'Young Men\'s': ym,
-    'Elder\'s Quorum': elders_quorum
+    'Elder\'s Quorum': elders_quorum,
+    'Youth': youth
   }
   events.forEach((event) => {
     cat_match[event.organization].push(event)
@@ -78,7 +80,7 @@ onBeforeMount(async () => {
           :tools="tools.data"
           :events="events.data"
           :worship="worship.data"
-          :organizations="['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s']"
+          :organizations="['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s', 'Youth']"
           :contacts="contacts.data"
             />
 </template>

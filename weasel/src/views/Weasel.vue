@@ -64,7 +64,7 @@ const events_time_splits = reactive({})
 
 const persons = reactive([])
 
-const organizations=['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s']
+const organizations=['Bishopric', 'Elder\'s Quorum', 'Relief Society', 'Primary', 'Young Women\'s', 'Young Men\'s', 'Youth']
 
 const organizationsFilter = (organizations) => {
     return organizations.filter((organization) => {
