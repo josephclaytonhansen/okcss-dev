@@ -136,7 +136,7 @@
                 <div class = 'col-6 col-sm-6 col-md-1'>
                     <a :id="'update-'+internal_missionaries[index]._id" @click="updateInternalMissionary(internal_missionaries[index])" class = 'btn btn-primary btn-block mt-4'>Update</a>
                 </div>
-                <hr class = 'd-block d-sm-block d-md-none py-4'/>
+                <hr class = 'd-block d-sm-block d-md-none my-3'/>
             </div>
             
             <div class = "row">
@@ -178,7 +178,7 @@
                     <div class = 'col-6 col-sm-6 col-md-1'>
                         <a :id="'update-'+external_missionaries[index]._id" @click="updateExternalMissionary(external_missionaries[index])" class = 'btn btn-primary btn-block mt-4'>Update</a>
                     </div>
-                    <hr class = 'd-block d-sm-block d-md-none py-4'/>
+                    <hr class = 'd-block d-sm-block d-md-none my-3'/>
                 </div>
                 <div class = "row">
                     <div class = 'col-sm-auto'>
