@@ -19,6 +19,34 @@
         internal_missionaries.value.push(response.data)
     }
 
+    const createExternalMissionary = async () => {
+        const response = await axios.post('https://weasel.okcsouthstake.org/api/missionaries/external', {
+            email: '',
+            ward: '',
+            name: '',
+            location: {
+                city: '',
+                state: '',
+                country: ''
+            }
+        })
+        external_missionaries.value.push(response.data)
+    }
+
+    const deleteInternalMissionary = async (missionary) => {
+        await axios.delete(`https://weasel.okcsouthstake.org/api/missionaries/internal/${missionary._id}`)
+        internal_missionaries.value = internal_missionaries.value.filter((missionary) => {
+            return missionary._id !== missionary._id
+        })
+    }
+
+    const deleteExternalMissionary = async (missionary) => {
+        await axios.delete(`https://weasel.okcsouthstake.org/api/missionaries/external/${missionary._id}`)
+        external_missionaries.value = external_missionaries.value.filter((missionary) => {
+            return missionary._id !== missionary._id
+        })
+    }
+
     const updateInternalMissionary = async (missionary) => {
         let phone = document.getElementById('phone-'+missionary._id).value
         let ward = document.getElementById('ward-'+missionary._id).value
@@ -67,7 +95,7 @@
                     <input type = 'text' class = 'form-control' placeholder = 'Ward' :value="missionary.ward" :id="'ward-'+internal_missionaries[index]._id"/>
                 </div>
                 <div class = 'col-1'>
-                    <a id = 'delete' href = '#' class = 'btn btn-primary btn-block mt-4'>Delete</a>
+                    <a id = 'delete' @click="deleteInternalMissionary(internal_missionaries[index])" class = 'btn btn-primary btn-block mt-4'>Delete</a>
                 </div>
                 <div class = 'col-1'>
                     <a :id="'update-'+internal_missionaries[index]._id" @click="updateInternalMissionary(internal_missionaries[index])" class = 'btn btn-primary btn-block mt-4'>Update</a>
@@ -84,7 +112,44 @@
             <h1 class = 'text-center m-0'>External Missionaries</h1>
             <hr/>
             <form>
-
+                <h2 class = 'text-center'>Edit Missionary Companionships</h2>
+                <div v-for = '(missionary, index) in external_missionaries' :key = 'index' class = 'row'>
+                    <div class = 'col-2'>
+                        <label for = 'email'>Email</label>
+                        <input type = 'text' class = 'form-control' placeholder = 'Email' :value="missionary.email" :id="'email-'+external_missionaries[index]._id" />
+                    </div>
+                    <div class = 'col-2'>
+                        <label for = 'ward'>Ward</label>
+                        <input type = 'text' class = 'form-control' placeholder = 'Ward' :value="missionary.ward" :id="'ward-'+external_missionaries[index]._id"/>
+                    </div>
+                    <div class = 'col-2'>
+                        <label for = 'name'>Name</label>
+                        <input type = 'text' class = 'form-control' placeholder = 'Name' :value="missionary.name" :id="'name-'+external_missionaries[index]._id"/>
+                    </div>
+                    <div class = 'col-1'>
+                        <label for = 'city'>City</label>
+                        <input type = 'text' class = 'form-control' placeholder = 'City' :value="missionary.location.city" :id="'city-'+external_missionaries[index]._id"/>
+                    </div>
+                    <div class = 'col-1'>
+                        <label for = 'state'>State</label>
+                        <input type = 'text' class = 'form-control' placeholder = 'State' :value="missionary.location.state" :id="'state-'+external_missionaries[index]._id"/>
+                    </div>
+                    <div class = 'col-2'>
+                        <label for = 'country'>Country</label>
+                        <input type = 'text' class = 'form-control' placeholder = 'Country' :value="missionary.location.country" :id="'country-'+external_missionaries[index]._id"/>
+                    </div>
+                    <div class = 'col-1'>
+                        <a id = 'delete' @click="deleteExternalMissionary(external_missionaries[index])" class = 'btn btn-primary btn-block mt-4'>Delete</a>
+                    </div>
+                    <div class = 'col-1'>
+                        <a :id="'update-'+external_missionaries[index]._id" @click="updateExternalMissionary(external_missionaries[index])" class = 'btn btn-primary btn-block mt-4'>Update</a>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = 'col-sm-auto'>
+                        <a @click="createExternalMissionary" class = 'btn btn-secondary btn-block mt-4'>Add</a>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
