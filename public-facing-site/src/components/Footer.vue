@@ -27,7 +27,7 @@
     <div class = "container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-5 my-4 border-top row mx-3 pb-0 mb-0" id="footer">
 
-        <div class="col col-lg-6 col-md-12 col-sm-12 text-align-left align-items-start py-3 px-5 mt-1" id = "footer-left">
+        <div class="col-12 col-lg-6 col-md-12 col-sm-12 text-align-left align-items-start py-3 px-5 mt-1" id = "footer-left">
             <h1 style = "line-height:0.5;"><span class="text-center" style = "font-size:84px;line-height:1">OKC</span><br><span style = "font-size:32px">South Stake</span></h1>
             <ul class="nav list-unstyled d-flex pt-3">
                 <li class="ms-2"><a class="link" :href="ig_link"><Instagram/></a></li>
@@ -40,7 +40,7 @@
             </p>
         </div>
 
-        <div class = "col col-lg-4 col-md-12 col-sm-12 py-3 px-5 mt-1" id="footer-right">
+        <div class = "col-12 col-lg-4 col-md-12 col-sm-12 py-3 px-5 mt-1" id="footer-right">
             <div class = "row align-items-start justify-content-start">
                 <div class = "col-6">
                     <h5 class = "w-100 text-muted">Navigation</h5>
