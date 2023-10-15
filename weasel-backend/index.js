@@ -51,7 +51,7 @@ app.use("/api/persons",cors({origin: 'https://wards.okcsouthstake.org',credentia
 app.use("/api/worships",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
 app.use("/api/tools",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
 app.use("/api/users",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
-app.use("/api/missionaries/outgoing",cors({origin: 'https://missionaries.okcsouthstake.org',credentials: true}))
+app.use("/api/missionaries/external",cors({origin: 'https://missionaries.okcsouthstake.org',credentials: true}))
 app.use("/api/missionaries/internal",cors({origin: 'https://missionaries.okcsouthstake.org',credentials: true}))
 app.use("/api/hc-reports",cors({origin: 'https://highcouncil.okcsouthstake.org',credentials: true}))
 
@@ -75,7 +75,7 @@ app.use('/api/persons', person_routes)
 app.use('/api/worships', worship_routes)
 app.use('/api/tools', tool_routes)
 app.use('/api/users', user_routes)
-app.use('/api/missionaries/outgoing', outgoing_missionary_routes)
+app.use('/api/missionaries/external', outgoing_missionary_routes)
 app.use('/api/missionaries/internal', internal_missionary_routes)
 
 app.use('/api/hc-reports', (req, res, next) => {

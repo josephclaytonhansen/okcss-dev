@@ -76,6 +76,45 @@
         })
     }
 
+    const updateExternalMissionary = async (missionary) => {
+        let email = document.getElementById('email-'+missionary._id).value
+        let ward = document.getElementById('ward-'+missionary._id).value
+        let name = document.getElementById('name-'+missionary._id).value
+        let city = document.getElementById('city-'+missionary._id).value
+        let state = document.getElementById('state-'+missionary._id).value
+        let country = document.getElementById('country-'+missionary._id).value
+        await axios.put(`https://weasel.okcsouthstake.org/api/missionaries/external/${missionary._id}`, {
+            email: email,
+            ward: ward,
+            name: name,
+            location: {
+                city: city,
+                state: state,
+                country: country
+            }
+        }).then((response) => {
+            //update text of button to say "updated" and class to be btn-success
+            let updateButton = document.getElementById('update-'+missionary._id)
+            updateButton.innerText = 'Updated!'
+            updateButton.classList.add('btn-success')
+            updateButton.classList.remove('btn-primary')
+            external_missionaries.value = external_missionaries.value.map((missionary) => {
+                if (missionary._id === response.data._id) {
+                    return response.data
+                } else {
+                    return missionary
+                }
+            })
+            //after two seconds, change text back to "update" and class back to btn-primary
+            setTimeout(() => {
+                updateButton.innerText = 'Update'
+                updateButton.classList.add('btn-primary')
+                updateButton.classList.remove('btn-success')
+                
+            }, 2000)
+        })
+    }
+
 </script>
 
 <template>
