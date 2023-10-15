@@ -204,10 +204,10 @@ const deleteReport = (id) => {
                     </div>
                     <div class = "col-12 col-sm-12 col-md-6">
                         <div class = "row align-items-center" style = "flex-wrap:nowrap" id = "week-buttons">
-                            <div class = "col px-0 week-button">
+                            <div class = "col-3 col-sm-3 col-md-1 px-0 week-button">
                                 <a class = "btn btn-info" @click = "decrementCurrentWeek">&#9664;</a>
                             </div>
-                            <div class ="dropdown-weeks col px-1 week-button">
+                            <div class ="dropdown-weeks col-6 col-sm-6 col-md-10 px-1 week-button">
                             <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{currentWeek}}
                             </button>
@@ -237,7 +237,7 @@ const deleteReport = (id) => {
                                 </div>
                             </ul>
                         </div>
-                            <div class = "col px-0 week-button">
+                            <div class = "col-3 col-sm-3 col-md-1 px-0 week-button">
                                 <a class = "btn btn-info" @click = "incrementCurrentWeek">&#9654;</a>
                             </div>
                         </div>
@@ -365,9 +365,6 @@ pre, code{
 }
 
 @media screen and (max-width: 1000px) {
-    #week-buttons {
-        margin-left:-4rem;
-    }
     .report-content{
         width:120%;
         margin-left: -30%;
