@@ -240,7 +240,7 @@ watch(currentTab, tabChanged)
         display:none;
     }
     #ward-select{
-        left: 20vw;
+        left: 22vw;
     }
 }
 </style>
