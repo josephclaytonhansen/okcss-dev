@@ -25,6 +25,7 @@ const worship = reactive({
 })
 
 function splitEventsByCategory(events) {
+  let all = events
   let primary = []
   let ward = []
   let relief_society = []
@@ -39,7 +40,8 @@ function splitEventsByCategory(events) {
     'Young Women\'s': yw,
     'Young Men\'s': ym,
     'Elder\'s Quorum': elders_quorum,
-    'Youth': youth
+    'Youth': youth,
+    "all": all
   }
   events.forEach((event) => {
     cat_match[event.organization].push(event)
