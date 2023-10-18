@@ -69,7 +69,7 @@
 
         <div class = "w-100 text-align-center d-flex flex-wrap justify-content-center align-items-center mt-3 mb-2">
             <span class="mb-3 mb-md-0 me-2 ms-2 text-muted small border-top py-1" id = "disclaimer">
-                ©{{year}} Oklahoma City South Stake | OKCSouthStake.org is not edited, reviewed, or maintained by <a href = "https://churchofjesuschrist.org">The Church of Jesus Christ of Latter Day Saints.</a></span>
+                ©{{year}} Oklahoma City South Stake | OKCSouthStake.org is not edited, reviewed, or maintained by <a href = "https://churchofjesuschrist.org">The Church of Jesus Christ of Latter Day Saints</a> | <a href = '/privacy-policy'>Privacy Policy</a></span>
         </div>
   </footer>
 </div>
