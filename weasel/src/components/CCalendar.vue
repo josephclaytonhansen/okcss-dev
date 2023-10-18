@@ -52,7 +52,7 @@
     </div>
     <div>
         <div class = "row stretch wrap" id = "calendar-container">
-            <div class = "col-4 fwc">
+            <div class = "col-4 fwc" id="agenda">
                 <div v-if = "currentOrganization === 'ward'">
                     <Agenda :events="events.Ward" :ward="ward"/>
                 </div>
@@ -95,5 +95,10 @@
 <style scoped>
 #calendar-container{
     height:auto;
+}
+@media print {
+    #agenda{
+        display:none;
+    }
 }
 </style>
