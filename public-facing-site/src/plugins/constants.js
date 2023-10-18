@@ -41,6 +41,8 @@ const contentURLMappings = {
     "/what-are-temples": "what-are-temples",
     "/what-is-a-temple": "what-are-temples",
     "/what-is-the-temple": "what-are-temples",
+    "/privacy-policy": "privacy-policy",
+    "privacy": "privacy-policy",
 }
 
 const externalURLMappings = {

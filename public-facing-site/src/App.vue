@@ -34,6 +34,7 @@
     import Service from './components/pages/Service.vue'
     import OKCTemple from './components/pages/OKCTemple.vue'
     import WhatAreTemples from './components/pages/WhatAreTemples.vue'
+    import PrivacyPolicy from './components/pages/PrivacyPolicy.vue'
 
     const toast = reactive({
         duration: 2000,
@@ -79,6 +80,7 @@ onMounted(() => {
             <Service v-else-if = "currentContent === 'service'"/>
             <OKCTemple v-else-if = "currentContent === 'okc-temple'"/>
             <WhatAreTemples v-else-if = "currentContent === 'what-are-temples'"/>
+            <PrivacyPolicy v-else-if = "currentContent === 'privacy-policy'"/>
             <Home v-else/>
         </Main>
         <Toast :toast="toast"/>
