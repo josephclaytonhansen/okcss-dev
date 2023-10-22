@@ -446,14 +446,14 @@ const peoplesLength = computed(() => {
                         </div>
                         <hr>
                         <div v-for="(person, index) in persons" class = "row flex-between col-12 event wrap-t">
-                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.name" :id = "contact._id + '-name'"></p></div>
-                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.position" :id = "contact._id + '-position'"></p></div>
-                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.organization" :id = "contact._id + '-organization'"></p></div>
-                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.phone" :id = "contact._id + '-phone'"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.name" :id = "person._id + '-name'"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.position" :id = "person._id + '-position'"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.organization" :id = "person._id + '-organization'"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.phone" :id = "person._id + '-phone'"></p></div>
                             <div class = "col-1 fwc col-grow"><p><input class = "ei" type="email" v-model="person.email" :id = "contact._id + '-email'"></p></div>
-                            <div class = "col-4 fwc col-grow"><p><input class = "ei" v-model="person.bio" :id = "contact._id + '-bio'"></p></div>
-                            <div class = "col-1 fwc col-grow"><p><input class = "ei" v-model="person.image.src" :id = "contact._id + '-image'"></p></div>
-                            <div class = "fwc"><p><select v-model="person.size" :id = "contact._id + '-size'"><option>full</option><option>small</option></select></p></div>
+                            <div class = "col-4 fwc col-grow"><p><input class = "ei" v-model="person.bio" :id = "person._id + '-bio'"></p></div>
+                            <div class = "col-1 fwc col-grow"><p><input class = "ei" v-model="person.image.src" :id = "person._id + '-image'"></p></div>
+                            <div class = "fwc"><p><select v-model="person.size" :id = "person._id + '-size'"><option>full</option><option>small</option></select></p></div>
                             <div class = "event-delete col-shrink" @click="deleteContact(person._id)"><Trash2/></div>
                         </div>
                     </div>
