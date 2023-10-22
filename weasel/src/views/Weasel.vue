@@ -179,29 +179,23 @@ const updateEvents = async() => {
 
         axios.put(`https://weasel.okcsouthstake.org/api/events/${event._id}`, event)
         .then((response) => {
-            toast.success("Event details updated")
+            if (response.status === 200) {
+                toast.success("Event updated")
+            } else {
+                toast.error(`${event.title}` + ` not updated`)
+            }
         })
     })
 }
 
 const updateContacts = async() => {
     persons.forEach(contact => {
-        contact.name = document.getElementById(`${contact._id}-name`).value
-        contact.phone = document.getElementById(`${contact._id}-phone`).value
-        contact.email = document.getElementById(`${contact._id}-email`).value
-        contact.organization = document.getElementById(`${contact._id}-organization`).value
-        contact.position = document.getElementById(`${contact._id}-position`).value
-        contact.img = {
-            src: '',
-            alt: contact.name,
-            width: '100%',
-            class: 'person-img square'
-        }
-        contact.image.src = document.getElementById(`${contact._id}-image`).value
-        contact.size = document.getElementById(`${contact._id}-size`).value
-
         axios.put(`https://weasel.okcsouthstake.org/api/persons/${contact._id}`, contact).then(response => {
-            toast.success("Contact updated")
+            if (response.status === 200) {
+                toast.success("Contact updated")
+            } else {
+                toast.error(`${contact.name}` + ` not updated`)
+            }
         })
     })
 }
