@@ -184,6 +184,28 @@ const updateEvents = async() => {
     })
 }
 
+const updateContacts = async() => {
+    updateContacts.forEach(contact => {
+        contact.name = document.getElementById(`${contact._id}-name`).value
+        contact.phone = document.getElementById(`${contact._id}-phone`).value
+        contact.email = document.getElementById(`${contact._id}-email`).value
+        contact.organization = document.getElementById(`${contact._id}-organization`).value
+        contact.position = document.getElementById(`${contact._id}-position`).value
+        contact.img = {
+            src: '',
+            alt: contact.name,
+            width: '100%',
+            class: 'person-img square'
+        }
+        contact.image.src = document.getElementById(`${contact._id}-image`).value
+        contact.size = document.getElementById(`${contact._id}-size`).value
+
+        axios.put(`https://weasel.okcsouthstake.org/api/persons/${contact._id}`, contact).then(response => {
+            toast.success("Contact updated")
+        })
+    })
+}
+
 const deleteEvent = async(id) => {
     await axios.delete(`https://weasel.okcsouthstake.org/api/events/${id}`)
     .then((response) => {
@@ -424,14 +446,14 @@ const peoplesLength = computed(() => {
                         </div>
                         <hr>
                         <div v-for="(person, index) in persons" class = "row flex-between col-12 event wrap-t">
-                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.name"></p></div>
-                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.position"></p></div>
-                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.organization"></p></div>
-                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.phone"></p></div>
-                            <div class = "col-1 fwc col-grow"><p><input class = "ei" type="email" v-model="person.email"></p></div>
-                            <div class = "col-4 fwc col-grow"><p><input class = "ei" v-model="person.bio"></p></div>
-                            <div class = "col-1 fwc col-grow"><p><input class = "ei" v-model="person.image.src"></p></div>
-                            <div class = "fwc"><p><select v-model="person.size"><option>full</option><option>small</option></select></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.name" :id = "contact._id + '-name'"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.position" :id = "contact._id + '-position'"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.organization" :id = "contact._id + '-organization'"></p></div>
+                            <div class = "col-1 fwc"><p><input class = "ei" v-model="person.phone" :id = "contact._id + '-phone'"></p></div>
+                            <div class = "col-1 fwc col-grow"><p><input class = "ei" type="email" v-model="person.email" :id = "contact._id + '-email'"></p></div>
+                            <div class = "col-4 fwc col-grow"><p><input class = "ei" v-model="person.bio" :id = "contact._id + '-bio'"></p></div>
+                            <div class = "col-1 fwc col-grow"><p><input class = "ei" v-model="person.image.src" :id = "contact._id + '-image'"></p></div>
+                            <div class = "fwc"><p><select v-model="person.size" :id = "contact._id + '-size'"><option>full</option><option>small</option></select></p></div>
                             <div class = "event-delete col-shrink" @click="deleteContact(person._id)"><Trash2/></div>
                         </div>
                     </div>
