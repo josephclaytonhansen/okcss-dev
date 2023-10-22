@@ -185,7 +185,7 @@ const updateEvents = async() => {
 }
 
 const updateContacts = async() => {
-    updateContacts.forEach(contact => {
+    persons.forEach(contact => {
         contact.name = document.getElementById(`${contact._id}-name`).value
         contact.phone = document.getElementById(`${contact._id}-phone`).value
         contact.email = document.getElementById(`${contact._id}-email`).value
