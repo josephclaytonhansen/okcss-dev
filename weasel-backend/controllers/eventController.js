@@ -32,7 +32,7 @@ const updateEvent = asyncHandler(async (req, res) => {
         event.ward = req.body.ward || event.ward
         event.time = req.body.time || event.time
         event.title = req.body.title || event.title
-        event.description = req.body.description || event.description
+        event.description = req.body.description
         event.color = req.body.color || event.color
         event.category = req.body.category || event.category
         event.organization = req.body.organization || event.organization
