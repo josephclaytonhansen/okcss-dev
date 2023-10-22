@@ -73,14 +73,18 @@ const organizationsFilter = (organizations) => {
 }
 
 const addEvent = async() => {
+    let today = new Date()
+    let today_formatted = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()} ${today.getHours()}:${today.getMinutes()}`
+    let today_plus_hour = new Date(today.getTime() + 60 * 60 * 1000)
+    let today_plus_hour_formatted = `${today_plus_hour.getFullYear()}-${today_plus_hour.getMonth() + 1}-${today_plus_hour.getDate()} ${today_plus_hour.getHours()}:${today_plus_hour.getMinutes()}`
     await axios.post(`https://weasel.okcsouthstake.org/api/events`, {
         ward: ward.value,
         category: organization.value,
         title: "New Event",
         description: "",
         time: {
-            start: "2024-01-01 12:05",
-            end: "2024-01-01 14:05"
+            start: today_formatted,
+            end: today_plus_hour_formatted
         },
     })
     .then((response) => {
