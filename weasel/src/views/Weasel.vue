@@ -450,7 +450,7 @@ const peoplesLength = computed(() => {
                             <div class = "col-1 fwc"><p><input class = "ei" v-model="person.position" :id = "person._id + '-position'"></p></div>
                             <div class = "col-1 fwc"><p><input class = "ei" v-model="person.organization" :id = "person._id + '-organization'"></p></div>
                             <div class = "col-1 fwc"><p><input class = "ei" v-model="person.phone" :id = "person._id + '-phone'"></p></div>
-                            <div class = "col-1 fwc col-grow"><p><input class = "ei" type="email" v-model="person.email" :id = "contact._id + '-email'"></p></div>
+                            <div class = "col-1 fwc col-grow"><p><input class = "ei" type="email" v-model="person.email" :id = "person._id + '-email'"></p></div>
                             <div class = "col-4 fwc col-grow"><p><input class = "ei" v-model="person.bio" :id = "person._id + '-bio'"></p></div>
                             <div class = "col-1 fwc col-grow"><p><input class = "ei" v-model="person.image.src" :id = "person._id + '-image'"></p></div>
                             <div class = "fwc"><p><select v-model="person.size" :id = "person._id + '-size'"><option>full</option><option>small</option></select></p></div>
