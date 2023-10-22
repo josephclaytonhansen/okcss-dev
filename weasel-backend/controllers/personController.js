@@ -28,8 +28,8 @@ const updatePerson = asyncHandler(async (req, res) => {
         person.name = req.body.name || person.name
         person.image = req.body.image || person.image
         person.position = req.body.position || person.position
-        person.email = req.body.email || person.email
-        person.phone = req.body.phone || person.phone
+        person.email = req.body.email
+        person.phone = req.body.phone
         person.size = req.body.size || person.size
         person.organization = req.body.organization || person.organization
         person.bio = req.body.bio || person.bio
