@@ -77,7 +77,7 @@ const addEvent = async() => {
         ward: ward.value,
         category: organization.value,
         title: "New Event",
-        description: "Event description",
+        description: "",
         time: {
             start: "2024-01-01 12:05",
             end: "2024-01-01 14:05"
@@ -391,7 +391,7 @@ const peoplesLength = computed(() => {
                         <hr>
                         <div v-for="(event, index) in events" class = "row flex-between col-12 event wrap-t">
                             <div class = "col-2 event-title col-shrink fwc"><p><input class = "ei" v-model="event.title" :id = "event._id + '-title'"></p></div>
-                            <div class = "col-3 event-description col-grow fwc"><p><textarea class = "ei" v-model="event.description" :id = "event._id + '-description'"></textarea></p></div>
+                            <div class = "col-3 event-description col-grow fwc"><p><textarea class = "ei" v-model="event.description" :id = "event._id + '-description'" placeholder="Event details"></textarea></p></div>
                             <div class = "col-2 event-organization col-shrink fwc"><p><select v-model="event.organization" :id = "event._id + '-organization'">
                                 <option :selected="event.organization === organization" v-for="organization in organizationsFilter(organizations)">{{organization}}</option><option>Ward</option><option>Stake</option>
                             </select></p></div>
