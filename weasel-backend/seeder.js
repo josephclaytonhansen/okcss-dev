@@ -3,6 +3,8 @@ import User from './models/user.js'
 import db from './mongo.js'
 
 let users = [
+    {
+    }
 ]
 
 const importData = async () => {

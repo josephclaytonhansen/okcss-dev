@@ -59,7 +59,15 @@ const eventsWithinAWeek = (events) => {
         let bDate = new Date(b.time.start)
         return aDate - bDate
     })
-    return eventsWithinAWeek
+    //remove events from the past
+    let eventsWithinAWeekAndNotInThePast = []
+    for (let i = 0; i < eventsWithinAWeek.length; i++) {
+        let eventDate = new Date(eventsWithinAWeek[i].time.start)
+        if (eventDate >= today) {
+            eventsWithinAWeekAndNotInThePast.push(eventsWithinAWeek[i])
+        }
+    }
+    return eventsWithinAWeekAndNotInThePast
 }
     
 }
