@@ -3,7 +3,7 @@ import {ref, reactive} from 'vue'
 const events = ref(["Stake events", "Classes"])
 const events_links = reactive({'Stake events':"/events", 'Classes':"/classes"})
 const temples = ref(["Temple info", "Schedule appointment", "What are temples?"])
-const temples_links = reactive({'Temple info':"/okc-temple", 'Schedule appointment':"/schedule-temple-appointment", 'What are temples?':"/what-are-temples"})
+const temples_links = reactive({'Temple info':"/okc-temple", 'Schedule appointment':"https://www.churchofjesuschrist.org/temples/schedule/appointment?lang=eng", 'What are temples?':"https://www.churchofjesuschrist.org/study/manual/gospel-topics/temples?lang=eng#p2"})
 
 const props = defineProps({
     wards: Array,
