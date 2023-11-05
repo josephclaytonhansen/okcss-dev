@@ -240,7 +240,7 @@ position: relative;
         height:410px!important;
     }
     #hero-image .square-img{
-        height:45vh!important;
+        height:42vh!important;
     }
     #title{
         line-height:1;
