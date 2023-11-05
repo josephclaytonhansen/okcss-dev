@@ -101,7 +101,7 @@ onMounted(async () => {
 
         <div class="col col-1 col-sm-12 col-md-1" id="hero-spacer"></div>
 
-        <div class="col col-md-5 col-12 col-sm-12" id="hero-image">
+        <div class="col col-md-5 col-12 col-sm-12 pt-2 pt-sm-2 pt-md-0" id="hero-image">
 
             <div class="hd-img-container">
                 <img class="square-img" src="/assets/Pictures/Home/home2.png">
@@ -237,10 +237,13 @@ position: relative;
 @media screen and (max-width: 768px) {
     #hero-image{
         width:100%;
-        height:410px;
+        height:410px!important;
     }
     #title{
         line-height:1;
+    }
+    #beliefs-row{
+        text-align: center!important;
     }
 }
 #hero-image:after {
