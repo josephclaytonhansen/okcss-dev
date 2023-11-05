@@ -239,6 +239,9 @@ position: relative;
         width:100%;
         height:410px!important;
     }
+    #hero-image .square-img{
+        height:45vh!important;
+    }
     #title{
         line-height:1;
     }
