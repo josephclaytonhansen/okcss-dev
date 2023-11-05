@@ -89,4 +89,7 @@ function wardURL(weaselLoc, ward){
 </template>
 
 <style scoped>
+.small{
+    font-size:0.7em;
+}
 </style>

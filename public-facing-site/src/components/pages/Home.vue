@@ -237,6 +237,7 @@ position: relative;
 @media screen and (max-width: 768px) {
     #hero-image{
         width:100%;
+        height:410px;
     }
     #title{
         line-height:1;
