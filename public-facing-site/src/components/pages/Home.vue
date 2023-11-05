@@ -241,6 +241,7 @@ position: relative;
     }
     #hero-image .square-img{
         height:42vh!important;
+        object-position: top center;
     }
     #title{
         line-height:1;
