@@ -46,7 +46,7 @@ onMounted(async () => {
             </div>
         </div>
         <div class="col col-1 col-sm-12 col-md-1" id="hero-spacer"></div>
-        <div class="col col-md-6 col-sm-12 col-12">
+        <div class="col col-md-6 col-sm-12 col-12" id = "hero-hero">
             <h1 id="title" class="mb-0 py-0">
                 Join Us to Worship<br /><span id='title-small'>Our Savior Jesus Christ</span>
             </h1>
@@ -244,6 +244,13 @@ position: relative;
     }
     #beliefs-row{
         text-align: center!important;
+    }
+    #hero-hero{
+        text-align:center!important;
+    }
+    #hero-hero h1{
+        font-size:2rem!important;
+        margin-bottom:-2rem!important;
     }
 }
 #hero-image:after {
