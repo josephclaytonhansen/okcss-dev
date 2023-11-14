@@ -46,6 +46,7 @@ const tools = reactive({
     sbmr: '',
     vtpc: '',
     sutftm: '',
+    ls: ''
 })
 
 const tool_id = ref('')
@@ -55,7 +56,8 @@ const tool_labels = reactive({
     sbu: 'Schedule building use',
     sbmr: 'Submit building maintenance request',
     vtpc: 'View temple preparation classes',
-    sutftm: 'Sign up to feed the missionaries'
+    sutftm: 'Sign up to feed the missionaries',
+    ls: 'Lesson schedules'
 })
 
 const events = reactive([])
