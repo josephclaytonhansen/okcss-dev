@@ -8,6 +8,7 @@ const toolSchema = new mongoose.Schema({
     vtpc: String,
     sutftm: String,
     vso: String,
+    ls: String,
     ward: String,
 })
 

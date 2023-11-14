@@ -32,6 +32,7 @@ const updateTool = asyncHandler(async (req, res) => {
         tool.vtpc = req.body.vtpc || tool.vtpc
         tool.sutftm = req.body.sutftm || tool.sutftm
         tool.vso = req.body.vso || tool.vso
+        tool.ls = req.body.ls || tool.ls
         const updatedTool = await tool.save()
         console.log(updatedTool)
         res.json(updatedTool)

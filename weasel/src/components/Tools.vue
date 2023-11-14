@@ -13,6 +13,7 @@ const Props = defineProps({
     sbmrHTML: String,
     vtpcHTML: String,
     sutftmHTML: String,
+    lsHTML: String,
 })
 
 </script>
@@ -25,6 +26,7 @@ const Props = defineProps({
             <button class = "tool" :class="currentTool === 'sbmr' ? 'active-tool' : ''" @click="tabChanged('sbmr')">Submit building maintenance request</button>
             <button class = "tool" :class="currentTool === 'vtpc' ? 'active-tool' : ''" @click="tabChanged('vtpc')">View temple/missionary preparation classes</button>
             <button class = "tool" :class="currentTool === 'sutftm' ? 'active-tool' : ''" @click="tabChanged('sutftm')">Sign up to feed the missionaries</button>
+            <button class = "tool" :class="currentTool === 'ls' ? 'active-tool' : ''" @click="tabChanged('ls')">Lesson schedules</button>
         </div>
         <div class = "column flex-between col-8 fwc tool-section">
             <div v-if = "currentTool === 'stri'">
@@ -55,7 +57,10 @@ const Props = defineProps({
                 <h2>View service opportunities</h2>
                 <div v-html="vsoHTML"></div>
             </div>
-
+            <div v-else-if = "currentTool === 'ls'">
+                <h2>Lesson schedules</h2>
+                <div v-html="lsHTML"></div>
+            </div>
         </div>
     </div>
 </template>

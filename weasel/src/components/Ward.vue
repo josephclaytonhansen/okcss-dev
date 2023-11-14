@@ -20,7 +20,8 @@ const props = defineProps({
         sutftm: String,
         vso: String,
         vsrc: String,
-        vtpc: String
+        vtpc: String,
+        ls: String
     },
     worship: {
         location: {
@@ -133,6 +134,7 @@ watch(currentTab, tabChanged)
             :striHTML="tools.stri"
             :sutftmHTML="tools.sutftm"
             :vtpcHTML="tools.vtpc"
+            :lsHTML="tools.ls"
             />
         </div>
 
