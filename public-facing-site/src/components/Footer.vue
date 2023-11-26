@@ -57,7 +57,7 @@
                     </menu>
                 </div>
                 <div class = "col-lg-6 col-md-12 col-sm-12">
-                    <h5 class = "w-100 text-muted">Wards</h5>
+                    <h5 class = "w-100 text-muted">Congregations</h5>
                     <menu>
                         <ul class="nav list-unstyled d-flex flex-column w-100 footer-nav-lc">
                             <li v-for = "ward in wards" class="ms-2"><a class="link" :href="wardURL(weaselLoc, ward)">{{ward}}</a></li>
