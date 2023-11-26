@@ -41,7 +41,7 @@ function wardURL(weaselLoc, ward){
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="">Wards</a>
+                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="">Congregations</a>
                         <ul class="dropdown-menu">
                                 <li v-for = "ward in wards"><a class="dropdown-item" :href = "wardURL(weaselLoc, ward)">{{ward}}</a></li>
                         </ul>
