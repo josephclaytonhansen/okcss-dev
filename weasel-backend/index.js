@@ -19,30 +19,9 @@ import outgoing_missionary_routes from './routes/outgoingMissionaryRoutes.js'
 import internal_missionary_routes from './routes/internalMissionaryRoutes.js'
 import hc_report_routes from './routes/hc_reportRoutes.js'
 
-import multer from 'multer'
+
 
 const app = express()
-
-const lessonScheduleStorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/images/lesson-schedules')
-    },
-    filename: function (req, file, cb) {
-        let extension = file.mimetype.split('/')[1]
-        cb(null, file.fieldname + '-' + Date.now() + '.' + extension)
-    }
-})
-
-const bulletinsStorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/images/bulletins')
-    },
-    filename: function (req, file, cb) {
-        let extension = file.mimetype.split('/')[1]
-        cb(null, file.fieldname + '-' + Date.now() + '.' + extension)
-    }
-
-})
 
 app.use(express.urlencoded({
     extended: false
@@ -77,18 +56,6 @@ app.use("/api/users",cors({origin: 'https://wards.okcsouthstake.org',credentials
 app.use("/api/missionaries/external",cors({origin: '*'}))
 app.use("/api/missionaries/internal",cors({origin: '*'}))
 app.use("/api/hc-reports",cors({origin: 'https://highcouncil.okcsouthstake.org',credentials: true}))
-
-app.post('/api/upload-lesson-schedule', multer({
-    storage: lessonScheduleStorage
-}).single('lessonSchedule'), (req, res) => {
-    res.send(req.file.filename)
-})
-
-app.post('/api/upload-bulletin', multer({
-    storage: bulletinsStorage
-}).single('bulletin'), (req, res) => {
-    res.send(req.file.filename)
-})
 
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
