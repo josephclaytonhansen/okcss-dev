@@ -223,14 +223,18 @@ const updateTools = async() => {
     })
 }
 
-const peoplesLength = computed(() => {
-    try {
-        return persons.length
-    } catch (error) {
-        return 0
-    }
-    
-})
+const uploadLessonSchedule = async() => {
+    let file = document.getElementById("file").files[0]
+    let formData = new FormData()
+    formData.append("file", file)
+    formData.append("ward", ward.value)
+    await axios.post(`https://weasel.okcsouthstake.org/api/tools/upload/lesson_schedule`, formData)
+    .then((response) => {
+        toast.success("File uploaded")
+    }).catch((error) => {
+        toast.error("File not uploaded: " + error)
+    })
+}
 
 </script>
 
@@ -348,8 +352,9 @@ const peoplesLength = computed(() => {
                             <textarea v-if="key!='ls'" class="col-8 fwc tool-ta" type = "text" :id = "key" v-model = "tools[key]"></textarea>
                             <div v-if = "key=='ls'">
                                 <form enctype="multipart/form-data" method="post">
-                                    <label for="file" class = "col-8 fwc">Upload an image</label>
-                                    <input type="file" name="file" id="file" @change="uploadFile" />
+                                    <label for="file" class = "col-8 fwc">Upload a file or image</label>
+                                    <input type="file" name="file" id="file"/>
+                                    <button class = "col-4 fwc" @click = "uploadLessonSchedule">Upload</button>
                                 </form>
                             </div>
                         </div>
