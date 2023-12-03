@@ -352,7 +352,7 @@ const uploadLessonSchedule = async() => {
                             <textarea v-if="key!='ls'" class="col-8 fwc tool-ta" type = "text" :id = "key" v-model = "tools[key]"></textarea>
                             <div v-if = "key=='ls'">
                                 <form enctype="multipart/form-data" method="post">
-                                    <label for="file" class = "col-8 fwc">Upload a file or image<br><span class = "small">Maximum upload size: 5mb</span></label>
+                                    <label for="file" class = "col-8 fwc">Upload a file or image<br><span class = "text-muted fs-6">Maximum upload size: 5mb</span></label>
                                     <input type="file" name="file" id="file"/>
                                     <button class = "col-4 fwc" @click = "uploadLessonSchedule">Upload</button>
                                 </form>
