@@ -368,7 +368,7 @@ const uploadLessonSchedule = async() => {
                                 <summary>
                                     <h3 style = "margin-left:1rem;" class = "text-muted small">Instructions</h3>
                                 </summary>
-                                <p>
+                                    <p>
                                         For simple tools that are just text, type the text in enclosed in<code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags. For example, to share the phone number of the building scheduler, you could type <code>&lt;p&gt;Call the building scheduler at 405-555-5555&lt;/p&gt;</code>.
                                     </p>
                                     <p>
