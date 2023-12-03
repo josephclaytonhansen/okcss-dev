@@ -345,8 +345,13 @@ const peoplesLength = computed(() => {
 
                         <div v-for="(value, key) in tools" class = "form-group row flex-between col-12 wrap">
                             <label :for = "key" class = "col-4 fwc">{{tool_labels[key]}}</label>
-                            
-                            <textarea class="col-8 fwc tool-ta" type = "text" :id = "key" v-model = "tools[key]"></textarea>
+                            <textarea v-if="key!='ls'" class="col-8 fwc tool-ta" type = "text" :id = "key" v-model = "tools[key]"></textarea>
+                            <div v-if = "key=='ls'">
+                                <form enctype="multipart/form-data" method="post">
+                                    <label for="file" class = "col-8 fwc">Upload an image</label>
+                                    <input type="file" name="file" id="file" @change="uploadFile" />
+                                </form>
+                            </div>
                         </div>
                         </div>
                         <div class = "row flex-between col-12 wrap">
