@@ -19,7 +19,25 @@ import outgoing_missionary_routes from './routes/outgoingMissionaryRoutes.js'
 import internal_missionary_routes from './routes/internalMissionaryRoutes.js'
 import hc_report_routes from './routes/hc_reportRoutes.js'
 
+import multer from 'multer'
 
+const lessonScheduleStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/lesson-schedules')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+
+const lessonScheduleUpload = multer({
+    storage: lessonScheduleStorage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    }
+})
+
+const lessonScheduleUploadMiddleware = lessonScheduleUpload.single('lessonSchedule')
 
 const app = express()
 
