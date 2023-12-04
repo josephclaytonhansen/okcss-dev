@@ -237,6 +237,12 @@ const uploadLessonSchedule = async() => {
     })
 } catch (error) {
     toast.error("File not uploaded: " + error)
+    console.log(error)
+
+        setTimeout(() => {
+            toast.error("File not uploaded: " + error)
+            console.log(error)
+        }, 4000);
 }
 }
 
