@@ -224,26 +224,23 @@ const updateTools = async() => {
 }
 
 const uploadLessonSchedule = async() => {
-    try{
     let file = document.getElementById("file").files[0]
     let formData = new FormData()
     formData.append("file", file)
     formData.append("ward", ward.value)
+    console.log(formData)
     await axios.post(`https://weasel.okcsouthstake.org/api/tools/upload/lesson_schedule`, formData)
     .then((response) => {
         toast.success("File uploaded")
     }).catch((error) => {
         toast.error("File not uploaded: " + error)
     })
-} catch (error) {
-    toast.error("File not uploaded: " + error)
-    console.log(error)
-
-        setTimeout(() => {
-            toast.error("File not uploaded: " + error)
-            console.log(error)
-        }, 4000);
 }
+
+const submitUploadLessonSchedule = () => {
+    setTimeout(() => {
+        uploadLessonSchedule()
+    }, 4000)
 }
 
 </script>
