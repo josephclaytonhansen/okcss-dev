@@ -224,6 +224,7 @@ const updateTools = async() => {
 }
 
 const uploadLessonSchedule = async() => {
+    try{
     let file = document.getElementById("file").files[0]
     let formData = new FormData()
     formData.append("file", file)
@@ -234,6 +235,9 @@ const uploadLessonSchedule = async() => {
     }).catch((error) => {
         toast.error("File not uploaded: " + error)
     })
+} catch (error) {
+    toast.error("File not uploaded: " + error)
+}
 }
 
 </script>
