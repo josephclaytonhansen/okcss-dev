@@ -153,7 +153,13 @@ const createReport = () => {
     let newReport = {
         week: currentWeek.value,
         counselor: enteredCounselor.value,
-        content_text: document.querySelector('#reportContent').value
+        unit_attended: document.querySelector('#unit-attended').value,
+        releases_issued: document.querySelector('#releases-issued').value,
+        callings_extended: document.querySelector('#callings-extended').value,
+        pulpit_business_releases: document.querySelector('#pulpit-business-releases').value,
+        pulpit_business_sustainings: document.querySelector('#pulpit-business-sustainings').value,
+        ordainings_and_settings_apart: document.querySelector('#ordainings-and-settings-apart').value,
+        meeting_information: document.querySelector('#meeting-information').value
     }
     let response = axios.post('https://weasel.okcsouthstake.org/api/hc-reports/create/new', newReport).then(response => {
         if (response.status === 200) {
@@ -304,26 +310,34 @@ const deleteReport = (id) => {
                             <option v-for = "week in weeks" :key = "week" :selected = "week == weeks[0]">{{week}}</option>
                         </select>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-text align-items-start">Content</span>
-                        <textarea class="form-control" aria-label="With textarea" aria-describedby="contentHelp" id ="reportContent"></textarea>
-                        
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="unit-attended">Unit Attended</label>
+                        <input type="text" class="form-control" id="unit-attended">
                     </div>
-                    <div id="contentHelp" class="form-text">
-                            <p>Enter the content of the report here. This is a plain text editor- however, you can use HTML formatting to format the text. The simplest option is to paste your report in from your normal text editor (i.e. Microsoft Word, Google Docs, etc).</p>
-                            <details>
-                                <summary>Click here to see simple HTML formatting</summary>
-                                <p>Use <code>&lt;b&gt;bold text&lt;/b&gt;</code> for bold text, <code>&lt;i&gt;italicized text&lt;/i&gt;</code> for italicized text, and <code>&lt;u&gt;underlined text&lt;/u&gt;</code> for underlined text.
-                            For line breaks, use <code>&lt;br&gt;</code>.</p>
-                            <p>For headings, use <code>&lt;h1&gt;heading&lt;/h1&gt;</code>, <code>&lt;h2&gt;heading&lt;/h2&gt;</code>, etc,  through <code>&lt;h6&gt;heading&lt;/h6&gt;</code>.</p>
-
-                            <p>For lists, use <code>&lt;ul&gt;&lt;li&gt;list item 1&lt;/li&gt;&lt;li&gt;list item 2&lt;/li&gt;&lt;/ul&gt;</code>.</p>
-                            <p>If you prefer, you can use a site such as this: <a target="_blank" href = "https://onlinehtmleditor.dev/">https://onlinehtmleditor.dev/</a> to write rich text, then copy the HTML output (click 'edit HTML source code') over to here, or you can convert Word documents to HTML tags here: <a target = "_blank" href = "https://convertio.co/docx-html/">https://convertio.co/docx-html/</a></p>
-                            <p>If you use Google Docs, you can export your file as HTML, and copy that over to here.</p>
-                            </details>
-                            <br/>
-
-                        </div>
+                    <div class="input-group">
+                        <label class="input-group-text" for="releases-issued">Releases Issued</label>
+                        <input type="text" class="form-control" id="releases-issued">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group-text" for="callings-extended">Callings Extended</label>
+                        <input type="text" class="form-control" id="callings-extended">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group-text" for="pulpit-business-releases">Pulpit Business (Releases)</label>
+                        <input type="text" class="form-control" id="pulpit-business-releases">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group-text" for="pulpit-business-sustainings">Pulpit Business (Sustainings)</label>
+                        <input type="text" class="form-control" id="pulpit-business-sustainings">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group-text" for="ordainings-and-settings-apart">Ordainings and Settings Apart</label>
+                        <input type="text" class="form-control" id="ordainings-and-settings-apart">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-group-text" for="meeting-information">Meeting Information</label>
+                        <textarea class="form-control" id="meeting-information" rows="3"></textarea>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
