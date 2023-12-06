@@ -274,7 +274,16 @@ const deleteReport = (id) => {
                         <td>
                             <details>
                                 <summary>View</summary>
-                                <div v-html = "report.content_text" class = "report-content"/>
+                                
+                                    <p><strong>Unit Attended: </strong><span v-text = "report.unit_attended"></span></p>
+                                    <p><strong>Releases Issued: </strong><span v-text = "report.releases_issued"></span></p>
+                                    <p><strong>Callings Extended: </strong><span v-text = "report.callings_extended"></span></p>
+                                    <p><strong>Pulpit Business (Releases): </strong><span v-text = "report.pulpit_business_releases"></span></p>
+                                    <p><strong>Pulpit Business (Sustainings): </strong><span v-text = "report.pulpit_business_sustainings"></span></p>
+                                    <p><strong>Ordainings and Settings Apart: </strong><span v-text = "report.ordainings_and_settings_apart"></span></p>
+                                    <p><strong>Meeting Information: </strong><span v-text = "report.meeting_information"></span></p>
+                                    
+
                                 <hr/>
                                 <button class = "btn btn-danger small" @click = "deleteReport(report._id)">Delete</button>
                             </details>

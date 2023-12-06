@@ -1,4 +1,5 @@
 const parse = (content) => {
+    try{
     content = content.replace(/<script>/gi, '')
     content = content.replace(/<\/script>/gi, '')
     content = content.replace(/<\*script\*>/gi, '')
@@ -33,6 +34,10 @@ const parse = (content) => {
     }
 
     return content
+} catch (e) {
+    return content
+
+}
 }
 
 import mongoose from 'mongoose'
@@ -50,6 +55,11 @@ const highCouncilReportSchema = new mongoose.Schema({
 })
 
 highCouncilReportSchema.pre('save', function (next) {
+    const fieldsToParse = ['unit_attended', 'releases_issued', 'callings_extended', 'pulpit_business_releases', 'pulpit_business_sustainings', 'ordainings_and_settings_apart', 'meeting_information']
+    
+    fieldsToParse.forEach(field => {
+        this[field] = parse(this[field])
+    })
 
     next()
 })
