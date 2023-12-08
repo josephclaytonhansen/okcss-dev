@@ -17,7 +17,7 @@ const populate = async(req, res) => {
     let categories = null
     let all_categories = null
     if (!req.session.categories) {
-        categories = await axios.get('https://178.128.224.147:5920/category/')
+        categories = await axios.get('https://localhost:5920/category/')
         req.session.categories = categories.data
         all_categories = categories.data.map((category) => {
             return {
@@ -36,21 +36,21 @@ const populate = async(req, res) => {
     }
     let posts = null
     if (!req.session.posts) {
-        posts = await axios.get('https://178.128.224.147:5920/post/')
+        posts = await axios.get('https://localhost:5920/post/')
         req.session.posts = posts.data
     } else {
         posts = req.session.posts
     }
     let pages = null
     if (!req.session.pages) {
-        pages = await axios.get('https://178.128.224.147:5920/page/')
+        pages = await axios.get('https://localhost:5920/page/')
         req.session.pages = pages.data
     } else {
         pages = req.session.pages
     }
     let comments = null
     if (!req.session.comments) {
-        comments = await axios.get('https://178.128.224.147:5920/comment/')
+        comments = await axios.get('https://localhost:5920/comment/')
         req.session.comments = comments.data
     } else {
         comments = req.session.comments
@@ -58,7 +58,7 @@ const populate = async(req, res) => {
     let users = null
     let all_authors = null
     if (!req.session.users) {
-        users = await axios.get('https://178.128.224.147:5920/user/')
+        users = await axios.get('https://localhost:5920/user/')
         req.session.users = users.data
         all_authors = users.data.map((author) => {
             return {
@@ -101,7 +101,7 @@ const populateNew = async(req, res) => {
     let categories = null
     let all_categories = null
     if (!req.session.categories) {
-        categories = await axios.get('https://178.128.224.147:5920/category/')
+        categories = await axios.get('https://localhost:5920/category/')
         req.session.categories = categories.data
         all_categories = categories.data.map((category) => {
             return {
@@ -122,7 +122,7 @@ const populateNew = async(req, res) => {
     let users = null
     let all_authors = null
     if (!req.session.users) {
-        users = await axios.get('https://178.128.224.147:5920/user/')
+        users = await axios.get('https://localhost:5920/user/')
         req.session.users = users.data
         all_authors = users.data.map((author) => {
             return {

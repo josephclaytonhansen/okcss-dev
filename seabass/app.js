@@ -14,7 +14,7 @@ import nunjucks from 'nunjucks'
 import {default as nunjuckDate} from 'nunjucks-date'
 import rate_limit from 'express-rate-limit'
 
-import axios from 'axios'
+import axios from 'axios-https-proxy-fix'
 import User from './src/server/models/userModel.min.js'
 
 import page_routes from './src/server/routes/pageRoutes.min.js'
@@ -38,6 +38,8 @@ import cookieParser from 'cookie-parser'
 
 const app = express()
 const router = express.Router()
+
+axios.defaults.timeout = 300000
 
 app.use(express.urlencoded({
     extended: false
@@ -117,7 +119,7 @@ var certificate = fs.readFileSync('/etc/ssl/cert.pem', 'utf8')
 
 var credentials = {key: privateKey, cert: certificate} */
 
-const corsOptions = {
+/* const corsOptions = {
     origin: process.env.ORIGIN,
     credentials: true,
     optionSuccessStatus: 200
@@ -133,7 +135,7 @@ app.use((req, res, next) => {
         next()
     }
 })
-
+ */
 const nenv = nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
     autoescape: true,
     express: app,

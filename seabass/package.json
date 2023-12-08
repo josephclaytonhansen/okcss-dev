@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.min.js"
+    "start": "nodemon app.js"
   },
   "author": "Joseph Hansen (josephclaytonhansen@gmail.com)",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",
+    "axios-https-proxy-fix": "^0.17.1",
     "base32": "^0.0.7",
     "connect-mongodb-session": "^3.1.1",
     "cookie-parser": "^1.4.6",
