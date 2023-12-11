@@ -1,9 +1,9 @@
 <script setup>
     import { ref } from 'vue'
-    import Header from './components/Header.vue'
-    import Footer from './components/Footer.vue'
-    import Sidebar from './components/Sidebar.vue'
-    import Article from './components/Article.vue'
+    import Header from './Header.vue'
+    import Footer from './Footer.vue'
+    import Sidebar from './Sidebar.vue'
+    import Article from './Article.vue'
 
     import { onMounted, computed } from 'vue'
     import axios from 'axios'
