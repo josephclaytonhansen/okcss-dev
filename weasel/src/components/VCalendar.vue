@@ -18,7 +18,10 @@ export default {
     props: {
         events: Array,
         config: {
-          defaultMode: 'month'
+          defaultMode: 'month',
+          week: {
+            startsOn: 'sunday'
+          },
         }
     }
 }
