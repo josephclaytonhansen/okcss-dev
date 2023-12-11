@@ -29,8 +29,8 @@ export default {
             scrollToHour: 10
           },
           dayBoundaries: {
-            start: 8,
-            end: 20
+            start: 6,
+            end: 23
           }
         }
     }
