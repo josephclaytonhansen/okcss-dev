@@ -28,10 +28,6 @@ export default {
             startsOn: 'sunday',
             scrollToHour: 10
           },
-          dayBoundaries: {
-            start: 6,
-            end: 23
-          }
         }
     }
 }}
