@@ -18,6 +18,7 @@ import user_routes from './routes/userRoutes.js'
 import outgoing_missionary_routes from './routes/outgoingMissionaryRoutes.js'
 import internal_missionary_routes from './routes/internalMissionaryRoutes.js'
 import hc_report_routes from './routes/hc_reportRoutes.js'
+import training_routes from './routes/trainingRoutes.js'
 
 const app = express()
 
@@ -54,6 +55,7 @@ app.use("/api/users",cors({origin: 'https://wards.okcsouthstake.org',credentials
 app.use("/api/missionaries/external",cors({origin: '*'}))
 app.use("/api/missionaries/internal",cors({origin: '*'}))
 app.use("/api/hc-reports",cors({origin: 'https://highcouncil.okcsouthstake.org',credentials: true}))
+app.use("/api/training",cors({origin: 'https://training.okcsouthstake.org',credentials: true}))
 
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
@@ -77,6 +79,7 @@ app.use('/api/tools', tool_routes)
 app.use('/api/users', user_routes)
 app.use('/api/missionaries/external', outgoing_missionary_routes)
 app.use('/api/missionaries/internal', internal_missionary_routes)
+app.use('/api/training', training_routes)
 
 app.use('/api/hc-reports', (req, res, next) => {
     if (req.headers.origin === 'https://highcouncil.okcsouthstake.org') {
