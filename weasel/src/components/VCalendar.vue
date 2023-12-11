@@ -22,9 +22,11 @@ export default {
     data() { return {
         config: {
           defaultMode: 'week',
+          isSilent: true,
+          showCurrentTime: true,
           week: {
             startsOn: 'sunday',
-            scrollToHour: 8
+            scrollToHour: 10
           },
         }
     }
