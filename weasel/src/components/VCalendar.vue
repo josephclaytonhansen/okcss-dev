@@ -15,8 +15,11 @@ export default {
     components: {
         Qalendar
     },
+    props: {
+      events: Array,
+    },
+
     data() { return {
-        events: Array,
         config: {
           defaultMode: 'week',
           week: {
