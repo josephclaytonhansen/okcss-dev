@@ -15,16 +15,17 @@ export default {
     components: {
         Qalendar
     },
-    props: {
+    data() { return {
         events: Array,
         config: {
-          defaultMode: 'month',
+          defaultMode: 'week',
           week: {
-            startsOn: 'sunday'
+            startsOn: 'sunday',
+            scrollToHour: 8
           },
         }
     }
-}
+}}
 </script>
   
   <style>
