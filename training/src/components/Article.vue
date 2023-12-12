@@ -26,7 +26,7 @@
             left: 0;
             margin-left: 5vw;
             width: 90vw;
-            height:60vh;
+            height:59vh;
             overflow-y: auto;
         }
     }
