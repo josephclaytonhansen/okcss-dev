@@ -23,6 +23,7 @@
         padding: 1rem;
         width: max(300px, 60vw);
         margin-left: calc(max(15vw, 150px) + 7vw);
+        top: 6vh;
     }
 
     @media (max-width: 768px){
