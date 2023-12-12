@@ -83,8 +83,9 @@
         }
         #sidebar{
             width:100vw;
-            height:50vh;
-            top:50vh;
+            height:40vh;
+            top:40vh;
+            overflow-y: auto;
         }
     }
 

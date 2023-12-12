@@ -7,7 +7,6 @@
 
 <template>
     <div id = "article">
-        <h1>{{currentArticle.title}}</h1>
         <div v-html = "marked(currentArticle.md_content)"></div>
     </div>
 </template>
@@ -27,7 +26,7 @@
             left: 0;
             margin-left: 10vw;
             width: 80vw;
-            height:50vh;
+            height:60vh;
             overflow-y: auto;
         }
     }
