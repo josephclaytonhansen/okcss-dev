@@ -12,7 +12,7 @@
         return collapse.value ? 'collapses' : ''
     })
 
-    const emit = defineEmits(['title'])
+    const emit = defineEmits(['response'])
 
     const onChange = (title) => {
         console.log(title, props.currentArticle.title)
