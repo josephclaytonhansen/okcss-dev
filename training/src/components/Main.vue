@@ -29,9 +29,7 @@
         
         if (window.location.search) {
             let slug = window.location.search.split('=')[1]
-            let articleSlug = slugify(currentArticle.title)
-            console.log(slug, articleSlug)
-            currentArticle.value = articles.value.find(article => articleSlug === slug)
+            currentArticle.value = articles.value.find(article => slugify(article.title) === slug)
         } else {
             currentArticle.value = articles.value.find(article => article.title === 'Introduction')
 
