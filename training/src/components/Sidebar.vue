@@ -15,6 +15,7 @@
     const emit = defineEmits(['index'])
 
     const onChange = (index) => {
+        console.log(index)
         emit('index', index)
     }
 
