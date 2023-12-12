@@ -1,13 +1,14 @@
 <script setup>
-    import { ref, computed } from 'vue'
-    import {ChevronLeft, ChevronRight} from 'lucide-vue-next'
+    import { ref, computed, defineEmits } from 'vue'
+    import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
+
     const props = defineProps(['articles', 'currentArticle'])
     const collapse = ref(false)
 
     const toggleCollapse = () => {
         collapse.value = !collapse.value
     }
-    
+
     const toggleCollapseClass = computed(() => {
         return collapse.value ? 'collapses' : ''
     })
@@ -15,10 +16,8 @@
     const emit = defineEmits(['response'])
 
     const onChange = (title) => {
-    props.onChange(title)
-}
-
-
+        emit('response', title)
+    }
 </script>
 
 <template>

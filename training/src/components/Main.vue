@@ -5,10 +5,10 @@
     import Sidebar from './Sidebar.vue'
     import Article from './Article.vue'
 
-    import { onMounted, computed } from 'vue'
+    import { onMounted } from 'vue'
     import axios from 'axios'
-    const articles = ref([])
 
+    const articles = ref([])
     const currentArticle = ref('')
 
     const getArticles = async () => {
@@ -25,21 +25,19 @@
         const foundArticle = articles.value.find(article => article.title === newVal)
         currentArticle.value = foundArticle
     })
-
 </script>
 
 <template>
     <div>
         <Header/>
-        <div class = "container-fluid">
-            <div class = "row">
+        <div class="container-fluid">
+            <div class="row">
                 <Article :currentArticle="currentArticle"/>
-                <Sidebar :articles="articles" :currentArticle="currentArticle" :onChange="updateCurrentArticle" />
+                <Sidebar :articles="articles" :currentArticle="currentArticle"/>
             </div>
         </div>
         <Footer/>
     </div>
-
 </template>
 
 <style scoped>
