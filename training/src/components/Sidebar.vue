@@ -16,7 +16,8 @@
     const emit = defineEmits(['response'])
 
     const onChange = (title) => {
-        emit('response', title)
+        let article = props.articles.find(article => article.title === title)
+        emit('response', article)
     }
 </script>
 
