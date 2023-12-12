@@ -24,8 +24,8 @@
             position: absolute;
             top: 5vh;
             left: 0;
-            margin-left: 10vw;
-            width: 80vw;
+            margin-left: 5vw;
+            width: 90vw;
             height:60vh;
             overflow-y: auto;
         }
