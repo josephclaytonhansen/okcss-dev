@@ -46,5 +46,13 @@
                 left:0;
                 pointer-events:none;
             }
+            header{
+                height: 5vh;
+                width: 100vw;
+                top: 0;
+                margin: 0;
+                left: 0;
+                position: absolute;
+            }
         }
 </style>

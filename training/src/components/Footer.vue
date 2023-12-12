@@ -24,4 +24,10 @@ const currentYear = new Date().getFullYear()
         text-align:center;
     }
 
+    @media (max-width: 768px){
+        .footer{
+            display: none;
+        }
+    }
+
 </style>

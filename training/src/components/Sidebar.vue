@@ -77,4 +77,15 @@
         transition: all 0.5s;
     }
 
+    @media screen and (max-width: 768px){
+        #collapseButton{
+            display: none;
+        }
+        #sidebar{
+            width:100vw;
+            height:50vh;
+            top:100vh;
+        }
+    }
+
 </style>

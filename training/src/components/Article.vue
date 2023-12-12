@@ -20,4 +20,14 @@
         margin-left: calc(max(15vw, 150px) + 7vw);
     }
 
+    @media (max-width: 768px){
+        #article{
+            position: absolute;
+            top: 5vh;
+            left: 0;
+            margin-left: 10vw;
+            width: 80vw;
+        }
+    }
+
 </style>
