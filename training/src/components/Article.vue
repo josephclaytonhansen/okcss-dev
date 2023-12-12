@@ -1,6 +1,6 @@
 <script setup>
-
-const props = defineProps(['currentArticle'])
+    import { ref, computed } from 'vue'
+    const props = defineProps(['currentArticle'])
     import {marked} from 'marked'
     const markedArticle = computed(() => {
         return marked(currentArticle.value.md_content)
