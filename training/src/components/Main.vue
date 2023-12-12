@@ -29,7 +29,7 @@
         currentArticle.value = articles.value.find(article => article.title === 'Introduction')
         if (window.location.search) {
             let slug = window.location.search.split('=')[1]
-            let articleSlug = slugify(props.currentArticle.title)
+            let articleSlug = slugify(currentArticle.title)
             currentArticle.value = articles.value.find(article => articleSlug === slug)
         }
     })
