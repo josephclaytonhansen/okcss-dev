@@ -3,7 +3,7 @@
     const props = defineProps(['currentArticle'])
     import {marked} from 'marked'
     const markedArticle = computed((c) => {
-        return marked(c.value.md_content)
+        return marked(c.md_content)
     })
 
 </script>
