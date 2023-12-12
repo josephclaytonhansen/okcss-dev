@@ -22,6 +22,9 @@
         currentArticle.value = articles.value[0]
     })
 
+
+
+
 </script>
 
 <template>

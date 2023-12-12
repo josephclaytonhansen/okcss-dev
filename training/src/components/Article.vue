@@ -1,12 +1,17 @@
 <script setup>
 
 const props = defineProps(['currentArticle'])
+    import {marked} from 'marked'
+    const markedArticle = computed(() => {
+        return marked(currentArticle.value.md_content)
+    })
 
 </script>
 
 <template>
     <div id = "article">
         <h1>{{currentArticle.title}}</h1>
+        <div v-html="markedArticle"></div>
     </div>
 </template>
 
