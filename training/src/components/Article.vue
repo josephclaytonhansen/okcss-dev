@@ -1,6 +1,7 @@
 <script setup>
     import { ref, watch } from 'vue'
 
+    const props = defineProps(['currentArticle'])
     const currentArticle = ref(props.currentArticle)
 
     watch(() => props.currentArticle, (newVal) => {
