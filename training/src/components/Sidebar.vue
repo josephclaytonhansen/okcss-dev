@@ -84,7 +84,7 @@
         #sidebar{
             width:100vw;
             height:40vh;
-            top:40vh;
+            top:60vh;
             overflow-y: auto;
         }
     }
