@@ -13,11 +13,22 @@
         return collapse.value ? 'collapses' : ''
     })
 
+    const slugify = (text) => {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Replace spaces with -
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '')             // Trim - from end of text
+    }
+
     const emit = defineEmits(['response'])
 
     const onChange = (title) => {
         let article = props.articles.find(article => article.title === title)
         emit('response', article)
+        let slug = slugify(title)
+        window.history.pushState({}, title, `?article=${slug}`)
     }
 </script>
 

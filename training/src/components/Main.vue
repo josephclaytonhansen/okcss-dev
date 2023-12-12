@@ -15,9 +15,22 @@
         return response.data
     }
 
+    const slugify = (text) => {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Replace spaces with -
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '')             // Trim - from end of text
+    }
+
     onMounted(async () => {
         articles.value = await getArticles()
         currentArticle.value = articles.value.find(article => article.title === 'Introduction')
+        if (window.location.search) {
+            let slug = window.location.search.split('=')[1]
+            currentArticle.value = articles.value.find(article => article.slug === slug)
+        }
     })
 </script>
 
