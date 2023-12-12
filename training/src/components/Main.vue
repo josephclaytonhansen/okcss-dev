@@ -33,7 +33,7 @@
         <div class = "container-fluid">
             <div class = "row">
                 <Article :currentArticle="currentArticle"/>
-                <Sidebar :articles="articles" :currentArticle="currentArticle" :articlePos="articlePos"/>
+                <Sidebar :articles="articles" :currentArticle="currentArticle" :articlePos="articlePos" @response="(index) => currentArticle = index"/>
             </div>
         </div>
         <Footer/>
