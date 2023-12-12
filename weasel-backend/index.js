@@ -89,6 +89,14 @@ app.use('/api/hc-reports', (req, res, next) => {
     }
 })
 
+app.use('/api/training/', (req, res, next) => {
+    if (req.headers.origin === 'https://training.okcsouthstake.org') {
+        next()
+    } else {
+        res.status(403).send('Forbidden')
+    }
+})
+
 if (process.env.NODE_ENV === 'production') {
     app.use('/api', (req, res, next) => {
         let validOriginPatternSubdomain = /^https:\/\/[a-z0-9]+\.okcsouthstake\.org$/
