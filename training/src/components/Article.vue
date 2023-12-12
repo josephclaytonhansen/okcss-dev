@@ -2,8 +2,8 @@
     import { ref, computed } from 'vue'
     const props = defineProps(['currentArticle'])
     import {marked} from 'marked'
-    const markedArticle = computed(() => {
-        return marked(currentArticle.value.md_content)
+    const markedArticle = computed((c) => {
+        return marked(c.value.md_content)
     })
 
 </script>
@@ -11,7 +11,7 @@
 <template>
     <div id = "article">
         <h1>{{currentArticle.title}}</h1>
-        <div v-html="markedArticle"></div>
+        <div v-html="markedArticle(currentArticle)"></div>
     </div>
 </template>
 
