@@ -18,7 +18,7 @@
 
     onMounted(async () => {
         articles.value = await getArticles()
-        currentArticle.value = articles.value[0]
+        currentArticle.value = articles.value.find(article => article.title === "Introduction")
     })
 
     watch(() => currentArticle.value, (newVal, oldVal) => {
