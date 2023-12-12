@@ -20,7 +20,7 @@
         articles.value = await getArticles()
     })
 
-    watch(() => currentArticle.value, (newVal, oldVal) => {
+    watch(() => currentArticle, (newVal, oldVal) => {
         console.log(oldVal, newVal)
         const foundArticle = articles.value.find(article => article.title === newVal)
         currentArticle.value = foundArticle
