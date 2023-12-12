@@ -9,7 +9,7 @@
     import axios from 'axios'
     const articles = ref([])
 
-    const currentArticle = ref('Introduction')
+    const currentArticle = ref('')
 
     const getArticles = async () => {
         const response = await axios.get('https://weasel.okcsouthstake.org/api/training/')
@@ -18,7 +18,6 @@
 
     onMounted(async () => {
         articles.value = await getArticles()
-        currentArticle.value = articles.value.find(article => article.title === "Introduction")
     })
 
     watch(() => currentArticle.value, (newVal, oldVal) => {
