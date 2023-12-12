@@ -21,13 +21,11 @@
         currentArticle.value = articles.value[0]
     })
 
-    watch(currentArticle, (newVal, oldVal) => {
+    watch(() => currentArticle.value, (newVal, oldVal) => {
         console.log(oldVal, newVal)
         newVal = articles.value.find(article => article.title === newVal)
         return newVal
     })
-
-
 
 </script>
 
@@ -37,7 +35,7 @@
         <div class = "container-fluid">
             <div class = "row">
                 <Article :currentArticle="currentArticle"/>
-                <Sidebar :articles="articles" :currentArticle="currentArticle" @response="(title) => currentArticle = title"/>
+                <Sidebar :articles="articles" :currentArticle="currentArticle" @response="(title) => currentArticle.value = title"/>
             </div>
         </div>
         <Footer/>
