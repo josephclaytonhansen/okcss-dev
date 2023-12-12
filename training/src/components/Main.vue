@@ -13,7 +13,7 @@
     const articlePos = ref(0)
 
     const getArticles = async () => {
-        const response = await axios.post('https://weasel.okcsouthstake.org/api/trainings/')
+        const response = await axios.post('https://weasel.okcsouthstake.org/api/training/')
         return response.data
     }
 
