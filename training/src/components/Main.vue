@@ -1,5 +1,5 @@
 <script setup>
-    import { ref } from 'vue'
+    import { ref, watch } from 'vue'
     import Header from './Header.vue'
     import Footer from './Footer.vue'
     import Sidebar from './Sidebar.vue'
@@ -21,6 +21,11 @@
         currentArticle.value = articles.value[0]
     })
 
+    watch(currentArticle, (newVal, oldVal) => {
+        newVal = articles.value.find(article => article.title === newVal)
+        return newVal
+    })
+
 
 
 </script>
@@ -31,7 +36,7 @@
         <div class = "container-fluid">
             <div class = "row">
                 <Article :currentArticle="currentArticle"/>
-                <Sidebar :articles="articles" :currentArticle="currentArticle" @response="(index) => currentArticle = index"/>
+                <Sidebar :articles="articles" :currentArticle="currentArticle" @response="(title) => currentArticle = title"/>
             </div>
         </div>
         <Footer/>

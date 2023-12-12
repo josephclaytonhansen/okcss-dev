@@ -12,11 +12,11 @@
         return collapse.value ? 'collapses' : ''
     })
 
-    const emit = defineEmits(['index'])
+    const emit = defineEmits(['title'])
 
-    const onChange = (index) => {
-        console.log(index, props.currentArticle)
-        emit('index', index)
+    const onChange = (title) => {
+        console.log(title, props.currentArticle.title)
+        emit('title', title)
     }
 
 
@@ -40,7 +40,7 @@
 
         
         <div class = "list-group">
-            <a v-for = "(article, index) in articles" :key = "index" class = "list-group-item list-group-item-action" :class = "{active: index === props.currentArticle}" @click = "onChange(index)">
+            <a v-for = "(article, index) in articles" :key = "index" class = "list-group-item list-group-item-action" :class = "{active: index === props.currentArticle}" @click = "onChange(article.title)">
                 {{article.title}}
             </a>
         </div>
