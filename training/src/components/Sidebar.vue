@@ -15,9 +15,8 @@
     const emit = defineEmits(['response'])
 
     const onChange = (title) => {
-        console.log(title, props.currentArticle.title)
-        emit('response', title)
-    }
+    props.onChange(title)
+}
 
 
 </script>

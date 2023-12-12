@@ -34,7 +34,7 @@
         <div class = "container-fluid">
             <div class = "row">
                 <Article :currentArticle="currentArticle"/>
-                <Sidebar :articles="articles" :currentArticle="currentArticle" @title="(title) => currentArticle.value = title"/>
+                <Sidebar :articles="articles" :currentArticle="currentArticle" :onChange="updateCurrentArticle" />
             </div>
         </div>
         <Footer/>

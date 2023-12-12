@@ -1,6 +1,11 @@
 <script setup>
-    import { ref, computed } from 'vue'
-    const props = defineProps(['currentArticle'])
+    import { ref, watch } from 'vue'
+
+    const currentArticle = ref(props.currentArticle)
+
+    watch(() => props.currentArticle, (newVal) => {
+        currentArticle.value = newVal
+    })
     import {marked} from 'marked'
 
 </script>
