@@ -23,8 +23,8 @@
 
     watch(() => currentArticle.value, (newVal, oldVal) => {
         console.log(oldVal, newVal)
-        newVal = articles.value.find(article => article.title === newVal)
-        return newVal
+        const foundArticle = articles.value.find(article => article.title === newVal)
+        currentArticle.value = foundArticle
     })
 
 </script>
