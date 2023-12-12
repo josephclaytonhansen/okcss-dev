@@ -8,7 +8,7 @@
 
     const props = defineProps(['currentArticle'])
     const articles = ref([])
-    const currentArticle = ref(props.currentArticle)
+    const currentArticle = ref(null)
 
     const getArticles = async () => {
         const response = await axios.get('https://weasel.okcsouthstake.org/api/training/')
@@ -17,6 +17,7 @@
 
     onMounted(async () => {
         articles.value = await getArticles()
+        currentArticle.value = articles.value.find(article => article.title === 'Introduction')
     })
 </script>
 
