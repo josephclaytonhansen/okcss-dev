@@ -14,8 +14,8 @@
 
     const emit = defineEmits(['index'])
 
-    const onChange = (article, index) => {
-        emit('index', article)
+    const onChange = (index) => {
+        emit('index', index)
     }
 
 
@@ -39,7 +39,7 @@
 
         
         <div class = "list-group">
-            <a v-for = "(article, index) in articles" :key = "index" class = "list-group-item list-group-item-action" :class = "{active: index === articlePos}" @click = "onChange(article, index)">
+            <a v-for = "(article, index) in articles" :key = "index" class = "list-group-item list-group-item-action" :class = "{active: index === articlePos}" @click = "onChange(index)">
                 {{article.title}}
             </a>
         </div>
