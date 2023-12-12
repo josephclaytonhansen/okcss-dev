@@ -17,7 +17,7 @@
     #article{
         padding: 1rem;
         width: 400px;
-        margin-left: calc(30vw + (70vw - 400px)/2);
+        margin-left: calc(max(15vw, 150px) + 5vw);
     }
 
 </style>

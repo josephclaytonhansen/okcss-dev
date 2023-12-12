@@ -66,8 +66,8 @@
 
     #collapseButton{
         position: fixed;
-        top: calc(6vh + .25rem);
-        left: calc(max(15vw, 150px) - 2.25rem);
+        top: calc(6vh + 1.25rem);
+        left: calc(max(15vw, 150px) + .75rem);
         z-index: 1;
         width:2rem;
         margin:0;
