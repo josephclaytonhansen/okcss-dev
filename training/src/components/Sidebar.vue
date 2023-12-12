@@ -17,6 +17,7 @@
     const onChange = (title) => {
         console.log(title, props.currentArticle.title)
         emit('title', title)
+        props.currentArticle = articles.find(article => article.title === title)
     }
 
 
