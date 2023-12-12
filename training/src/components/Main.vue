@@ -32,8 +32,8 @@
         <Header/>
         <div class = "container-fluid">
             <div class = "row">
-                <Sidebar :articles="articles" :currentArticle="currentArticle" :articlePos="articlePos"/>
                 <Article :currentArticle="currentArticle"/>
+                <Sidebar :articles="articles" :currentArticle="currentArticle" :articlePos="articlePos"/>
             </div>
         </div>
         <Footer/>

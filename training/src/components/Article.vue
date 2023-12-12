@@ -27,6 +27,8 @@
             left: 0;
             margin-left: 10vw;
             width: 80vw;
+            height:50vh;
+            overflow-y: auto;
         }
     }
 

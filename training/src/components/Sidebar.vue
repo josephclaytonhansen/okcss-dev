@@ -84,7 +84,7 @@
         #sidebar{
             width:100vw;
             height:50vh;
-            top:100vh;
+            top:50vh;
         }
     }
 
