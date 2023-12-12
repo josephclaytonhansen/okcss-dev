@@ -16,8 +16,8 @@
 
     #article{
         padding: 1rem;
-        width: max(350px, 60vw);
-        margin-left: calc(max(15vw, 150px) + 5vw);
+        width: max(300px, 60vw);
+        margin-left: calc(max(15vw, 150px) + 7vw);
     }
 
 </style>
