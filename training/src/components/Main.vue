@@ -22,6 +22,7 @@
     })
 
     watch(currentArticle, (newVal, oldVal) => {
+        console.log(oldVal, newVal)
         newVal = articles.value.find(article => article.title === newVal)
         return newVal
     })
