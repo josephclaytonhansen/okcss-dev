@@ -3,7 +3,7 @@
     const props = defineProps(['currentArticle'])
     import {marked} from 'marked'
     const markedArticle = computed((c) => {
-        return marked(c.md_content)
+        return marked(c)
     })
 
 </script>
@@ -11,7 +11,7 @@
 <template>
     <div id = "article">
         <h1>{{currentArticle.title}}</h1>
-        <div v-html="markedArticle(currentArticle)"></div>
+        <div>{{markedArticle(currentArticle.md_content)}}</div>
     </div>
 </template>
 
