@@ -16,7 +16,7 @@
 
     #article{
         padding: 1rem;
-        width: 400px;
+        width: max(350px, 60vw);
         margin-left: calc(max(15vw, 150px) + 5vw);
     }
 

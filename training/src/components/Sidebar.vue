@@ -61,7 +61,7 @@
     }
 
     button.collapses{
-        left: 1rem!important;
+        left: 1.75rem!important;
     }
 
     #collapseButton{
