@@ -16,7 +16,7 @@
 
     const onChange = (title) => {
         console.log(title, props.currentArticle.title)
-        console.log(emit('title', title))
+        emit('title', title)
     }
 
 
