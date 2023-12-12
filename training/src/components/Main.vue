@@ -9,8 +9,7 @@
     import axios from 'axios'
     const articles = ref([])
 
-    const currentArticle = ref('')
-    const articlePos = ref(0)
+    const currentArticle = ref(0)
 
     const getArticles = async () => {
         const response = await axios.get('https://weasel.okcsouthstake.org/api/training/')
@@ -32,7 +31,7 @@
         <div class = "container-fluid">
             <div class = "row">
                 <Article :currentArticle="currentArticle"/>
-                <Sidebar :articles="articles" :currentArticle="currentArticle" :articlePos="articlePos" @response="(index) => currentArticle = index"/>
+                <Sidebar :articles="articles" :currentArticle="currentArticle" @response="(index) => currentArticle = index"/>
             </div>
         </div>
         <Footer/>

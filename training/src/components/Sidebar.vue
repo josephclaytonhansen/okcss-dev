@@ -1,7 +1,7 @@
 <script setup>
     import { ref, computed } from 'vue'
     import {ChevronLeft, ChevronRight} from 'lucide-vue-next'
-    const props = defineProps(['articles', 'currentArticle', 'articlePos'])
+    const props = defineProps(['articles', 'currentArticle'])
     const collapse = ref(false)
 
     const toggleCollapse = () => {
@@ -40,7 +40,7 @@
 
         
         <div class = "list-group">
-            <a v-for = "(article, index) in articles" :key = "index" class = "list-group-item list-group-item-action" :class = "{active: index === articlePos}" @click = "onChange(index)">
+            <a v-for = "(article, index) in articles" :key = "index" class = "list-group-item list-group-item-action" :class = "{active: index === currentArticle}" @click = "onChange(index)">
                 {{article.title}}
             </a>
         </div>
