@@ -40,7 +40,7 @@
 
         
         <div class = "list-group">
-            <a v-for = "(article, index) in articles" :key = "index" class = "list-group-item list-group-item-action" :class = "{active: article.title === props.currentArticle}" @click = "onChange(article.title)">
+            <a v-for = "(article, index) in articles" :key = "index" class = "list-group-item list-group-item-action" :class = "{active: article.title === props.currentArticle.title}" @click = "onChange(article.title)">
                 {{article.title}}
             </a>
         </div>
