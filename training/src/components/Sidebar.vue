@@ -15,7 +15,7 @@
     const emit = defineEmits(['index'])
 
     const onChange = (index) => {
-        console.log(index)
+        console.log(index, currentArticle)
         emit('index', index)
     }
 
