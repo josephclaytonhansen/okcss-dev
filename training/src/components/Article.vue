@@ -8,7 +8,7 @@
 <template>
     <div id = "article">
         <h1>{{currentArticle.title}}</h1>
-        <div>{{marked(currentArticle.md_content)}}</div>
+        <div v-html = "marked(currentArticle.md_content)"></div>
     </div>
 </template>
 
