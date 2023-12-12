@@ -9,7 +9,7 @@
     import axios from 'axios'
     const articles = ref([])
 
-    const currentArticle = ref(0)
+    const currentArticle = ref('Introduction')
 
     const getArticles = async () => {
         const response = await axios.get('https://weasel.okcsouthstake.org/api/training/')
