@@ -30,6 +30,7 @@
         #article{
             position: absolute;
             top: 5vh;
+            margin-top: 0;
             left: 0;
             margin-left: 5vw;
             width: 90vw;
