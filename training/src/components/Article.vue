@@ -33,7 +33,7 @@
             left: 0;
             margin-left: 5vw;
             width: 90vw;
-            height:59vh;
+            height:58vh;
             overflow-y: scroll;
         }
     }
