@@ -93,9 +93,9 @@
         }
         #sidebar {
             width: 100vw;
-            height: 40vh;
+            height: 39vh;
             top: 60vh;
-            overflow-y: auto;
+            overflow-y: scroll;
         }
     }
 </style>

@@ -34,7 +34,7 @@
             margin-left: 5vw;
             width: 90vw;
             height:59vh;
-            overflow-y: auto;
+            overflow-y: scroll;
         }
     }
 
