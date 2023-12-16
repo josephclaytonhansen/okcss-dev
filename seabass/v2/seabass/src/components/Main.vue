@@ -7,6 +7,8 @@
 import { QuillEditor } from '@vueup/vue-quill'
 import ImageCompress from 'quill-image-compress'
 import MagicUrl from 'quill-magic-url'
+import MarkdownShortcuts from 'quill-markdown-shortcuts'
+import BlotFormatter from 'quill-blot-formatter'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 export default {
@@ -20,6 +22,12 @@ export default {
     }, {
       name: 'magicUrl',
       module: MagicUrl,
+    }, {
+      name: 'markdownShortcuts',
+      module: MarkdownShortcuts,
+    }, {
+      name: 'blotFormatter',
+      module: BlotFormatter
     }]
     return { modules }
   },
