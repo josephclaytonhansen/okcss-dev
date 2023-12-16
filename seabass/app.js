@@ -114,13 +114,8 @@ passport.use(new Strategy({
 
 }))
 
-/* var privateKey  = fs.readFileSync('/etc/ssl/key.pem', 'utf8')
-var certificate = fs.readFileSync('/etc/ssl/cert.pem', 'utf8')
-
-var credentials = {key: privateKey, cert: certificate} */
-
-/* const corsOptions = {
-    origin: process.env.ORIGIN,
+const corsOptions = {
+    origin: "*",
     credentials: true,
     optionSuccessStatus: 200
 }
@@ -128,14 +123,8 @@ var credentials = {key: privateKey, cert: certificate} */
 app.use(cors(corsOptions))
 app.options('*', cors(corsOptions))
 
-app.use((req, res, next) => {
-    if (req.headers.origin != process.env.ORIGIN) {
-        res.status(403).send('Forbidden')
-    } else {
-        next()
-    }
-})
- */
+
+
 const nenv = nunjucks.configure(['src/views', 'src/includes', 'src/assets'], {
     autoescape: true,
     express: app,
