@@ -4,3 +4,4 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 const app = createApp()
 app.component('QuillEditor', QuillEditor)
+app.mount('#app')
