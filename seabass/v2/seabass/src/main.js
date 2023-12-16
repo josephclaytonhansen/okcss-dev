@@ -9,5 +9,3 @@ const app = createApp(
 app.mount('#app')
 import * as bootstrap from 'bootstrap'
 window.bootstrap = bootstrap
-
-app.component('Quill', QuillEditor)
