@@ -24,7 +24,7 @@ export default {
             </div>
             <div class="row">
                 <div class="col-12">
-                    <QuillEditor theme="snow" toolbar="essential" />
+                    <QuillEditor theme="snow" toolbar="full" />
                 </div>
             </div>
         </div>
