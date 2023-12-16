@@ -1,12 +1,13 @@
-import { createApp } from 'vue'
 import './style.css'
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { createApp } from 'vue'
 
-const app = createApp()
+import App from './App.vue'
+const app = createApp(
+    App
+)
+
 app.mount('#app')
-app.component('QuillEditor', QuillEditor)
-
-
 import * as bootstrap from 'bootstrap'
 window.bootstrap = bootstrap
+
+app.component('Quill', QuillEditor)
