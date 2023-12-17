@@ -1,4 +1,4 @@
-import{Q as c}from"./quill-YsxAZMv4.js";import{D}from"./quill-delta-PnbBvJzq.js";import{d as R,o as F,a as U,r as k,w as f,h as V,n as M}from"./@vue-kUO4d-p4.js";/*!
+import{Q as c}from"./quill-_jX2nVZ8.js";import{D}from"./quill-delta-olKIA9eX.js";import{d as R,o as F,a as U,r as k,w as f,h as V,n as M}from"./@vue-kUO4d-p4.js";/*!
  * VueQuill @vueup/vue-quill v1.2.0
  * https://vueup.github.io/vue-quill/
  * 
