@@ -13,7 +13,7 @@ const seabassUsername = process.env.SEABASS_USERNAME
 const seabassPassword = process.env.SEABASS_PASSWORD
 router.route('/').get(getSeabassData).post(createSeabassData)
 router.route('/:id').get(getSeabassDataById).delete(deleteSeabassData).put(updateSeabassData)
-router.route('/seabass-login-check').post((req, res) => {
+router.route('/login-check').post((req, res) => {
     try {
     if (req.body.username === seabassUsername && req.body.password === seabassPassword) {
         res.status(200).send({ message: 'Valid login' })

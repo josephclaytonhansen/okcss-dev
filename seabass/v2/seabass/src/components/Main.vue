@@ -11,7 +11,7 @@
     const loginCorrect = ref(false)
 
     const getLoginFromApi = async () => {
-        const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass-login-check', {username: username.value, password: password.value})
+        const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/login-check', {username: username.value, password: password.value})
         if (response.status === 200 && response.data['message'] === 'Valid login') {
             loginCorrect.value = true
         } else {
