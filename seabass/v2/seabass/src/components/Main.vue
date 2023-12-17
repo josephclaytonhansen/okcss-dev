@@ -26,7 +26,9 @@
 
     const getDataFromApi = async () => {
         try {
-        const response = await axios.get('https://weasel.okcsouthstake.org/api/seabass/')
+            
+        const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/', 
+        {username: username.value, password: password.value})
         return response.data
     } catch (error) {
         toast.error(error)

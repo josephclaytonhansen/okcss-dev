@@ -11,7 +11,7 @@ import {
 } from '../controllers/seabassDataController.js'
 const seabassUsername = process.env.SEABASS_USERNAME
 const seabassPassword = process.env.SEABASS_PASSWORD
-router.route('/').get(getSeabassData).post(createSeabassData)
+router.route('/').post(getSeabassData).post(createSeabassData)
 router.route('/:id').get(getSeabassDataById).delete(deleteSeabassData).put(updateSeabassData)
 router.route('/login-check').post((req, res) => {
     try {
