@@ -18,7 +18,7 @@ router.route('/login-check').post((req, res) => {
     if (req.body.username === seabassUsername && req.body.password === seabassPassword) {
         res.status(200).send({ message: 'Valid login' })
     } else {
-        res.status(401).send({ message: 'Invalid login - ' + req.body.username + ' - ' + req.body.password + ' - ' + seabassUsername + ' - ' + seabassPassword  })
+        res.status(401).send({ message: 'Invalid login'  })
     }} catch (err) {
         res.status(500).send({ message: err.message })
     }
