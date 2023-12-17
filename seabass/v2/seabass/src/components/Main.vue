@@ -36,7 +36,7 @@
             currentComponent.value = 'dashboard'
             seabassData.value = await getDataFromApi()
         }} catch (error) {
-            toast.error(error.response.data['message'] + ' - ' + error.response.data['error'])
+            toast.error(error)
         }
     }
 
