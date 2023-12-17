@@ -21,7 +21,7 @@
         } else {
             loginCorrect.value = false
     }} catch (error) {
-        toast.error(error)
+        toast.error("Login failed")
     }}
 
     const getDataFromApi = async () => {
@@ -31,7 +31,7 @@
         {username: username.value, password: password.value})
         return response.data
     } catch (error) {
-        toast.error(error)
+        toast.error("Error getting data")
     }}
 
     const checkLogin = async () => {
@@ -41,7 +41,7 @@
             currentComponent.value = 'dashboard'
             seabassData.value = await getDataFromApi()
         }} catch (error) {
-            toast.error(error)
+            toast.error("Login failed")
         }
     }
 
