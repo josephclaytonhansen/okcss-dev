@@ -23,3 +23,5 @@ router.route('/seabass-login-check').post((req, res) => {
         res.status(500).send({ message: err.message })
     }
 })
+
+export default router
