@@ -19,6 +19,7 @@ import outgoing_missionary_routes from './routes/outgoingMissionaryRoutes.js'
 import internal_missionary_routes from './routes/internalMissionaryRoutes.js'
 import hc_report_routes from './routes/hc_reportRoutes.js'
 import training_routes from './routes/trainingRoutes.js'
+import seabass_routes from './routes/seabassDataRoutes.js'
 
 const app = express()
 
@@ -80,6 +81,7 @@ app.use('/api/users', user_routes)
 app.use('/api/missionaries/external', outgoing_missionary_routes)
 app.use('/api/missionaries/internal', internal_missionary_routes)
 app.use('/api/training', training_routes)
+app.use('/api/seabass-data', seabass_routes)
 
 app.use('/api/hc-reports', (req, res, next) => {
     if (req.headers.origin === 'https://highcouncil.okcsouthstake.org') {
@@ -89,8 +91,8 @@ app.use('/api/hc-reports', (req, res, next) => {
     }
 })
 
-app.use('/api/seabass-login-check', (req, res, next) => {
-    if (req.headers.origin === 'https://seabass.okcsouthstake.org') {
+app.use('/api/seabass-data/', (req, res, next) => {
+    if (req.headers.origin.startsWith('https://seabass.okcsouthstake.org') || req.headers.origin.startsWith ('https://okcsouthstake.org')) {
         next()
     } else {
         res.status(403).send('Forbidden')
