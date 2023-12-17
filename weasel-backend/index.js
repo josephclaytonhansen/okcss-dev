@@ -19,6 +19,7 @@ import outgoing_missionary_routes from './routes/outgoingMissionaryRoutes.js'
 import internal_missionary_routes from './routes/internalMissionaryRoutes.js'
 import hc_report_routes from './routes/hc_reportRoutes.js'
 import training_routes from './routes/trainingRoutes.js'
+import seabass_routes from './routes/seabassRoutes.js'
 
 const app = express()
 
@@ -103,6 +104,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use('/api/hc-reports', hc_report_routes)
+app.use('/api/seabass', seabass_routes)
 
 app.listen(process.env.PORT, () => {
     console.log('Server is running on port ' + process.env.PORT)
