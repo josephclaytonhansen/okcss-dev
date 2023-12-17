@@ -1,44 +1,45 @@
 <script setup>
+    import Dashboard from './Dashboard.vue'
 
-</script>
+    import { ref } from 'vue'
 
-<script>
+    const username = ref('')
+    const password = ref('')
+    const seabassData = ref([])
+    const currentComponent = ref('login')
+    const loginCorrect = ref(false)
 
-import { QuillEditor } from '@vueup/vue-quill'
-import ImageCompress from 'quill-image-compress'
-import MagicUrl from 'quill-magic-url'
+    const getLoginFromApi = async () => {
+        const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/login/check', {username: username.value, password: password.value})
+        if (response.status === 200 && response.data['message'] === 'Valid login') {
+            loginCorrect.value = true
+        } else {
+            loginCorrect.value = false
+    }}
 
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
+    const getDataFromApi = async () => {
+        const response = await axios.get('https://weasel.okcsouthstake.org/api/seabass/data')
+        return response.data
+    }
 
-export default {
-  components: {
-    QuillEditor
-  },
-  setup: () => {
-    const modules = [{
-      name: 'quillImageCompress',  
-      module: ImageCompress, 
-    }, {
-      name: 'magicUrl',
-      module: MagicUrl,
-    }]
-    return { modules }
-  },
-}
+    const checkLogin = async () => {
+        let login = await getLoginFromApi()
+        if (loginCorrect.value) {
+            currentComponent.value = 'dashboard'
+            seabassData.value = await getDataFromApi()
+        }
+    }
 
 </script>
 
 <template>
-  <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Quill Editor</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <QuillEditor theme="snow" toolbar="full" :modules="modules" />
-                </div>
-            </div>
+    <div>
+        <div v-if = "currentComponent === 'login'">
         </div>
+        <div v-if = "currentComponent === 'dashboard'">
+            <Dashboard/>
+        </div>
+
+    </div>
+
 </template>
