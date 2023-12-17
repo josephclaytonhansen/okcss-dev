@@ -57,6 +57,7 @@ app.use("/api/missionaries/external",cors({origin: '*'}))
 app.use("/api/missionaries/internal",cors({origin: '*'}))
 app.use("/api/hc-reports",cors({origin: 'https://highcouncil.okcsouthstake.org',credentials: true}))
 app.use("/api/training",cors({origin: 'https://training.okcsouthstake.org',credentials: true}))
+app.use("/api/seabass/",cors({origin: '*'}))
 
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
