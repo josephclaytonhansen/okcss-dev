@@ -2,6 +2,7 @@
     import Dashboard from './Dashboard.vue'
 
     import { ref } from 'vue'
+    import axios from 'axios'
 
     const username = ref('')
     const password = ref('')
@@ -23,10 +24,13 @@
     }
 
     const checkLogin = async () => {
+        try{
         let login = await getLoginFromApi()
         if (loginCorrect.value) {
             currentComponent.value = 'dashboard'
             seabassData.value = await getDataFromApi()
+        }} catch (error) {
+            toast.error(error.response.data['message'] + ' - ' + error.response.data['error'])
         }
     }
 
