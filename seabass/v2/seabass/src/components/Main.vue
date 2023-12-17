@@ -21,13 +21,16 @@
         } else {
             loginCorrect.value = false
     }} catch (error) {
-        toast.error(error.response.data['message'] + ' - ' + error.response.data['error'])
+        toast.error(error)
     }}
 
     const getDataFromApi = async () => {
-        const response = await axios.get('https://weasel.okcsouthstake.org/api/seabass/data')
+        try {
+        const response = await axios.get('https://weasel.okcsouthstake.org/api/seabass/')
         return response.data
-    }
+    } catch (error) {
+        toast.error(error)
+    }}
 
     const checkLogin = async () => {
         try{
