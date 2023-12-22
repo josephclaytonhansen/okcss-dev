@@ -10,7 +10,7 @@
     const username = ref('')
     const password = ref('')
     const seabassData = ref([])
-    const currentComponent = ref('login')
+    const currentComponent = ref('dashboard')
     const loginCorrect = ref(false)
 
     const getLoginFromApi = async () => {

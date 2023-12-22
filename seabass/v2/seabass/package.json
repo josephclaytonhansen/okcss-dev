@@ -13,6 +13,7 @@
     "@vueup/vue-quill": "^1.2.0",
     "axios": "^1.6.2",
     "bootstrap": "^5.3.2",
+    "lucide-vue-next": "^0.299.0",
     "quill-image-compress": "^1.2.30",
     "quill-magic-url": "^4.2.0",
     "vue": "^3.3.11",
