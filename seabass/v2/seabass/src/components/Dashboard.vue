@@ -59,7 +59,6 @@
                                 <th class = "col-2">Status</th>
                                 <th class = "col-2">Actions</th>
                             </tr>
-                            <hr/>
                         </thead>
                         <tbody>
                             <tr v-for = "blog in blogs" :key = "blog.id" class = "row">
