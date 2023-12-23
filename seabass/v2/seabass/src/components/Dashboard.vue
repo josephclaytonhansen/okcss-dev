@@ -3,7 +3,9 @@
     import {FilePlus, Pencil, Trash} from 'lucide-vue-next'
 
     const props = defineProps({
-        blogs: Array
+        blogs: Array,
+        username: String,
+        password: String
     })
 
     import { ref } from 'vue'

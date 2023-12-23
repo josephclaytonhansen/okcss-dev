@@ -18,13 +18,36 @@ router.route('/').post((req, res) => {
             let data = getSeabassData()
             res.status(200).send( {data:data} )
         } else {
-            res.status(401).send({ message: 'Invalid login'  })
+            res.status(401).send({ message: 'Invalid credentials'  })
         }} catch (err) {
             res.status(500).send({ message: err.message })
         }
     }
 )
-router.route('/:id').get(getSeabassDataById).delete(deleteSeabassData).put(updateSeabassData)
+router.route('/:id').get(getSeabassDataById).delete(
+    (req, res) => {
+        try {
+            if (req.body.username === seabassUsername && req.body.password === seabassPassword) {
+                deleteSeabassData(req, res)
+            } else {
+                res.status(401).send({ message: 'Invalid credentials'  })
+            }} catch (err) {
+                res.status(500).send({ message: err.message })
+            }
+        }
+    ).put(
+        (req, res) => {
+            try {
+                if (req.body.username === seabassUsername && req.body.password === seabassPassword) {
+                    updateSeabassData(req, res)
+                } else {
+                    res.status(401).send({ message: 'Invalid credentials'  })
+                }} catch (err) {
+                    res.status(500).send({ message: err.message })
+                }
+            }
+        
+)
 router.route('/login-check').post((req, res) => {
     try {
     if (req.body.username === seabassUsername && req.body.password === seabassPassword) {
@@ -34,6 +57,17 @@ router.route('/login-check').post((req, res) => {
     }} catch (err) {
         res.status(500).send({ message: err.message })
     }
+})
+
+router.route('/create').post((req, res) => {
+    try {
+        if (req.body.username === seabassUsername && req.body.password === seabassPassword) {
+            createSeabassData(req, res)
+        } else {
+            res.status(401).send({ message: 'Invalid credentials'  })
+        }} catch (err) {
+            res.status(500).send({ message: err.message })
+        }
 })
 
 export default router

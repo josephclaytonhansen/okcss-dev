@@ -61,7 +61,7 @@
             </form>
         </div>
         <div v-if = "currentComponent === 'dashboard'">
-            <Dashboard :blogs="getDataFromApi()"/>
+            <Dashboard :blogs="getDataFromApi()" :username = "username" :password="password"/>
         </div>
 
     </div>
