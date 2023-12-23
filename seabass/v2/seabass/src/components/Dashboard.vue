@@ -97,7 +97,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for = "blog in blogs.value" :key = "blog.id" class = "row">
+                            <tr v-for = "blog in blogs" :key = "blog.id" class = "row">
                                 <td  class = "col-5">{{blog.title}}</td>
                                 <td class = "col-2">
                                     <select class="form-select" v-model="blog.category" @change="updateBlogCategory(blog.id)">
