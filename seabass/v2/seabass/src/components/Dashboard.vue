@@ -22,9 +22,10 @@
         try {
             
         const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/', 
-        {username: props.username, password: props.password})
-        console.log(response)
-        return response.data
+        {username: props.username, password: props.password}).then(response => {
+            console.log(response, response.data)
+            return response.data
+        })
     } catch (error) {
         toast.error("Error getting data")
     }}
