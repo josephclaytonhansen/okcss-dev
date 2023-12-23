@@ -21,7 +21,7 @@
         try {
             const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/create', 
             {username: props.username, password: props.password})
-            if (response.status === 200 && response.data['message'] === 'Valid login') {
+            if (response.status === 200) {
                 toast.success("New blog created")
             } else {
                 toast.error("Error creating new blog")
