@@ -4,7 +4,7 @@
     import { useToast } from "vue-toastification"
     const toast = useToast()
 
-    import { ref } from 'vue'
+    import { ref, onMounted } from 'vue'
     import axios from 'axios'
 
     const username = ref('')
@@ -61,7 +61,7 @@
             </form>
         </div>
         <div v-if = "currentComponent === 'dashboard'">
-            <Dashboard/>
+            <Dashboard :blogs="getDataFromApi()"/>
         </div>
 
     </div>

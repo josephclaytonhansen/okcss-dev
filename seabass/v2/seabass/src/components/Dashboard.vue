@@ -2,9 +2,11 @@
     import Editor from './Editor.vue'
     import {FilePlus, Pencil, Trash} from 'lucide-vue-next'
 
+    const props = defineProps({
+        blogs: Array
+    })
+
     import { ref } from 'vue'
-    const blogs = ref([{id: 1, title: 'Blog 1', category: 'Category 1', created: '2021-01-01', status: 'published'},
-    {id: 2, title: 'Blog 2', category: 'Category 2', created: '2021-01-02', status: 'draft'},])
 
     const statusOptions = ref(['published', 'scheduled', 'draft'])
     const categories = ref(['Category 1', 'Category 2', 'Category 3'])
@@ -61,7 +63,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for = "blog in blogs" :key = "blog.id" class = "row">
+                            <tr v-for = "blog in props.blogs" :key = "blog.id" class = "row">
                                 <td  class = "col-5">{{blog.title}}</td>
                                 <td class = "col-2">
                                     <select class="form-select" v-model="blog.category" @change="updateBlogCategory(blog.id)">
