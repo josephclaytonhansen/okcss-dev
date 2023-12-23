@@ -65,8 +65,7 @@
 
 
     onMounted(async () => {
-        blogs.value = getDataFromApi()
-        console.log(blogs.value)
+        blogs.value = await getDataFromApi().then(console.log("Blogs loaded"))
     })
 </script>
 
