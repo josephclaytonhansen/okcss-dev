@@ -4,18 +4,30 @@
     import axios from 'axios'
 
     const props = defineProps({
-        blogs: Array,
         username: String,
         password: String
     })
 
-    import { ref } from 'vue'
+    const blogs = ref([])
+
+    import { ref, onMounted } from 'vue'
 
     const statusOptions = ref(['published', 'scheduled', 'draft'])
     const categories = ref(['Category 1', 'Category 2', 'Category 3'])
 
     import { useToast } from "vue-toastification"
     const toast = useToast()
+
+    const getDataFromApi = async () => {
+        try {
+            
+        const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/', 
+        {username: props.username, password: props.password})
+        return response.data
+    } catch (error) {
+        toast.error("Error getting data")
+    }}
+
 
     const newBlog = async() => {
         try {
@@ -46,6 +58,11 @@
     const updateBlogCategory = (id) => {
         toast.success("Update blog " + id + " category")
     }
+
+
+    onMounted(async () => {
+        blogs.value = await getDataFromApi()
+    })
 </script>
 
 <template>

@@ -9,7 +9,6 @@
 
     const username = ref('')
     const password = ref('')
-    const seabassData = ref([])
     const currentComponent = ref('login')
     const loginCorrect = ref(false)
 
@@ -24,22 +23,13 @@
         toast.error("Login failed")
     }}
 
-    const getDataFromApi = async () => {
-        try {
-            
-        const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/', 
-        {username: username.value, password: password.value})
-        return response.data
-    } catch (error) {
-        toast.error("Error getting data")
-    }}
+
 
     const checkLogin = async () => {
         try{
         let login = await getLoginFromApi()
         if (loginCorrect.value) {
             currentComponent.value = 'dashboard'
-            seabassData.value = await getDataFromApi()
         }} catch (error) {
             toast.error("Login failed")
         }
@@ -61,7 +51,7 @@
             </form>
         </div>
         <div v-if = "currentComponent === 'dashboard'">
-            <Dashboard :blogs="getDataFromApi()" :username = "username" :password="password"/>
+            <Dashboard :username = "username" :password="password"/>
         </div>
 
     </div>
