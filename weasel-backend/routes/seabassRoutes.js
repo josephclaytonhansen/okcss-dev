@@ -16,7 +16,7 @@ router.route('/').post((req, res) => {
     try {
         if (req.body.username === seabassUsername && req.body.password === seabassPassword) {
             let data = getSeabassData()
-            res.status(200).send( data )
+            res.status(200).send( {data:data} )
         } else {
             res.status(401).send({ message: 'Invalid login'  })
         }} catch (err) {
