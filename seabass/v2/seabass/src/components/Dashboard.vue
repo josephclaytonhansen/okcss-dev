@@ -22,10 +22,12 @@
         try {
             
         const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/', 
-        {username: props.username, password: props.password}).then(response => {
-            console.log(response, response.data)
+        {username: props.username, password: props.password})
+        if (response.status === 200) {
             return response.data
-        })
+        } else {
+            toast.error("Error getting data")
+        }
     } catch (error) {
         toast.error("Error getting data")
     }}
@@ -63,7 +65,7 @@
 
 
     onMounted(async () => {
-        blogs.value = await getDataFromApi()
+        blogs.value = getDataFromApi()
         console.log(blogs.value)
     })
 </script>
