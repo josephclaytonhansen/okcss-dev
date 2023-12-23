@@ -15,7 +15,7 @@ const seabassPassword = process.env.SEABASS_PASSWORD
 router.route('/').post((req, res) => {
     try {
         if (req.body.username === seabassUsername && req.body.password === seabassPassword) {
-            res.status(200).send( {data: getSeabassData(req, res)} )
+            getSeabassData(req, res)
         } else {
             res.status(401).send({ message: 'Invalid credentials'  })
         }} catch (err) {
