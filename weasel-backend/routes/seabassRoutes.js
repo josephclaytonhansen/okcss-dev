@@ -9,7 +9,7 @@ import {
     deleteSeabassData,
     updateSeabassData
 } from '../controllers/seabassDataController.js'
-import { get } from 'mongoose'
+
 const seabassUsername = process.env.SEABASS_USERNAME
 const seabassPassword = process.env.SEABASS_PASSWORD
 router.route('/').post((req, res) => {
