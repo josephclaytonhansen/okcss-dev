@@ -23,6 +23,7 @@
             
         const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/', 
         {username: props.username, password: props.password})
+        console.log(response)
         return response.data
     } catch (error) {
         toast.error("Error getting data")
@@ -62,6 +63,7 @@
 
     onMounted(async () => {
         blogs.value = await getDataFromApi()
+        console.log(blogs.value)
     })
 </script>
 
