@@ -1,6 +1,7 @@
 <script setup>
     import Editor from './Editor.vue'
     import {FilePlus, Pencil, Trash} from 'lucide-vue-next'
+    import axios from 'axios'
 
     const props = defineProps({
         blogs: Array,
@@ -16,8 +17,18 @@
     import { useToast } from "vue-toastification"
     const toast = useToast()
 
-    const newBlog = () => {
-        toast.success("New blog")
+    const newBlog = async() => {
+        try {
+            const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/create', 
+            {username: props.username, password: props.password})
+            if (response.status === 200 && response.data['message'] === 'Valid login') {
+                toast.success("New blog created")
+            } else {
+                toast.error("Error creating new blog")
+            }
+        } catch (error) {
+            toast.error("Error creating new blog")
+        }
     }
 
     const editBlog = (id) => {

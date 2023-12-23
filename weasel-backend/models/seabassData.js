@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 const seabassDataSchema = new mongoose.Schema({
-    quillDelta: Object,
-    html: String,
+    content: Object,
     title: String,
-    published: Boolean,
-    category: String
+    status: String,
+    category: String,
+    date: String
 })
 const SeabassData = mongoose.model('SeabassData', seabassDataSchema)
 export default SeabassData

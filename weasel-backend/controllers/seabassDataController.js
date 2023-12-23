@@ -27,7 +27,13 @@ const getSeabassDataById = asyncHandler(async (req, res) => {
 const createSeabassData = asyncHandler(async (req, res) => {
     try {
     if (req.body.username === process.env.SEABASS_USERNAME && req.body.password === process.env.SEABASS_PASSWORD) {
-        const data = await seabassData.create(req.body)
+        let data = await seabassData.create({
+            content: "",
+            title: "New Post",
+            status: "draft",
+            category: "",
+            date: new Date().toISOString()
+        })
         res.json(data)
     } else {
         res.status(403).send({ message: 'Forbidden' })
@@ -58,11 +64,11 @@ const updateSeabassData = asyncHandler(async (req, res) => {
     if (req.body.username === process.env.SEABASS_USERNAME && req.body.password === process.env.SEABASS_PASSWORD) {
         const data = await seabassData.findById(req.params.id)
         if (data) {
-            data.delta = req.body.delta || data.delta
-            data.html = req.body.html || data.html
+            data.content = req.body.content || data.content
             data.title = req.body.title || data.title
-            data.published = req.body.published || data.published
+            data.status = req.body.status || data.status
             data.category = req.body.category || data.category
+            data.date = req.body.date || data.date
             const updatedSeabassData = await data.save()
             res.json(updatedSeabassData)
         } else {
