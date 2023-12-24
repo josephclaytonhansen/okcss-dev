@@ -69,7 +69,7 @@
 
     const updateBlogStatus = async(id) => {
         try {
-            let status = blogs.value.find(blog => blog.id === id).status
+            let status = blogs.value.find(blog => blog._id === id).status
             const response = await axios.put(idRoute,
             {username: props.username, password: props.password, status: status}).then(
                 blogs.value = await getDataFromApi()
@@ -81,7 +81,7 @@
 
     const updateBlogCategory = async(id) => {
         try {
-            let category = blogs.value.find(blog => blog.id === id).category
+            let category = blogs.value.find(blog => blog._id === id).category
             const response = await axios.put(idRoute,
             {username: props.username, password: props.password, category: category}).then(
                 blogs.value = await getDataFromApi()
@@ -126,7 +126,7 @@
                         </thead>
                         <tbody>
                             <tr v-for = "blog in blogs" :key = "blog._id" class = "row">
-                                <td  class = "col-5">{{blog.title}}{{ blog._id }}</td>
+                                <td  class = "col-5">{{blog.title}}</td>
                                 <td class = "col-2">
                                     <select class="form-select" v-model="blog.category" @change="updateBlogCategory(blog._id)">
                                         <option v-for="option in categories" :value="option" :key="option">{{ option }}</option>
