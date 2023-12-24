@@ -125,22 +125,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for = "blog in blogs" :key = "blog.id" class = "row">
-                                <td  class = "col-5">{{blog.title}}{{ blog.id }}</td>
+                            <tr v-for = "blog in blogs" :key = "blog._id" class = "row">
+                                <td  class = "col-5">{{blog.title}}{{ blog._id }}</td>
                                 <td class = "col-2">
-                                    <select class="form-select" v-model="blog.category" @change="updateBlogCategory(blog.id)">
+                                    <select class="form-select" v-model="blog.category" @change="updateBlogCategory(blog._id)">
                                         <option v-for="option in categories" :value="option" :key="option">{{ option }}</option>
                                     </select>
                                 </td>
                                 <td class = "col-1">{{blog.created}}</td>
                                 <td class = "col-2">
-                                    <select class="form-select" :class="{'text-bg-success': blog.status === 'published', 'text-bg-primary': blog.status === 'scheduled'}" v-model="blog.status" @change = "updateBlogStatus(blog.id)">
+                                    <select class="form-select" :class="{'text-bg-success': blog.status === 'published', 'text-bg-primary': blog.status === 'scheduled'}" v-model="blog.status" @change = "updateBlogStatus(blog._id)">
                                         <option v-for="option in statusOptions" :value="option" :key="option">{{ option }}</option>
                                     </select>
                                 </td>
                                 <td class = "col-2">
-                                    <button class = "btn btn-primary mx-1" @click = "editBlog(blog.id)"><Pencil/></button>
-                                    <button class = "btn btn-danger" @click = "deleteBlog(blog.id)"><Trash/></button>
+                                    <button class = "btn btn-primary mx-1" @click = "editBlog(blog._id)"><Pencil/></button>
+                                    <button class = "btn btn-danger" @click = "deleteBlog(blog._id)"><Trash/></button>
                                 </td>
                                 
                             </tr>
