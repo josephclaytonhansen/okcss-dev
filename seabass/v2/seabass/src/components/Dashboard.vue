@@ -39,6 +39,7 @@
             {username: props.username, password: props.password})
             if (response.status === 200) {
                 toast.success("New blog created")
+                blogs.value = await getDataFromApi()
             } else {
                 toast.error("Error creating new blog")
             }
@@ -51,16 +52,43 @@
         toast.success("Edit blog " + id)
     }
 
-    const deleteBlog = (id) => {
-        toast.warning("Delete blog " + id)
+    const deleteBlog = async(id) => {
+        try {
+            const response = await axios.delete('https://weasel.okcsouthstake.org/api/seabass/' + id, 
+            {data: {username: props.username, password: props.password, id: id}})
+            if (response.status === 200) {
+                toast.success("Blog " + id + " deleted")
+                blogs.value = await getDataFromApi()
+            } else {
+                toast.error("Error deleting blog " + id)
+            }
+        } catch (error) {
+            toast.error("Error deleting blog " + id)
+        }
     }
 
-    const updateBlogStatus = (id) => {
-        toast.success("Update blog " + id + " status")
+    const updateBlogStatus = async(id) => {
+        try {
+            let status = blogs.value.find(blog => blog.id === id).status
+            const response = await axios.put(idRoute,
+            {username: props.username, password: props.password, status: status}).then(
+                blogs.value = await getDataFromApi()
+            )
+        } catch (error) {
+            toast.error("Error updating blog " + id + " status")
+        }
     }
 
-    const updateBlogCategory = (id) => {
-        toast.success("Update blog " + id + " category")
+    const updateBlogCategory = async(id) => {
+        try {
+            let category = blogs.value.find(blog => blog.id === id).category
+            const response = await axios.put(idRoute,
+            {username: props.username, password: props.password, category: category}).then(
+                blogs.value = await getDataFromApi()
+            )
+        } catch (error) {
+            toast.error("Error updating blog " + id + " category")
+        }
     }
 
 
