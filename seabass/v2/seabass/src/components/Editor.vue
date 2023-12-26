@@ -58,7 +58,7 @@ export default {
       }
     })
 
-    const internalContent = ref(props.content)
+    const internalContent = ref(blog.value.content)
 
     watch(internalContent, (newContent) => {
       console.log('Content changed:', newContent)
