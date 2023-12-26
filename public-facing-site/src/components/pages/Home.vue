@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, onBeforeMount } from 'vue'
 import '../../plugins/colortheme.js'
 import BlogCard from '../page_components/blogCard.vue'
 import axios from 'axios'
@@ -29,7 +29,7 @@ function recentPosts(posts){
 
 const posts = ref([])
 
-onMounted(async () => {
+onBeforeMount(async () => {
     let igEmbed = document.createElement('script')
     igEmbed.setAttribute('src', 'https://w.behold.so/widget.js')
     igEmbed.setAttribute('type', 'module')
