@@ -49,7 +49,7 @@
 const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()
     if (currentURL.value.startsWith('/news/')) {
-        currentContent.value = 'news-' + r.split('/')[2] 
+        currentContent.value = 'blog'
     } else {
     let r = contentURLMappings[currentURL.value]
 
@@ -86,7 +86,7 @@ onMounted(() => {
             <OKCTemple v-else-if = "currentContent === 'okc-temple'"/>
             <WhatAreTemples v-else-if = "currentContent === 'what-are-temples'"/>
             <PrivacyPolicy v-else-if = "currentContent === 'privacy-policy'"/>
-            <Blog v-else-if = "currentContent.startsWith('news-')" :slug="currentContent.split('-')[1]"/>
+            <Blog v-else-if = "currentContent === 'blog'" :slug="currentContent.split('-')[1]"/>
             <Home v-else/>
         </Main>
         <Toast :toast="toast"/>
