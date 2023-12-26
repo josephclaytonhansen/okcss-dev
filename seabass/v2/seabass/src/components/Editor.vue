@@ -67,7 +67,7 @@ export default {
         <button class="btn btn-secondary" @click="updateCurrentComponent">Back</button>
       </div>
       <div class="col-auto">
-        <input type="text" v-model="blog.title" class = "fs-1"/>
+        <input type="text" v-model="blog.title" class = "fs-2"/>
       </div>
       <div class="col-auto">
         <button class="btn btn-primary" @click="saveBlog">Save</button>
