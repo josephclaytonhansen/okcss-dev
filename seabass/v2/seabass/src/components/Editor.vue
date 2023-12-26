@@ -46,7 +46,7 @@ export default {
           toast.error("Error saving blog: " + response.status)
         }
       } catch (error) {
-        toast.error("Error saving blog - " + error)
+        toast.error("Error saving blog: " + error)
       }
     }
 
