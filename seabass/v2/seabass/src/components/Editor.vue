@@ -15,8 +15,8 @@ const emits = defineEmits(['updateCurrentComponent'])
 
 const blog = ref({})
 
-onMounted( () => {
-    blog.value = props.blogs.find( (blog) => blog.id === props.blogId)
+onMounted( async() => {
+    blog.value = await props.blogs.find( (blog) => blog.id === props.blogId)
 })
 
 </script>
