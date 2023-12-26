@@ -52,17 +52,12 @@ export default {
 
     onMounted(async () => {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
-      if (foundBlog) {
+      if (foundBlog && typeof foundBlog.content === 'object' && foundBlog.content.ops) {
         blog.value.title = foundBlog.title
         blog.value.status = foundBlog.status
         blog.value.category = foundBlog.category
-        blog.value.content = foundBlog.content || { ops: [] }
-      }
-      try {
-        if (foundBlog.content == "" || foundBlog.content == null || foundBlog.content.ops == undefined || foundBlog.content.ops == null || foundBlog.content.ops == "" || !foundBlog.content.ops) {
-        blog.value.content = { ops: [] }
-      } } catch (error) {
-        console.log(error)
+        blog.value.content = foundBlog.content
+      } else {
         blog.value.content = { ops: [] }
       }
     })
@@ -88,8 +83,8 @@ export default {
     }
 
     const updateContent = (newContent) => {
-  blog.value.content.ops = newContent.ops
-}
+      blog.value.content = newContent
+    }
 
     return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
   },
