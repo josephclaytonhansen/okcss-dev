@@ -38,6 +38,7 @@ onMounted(async () => {
     colorTheme.innerHTML = exportTheme
     document.head.appendChild(colorTheme)
 
+    try {
     let response = await axios.get('https://weasel.okcsouthstake.org/api/seabass')
     posts.value = response.data
     let recent_posts = recentPosts(posts.value)
@@ -52,7 +53,9 @@ onMounted(async () => {
         date.innerHTML = post.date
         image.setAttribute('src', post.featuredImage)
         link.setAttribute('href', post.slug)
-    })
+    })} catch (error) {
+        console.log(error)
+    }
 })
 
 </script>
