@@ -62,7 +62,11 @@ export default {
       emit('updateCurrentComponent', 'dashboard')
     }
 
-    return { blog, updateCurrentComponent, saveBlog, toast, editor: ClassicEditor }
+    const updateContent = (newContent) => {
+      blog.value.content = newContent
+    }
+
+    return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
   },
 }
 </script>
