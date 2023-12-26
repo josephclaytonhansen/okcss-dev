@@ -1,13 +1,11 @@
 <script>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { QuillEditor, Delta } from '@vueup/vue-quill'
 import ImageCompress from 'quill-image-compress'
 import MagicUrl from 'quill-magic-url'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { useToast } from "vue-toastification"
-
-const toast = useToast()
 
 export default {
   props: {
@@ -21,29 +19,20 @@ export default {
   components: {
     QuillEditor
   },
-  setup: (props, { emit }) => {
-    const blog = ref({
-      content: new Delta()
-    })
+  setup(props, { emit }) {
+    const content = ref(new Delta())
+    const title = ref('')
+    const toast = useToast()
 
-    let internalContent
-
-    onMounted(async () => {
+    onMounted(() => {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
-      blog.value = foundBlog
-      if (blog.value.content === null || blog.value.content == "" || blog.value.content == undefined ) {
-        blog.value.content = new Delta()
+      if (foundBlog) {
+        title.value = foundBlog.title
       }
-      internalContent = ref(blog.value.content)
-
-      watch(internalContent, (newContent) => {
-        console.log('Content changed:', newContent)
-        emit('update:modelValue', newContent)
-      })
     })
 
     const updateContent = (newContent) => {
-      internalContent.value = newContent
+      content.value = newContent
     }
 
     const saveBlog = async () => {
@@ -53,10 +42,8 @@ export default {
         let response = await axios.put('https://weasel.okcsouthstake.org/api/seabass/' + id, {
           username: props.username,
           password: props.password,
-          content: blog.value.content,
-          title: blog.value.title,
-          status: blog.value.status,
-          category: blog.value.category,
+          content: content.value,
+          title: title.value,
           date: date
         })
 
@@ -70,6 +57,10 @@ export default {
       }
     }
 
+    const updateCurrentComponent = (component) => {
+      emit('updateCurrentComponent', component)
+    }
+
     const modules = [
       {
         name: 'quillImageCompress',
@@ -81,11 +72,7 @@ export default {
       }
     ]
 
-    const updateCurrentComponent = () => {
-      emit('updateCurrentComponent', 'dashboard')
-    }
-
-    return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent }
   },
 }
 </script>
@@ -94,19 +81,18 @@ export default {
   <div class="container-fluid">
     <div class="row align-items-center">
       <div class="col-auto">
-        <button class="btn btn-secondary" @click="updateCurrentComponent">Back</button>
-      </div>
-      <div class="col-auto">
-        <input type="text" v-model="blog.title" class="fs-2" />
+        <input type="text" v-model="title" class="fs-2" />
       </div>
       <div class="col-auto">
         <button class="btn btn-primary" @click="saveBlog">Save</button>
       </div>
+      <div class="col-auto">
+        <button class="btn btn-secondary" @click="updateCurrentComponent('dashboard')">Back</button>
+      </div>
     </div>
-
     <div class="row">
       <div class="col-12">
-        <QuillEditor theme="snow" toolbar="full" :modules="modules" v-model:content="internalContent" @update:modelValue="updateContent"
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" v-model:content="content" @update:modelValue="updateContent"
     content-type="delta" />
       </div>
     </div>
