@@ -81,17 +81,14 @@ onMounted(async () => {
     <div id="events-row" class = 'wide-row'>
         <div class="row align-items-center justify-content-center bg-dark py-5 mb-2">
             <div class="col col-12 wide-row-inner" id="events-row-inner">
-                <h2 class="text-light py-1 mb-4 row-title">Upcoming Events</h2>
+                <h2 class="text-light py-1 mb-4 row-title">News</h2>
                 <div class="row align-items-center justify-content-center flex-wrap" id="events-card-row">
 
-                    <BlogCard :border="true"/>
-
-                    <BlogCard :border="true"/>
-
-                    <BlogCard :border="true"/>
+                    <BlogCard v-for="post in posts" :key="post.id" :border="true" :title = "post.title" :link="post.slug" :fimg = "post.featuredImage" :category = "post.category"/>
 
                 </div>
             </div>
+            <a href = "/news" class = "btn btn-primary mt-4 col-3">View More</a>
         </div>
     </div>
     
@@ -156,11 +153,11 @@ onMounted(async () => {
 
     <div class="row py-5" id="news-row">
         <div class="col col-12">
-            <h2 class="text-center row-title mb-3">News</h2>
+            <h2 class="text-center row-title mb-3">Upcoming Events</h2>
             <div class="row align-items-center justify-content-center" id="news">
-                <BlogCard v-for="post in posts" :key="post.id" :border="true" :title = "post.title" :link="post.slug" :fimg = "post.featuredImage" :category = "post.category"/>
+                
             </div>
-            <a href = "/news" class = "btn btn-primary mt-4 col-3">View More</a>
+            <a href = "/events" class = "btn btn-primary mt-4 col-3">View More</a>
         </div>
     </div>
 
