@@ -23,8 +23,28 @@ export default {
   },
   setup: (props, { emit }) => {
     const blog = ref({
-      content: Delta()
+      content: new Delta()
     })
+
+    let internalContent
+
+    onMounted(async () => {
+      const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
+      blog.value = foundBlog
+      if (blog.value.content === null || blog.value.content == "" || blog.value.content == undefined ) {
+        blog.value.content = new Delta()
+      }
+      internalContent = ref(blog.value.content)
+
+      watch(internalContent, (newContent) => {
+        console.log('Content changed:', newContent)
+        emit('update:modelValue', newContent)
+      })
+    })
+
+    const updateContent = (newContent) => {
+      internalContent.value = newContent
+    }
 
     const saveBlog = async () => {
       try {
@@ -50,25 +70,6 @@ export default {
       }
     }
 
-    onMounted(async () => {
-      const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
-      blog.value = foundBlog
-      if (blog.value.content === null || blog.value.content == "" || blog.value.content == undefined ) {
-        blog.value.content = Delta()
-      }
-    })
-
-    const internalContent = ref(blog.value.content)
-
-    watch(internalContent, (newContent) => {
-      console.log('Content changed:', newContent)
-      emit('update:modelValue', newContent)
-    })
-
-    const updateContent = (newContent) => {
-      internalContent.value = newContent
-    }
-
     const modules = [
       {
         name: 'quillImageCompress',
@@ -83,7 +84,6 @@ export default {
     const updateCurrentComponent = () => {
       emit('updateCurrentComponent', 'dashboard')
     }
-
 
     return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
   },
