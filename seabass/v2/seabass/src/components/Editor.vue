@@ -1,39 +1,30 @@
-<script setup>
-
-import { ref, onMounted, defineEmits } from 'vue'
+<script>
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { QuillEditor } from '@vueup/vue-quill'
+import ImageCompress from 'quill-image-compress'
+import MagicUrl from 'quill-magic-url'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
-const props = defineProps({
+export default {
+  props: {
     username: String,
     password: String,
     blogId: String,
     blogs: Array,
     currentComponent: String
-})
-
-const emits = defineEmits(['updateCurrentComponent'])
-
-const blog = ref({})
-
-onMounted( async() => {
-    blog.value = await props.blogs.find( (blog) => blog.id === props.blogId)
-})
-
-</script>
-
-<script>
-
-import { QuillEditor } from '@vueup/vue-quill'
-import ImageCompress from 'quill-image-compress'
-import MagicUrl from 'quill-magic-url'
-
-import '@vueup/vue-quill/dist/vue-quill.snow.css'
-
-export default {
+  },
+  emits: ['updateCurrentComponent'],
   components: {
     QuillEditor
   },
   setup: (props, { emit }) => {
+    const blog = ref({})
+
+    onMounted( async() => {
+      blog.value = await props.blogs.find( (blog) => blog.id === props.blogId)
+    })
+
     const modules = [{
       name: 'quillImageCompress',  
       module: ImageCompress, 
@@ -46,10 +37,9 @@ export default {
       emit('updateCurrentComponent', 'dashboard')
     }
 
-    return { modules, updateCurrentComponent }
+    return { blog, modules, updateCurrentComponent }
   },
 }
-
 </script>
 
 <template>
@@ -60,8 +50,8 @@ export default {
       </div>
       <div class="col-auto">
         <h1><input type="text" v-model="blog.title" /></h1>
-        </div>
       </div>
+    </div>
 
     <div class="row">
       <div class="col-12">
