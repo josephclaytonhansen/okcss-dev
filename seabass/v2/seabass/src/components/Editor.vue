@@ -145,7 +145,7 @@ export default {
 
       <div class = "col-auto">
         <div class = "dropdown" id = "status">
-          <button class="btn btn-dark dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ currentStatus }}
+          <button class="btn btn-dark dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <CalendarClock v-if="currentStatus === 'scheduled'"/>
                 <Check v-if="currentStatus === 'published'"/>
                 <PencilLine v-if="currentStatus === 'draft'"/>
@@ -173,7 +173,7 @@ export default {
 
     <div class = "row col-auto align-items-center ">
       <div class="col-auto">
-        <button class="btn btn-primary" @click="saveBlog">Save<Save/></button>
+        <button class="btn btn-primary" @click="saveBlog"><Save/></button>
       </div>
     </div>
       
