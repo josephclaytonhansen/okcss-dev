@@ -27,6 +27,10 @@ export default {
     const content = ref(new Delta())
     const title = ref('')
     const toast = useToast()
+    const categories = ref([
+      { id: 1, name: 'Category 1' },
+      { id: 2, name: 'Category 2' },
+    ])
 
     onMounted(() => {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
@@ -86,13 +90,25 @@ export default {
   <div class="container-fluid">
     <div class="row align-items-center">
       <div class="col-auto">
-        <button class="btn btn-primary" @click="updateCurrentComponent('dashboard')">Back <ListTree/></button>
+        <button class="btn btn-dark" @click="updateCurrentComponent('dashboard')">Back <ListTree/></button>
       </div>
       <div class="col-auto">
         <input type="text" v-model="title" class="fs-2" />
       </div>
       <div class="col-auto">
         <button class="btn btn-primary" @click="saveBlog"><Save/></button>
+      </div>
+      <div class="col-auto">
+        <div class="dropdown">
+          <button class="btn btn-dark dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ category }}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+            <li v-for="category in categories" :key="category.id">
+              <a class="dropdown-item" @click="selectCategory(category)">{{ category.name }}</a>
+            </li>
+          </ul>
+        </div>
       </div>
       
     </div>
