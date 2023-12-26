@@ -80,7 +80,7 @@ export default {
 
     <div class="row">
       <div class="col-12">
-        <QuillEditor theme="snow" toolbar="full" :modules="modules" @input="updateContent"  />
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" :content="blog.content" @input="updateContent"  />
       </div>
     </div>
   </div>
