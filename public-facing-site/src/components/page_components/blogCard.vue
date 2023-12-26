@@ -32,7 +32,7 @@ const link = computed(() => {
 
         <div v-if="border" class="col card event-card" :class="sizeIs">
             <div class="square-img-container d-none d-md-block d-sm-none">
-                <img class="card-img-top square-img placeholder" alt="..." :src="fimg" v-if = "fimg!=''">
+                <img class="card-img-top square-img placeholder" alt="..." :src="fimg" v-if="fimg">
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ title }}</h5>
@@ -46,7 +46,7 @@ const link = computed(() => {
         <div v-else :class="sizeIs">
 
         <div class="square-img-container d-none d-md-block d-sm-none">
-            <img class="card-img-top square-img placeholder" :src="fimg" v-if="fimg!=''">
+            <img class="card-img-top square-img placeholder" :src="fimg" v-if="fimg">
         </div>
             <div class="card-body py-2">
                 <h5 class="card-title py-2">{{ title }}</h5>
