@@ -36,26 +36,26 @@ export default {
     }
 
     const saveBlog = async () => {
-      try {
-        let id = props.blogId
-        let date = new Date().toISOString()
-        let response = await axios.put('https://weasel.okcsouthstake.org/api/seabass/' + id, {
-          username: props.username,
-          password: props.password,
-          content: content.value,
-          title: title.value,
-          date: date
-        })
+  try {
+    let id = props.blogId
+    let date = new Date().toISOString()
+    let response = await axios.put('https://weasel.okcsouthstake.org/api/seabass/' + id, {
+      username: props.username,
+      password: props.password,
+      content: props.content,
+      title: title.value,
+      date: date
+    })
 
-        if (response.status === 200) {
-          toast.success("Blog saved")
-        } else {
-          toast.error("Error saving blog: " + response.status)
-        }
-      } catch (error) {
-        toast.error("Error saving blog: " + error)
-      }
+    if (response.status === 200) {
+      toast.success("Blog saved")
+    } else {
+      toast.error("Error saving blog: " + response.status)
     }
+  } catch (error) {
+    toast.error("Error saving blog: " + error)
+  }
+}
 
     const updateCurrentComponent = (component) => {
       emit('updateCurrentComponent', component)
