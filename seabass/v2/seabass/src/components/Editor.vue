@@ -5,6 +5,7 @@ import { QuillEditor } from '@vueup/vue-quill'
 import ImageCompress from 'quill-image-compress'
 import MagicUrl from 'quill-magic-url'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import {Save, ListTree} from 'lucide-vue-next'
 
 export default {
   props: {
@@ -20,6 +21,22 @@ export default {
   },
   setup: (props, { emit }) => {
     const blog = ref({})
+
+    const saveBlog = async() => {
+      try {
+        let id =props.blogId
+        let date = new Date().toISOString()
+        let response = await axios.put('https://weasel.okcsouthstake.org/api/seabass/' + id, {username: props.username, password: props.password, content: blog.value.content, title: blog.value.title, status: blog.value.status, category: blog.value.category, date: date})
+        
+        if (response.status === 200) {
+          toast.success("Blog saved")
+        } else {
+          toast.error("Error saving blog - " + response.status)
+        }
+      } catch (error) {
+        toast.error("Error saving blog - " + error)
+      }
+    }
 
     onMounted( async() => {
       blog.value = await props.blogs.find( (blog) => blog._id === props.blogId)
@@ -44,12 +61,15 @@ export default {
 
 <template>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row align-content-center">
       <div class="col-auto">
-        <button class="btn btn-primary" @click="updateCurrentComponent">Back</button>
+        <button class="btn btn-secondary" @click="updateCurrentComponent">Back<ListTree/></button>
       </div>
       <div class="col-auto">
         <h1><input type="text" v-model="blog.title" /></h1>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary" @click="saveBlog"><Save/></button>
       </div>
     </div>
 
