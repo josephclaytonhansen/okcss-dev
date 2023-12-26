@@ -39,18 +39,8 @@ onMounted(async () => {
     let response = await axios.post('https://weasel.okcsouthstake.org/api/seabass')
     posts.value = response.data
     let recent_posts = recentPosts(posts.value)
-    let blogCards = document.querySelectorAll('#news .blog-card')
-    blogCards.forEach((card, index) => {
-        let title = card.querySelector('.blog-card-title')
-        let date = card.querySelector('.blog-card-date')
-        let image = card.querySelector('.blog-card-image')
-        let link = card.querySelector('.blog-card-link')
-        let post = recent_posts[index]
-        title.innerHTML = post.title
-        date.innerHTML = post.date
-        image.setAttribute('src', post.featuredImage)
-        link.setAttribute('href', post.slug)
-    })} catch (error) {
+    posts.value = recent_posts
+    } catch (error) {
         console.log(error)
     }
 })
@@ -168,11 +158,7 @@ onMounted(async () => {
         <div class="col col-12">
             <h2 class="text-center row-title mb-3">News</h2>
             <div class="row align-items-center justify-content-center" id="news">
-
-                <BlogCard :border="false"/>
-                <BlogCard :border="false"/>
-                <BlogCard :border="false"/>
-
+                <BlogCard v-for="post in posts" :key="post.id" :border="true" :title = "post.title" :link="post.slug" :fimg = "post.featuredImage" :category = "post.category"/>
             </div>
             <a href = "/news" class = "btn btn-primary mt-4 col-3">View More</a>
         </div>

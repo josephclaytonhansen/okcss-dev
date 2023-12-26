@@ -5,6 +5,10 @@ const props = defineProps({
     border: Boolean,
     size: Number,
     category: String,
+    title: String,
+    link: String,
+    fimg: String,
+    excerpt: String,
 })
 
 const sizeIs = computed(() => {
@@ -24,14 +28,13 @@ const sizeIs = computed(() => {
 
         <div v-if="border" class="col card event-card" :class="sizeIs">
             <div class="square-img-container d-none d-md-block d-sm-none">
-                <img class="card-img-top square-img placeholder" alt="...">
+                <img class="card-img-top square-img placeholder" alt="..." :src="fimg">
             </div>
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">{{ title }}</h5>
                 <h6 class="card-subtitle text-muted small mb-2"><em>{{category}}</em></h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                    of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <p class="card-text">{{excerpt}}</p>
+                <a :href="link" class="btn btn-primary">Read more</a>
             </div>
         </div>
 
@@ -39,12 +42,12 @@ const sizeIs = computed(() => {
         <div v-else :class="sizeIs">
 
         <div class="square-img-container d-none d-md-block d-sm-none">
-            <img class="card-img-top square-img placeholder">
+            <img class="card-img-top square-img placeholder" :src="fimg">
         </div>
             <div class="card-body py-2">
-                <h5 class="card-title py-2">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="link">Go somewhere</a>
+                <h5 class="card-title py-2">{{ title }}</h5>
+                <p class="card-text">{{excerpt}}</p>
+                <a :href="link" class="link">Read more</a>
             </div>
         </div>
 
