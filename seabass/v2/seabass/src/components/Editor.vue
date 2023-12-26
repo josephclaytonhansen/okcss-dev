@@ -112,8 +112,8 @@ export default {
 
 <template>
   <div class="container-fluid">
-    <div class="row align-items-center justify-content-between">
-      <div class = "row col-auto">
+    <div class="row align-items-center justify-content-between py-3">
+      <div class = "row col-auto align-items-center ">
       <div class="col-auto">
         <button class="btn btn-dark" @click="updateCurrentComponent('dashboard')">Back <ListTree/></button>
       </div>
@@ -154,7 +154,7 @@ export default {
       </div>
     </div>
 
-    <div class = "row col-auto">
+    <div class = "row col-auto align-items-center ">
       <div class="col-auto">
         <button class="btn btn-primary" @click="saveBlog"><Save/></button>
       </div>
