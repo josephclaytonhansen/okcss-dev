@@ -22,6 +22,10 @@ const sizeIs = computed(() => {
         return "col-4 col-md-4 col-sm-12"
     }
 })
+
+const link = computed(() => {
+    return "/blog/" + props.link
+})
 </script>
 
 <template>
