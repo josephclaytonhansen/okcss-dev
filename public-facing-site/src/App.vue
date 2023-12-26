@@ -49,7 +49,7 @@
 const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()
     let r = contentURLMappings[currentURL.value]
-    if (r.startsWith('/news/')) {
+    if (r.startsWith('/news/') || r.indexOf('news') > -1) {
         currentContent.value = 'news-' + r.split('/')[2] 
     } else {
     if (r === undefined) {
