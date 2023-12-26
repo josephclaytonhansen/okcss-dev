@@ -6,7 +6,7 @@ import ImageCompress from 'quill-image-compress'
 import MagicUrl from 'quill-magic-url'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { useToast } from "vue-toastification"
-import { Save, ListTree, CalendarClock, Check, PencilLine } from 'lucide-vue-next'
+import { Save, ListTree, CalendarClock, Check, PencilLine, Info } from 'lucide-vue-next'
 
 
 export default {
