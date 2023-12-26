@@ -6,6 +6,8 @@ import ImageCompress from 'quill-image-compress'
 import MagicUrl from 'quill-magic-url'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import {Save, ListTree} from 'lucide-vue-next'
+import { useToast } from "vue-toastification"
+const toast = useToast()
 
 export default {
   props: {
@@ -54,7 +56,7 @@ export default {
       emit('updateCurrentComponent', 'dashboard')
     }
 
-    return { blog, modules, updateCurrentComponent, saveBlog }
+    return { blog, modules, updateCurrentComponent, saveBlog, toast, Save, ListTree }
   },
 }
 </script>
