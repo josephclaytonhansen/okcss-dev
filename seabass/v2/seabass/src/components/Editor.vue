@@ -99,7 +99,7 @@ export default {
 }
 
     const setScheduledDate = (event) => {
-      scheduledDate.value = event.target.value.toISOString()
+      scheduledDate.value = event.target.value
     }
 
     const modules = [
