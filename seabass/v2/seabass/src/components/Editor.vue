@@ -1,5 +1,15 @@
 <script setup>
 
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
+const props = defineProps({
+    username: String,
+    password: String,
+    blogId: String,
+    blogs: Array
+})
+
 </script>
 
 <script>

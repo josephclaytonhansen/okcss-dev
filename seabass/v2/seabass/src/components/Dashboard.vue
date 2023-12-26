@@ -12,6 +12,9 @@
 
     import { ref, onMounted } from 'vue'
 
+    let currentComponent = ref('dashboard')
+    let blogId = ref('')
+
     const statusOptions = ref(['published', 'scheduled', 'draft'])
     const categories = ref(['Category 1', 'Category 2', 'Category 3'])
 
@@ -49,7 +52,8 @@
     }
 
     const editBlog = (id) => {
-        toast.success("Edit blog " + id)
+        currentComponent.value = 'editor'
+        blogId.value = id
     }
 
     const deleteBlog = async(id) => {
@@ -88,7 +92,7 @@
 </script>
 
 <template>
-
+    <div v-if = "currentComponent === 'dashboard'">
         <main class = "container py-4">
             <div class = "row">
                 <div class = "col-12">
@@ -137,6 +141,10 @@
                 </div>
             </div>
         </main>
+    </div>
+    <div v-if = "currentComponent === 'editor'">
+        <Editor :username = "props.username" :password = "props.password" :blogId = "blogId" :blogs = "blogs"/>
+    </div>
 
 
 </template>
