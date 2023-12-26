@@ -42,12 +42,14 @@ export default {
       { id: 3, name: 'scheduled'}
     ])
 
+    const currentStatus = ref('draft')
+
     onMounted(() => {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
       if (foundBlog) {
         title.value = foundBlog.title
         content.value = new Delta(foundBlog.content)
-        status.value = foundBlog.status
+        currentStatus.value = foundBlog.status
         category.value = foundBlog.category
       }
     })
@@ -57,7 +59,7 @@ export default {
     }
 
     const selectStatus = (selectedStatus) => {
-      status.value = selectedStatus.name
+      currentStatus.value = selectedStatus.name
     }
 
     const saveBlog = async () => {
@@ -101,7 +103,7 @@ export default {
       }
     ]
 
-    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, status, selectCategory, selectStatus }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, currentStatus, selectCategory, selectStatus, status }
   },
 }
 </script>
@@ -133,7 +135,7 @@ export default {
 
       <div class = "col-auto">
         <div class = "dropdown" id = "status">
-          <button class="btn btn-dark dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ status }}</button>
+          <button class="btn btn-dark dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ currentStatus }}</button>
           <ul class="dropdown-menu" aria-labelledby="statusDropdown">
             <li v-for="status in status" :key="status.id">
               <a class="dropdown-item" @click="selectStatus(status)">{{ status.name }}
