@@ -44,6 +44,8 @@ export default {
 
     const currentStatus = ref('draft')
 
+    const scheduledDate = ref('')
+
     onMounted(() => {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
       if (foundBlog) {
@@ -51,6 +53,7 @@ export default {
         content.value = new Delta(foundBlog.content)
         currentStatus.value = foundBlog.status
         category.value = foundBlog.category
+        scheduledDate.value = foundBlog.scheduledDate
       }
     })
 
@@ -73,7 +76,8 @@ export default {
       title: title.value,
       date: date,
       status: currentStatus.value,
-      category: category.value
+      category: category.value,
+      scheduledDate: scheduledDate.value
     })
 
     if (response.status === 200) {
@@ -93,6 +97,10 @@ export default {
     const selectCategory = (selectedCategory) => {
   category.value = selectedCategory.name
 }
+
+    const setScheduledDate = (event) => {
+      scheduledDate.value = event.target.value
+    }
 
     const modules = [
       {
@@ -152,6 +160,11 @@ export default {
 
         </div>
       </div>
+
+      <div class = "col-auto" v-if="currentStatus == 'scheduled'">
+        <input type = "date" @click = "setScheduledDate">
+      </div>
+
     </div>
 
     <div class = "row col-auto align-items-center ">
