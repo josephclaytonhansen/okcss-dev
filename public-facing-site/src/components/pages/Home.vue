@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, onBeforeMount } from 'vue'
+import { onMounted, ref } from 'vue'
 import '../../plugins/colortheme.js'
 import BlogCard from '../page_components/blogCard.vue'
 import axios from 'axios'
@@ -29,14 +29,14 @@ function recentPosts(posts){
 
 const posts = ref([])
 
-onBeforeMount(async () => {
+onMounted(async () => {
     let igEmbed = document.createElement('script')
     igEmbed.setAttribute('src', 'https://w.behold.so/widget.js')
     igEmbed.setAttribute('type', 'module')
     document.head.appendChild(igEmbed)
 
     try {
-    let response = await axios.get('https://weasel.okcsouthstake.org/api/seabass')
+    let response = await axios.post('https://weasel.okcsouthstake.org/api/seabass')
     posts.value = response.data
     let recent_posts = recentPosts(posts.value)
     let blogCards = document.querySelectorAll('#news .blog-card')
