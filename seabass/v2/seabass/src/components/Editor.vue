@@ -6,7 +6,7 @@ import ImageCompress from 'quill-image-compress'
 import MagicUrl from 'quill-magic-url'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { useToast } from "vue-toastification"
-import { Save, ListTree } from 'lucide-vue-next'
+import { Save, ListTree, CalendarClock, Check, PencilLine } from 'lucide-vue-next'
 
 
 export default {
@@ -21,7 +21,10 @@ export default {
   components: {
     QuillEditor,
     Save,
-    ListTree
+    ListTree,
+    CalendarClock,
+    Check,
+    PencilLine
   },
   setup(props, { emit }) {
     const content = ref(new Delta())
@@ -33,16 +36,28 @@ export default {
     ])
     const category = ref('Category 1')
 
+    const status = ref([
+      { id: 1, name: 'draft' },
+      { id: 2, name: 'published' },
+      { id: 3, name: 'scheduled'}
+    ])
+
     onMounted(() => {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
       if (foundBlog) {
         title.value = foundBlog.title
         content.value = new Delta(foundBlog.content)
+        status.value = foundBlog.status
+        category.value = foundBlog.category
       }
     })
 
     const updateContent = (newContent) => {
       content.value = newContent
+    }
+
+    const selectStatus = (selectedStatus) => {
+      status.value = selectedStatus.name
     }
 
     const saveBlog = async () => {
@@ -86,7 +101,7 @@ export default {
       }
     ]
 
-    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, selectCategory }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, status, selectCategory, selectStatus }
   },
 }
 </script>
@@ -113,6 +128,22 @@ export default {
               <a class="dropdown-item" @click="selectCategory(category)">{{ category.name }}</a>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <div class = "col-auto">
+        <div class = "dropdown" id = "status">
+          <button class="btn btn-dark dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ status }}</button>
+          <ul class="dropdown-menu" aria-labelledby="statusDropdown">
+            <li v-for="status in status" :key="status.id">
+              <a class="dropdown-item" @click="selectStatus(status)">{{ status.name }}
+                <CalendarClock v-if="status.name === 'scheduled'"/>
+                <Check v-if="status.name === 'published'"/>
+                <PencilLine v-if="status.name === 'draft'"/>
+              </a>
+            </li>
+          </ul>
+
         </div>
       </div>
       
