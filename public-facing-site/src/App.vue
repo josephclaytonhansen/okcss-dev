@@ -48,10 +48,11 @@
 
 const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()
-    let r = contentURLMappings[currentURL.value]
-    if (r.startsWith('/news/') || r.indexOf('news') > -1) {
+    if (currentURL.value.startsWith('/news/')) {
         currentContent.value = 'news-' + r.split('/')[2] 
     } else {
+    let r = contentURLMappings[currentURL.value]
+
     if (r === undefined) {
         r = externalURLMappings[currentURL.value]
         window.location.href = r
