@@ -83,7 +83,7 @@ export default {
     }
 
     const updateContent = (newContent) => {
-      blog.value.content = newContent
+      blog.value.content = { ops: newContent };
     }
 
     return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
