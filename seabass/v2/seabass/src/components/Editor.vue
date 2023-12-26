@@ -24,7 +24,8 @@ export default {
     ListTree,
     CalendarClock,
     Check,
-    PencilLine
+    PencilLine,
+    Info
   },
   setup(props, { emit }) {
     const content = ref(new Delta())
@@ -162,6 +163,10 @@ export default {
 
       <div class = "col-auto" v-if="currentStatus == 'scheduled'">
         <input type="date" v-model="scheduledDate">
+      </div>
+
+      <div class = "col-auto">
+        <button class="btn btn-dark"><Metadata/></button>
       </div>
 
     </div>
