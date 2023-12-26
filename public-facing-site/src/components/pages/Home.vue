@@ -87,8 +87,9 @@ onMounted(async () => {
                     <BlogCard v-for="post in posts" :key="post.id" :border="true" :title = "post.title" :link="post.slug" :fimg = "post.featuredImage" :category = "post.category"/>
 
                 </div>
+                <a href = "/news" class = "btn btn-primary mt-4 col-3">View More</a>
             </div>
-            <a href = "/news" class = "btn btn-primary mt-4 col-3">View More</a>
+            
         </div>
     </div>
     
