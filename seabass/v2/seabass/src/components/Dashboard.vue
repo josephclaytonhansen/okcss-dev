@@ -75,7 +75,7 @@
                 blogs.value = await getDataFromApi()
             )
         } catch (error) {
-            toast.error("Error updating blog " + id + " status")
+            toast.error("Error updating blog " + id + " status -" + error + "-" + error.response.data.message + "-" + error.error) 
         }
     }
 
