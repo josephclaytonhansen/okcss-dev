@@ -5,7 +5,6 @@ import { QuillEditor } from '@vueup/vue-quill'
 import ImageCompress from 'quill-image-compress'
 import MagicUrl from 'quill-magic-url'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
-import {Save, ListTree} from 'lucide-vue-next'
 import { useToast } from "vue-toastification"
 const toast = useToast()
 
@@ -56,22 +55,22 @@ export default {
       emit('updateCurrentComponent', 'dashboard')
     }
 
-    return { blog, modules, updateCurrentComponent, saveBlog, toast, Save, ListTree }
+    return { blog, modules, updateCurrentComponent, saveBlog, toast }
   },
 }
 </script>
 
 <template>
   <div class="container-fluid">
-    <div class="row align-content-center">
+    <div class="row align-items-center">
       <div class="col-auto">
-        <button class="btn btn-secondary" @click="updateCurrentComponent">Back<ListTree/></button>
+        <button class="btn btn-secondary" @click="updateCurrentComponent">Back</button>
       </div>
       <div class="col-auto">
-        <h1><input type="text" v-model="blog.title" /></h1>
+        <input type="text" v-model="blog.title" class = "fs-1"/>
       </div>
       <div class="col-auto">
-        <button class="btn btn-primary" @click="saveBlog"><Save/></button>
+        <button class="btn btn-primary" @click="saveBlog">Save</button>
       </div>
     </div>
 
