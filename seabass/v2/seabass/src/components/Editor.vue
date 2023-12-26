@@ -76,7 +76,7 @@ export default {
 
     <div class="row">
       <div class="col-12">
-        <QuillEditor theme="snow" toolbar="full" :modules="modules" @input="updateCurrentComponent" />
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" @input="updateCurrentComponent" v-model="blog.content" />
       </div>
     </div>
   </div>
