@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import '../../plugins/colortheme.js'
 import BlogCard from '../page_components/blogCard.vue'
+import axios from 'axios'
 
 const props = defineProps({
     wards: Array,
@@ -26,6 +27,8 @@ function recentPosts(posts){
     return filteredPosts.slice(0,3)
 }
 
+const posts = ref([])
+
 onMounted(async () => {
     let igEmbed = document.createElement('script')
     igEmbed.setAttribute('src', 'https://w.behold.so/widget.js')
@@ -34,6 +37,22 @@ onMounted(async () => {
     let colorTheme = document.createElement('script')
     colorTheme.innerHTML = exportTheme
     document.head.appendChild(colorTheme)
+
+    let response = await axios.get('https://weasel.okcsouthstake.org/api/seabass')
+    posts.value = response.data
+    let recent_posts = recentPosts(posts.value)
+    let blogCards = document.querySelectorAll('#news .blog-card')
+    blogCards.forEach((card, index) => {
+        let title = card.querySelector('.blog-card-title')
+        let date = card.querySelector('.blog-card-date')
+        let image = card.querySelector('.blog-card-image')
+        let link = card.querySelector('.blog-card-link')
+        let post = recent_posts[index]
+        title.innerHTML = post.title
+        date.innerHTML = post.date
+        image.setAttribute('src', post.featuredImage)
+        link.setAttribute('href', post.slug)
+    })
 })
 
 </script>
@@ -148,7 +167,7 @@ onMounted(async () => {
     <div class="row py-5" id="news-row">
         <div class="col col-12">
             <h2 class="text-center row-title mb-3">News</h2>
-            <div class="row align-items-center justify-content-center">
+            <div class="row align-items-center justify-content-center" id="news">
 
                 <BlogCard :border="false"/>
                 <BlogCard :border="false"/>
