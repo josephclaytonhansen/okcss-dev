@@ -15,6 +15,10 @@
     let currentComponent = ref('dashboard')
     let blogId = ref('')
 
+    const updateCurrentComponent = (component) => {
+        currentComponent.value = component
+    }
+
     const statusOptions = ref(['published', 'scheduled', 'draft'])
     const categories = ref(['Category 1', 'Category 2', 'Category 3'])
 
@@ -143,7 +147,7 @@
         </main>
     </div>
     <div v-if = "currentComponent === 'editor'">
-        <Editor :username = "props.username" :password = "props.password" :blogId = "blogId" :blogs = "blogs"/>
+        <Editor :username = "props.username" :password = "props.password" :blogId = "blogId" :blogs = "blogs" @updateCurrentComponent="updateCurrentComponent" />
     </div>
 
 
