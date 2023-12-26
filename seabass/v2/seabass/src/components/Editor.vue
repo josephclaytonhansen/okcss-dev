@@ -51,20 +51,25 @@ export default {
     }
 
     onMounted(async () => {
-      const foundBlog = await props.blogs.find((blog) => blog._id === props.blogId);
+      const foundBlog = await props.blogs.find((blog) => blog._id === props.blogId)
       if (foundBlog) {
-        blog.value.title = foundBlog.title;
-        blog.value.status = foundBlog.status;
-        blog.value.category = foundBlog.category;
-        blog.value.content = foundBlog.content || { ops: [] };
+        blog.value.title = foundBlog.title
+        blog.value.status = foundBlog.status
+        blog.value.category = foundBlog.category
+        blog.value.content = foundBlog.content || { ops: [] }
       }
-      if (foundBlog.value.content == "") {
-        blog.value.content = { ops: [] };
+      try {
+      if (foundBlog.value.content == "" || foundBlog.value.content == null || foundBlog.value.content.ops == undefined || foundBlog.value.content.ops == null || foundBlog.value.content.ops == "" || !foundBlog.value.content.ops) {
+        blog.value.content = { ops: [] }
+      } } catch (error) {
+        console.log(error)
+        blog.value.content = { ops: [] }
       }
-    });
+    })
 
     watch(blog, () => {
-      console.log(blog.value.content);
+      if (blog){
+      console.log(blog.value.content)}
     });
 
     const modules = [
@@ -82,7 +87,11 @@ export default {
       emit('updateCurrentComponent', 'dashboard')
     }
 
-    return { blog, modules, updateCurrentComponent, saveBlog, toast }
+    const updateContent = (newContent) => {
+  blog.value.content = newContent
+}
+
+    return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
   },
 }
 </script>
@@ -103,7 +112,7 @@ export default {
 
     <div class="row">
       <div class="col-12">
-        <QuillEditor theme="snow" toolbar="full" :modules="modules" v-model="blog.content" />
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" :modelValue="blog.content" @update:modelValue="updateContent" />
       </div>
     </div>
   </div>
