@@ -31,6 +31,7 @@ export default {
       { id: 1, name: 'Category 1' },
       { id: 2, name: 'Category 2' },
     ])
+    const category = ref('Category 1')
 
     onMounted(() => {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
@@ -68,6 +69,10 @@ export default {
 
     const updateCurrentComponent = (component) => {
       emit('updateCurrentComponent', component)
+    }
+
+    const selectCategory = (category) => {
+      category.value = category.name
     }
 
     const modules = [
