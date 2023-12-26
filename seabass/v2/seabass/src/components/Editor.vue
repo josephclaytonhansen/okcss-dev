@@ -138,9 +138,9 @@ export default {
       <div class = "col-auto">
         <div class = "dropdown" id = "status">
           <button class="btn btn-dark dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ currentStatus }}
-            <CalendarClock v-if="currentStatus.value === 'scheduled'"/>
-                <Check v-if="currentStatus.value === 'published'"/>
-                <PencilLine v-if="currentStatus.value === 'draft'"/>
+            <CalendarClock v-if="currentStatus === 'scheduled'"/>
+                <Check v-if="currentStatus === 'published'"/>
+                <PencilLine v-if="currentStatus === 'draft'"/>
           </button>
           <ul class="dropdown-menu" aria-labelledby="statusDropdown">
             <li v-for="status in status" :key="status.id">
