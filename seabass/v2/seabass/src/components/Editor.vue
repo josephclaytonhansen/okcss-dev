@@ -1,7 +1,7 @@
 <script>
 import { ref, onMounted, watch } from 'vue'
 import axios from 'axios'
-import { QuillEditor } from '@vueup/vue-quill'
+import { QuillEditor, Delta } from '@vueup/vue-quill'
 import ImageCompress from 'quill-image-compress'
 import MagicUrl from 'quill-magic-url'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
@@ -23,7 +23,7 @@ export default {
   },
   setup: (props, { emit }) => {
     const blog = ref({
-      content: { ops: [] }
+      content: Delta()
     })
 
     const saveBlog = async () => {
@@ -52,13 +52,9 @@ export default {
 
     onMounted(async () => {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
-      if (foundBlog && typeof foundBlog.content === 'object' && foundBlog.content.ops) {
-        blog.value.title = foundBlog.title
-        blog.value.status = foundBlog.status
-        blog.value.category = foundBlog.category
-        blog.value.content = foundBlog.content
-      } else {
-        blog.value.content = { ops: [] }
+      blog.value = foundBlog
+      if (blog.value.content === null || blog.value.content == "" || blog.value.content == undefined ) {
+        blog.value.content = Delta()
       }
     })
 
