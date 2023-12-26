@@ -34,9 +34,6 @@ onBeforeMount(async () => {
     igEmbed.setAttribute('src', 'https://w.behold.so/widget.js')
     igEmbed.setAttribute('type', 'module')
     document.head.appendChild(igEmbed)
-    let colorTheme = document.createElement('script')
-    colorTheme.innerHTML = exportTheme
-    document.head.appendChild(colorTheme)
 
     try {
     let response = await axios.get('https://weasel.okcsouthstake.org/api/seabass')
