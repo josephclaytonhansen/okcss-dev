@@ -99,7 +99,7 @@ export default {
 }
 
     const setScheduledDate = (event) => {
-      scheduledDate.value = event.target.value
+      scheduledDate.value = event.target.value.toISOString()
     }
 
     const modules = [
@@ -113,7 +113,7 @@ export default {
       }
     ]
 
-    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, currentStatus, selectCategory, selectStatus, status }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, currentStatus, selectCategory, selectStatus, status, setScheduledDate, scheduledDate }
   },
 }
 </script>
