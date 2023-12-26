@@ -43,6 +43,10 @@ export default {
       blog.value = await props.blogs.find( (blog) => blog._id === props.blogId)
     })
 
+    watch(blog, () => {
+  console.log(blog.value.content);
+});
+
     const modules = [{
       name: 'quillImageCompress',  
       module: ImageCompress, 
@@ -76,7 +80,7 @@ export default {
 
     <div class="row">
       <div class="col-12">
-        <QuillEditor theme="snow" toolbar="full" :modules="modules" :modelValue="blog.content" @update:modelValue="blog.content = $event" @input="blog.content = $event" :content="blog.content"/>
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" v-model="blog.content"/>
       </div>
     </div>
   </div>
