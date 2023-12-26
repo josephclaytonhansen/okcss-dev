@@ -54,7 +54,7 @@ export default {
       emit('updateCurrentComponent', 'dashboard')
     }
 
-    return { blog, modules, updateCurrentComponent }
+    return { blog, modules, updateCurrentComponent, saveBlog }
   },
 }
 </script>
