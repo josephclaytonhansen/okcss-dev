@@ -20,7 +20,8 @@ export default {
   emits: ['updateCurrentComponent'],
   components: {
     QuillEditor,
-    Save
+    Save,
+    ListTree
   },
   setup(props, { emit }) {
     const content = ref(new Delta())
