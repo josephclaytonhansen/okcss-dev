@@ -27,8 +27,7 @@ _Big thanks to the Content Lead on this project, Denise Hansen, for her directio
 Seabass is also faster and smaller than other content editors, both on the server side and the client side. With lighter (and carefully engineered) network loads, Seabass is designed to work on anything from a desktop computer wired to fiber to a old mobile phone on the edge of cell coverage.
 
 #### Technical Details
-* Stack: MongoDB, Express, NodeJS
-* Uses Nunjucks for templating
+* Stack: MongoDB, NodeJS, Vite, Vue, Bootstrap
 * Uses icons from [Lucide](https://lucide.dev)
 
 #### Permissions
@@ -40,8 +39,8 @@ Weasel _(Ward Events and Services Electronic Listings)_ is a single-page-applica
 (Note: A *ward* is a congregation, a sub-unit of a *stake*.)
 
 #### Technical Details 
-* Stack: MongoDB, Vite, Vue, NodeJS
-* State: Pinia
+* Stack: MongoDB, NodeJS, Vite, Vue, Bootstrap, Express
+* Uses icons from [Lucide](https://lucide.dev)
 
 #### Weasel Viewer
 For a normal user, Weasel allows them to see **Contacts**, **Events**, **Tools**, and **Worship** location and time for their ward. Thus, there are many instances of Weasel Viewer active- one for each ward. These are accessible at okcsouthstake.org/:ward, or :ward.okcsouthstake.org (see links below.)
