@@ -76,7 +76,7 @@ export default {
 
     <div class="row">
       <div class="col-12">
-        <QuillEditor theme="snow" toolbar="full" :modules="modules" :modelValue="blog.content" @update:modelValue="blog.content = $event" />
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" :modelValue="blog.content" @update:modelValue="blog.content = $event" @input="blog.content = $event" :content="blog.content"/>
       </div>
     </div>
   </div>
