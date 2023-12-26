@@ -79,19 +79,6 @@
         }
     }
 
-    const updateBlogCategory = async(id) => {
-        try {
-            let category = blogs.value.find(blog => blog._id === id).category
-            const response = await axios.put(idRoute,
-            {username: props.username, password: props.password, category: category}).then(
-                blogs.value = await getDataFromApi()
-            )
-        } catch (error) {
-            toast.error("Error updating blog " + id + " category")
-        }
-    }
-
-
     onMounted(async () => {
         blogs.value = await getDataFromApi().then(console.log("Blogs loaded"))
     })
@@ -128,9 +115,7 @@
                             <tr v-for = "blog in blogs" :key = "blog._id" class = "row">
                                 <td  class = "col-5">{{blog.title}}</td>
                                 <td class = "col-2">
-                                    <select class="form-select" v-model="blog.category" @change="updateBlogCategory(blog._id)">
-                                        <option v-for="option in categories" :value="option" :key="option">{{ option }}</option>
-                                    </select>
+                                    {{blog.category}}
                                 </td>
                                 <td class = "col-1">{{blog.created}}</td>
                                 <td class = "col-2">
