@@ -51,7 +51,7 @@ export default {
     }
 
     onMounted(async () => {
-      const foundBlog = await props.blogs.find((blog) => blog._id === props.blogId)
+      const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
       if (foundBlog) {
         blog.value.title = foundBlog.title
         blog.value.status = foundBlog.status
@@ -59,7 +59,7 @@ export default {
         blog.value.content = foundBlog.content || { ops: [] }
       }
       try {
-      if (foundBlog.value.content == "" || foundBlog.value.content == null || foundBlog.value.content.ops == undefined || foundBlog.value.content.ops == null || foundBlog.value.content.ops == "" || !foundBlog.value.content.ops) {
+        if (foundBlog.content == "" || foundBlog.content == null || foundBlog.content.ops == undefined || foundBlog.content.ops == null || foundBlog.content.ops == "" || !foundBlog.content.ops) {
         blog.value.content = { ops: [] }
       } } catch (error) {
         console.log(error)
@@ -88,7 +88,7 @@ export default {
     }
 
     const updateContent = (newContent) => {
-  blog.value.content = newContent
+  blog.value.content.ops = newContent.ops
 }
 
     return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
