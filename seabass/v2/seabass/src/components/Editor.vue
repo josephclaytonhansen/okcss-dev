@@ -1,8 +1,10 @@
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import axios from 'axios'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { component as CKEditorComponent } from '@ckeditor/ckeditor5-vue2'
+import { QuillEditor } from '@vueup/vue-quill'
+import ImageCompress from 'quill-image-compress'
+import MagicUrl from 'quill-magic-url'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { useToast } from "vue-toastification"
 
 const toast = useToast()
@@ -17,11 +19,11 @@ export default {
   },
   emits: ['updateCurrentComponent'],
   components: {
-    ckeditor: CKEditorComponent
+    QuillEditor
   },
   setup: (props, { emit }) => {
     const blog = ref({
-      content: ''
+      content: { ops: [] }
     })
 
     const saveBlog = async () => {
@@ -50,20 +52,38 @@ export default {
 
     onMounted(async () => {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
-      if (foundBlog) {
+      if (foundBlog && typeof foundBlog.content === 'object' && foundBlog.content.ops) {
         blog.value.title = foundBlog.title
         blog.value.status = foundBlog.status
         blog.value.category = foundBlog.category
         blog.value.content = foundBlog.content
+      } else {
+        blog.value.content = { ops: [] }
       }
     })
+
+    watch(blog, () => {
+      if (blog){
+      console.log(blog.value.content)}
+    });
+
+    const modules = [
+      {
+        name: 'quillImageCompress',
+        module: ImageCompress,
+      },
+      {
+        name: 'magicUrl',
+        module: MagicUrl,
+      }
+    ]
 
     const updateCurrentComponent = () => {
       emit('updateCurrentComponent', 'dashboard')
     }
 
     const updateContent = (newContent) => {
-      blog.value.content = newContent
+      blog.value.content = { ops: newContent };
     }
 
     return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
@@ -87,7 +107,7 @@ export default {
 
     <div class="row">
       <div class="col-12">
-        <ckeditor :editor="editor" v-model="blog.content"></ckeditor>
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" :modelValue="blog.content" @update:modelValue="updateContent" />
       </div>
     </div>
   </div>
