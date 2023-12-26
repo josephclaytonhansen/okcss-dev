@@ -58,6 +58,9 @@ export default {
         blog.value.category = foundBlog.category;
         blog.value.content = foundBlog.content || { ops: [] };
       }
+      if (foundBlog.value.content == "") {
+        blog.value.content = { ops: [] };
+      }
     });
 
     watch(blog, () => {
