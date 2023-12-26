@@ -4,7 +4,10 @@ import seabassData from '../models/seabassData.js'
 dotenv.config()
 const getSeabassData = asyncHandler(async (req, res) => {
     try{
-        res.status(403).send({ message: 'Forbidden' })
+   
+        const data = await seabassData.find()
+        res.json(data)
+
     } catch (err) {
         res.status(500).send({ message: err.message })
     }
