@@ -6,6 +6,8 @@ import ImageCompress from 'quill-image-compress'
 import MagicUrl from 'quill-magic-url'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { useToast } from "vue-toastification"
+import { Save, ListTree } from 'lucide-vue-next'
+
 
 export default {
   props: {
@@ -17,7 +19,8 @@ export default {
   },
   emits: ['updateCurrentComponent'],
   components: {
-    QuillEditor
+    QuillEditor,
+    Save
   },
   setup(props, { emit }) {
     const content = ref(new Delta())
@@ -82,14 +85,15 @@ export default {
   <div class="container-fluid">
     <div class="row align-items-center">
       <div class="col-auto">
+        <button class="btn btn-primary" @click="updateCurrentComponent('dashboard')">Back <ListTree/></button>
+      </div>
+      <div class="col-auto">
         <input type="text" v-model="title" class="fs-2" />
       </div>
       <div class="col-auto">
-        <button class="btn btn-primary" @click="saveBlog">Save</button>
+        <button class="btn btn-primary" @click="saveBlog"><Save/></button>
       </div>
-      <div class="col-auto">
-        <button class="btn btn-primary" @click="updateCurrentComponent('dashboard')">Back</button>
-      </div>
+      
     </div>
     <div class="row">
       <div class="col-12">
