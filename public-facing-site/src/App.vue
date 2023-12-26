@@ -35,6 +35,7 @@
     import OKCTemple from './components/pages/OKCTemple.vue'
     import WhatAreTemples from './components/pages/WhatAreTemples.vue'
     import PrivacyPolicy from './components/pages/PrivacyPolicy.vue'
+    import Blog from './components/pages/Blog.vue'
 
     const toast = reactive({
         duration: 2000,
@@ -48,13 +49,16 @@
 const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()
     let r = contentURLMappings[currentURL.value]
+    if (r.startsWith('/news/')) {
+        currentContent.value = 'news-' + r.split('/')[2] 
+    } else {
     if (r === undefined) {
         r = externalURLMappings[currentURL.value]
         window.location.href = r
         if (r === undefined) {
             window.location.href = "/"
         }
-    }
+    }} 
     return r
 }
 
@@ -81,6 +85,7 @@ onMounted(() => {
             <OKCTemple v-else-if = "currentContent === 'okc-temple'"/>
             <WhatAreTemples v-else-if = "currentContent === 'what-are-temples'"/>
             <PrivacyPolicy v-else-if = "currentContent === 'privacy-policy'"/>
+            <Blog v-else-if = "currentContent.startsWith('news-')" :slug="currentContent.split('-')[1]"/>
             <Home v-else/>
         </Main>
         <Toast :toast="toast"/>
