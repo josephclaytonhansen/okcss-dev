@@ -71,9 +71,9 @@ export default {
       emit('updateCurrentComponent', component)
     }
 
-    const selectCategory = (category) => {
-      category.value = category.name
-    }
+    const selectCategory = (selectedCategory) => {
+  category.value = selectedCategory.name
+}
 
     const modules = [
       {
