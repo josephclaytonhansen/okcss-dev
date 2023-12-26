@@ -71,7 +71,9 @@ export default {
       password: props.password,
       content: props.content,
       title: title.value,
-      date: date
+      date: date,
+      status: currentStatus.value,
+      category: category.value
     })
 
     if (response.status === 200) {
@@ -135,13 +137,15 @@ export default {
 
       <div class = "col-auto">
         <div class = "dropdown" id = "status">
-          <button class="btn btn-dark dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ currentStatus }}</button>
+          <button class="btn btn-dark dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">{{ currentStatus }}
+            <CalendarClock v-if="currentStatus.value === 'scheduled'"/>
+                <Check v-if="currentStatus.value === 'published'"/>
+                <PencilLine v-if="currentStatus.value === 'draft'"/>
+          </button>
           <ul class="dropdown-menu" aria-labelledby="statusDropdown">
             <li v-for="status in status" :key="status.id">
               <a class="dropdown-item" @click="selectStatus(status)">{{ status.name }}
-                <CalendarClock v-if="status.name === 'scheduled'"/>
-                <Check v-if="status.name === 'published'"/>
-                <PencilLine v-if="status.name === 'draft'"/>
+                
               </a>
             </li>
           </ul>
