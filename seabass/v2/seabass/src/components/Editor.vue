@@ -86,7 +86,7 @@ export default {
       }
     ]
 
-    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, selectCategory }
   },
 }
 </script>
