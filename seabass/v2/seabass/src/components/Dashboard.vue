@@ -69,11 +69,14 @@
 
     const updateBlogStatus = async(id) => {
         try {
-            let status = blogs.value.find(blog => blog._id === id).status
-            const response = await axios.put(idRoute,
-            {username: props.username, password: props.password, status: status}).then(
+            const response = await axios.put('https://weasel.okcsouthstake.org/api/seabass/' + id, 
+            {username: props.username, password: props.password, id: id, status: blogs.value.find(blog => blog._id === id).status})
+            if (response.status === 200) {
+                toast.success("Blog " + id + " status updated")
                 blogs.value = await getDataFromApi()
-            )
+            } else {
+                toast.error("Error updating blog " + id + " status")
+            }
         } catch (error) {
             toast.error("Error updating blog " + id + " status -" + error + "-" + error.response.data.message + "-" + error.error) 
         }
