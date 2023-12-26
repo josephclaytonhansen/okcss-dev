@@ -166,14 +166,14 @@ export default {
       </div>
 
       <div class = "col-auto">
-        <button class="btn btn-dark"><Metadata/></button>
+        <button class="btn btn-dark"><Info/>Metadata</button>
       </div>
 
     </div>
 
     <div class = "row col-auto align-items-center ">
       <div class="col-auto">
-        <button class="btn btn-primary" @click="saveBlog"><Save/></button>
+        <button class="btn btn-primary" @click="saveBlog">Save<Save/></button>
       </div>
     </div>
       
