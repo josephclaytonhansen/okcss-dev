@@ -32,7 +32,10 @@ const createSeabassData = asyncHandler(async (req, res) => {
             title: "New Post",
             status: "draft",
             category: "",
-            date: new Date().toISOString()
+            date: new Date().toISOString(),
+            featuredImage: "",
+            scheduledDate: "",
+            slug: ""
         })
         res.json(data)
     } else {
@@ -69,6 +72,8 @@ const updateSeabassData = asyncHandler(async (req, res) => {
             data.status = req.body.status || data.status
             data.category = req.body.category || data.category
             data.date = req.body.date || data.date
+            data.featuredImage = req.body.featuredImage || data.featuredImage
+            data.scheduledDate = req.body.scheduledDate || data.scheduledDate
             const updatedSeabassData = await data.save()
             res.json(updatedSeabassData)
         } else {
