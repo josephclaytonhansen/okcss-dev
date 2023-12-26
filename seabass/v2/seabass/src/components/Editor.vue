@@ -104,7 +104,7 @@ export default {
             {{ category }}
           </button>
           <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-            <li v-for="category in props.categories" :key="category.id">
+            <li v-for="category in categories" :key="category.id">
               <a class="dropdown-item" @click="selectCategory(category)">{{ category.name }}</a>
             </li>
           </ul>
