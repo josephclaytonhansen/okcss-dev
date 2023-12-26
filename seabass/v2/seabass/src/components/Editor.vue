@@ -53,7 +53,10 @@ export default {
         content.value = new Delta(foundBlog.content)
         currentStatus.value = foundBlog.status
         category.value = foundBlog.category
-        scheduledDate.value = foundBlog.scheduledDate
+        if (foundBlog.scheduledDate) {
+      let date = new Date(foundBlog.scheduledDate)
+      scheduledDate.value = date.toISOString().split('T')[0]
+    }
       }
     })
 
@@ -98,10 +101,6 @@ export default {
   category.value = selectedCategory.name
 }
 
-    const setScheduledDate = (event) => {
-      scheduledDate.value = event.target.value
-    }
-
     const modules = [
       {
         name: 'quillImageCompress',
@@ -113,7 +112,7 @@ export default {
       }
     ]
 
-    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, currentStatus, selectCategory, selectStatus, status, setScheduledDate, scheduledDate }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, currentStatus, selectCategory, selectStatus, status, scheduledDate }
   },
 }
 </script>
@@ -162,7 +161,7 @@ export default {
       </div>
 
       <div class = "col-auto" v-if="currentStatus == 'scheduled'">
-        <input type = "date" @click = "setScheduledDate">
+        <input type="date" v-model="scheduledDate">
       </div>
 
     </div>
