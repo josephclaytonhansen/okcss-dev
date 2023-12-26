@@ -21,7 +21,9 @@ export default {
     QuillEditor
   },
   setup: (props, { emit }) => {
-    const blog = ref({})
+    const blog = ref({
+      content: {ops: []}
+    })
 
     const saveBlog = async() => {
       try {
@@ -41,6 +43,9 @@ export default {
 
     onMounted( async() => {
       blog.value = await props.blogs.find( (blog) => blog._id === props.blogId)
+      if (blog.value.content === '' || blog.value.content === undefined) {
+        blog.value.content = {ops: []}
+      }
     })
 
     watch(blog, () => {
