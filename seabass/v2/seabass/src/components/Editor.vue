@@ -22,7 +22,7 @@ export default {
     const blog = ref({})
 
     onMounted( async() => {
-      blog.value = await props.blogs.find( (blog) => blog.id === props.blogId)
+      blog.value = await props.blogs.find( (blog) => blog._id === props.blogId)
     })
 
     const modules = [{
