@@ -87,7 +87,7 @@ export default {
         <button class="btn btn-primary" @click="saveBlog">Save</button>
       </div>
       <div class="col-auto">
-        <button class="btn btn-secondary" @click="updateCurrentComponent('dashboard')">Back</button>
+        <button class="btn btn-primary" @click="updateCurrentComponent('dashboard')">Back</button>
       </div>
     </div>
     <div class="row">
