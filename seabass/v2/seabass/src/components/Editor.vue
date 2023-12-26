@@ -112,16 +112,15 @@ export default {
 
 <template>
   <div class="container-fluid">
-    <div class="row align-items-center">
+    <div class="row align-items-center justify-content-between">
+      <div class = "row col-auto">
       <div class="col-auto">
         <button class="btn btn-dark" @click="updateCurrentComponent('dashboard')">Back <ListTree/></button>
       </div>
       <div class="col-auto">
         <input type="text" v-model="title" class="fs-2" />
       </div>
-      <div class="col-auto">
-        <button class="btn btn-primary" @click="saveBlog"><Save/></button>
-      </div>
+      
       <div class="col-auto">
         <div class="dropdown">
           <button class="btn btn-dark dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -134,6 +133,7 @@ export default {
           </ul>
         </div>
       </div>
+      
 
       <div class = "col-auto">
         <div class = "dropdown" id = "status">
@@ -152,6 +152,13 @@ export default {
 
         </div>
       </div>
+    </div>
+
+    <div class = "row col-auto">
+      <div class="col-auto">
+        <button class="btn btn-primary" @click="saveBlog"><Save/></button>
+      </div>
+    </div>
       
     </div>
     <div class="row">
