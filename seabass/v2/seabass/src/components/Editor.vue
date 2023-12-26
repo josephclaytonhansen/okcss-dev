@@ -28,6 +28,7 @@ export default {
       const foundBlog = props.blogs.find((blog) => blog._id === props.blogId)
       if (foundBlog) {
         title.value = foundBlog.title
+        content.value = new Delta(foundBlog.content)
       }
     })
 
