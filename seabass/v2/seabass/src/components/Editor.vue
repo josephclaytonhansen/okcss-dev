@@ -55,11 +55,7 @@ export default {
       emit('updateCurrentComponent', 'dashboard')
     }
 
-    const updateContent = (content) => {
-      blog.value.content = content;
-    };
-
-    return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
+    return { blog, modules, updateCurrentComponent, saveBlog, toast }
   },
 }
 </script>
@@ -80,7 +76,7 @@ export default {
 
     <div class="row">
       <div class="col-12">
-        <QuillEditor theme="snow" toolbar="full" :modules="modules" :content="blog.content" @input="updateContent"  />
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" :modelValue="blog.content" @update:modelValue="blog.content = $event" />
       </div>
     </div>
   </div>
