@@ -107,7 +107,8 @@ export default {
 
     <div class="row">
       <div class="col-12">
-        <QuillEditor theme="snow" toolbar="full" :modules="modules" :modelValue="blog.content" @update:modelValue="updateContent" />
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" v-model:content="blog.content"
+    content-type="delta" />
       </div>
     </div>
   </div>
