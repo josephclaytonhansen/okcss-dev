@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import { CKEditor } from '@ckeditor/ckeditor5-vue'
+import { component as CKEditorComponent } from '@ckeditor/ckeditor5-vue2'
 import { useToast } from "vue-toastification"
 
 const toast = useToast()
@@ -17,7 +17,7 @@ export default {
   },
   emits: ['updateCurrentComponent'],
   components: {
-    ckeditor: CKEditor.component
+    ckeditor: CKEditorComponent
   },
   setup: (props, { emit }) => {
     const blog = ref({
