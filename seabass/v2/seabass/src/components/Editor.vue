@@ -55,7 +55,11 @@ export default {
       emit('updateCurrentComponent', 'dashboard')
     }
 
-    return { blog, modules, updateCurrentComponent, saveBlog, toast }
+    const updateContent = (content) => {
+      blog.value.content = content;
+    };
+
+    return { blog, modules, updateCurrentComponent, saveBlog, toast, updateContent }
   },
 }
 </script>
@@ -76,7 +80,7 @@ export default {
 
     <div class="row">
       <div class="col-12">
-        <QuillEditor theme="snow" toolbar="full" :modules="modules" v-model="blog.content" />
+        <QuillEditor theme="snow" toolbar="full" :modules="modules" @input="updateContent"  />
       </div>
     </div>
   </div>
