@@ -183,18 +183,18 @@ const createCategory =  () => {
       </div>
 
       <div class = "col-auto" v-if="currentStatus == 'scheduled'">
-        <input type="date btn-info" v-model="scheduledDate">
+        <input type="date text-bg-info" v-model="scheduledDate">
       </div>
 
       <div class = "col-auto">
-        <button class="btn btn-light"  data-bs-toggle="modal" data-bs-target="#metadataModal"><Info/>Metadata</button>
+        <button class="btn btn-info"  data-bs-toggle="modal" data-bs-target="#metadataModal"><Info/>Metadata</button>
       </div>
 
     </div>
 
     <div class = "row col-auto align-items-center ">
       <div class="col-auto">
-        <button class="btn btn-info" @click="saveBlog"><Save/></button>
+        <button class="btn btn-success" @click="saveBlog"><Save/></button>
       </div>
     </div>
       
