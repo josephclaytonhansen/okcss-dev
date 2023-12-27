@@ -42,7 +42,7 @@ const handleFileChange = (event) => {
   formData.value.metaImage = file
 }
 
-const saveBlog = async () => {
+const saveBlogMetadata = async () => {
   try {
 
     const response = await axios.put(
@@ -74,7 +74,7 @@ const saveBlog = async () => {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="saveBlog">
+          <form @submit.prevent="saveBlogMetadata">
             <div class="row">
               <div class="col-12 col-sm-12 col-md-6">
                 <label for="metaTitle" class="col-form-label">Meta title</label>

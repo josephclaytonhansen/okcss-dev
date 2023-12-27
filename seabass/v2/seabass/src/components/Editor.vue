@@ -95,7 +95,7 @@ export default {
     if (response.status === 200) {
       toast.success("Blog saved")
     } else {
-      toast.error("Error saving blog: " + response.status)
+      toast.error("Error saving blog- " + response.status)
     }
   } catch (error) {
     toast.error("Error saving blog: " + error)
