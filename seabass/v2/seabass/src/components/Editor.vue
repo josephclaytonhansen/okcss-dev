@@ -84,7 +84,7 @@ export default {
     let response = await axios.put('https://weasel.okcsouthstake.org/api/seabass/' + id, {
       username: props.username,
       password: props.password,
-      content: props.content,
+      content: content.value,
       title: title.value,
       date: date,
       status: currentStatus.value,
