@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import Quill from 'quill/core'
-import Delta from 'quill-delta'
+import { Delta } from 'quill'
 
 import axios from 'axios'
 
@@ -17,20 +17,17 @@ onMounted(async () => {
     window.location.href = '/'
   }
 
-  const delta = new Delta(blog.value.content)
-  const htmlContent = delta.reduce((html, op) => {
-    if (op.insert) {
-      if (typeof op.insert === 'string') {
-        return html + op.insert
-      } else if (typeof op.insert === 'object' && op.insert.image) {
-        return html + `<img src="${op.insert.image}" alt="Quill Delta Image">`
+  const quillContent = new Quill('#quill-content', {
+    readOnly: true,
+    theme: 'bubble',
+    modules: {
+      toolbar: false,
+      clipboard: {
+        matchVisual: true
       }
     }
-    return html
-  }, '')
-
-  const quillContent = document.getElementById('quill-content')
-  quillContent.innerHTML = htmlContent
+  })
+  quillContent.setContents(blog.value.content)
 })
 </script>
 
