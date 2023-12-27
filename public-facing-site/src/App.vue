@@ -64,7 +64,6 @@ const getCurrentPage = () => {
             window.location.href = "/"
         }
     }} 
-    return r
 }
 
 onMounted(() => {
