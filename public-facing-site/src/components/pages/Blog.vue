@@ -22,10 +22,8 @@ onMounted(async () => {
   })
 
   const container = document.getElementById('quill-content')
-  container.innerHTML = quill.root.innerHTML
-
-  quill.setContents(blog.value.content)
-  document.querySelector('#quill-editor').remove()
+  quill.clipboard.dangerouslyPasteHTML(blog.value.content)
+  container.innerHTML = container.querySelector('.ql-editor').innerHTML
 })
 </script>
 
@@ -34,7 +32,6 @@ onMounted(async () => {
         <div class = "row">
             <div class = "col-12">
                 <h1 class = "text-center">{{blog.title}}</h1>
-                <div id = "quill-editor"></div>
                 <div id = "quill-content"></div>
             </div>
         </div>
