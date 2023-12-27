@@ -129,7 +129,7 @@ const createCategory =  () => {
       }
     ]
 
-    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, blogs: props.blogs, blogId: props.blogId, categories, category, currentStatus, selectCategory, selectStatus, status, scheduledDate }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, blogs: props.blogs, blogId: props.blogId, categories, category, currentStatus, selectCategory, selectStatus, status, scheduledDate, createCategory }
   },
 }
 </script>
@@ -157,7 +157,7 @@ const createCategory =  () => {
               <a class="dropdown-item" @click="selectCategory(category)">{{ category.name }}</a>
             </li>
             <li class="dropdown-divider"></li>
-            <li><a class="dropdown-item" @click="createCategory()">Create new category</a></li>
+            <li><a class="dropdown-item" @click="createCategory()">Create category</a></li>
           </ul>
         </div>
       </div>
