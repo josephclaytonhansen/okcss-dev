@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import Quill from 'quill/dist/quill'
 import { Delta } from 'quill'
 import BubbleTheme from 'quill/themes/bubble'
+import { format, formatRelative, subDays } from 'date-fns'
 
 import axios from 'axios'
 
@@ -17,6 +18,7 @@ onMounted(async () => {
   if (blog.value.status !== 'published') {
     window.location.href = '/'
   }
+  blog.value.date = formatRelative(new Date(blog.value.date), new Date())
 
   Quill.register('themes/bubble', BubbleTheme)
 
@@ -37,9 +39,9 @@ onMounted(async () => {
 <template>
   <main class="container py-4">
     <div class="row justify-content-center">
-      <div class="col-12 col-sm-8 col-md-6">
+      <div class="col-12 col-sm-8 col-md-7">
         <h1 class="text-center">{{ blog.title }}</h1>
-        <p class="text-center text-small text-muted">{{ blog.date }}</p>
+        <p class="text-center text-small text-muted"><em>{{ blog.date }} | {{blog.category}}</em></p>
         <hr/>
         <div id="quill-content"></div>
       </div>
