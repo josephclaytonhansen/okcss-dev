@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import Quill from 'quill/dist/quill'
 import { Delta } from 'quill'
 import BubbleTheme from 'quill/themes/bubble'
-import { format, formatRelative, subDays } from 'date-fns'
+import { formatRelative } from 'date-fns'
 
 import axios from 'axios'
 

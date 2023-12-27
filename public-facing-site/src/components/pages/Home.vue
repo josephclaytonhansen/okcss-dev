@@ -84,7 +84,7 @@ onMounted(async () => {
                 <h2 class="text-light py-1 mb-4 row-title">News</h2>
                 <div class="row align-items-center justify-content-center flex-wrap" id="events-card-row">
 
-                    <BlogCard v-for="post in posts" :key="post.id" :border="true" :title = "post.title" :link="post.slug" :fimg = "post.featuredImage" :category = "post.category" :excerpt="post.excerpt"/>
+                    <BlogCard v-for="post in posts" :key="post.id" :border="true" :title = "post.title" :link="post.slug" :fimg = "post.featuredImage" :category = "post.category" :excerpt="post.excerpt" :date="post.date"/>
 
                 </div>
                 <a href = "/news" class = "btn btn-primary mt-4 col-3">View More</a>

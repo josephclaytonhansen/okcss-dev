@@ -81,7 +81,7 @@ const filterPosts = (category) => {
 
     <div id="blogs" class = "row justify-content-evenly flex-wrap mb-5 py-3 gy-3">
         <TransitionGroup name = "list">
-        <BlogCard v-for="(item, index) in working_posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`"  :border="true" :title = "item.title" :link="item.slug" :fimg = "item.featuredImage" :category = "item.category" :excerpt="item.excerpt" :size="3">
+        <BlogCard v-for="(item, index) in working_posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`"  :border="true" :title = "item.title" :link="item.slug" :fimg = "item.featuredImage" :category = "item.category" :excerpt="item.excerpt" :size="3" :date="item.date">
             <template #content>{{ item }}</template>
         </BlogCard>
         </TransitionGroup>

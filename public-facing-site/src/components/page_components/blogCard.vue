@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import { formatRelative } from 'date-fns'
 
 const props = defineProps({
     border: Boolean,
@@ -9,6 +10,7 @@ const props = defineProps({
     link: String,
     fimg: String,
     excerpt: String,
+    date: String
 })
 
 const sizeIs = computed(() => {
@@ -26,6 +28,10 @@ const sizeIs = computed(() => {
 const link = computed(() => {
     return "/news/" + props.link
 })
+
+const date = computed(() => {
+    return formatRelative(new Date(props.date), new Date())
+})
 </script>
 
 <template>
@@ -36,7 +42,7 @@ const link = computed(() => {
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ title }}</h5>
-                <h6 class="card-subtitle text-muted small mb-2"><em>{{category}}</em></h6>
+                <h6 class="card-subtitle text-muted small mb-2"><em>{{category}} | {{date}}</em></h6>
                 <p class="card-text">{{excerpt}}</p>
                 <a :href="link" class="btn btn-primary">Read more</a>
             </div>
