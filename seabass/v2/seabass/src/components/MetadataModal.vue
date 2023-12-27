@@ -92,8 +92,12 @@ const saveBlog = async () => {
                 <label for="metaImage" class="col-form-label">Featured image</label>
                 <input type="file" class="form-control" id="metaImage" @change="handleFileChange">
               </div>
+              <div class = "col-12">
+                <label for="metaExcerpt" class="col-form-label">Excerpt</label>
+                <textarea class="form-control" id="metaExcerpt" v-model="formData.metaExcerpt"></textarea>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary mt-2">Save</button>
           </form>
         </div>
       </div>
