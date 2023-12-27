@@ -38,7 +38,6 @@ export default {
       { id: 1, name: 'Stake Events' },
       { id: 2, name: 'Meet a Member' },
       { id: 3, name: 'Inspiring Stories' },
-      { id: 4, name: 'Missionaries' },
       { id: 11, name: 'Graduations' },
       { id: 12, name: 'Weddings' },
       { id: 13, name: 'Funerals' },
