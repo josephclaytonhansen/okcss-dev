@@ -7,6 +7,7 @@ import MagicUrl from 'quill-magic-url'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { useToast } from "vue-toastification"
 import { Save, ListTree, CalendarClock, Check, PencilLine, Info } from 'lucide-vue-next'
+import MetadataModal from './MetadataModal.vue'
 
 
 export default {
@@ -25,8 +26,10 @@ export default {
     CalendarClock,
     Check,
     PencilLine,
-    Info
+    Info,
+    MetadataModal
   },
+
   setup(props, { emit }) {
     const content = ref(new Delta())
     const title = ref('')
@@ -113,12 +116,14 @@ export default {
       }
     ]
 
-    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, categories, category, currentStatus, selectCategory, selectStatus, status, scheduledDate }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, blogs, blogId, categories, category, currentStatus, selectCategory, selectStatus, status, scheduledDate }
   },
 }
 </script>
 
 <template>
+  <MetadataModal :blogId = "blogId" :blogs = "blogs" />
+
   <div class="container-fluid">
     <div class="row align-items-center justify-content-between py-3">
       <div class = "row col-auto align-items-center ">
