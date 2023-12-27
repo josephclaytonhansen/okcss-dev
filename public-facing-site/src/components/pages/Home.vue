@@ -51,7 +51,11 @@ onMounted(async () => {
     <div class="row align-items-center py-5">
         <div class="col col-md-5 col-12 col-sm-12" id="hero-image" style = "height:526px">
             <div class = "square-img-container">
-                <img src = "/assets/Pictures/Home/hero.png" class = "square-img" />
+                <picture>
+                    <source srcset="/assets/Pictures/Home/hero.webp" type="image/webp">
+                    <source srcset="/assets/Pictures/Home/hero.png" type="image/png">
+                    <img src="/assets/Pictures/Home/hero.png" class="square-img" alt="Hero Image">
+                </picture>
             </div>
         </div>
         <div class="col col-1 col-sm-12 col-md-1" id="hero-spacer"></div>
@@ -111,7 +115,11 @@ onMounted(async () => {
         <div class="col col-md-5 col-12 col-sm-12 pt-2 pt-sm-2 pt-md-0" id="hero-image">
 
             <div class="hd-img-container">
-                <img class="square-img" src="/assets/Pictures/Home/home2.png">
+                <picture>
+                    <source srcset="/assets/Pictures/Home/home2.webp" type="image/webp">
+                    <source srcset="/assets/Pictures/Home/home2.png" type="image/png">
+                    <img src="/assets/Pictures/Home/home2.png" class="square-img" alt="Hero Image">
+                </picture>
             </div>
         </div>
 
