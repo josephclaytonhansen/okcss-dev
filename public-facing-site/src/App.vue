@@ -48,7 +48,7 @@
 
 const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()
-    if (currentURL.value.startsWith('/news/')) {
+    if (currentURL.value.startsWith('/news/') && window.location.href != "https://okcsouthstake.org/news") {
         currentContent.value = 'blog'
     } else {
     let r = contentURLMappings[currentURL.value]
