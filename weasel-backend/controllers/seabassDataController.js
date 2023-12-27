@@ -34,7 +34,10 @@ const createSeabassData = asyncHandler(async (req, res) => {
             date: new Date().toISOString(),
             featuredImage: "",
             scheduledDate: "",
-            slug: ""
+            slug: "",
+            metaTitle: "",
+            metaDescription: "",
+            metaKeywords: "",
         })
         res.json(data)
     } else {
@@ -73,6 +76,11 @@ const updateSeabassData = asyncHandler(async (req, res) => {
             data.date = req.body.date || data.date
             data.featuredImage = req.body.featuredImage || data.featuredImage
             data.scheduledDate = req.body.scheduledDate || data.scheduledDate
+            data.slug = req.body.slug || data.slug
+            data.metaTitle = req.body.metaTitle || data.metaTitle
+            data.metaDescription = req.body.metaDescription || data.metaDescription
+            data.metaKeywords = req.body.metaKeywords || data.metaKeywords
+            
             const updatedSeabassData = await data.save()
             res.json(updatedSeabassData)
         } else {
