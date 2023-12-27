@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Delta } from 'quill'
+import Quill from 'quill/core'
+import Delta from 'quill-delta'
 
 import axios from 'axios'
 
