@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const blogs = ref([])
 const blog = ref('')
-
+const quill = ref(null)
 
 onMounted(async () => {
     blogs.value = await axios.post('https://weasel.okcsouthstake.org/api/seabass').then(response => response.data)

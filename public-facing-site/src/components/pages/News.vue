@@ -34,7 +34,8 @@ onMounted(() => {
     getDataFromApi().then(data => {
         posts.value = data
         working_posts.value = data
-        console.log(posts.value)
+        working_posts.value = working_posts.value.filter(post => post.status === "published")
+        posts.value = posts.value.filter(post => post.status === "published")
     posts.value.forEach(post => {
         if (!allCategories.includes(post.category)){
             allCategories.push(post.category)
