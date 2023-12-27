@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { Quill } from '@vueup/vue-quill'
+import { Quill, Delta } from '@vueup/vue-quill'
 
 import axios from 'axios'
 
@@ -16,12 +16,20 @@ onMounted(async () => {
     window.location.href = '/'
   }
 
-  const quill = new Quill('#quill-content', {
-    readOnly: true,
-    theme: 'snow',
-  })
+  const delta = new Delta(blog.value.content)
+  const htmlContent = delta.reduce((html, op) => {
+    if (op.insert) {
+      if (typeof op.insert === 'string') {
+        return html + op.insert
+      } else if (typeof op.insert === 'object' && op.insert.image) {
+        return html + `<img src="${op.insert.image}" alt="Quill Delta Image">`
+      }
+    }
+    return html
+  }, '')
 
-  quill.clipboard.dangerouslyPasteHTML(blog.value.content)
+  const quillContent = document.getElementById('quill-content')
+  quillContent.innerHTML = htmlContent
 })
 </script>
 
