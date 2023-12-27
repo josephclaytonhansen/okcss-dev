@@ -34,13 +34,14 @@ onMounted(() => {
     getDataFromApi().then(data => {
         posts.value = data
         working_posts.value = data
-    })
-    console.log(posts.value)
+        console.log(posts.value)
     posts.forEach(post => {
         if (!allCategories.includes(post.category)){
             allCategories.push(post.category)
         }
-    })} catch (error) {
+    })
+    })
+    } catch (error) {
         console.log(error)
     }
 })
