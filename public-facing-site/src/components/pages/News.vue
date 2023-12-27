@@ -1,6 +1,7 @@
 <script setup>
 import {ref, reactive, onMounted} from 'vue'
 import BlogCard from '../page_components/blogCard.vue'
+import 'quill/dist/quill.snow.css'
 import axios from 'axios'
 
 const posts = ref([])
