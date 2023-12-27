@@ -42,17 +42,17 @@ const handleFileChange = (event) => {
 
 const saveBlog = async () => {
   try {
-    const formDataToSend = new FormData()
-    formDataToSend.append('metaTitle', formData.value.metaTitle)
-    formDataToSend.append('metaDescription', formData.value.metaDescription)
-    formDataToSend.append('metaKeywords', formData.value.metaKeywords)
-    formDataToSend.append('metaImage', formData.value.metaImage)
-    formDataToSend.append('username', props.username)
-    formDataToSend.append('password', props.password)
 
     const response = await axios.put(
       `https://weasel.okcsouthstake.org/api/seabass/${props.blogId}`,
-      formDataToSend
+      {
+        metaTitle: formData.value.metaTitle,
+        metaDescription: formData.value.metaDescription,
+        metaKeywords: formData.value.metaKeywords,
+        metaImage: formData.value.metaImage,
+        username: props.username,
+        password: props.password,
+      }
 
     )
     toast.success(response.data.message)
