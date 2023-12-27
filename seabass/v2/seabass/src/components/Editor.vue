@@ -116,13 +116,13 @@ export default {
       }
     ]
 
-    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, blogs: props.blogs, blogId: props.blogId, categories, category, currentStatus, selectCategory, selectStatus, status, scheduledDate }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, blogs: props.blogs, blogId: props.blogId, categories, category, currentStatus, selectCategory, selectStatus, status, scheduledDat, username: props.username, password: props.password }
   },
 }
 </script>
 
 <template>
-  <MetadataModal :blogId = "blogId" :blogs = "blogs" />
+  <MetadataModal :blogId = "blogId" :blogs = "blogs" :username="username" :password="password" />
 
   <div class="container-fluid">
     <div class="row align-items-center justify-content-between py-3">

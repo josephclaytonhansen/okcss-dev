@@ -6,6 +6,8 @@ import { useToast } from "vue-toastification"
 const props = defineProps({
   blogId: String,
   blogs: Array,
+  username: String,
+  password: String,
 })
 
 const formData = ref({
@@ -45,10 +47,13 @@ const saveBlog = async () => {
     formDataToSend.append('metaDescription', formData.value.metaDescription)
     formDataToSend.append('metaKeywords', formData.value.metaKeywords)
     formDataToSend.append('metaImage', formData.value.metaImage)
+    formDataToSend.append('username', props.username)
+    formDataToSend.append('password', props.password)
 
     const response = await axios.put(
       `https://weasel.okcsouthstake.org/api/seabass/${props.blogId}`,
       formDataToSend
+
     )
     toast.success(response.data.message)
   } catch (error) {
