@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import {Quill} from '@vueup/vue-quill'
+import { Quill } from '@vueup/vue-quill'
 
 import axios from 'axios'
 
@@ -16,25 +16,22 @@ onMounted(async () => {
     window.location.href = '/'
   }
 
-  const quill = new Quill('#quill-editor', {
+  const quill = new Quill('#quill-content', {
     readOnly: true,
     theme: 'snow',
   })
 
-  const container = document.getElementById('quill-content')
   quill.clipboard.dangerouslyPasteHTML(blog.value.content)
-  container.innerHTML = container.querySelector('.ql-editor').innerHTML
 })
 </script>
 
 <template>
-    <main class = "container py-2">
-        <div class = "row">
-            <div class = "col-12">
-                <h1 class = "text-center">{{blog.title}}</h1>
-                <div id = "quill-content"></div>
-            </div>
-        </div>
-    </main>
-    
+  <main class="container py-2">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center">{{ blog.title }}</h1>
+        <div id="quill-content"></div>
+      </div>
+    </div>
+  </main>
 </template>
