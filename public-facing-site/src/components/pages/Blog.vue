@@ -34,7 +34,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="container py-2">
+  <main class="container py-4">
     <div class="row">
       <div class="col-12">
         <h1 class="text-center">{{ blog.title }}</h1>
