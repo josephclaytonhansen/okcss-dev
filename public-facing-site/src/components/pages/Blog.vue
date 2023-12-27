@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import Quill from 'quill/core'
 import { Delta } from 'quill'
+import BubbleTheme from 'quill/themes/bubble'
 
 import axios from 'axios'
 
@@ -16,6 +17,8 @@ onMounted(async () => {
   if (blog.value.status !== 'published') {
     window.location.href = '/'
   }
+
+  Quill.register('themes/bubble', BubbleTheme)
 
   const quillContent = new Quill('#quill-content', {
     readOnly: true,
