@@ -15,8 +15,9 @@
     let currentComponent = ref('dashboard')
     let blogId = ref('')
 
-    const updateCurrentComponent = (component) => {
+    const updateCurrentComponent = async (component) => {
         currentComponent.value = component
+        blogs.value = await getDataFromApi().then(console.log("Blogs loaded"))
     }
 
     const statusOptions = ref(['published', 'scheduled', 'draft'])
