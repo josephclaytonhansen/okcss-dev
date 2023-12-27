@@ -133,7 +133,7 @@ export default {
     <div class="row align-items-center justify-content-between py-3">
       <div class = "row col-auto align-items-center ">
       <div class="col-auto">
-        <button class="btn btn-dark" @click="updateCurrentComponent('dashboard')">Back <ListTree/></button>
+        <button class="btn btn-light" @click="updateCurrentComponent('dashboard')">Back <ListTree/></button>
       </div>
       <div class="col-auto">
         <input type="text" v-model="title" class="fs-2" />
@@ -141,7 +141,7 @@ export default {
       
       <div class="col-auto">
         <div class="dropdown">
-          <button class="btn btn-dark dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-light dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             {{ category }}
           </button>
           <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
@@ -155,7 +155,7 @@ export default {
 
       <div class = "col-auto">
         <div class = "dropdown" id = "status">
-          <button class="btn btn-dark dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-light dropdown-toggle" type="button" id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <CalendarClock v-if="currentStatus === 'scheduled'"/>
                 <Check v-if="currentStatus === 'published'"/>
                 <PencilLine v-if="currentStatus === 'draft'"/>
@@ -176,7 +176,7 @@ export default {
       </div>
 
       <div class = "col-auto">
-        <button class="btn btn-dark"  data-bs-toggle="modal" data-bs-target="#metadataModal"><Info/>Metadata</button>
+        <button class="btn btn-light"  data-bs-toggle="modal" data-bs-target="#metadataModal"><Info/>Metadata</button>
       </div>
 
     </div>
