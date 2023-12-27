@@ -183,7 +183,7 @@ const createCategory =  () => {
       </div>
 
       <div class = "col-auto" v-if="currentStatus == 'scheduled'">
-        <input type="date text-bg-info" v-model="scheduledDate">
+        <input type="date" class = "text-bg-info" v-model="scheduledDate">
       </div>
 
       <div class = "col-auto">
@@ -194,7 +194,7 @@ const createCategory =  () => {
 
     <div class = "row col-auto align-items-center ">
       <div class="col-auto">
-        <button class="btn btn-success" @click="saveBlog"><Save/></button>
+        <button class="btn btn-dark" @click="saveBlog"><Save/></button>
       </div>
     </div>
       
