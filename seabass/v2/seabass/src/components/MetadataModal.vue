@@ -55,7 +55,7 @@ const saveBlog = async () => {
       }
 
     )
-    toast.success(response.data.message)
+    toast.success("Metadata saved")
   } catch (error) {
     toast.error(error.response.data.message)
   }
