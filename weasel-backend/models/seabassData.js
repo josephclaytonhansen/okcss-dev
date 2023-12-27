@@ -8,7 +8,10 @@ const seabassDataSchema = new mongoose.Schema({
     date: String,
     featuredImage: String,
     scheduledDate: String,
-    slug: String
+    slug: String,
+    metaTitle: String,
+    metaDescription: String,
+    metaKeywords: String,
 })
 
 seabassDataSchema.pre('save', function(next) {

@@ -171,7 +171,7 @@ export default {
       </div>
 
       <div class = "col-auto">
-        <button class="btn btn-dark"><Info/>Metadata</button>
+        <button class="btn btn-dark"  data-bs-toggle="modal" data-bs-target="#metadataModal"><Info/>Metadata</button>
       </div>
 
     </div>
