@@ -1,86 +1,37 @@
 <script setup>
 import {ref, reactive, onMounted} from 'vue'
 import BlogCard from '../page_components/blogCard.vue'
+import axios from 'axios'
 
-const posts = reactive([
-    {
-        "category": "Graduations",
-    },
-    {
-        "category": "Weddings",
-    },
-    {
-        "category": "Graduations",
-    },
-    {
-        "category": "Graduations",
-    },
-    {
-        "category": "Stake Events",
-    },
-    {
-        "category": "Graduations",
-    },
-    {
-        "category": "Stake Events",
-    },
-    {
-        "category": "Funerals",
-    },
-    {
-        "category": "Stake Events",
-    },
+const posts = reactive([])
 
-])
-
-const working_posts = ref([
-    {
-        "category": "Graduations",
-    },
-    {
-        "category": "Weddings",
-    },
-    {
-        "category": "Graduations",
-    },
-    {
-        "category": "Graduations",
-    },
-    {
-        "category": "Stake Events",
-    },
-    {
-        "category": "Graduations",
-    },
-    {
-        "category": "Stake Events",
-    },
-    {
-        "category": "Funerals",
-    },
-    {
-        "category": "Stake Events",
-    },
-
-])
+const working_posts = ref([])
 
 const props = defineProps({
     seabassLoc: String,
     itemsPerPage: Number
 })
 
-/* onMounted(async () => {
-    const response = await fetch(props.seabassLoc+'post')
-    const data = response.json()
-    posts.value = data
-    working_posts = posts.value
-}) */
+const getDataFromApi = async () => {
+        try {
+            
+        const response = await axios.post('https://weasel.okcsouthstake.org/api/seabass/')
+        if (response.status === 200) {
+            return response.data
+        } else {
+            console.log("Error getting data")
+        }
+    } catch (error) {
+        console.log("Error getting data")
+    }}
 
 const currentPage = ref(1);
 
 const allCategories = reactive([])
 
 onMounted(() => {
+    posts.value = getDataFromApi()
+    working_posts.value = posts
     posts.forEach(post => {
         if (!allCategories.includes(post.category)){
             allCategories.push(post.category)

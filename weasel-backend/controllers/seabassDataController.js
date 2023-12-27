@@ -30,7 +30,7 @@ const createSeabassData = asyncHandler(async (req, res) => {
             content: "",
             title: "New Post",
             status: "draft",
-            category: "",
+            category: "Stake Events",
             date: new Date().toISOString(),
             featuredImage: "",
             scheduledDate: "",

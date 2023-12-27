@@ -35,10 +35,16 @@ export default {
     const title = ref('')
     const toast = useToast()
     const categories = ref([
-      { id: 1, name: 'Category 1' },
-      { id: 2, name: 'Category 2' },
+      { id: 1, name: 'Stake Events' },
+      { id: 2, name: 'Meet a Member' },
+      { id: 3, name: 'Inspiring Stories' },
+      { id: 4, name: 'Missionaries' },
+      { id: 11, name: 'Graduations' },
+      { id: 12, name: 'Weddings' },
+      { id: 13, name: 'Funerals' },
+      { id: 14, name: 'Births' },
     ])
-    const category = ref('Category 1')
+    const category = ref('Stake Events')
 
     const status = ref([
       { id: 1, name: 'draft' },
