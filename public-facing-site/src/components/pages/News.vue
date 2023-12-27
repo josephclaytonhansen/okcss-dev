@@ -58,7 +58,7 @@ const filterPosts = (category) => {
     if (category === "All"){
         working_posts.value = posts
     } else {
-        working_posts.value = posts.filter(post => post.category === category)
+        working_posts.value = posts.value.filter(post => post.category === category)
     }} catch (error) {
         console.log(error)
     }
