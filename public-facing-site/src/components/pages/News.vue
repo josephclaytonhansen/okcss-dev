@@ -30,16 +30,20 @@ const currentPage = ref(1);
 const allCategories = reactive([])
 
 onMounted(() => {
+    try {
     posts.value = getDataFromApi()
     working_posts.value = posts
     posts.forEach(post => {
         if (!allCategories.includes(post.category)){
             allCategories.push(post.category)
         }
-    })
+    })} catch (error) {
+        console.log(error)
+    }
 })
 
 const filterPosts = (category) => {
+    try{
     currentPage.value = 1
     let categoryButtons = document.querySelectorAll('.cat-btn')
     categoryButtons.forEach(button => {
@@ -51,6 +55,8 @@ const filterPosts = (category) => {
         working_posts.value = posts
     } else {
         working_posts.value = posts.filter(post => post.category === category)
+    }} catch (error) {
+        console.log(error)
     }
 }
 

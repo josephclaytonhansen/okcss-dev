@@ -54,7 +54,7 @@ const getCurrentPage = () => {
         window.location.href === "https://okcsouthstake.org/news"
     ){
         currentContent.value = "news"
-    }else {
+    } else {
     let r = contentURLMappings[currentURL.value]
 
     if (r === undefined) {
