@@ -35,7 +35,7 @@ onMounted(() => {
         posts.value = data
         working_posts.value = data
         console.log(posts.value)
-    posts.forEach(post => {
+    posts.value.forEach(post => {
         if (!allCategories.includes(post.category)){
             allCategories.push(post.category)
         }
