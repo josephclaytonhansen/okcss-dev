@@ -116,7 +116,7 @@ export default {
       }
     ]
 
-    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, blogs: props.blogs, blogId: props.blogId, categories, category, currentStatus, selectCategory, selectStatus, status, scheduledDat, username: props.username, password: props.password }
+    return { content, title, modules, updateContent, saveBlog, toast, updateCurrentComponent, blogs: props.blogs, blogId: props.blogId, categories, category, currentStatus, selectCategory, selectStatus, status, scheduledDate, username: props.username, password: props.password }
   },
 }
 </script>
