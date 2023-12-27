@@ -115,6 +115,7 @@ const createCategory =  () => {
   if (newCategory) {
     categories.value.push({id: categories.value.length + 1, name: newCategory})
     category.value = newCategory
+    saveBlog()
   }
 }
 
