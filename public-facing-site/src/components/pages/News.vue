@@ -47,6 +47,7 @@ onMounted(() => {
 })
 
 const filterPosts = (category) => {
+    if (!posts.value || !Array.isArray(posts.value)) return
     try{
     currentPage.value = 1
     let categoryButtons = document.querySelectorAll('.cat-btn')
