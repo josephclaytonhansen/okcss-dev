@@ -31,8 +31,10 @@ const allCategories = reactive([])
 
 onMounted(() => {
     try {
-    posts.value = getDataFromApi()
-    working_posts.value = posts.value
+    getDataFromApi().then(data => {
+        posts.value = data
+        working_posts.value = data
+    })
     console.log(posts.value)
     posts.forEach(post => {
         if (!allCategories.includes(post.category)){
