@@ -15,6 +15,7 @@ const formData = ref({
   metaDescription: '',
   metaKeywords: '',
   metaImage: null,
+  metaExcerpt: '',
 })
 
 const toast = useToast()
@@ -30,6 +31,7 @@ onMounted(() => {
     formData.value.metaDescription = foundBlog.metaDescription
     formData.value.metaKeywords = foundBlog.metaKeywords
     formData.value.metaImage = foundBlog.featuredImage
+    formData.value.metaExcerpt = foundBlog.excerpt
   } else {
     toast.error('Blog not found')
   }
@@ -50,6 +52,7 @@ const saveBlog = async () => {
         metaDescription: formData.value.metaDescription,
         metaKeywords: formData.value.metaKeywords,
         metaImage: formData.value.metaImage,
+        excerpt: formData.value.metaExcerpt,
         username: props.username,
         password: props.password,
       }
@@ -64,7 +67,7 @@ const saveBlog = async () => {
 
 <template>
   <div class="modal fade" id="metadataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Metadata</h1>

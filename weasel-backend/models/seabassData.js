@@ -12,6 +12,7 @@ const seabassDataSchema = new mongoose.Schema({
     metaTitle: String,
     metaDescription: String,
     metaKeywords: String,
+    excerpt: String,
 })
 
 seabassDataSchema.pre('save', function(next) {

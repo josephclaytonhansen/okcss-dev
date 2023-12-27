@@ -38,6 +38,7 @@ const createSeabassData = asyncHandler(async (req, res) => {
             metaTitle: "",
             metaDescription: "",
             metaKeywords: "",
+            excerpt: ""
         })
         res.json(data)
     } else {
@@ -80,7 +81,8 @@ const updateSeabassData = asyncHandler(async (req, res) => {
             data.metaTitle = req.body.metaTitle || data.metaTitle
             data.metaDescription = req.body.metaDescription || data.metaDescription
             data.metaKeywords = req.body.metaKeywords || data.metaKeywords
-            
+            data.excerpt = req.body.excerpt || data.excerpt
+
             const updatedSeabassData = await data.save()
             res.json(updatedSeabassData)
         } else {
