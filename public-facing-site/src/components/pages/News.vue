@@ -3,7 +3,7 @@ import {ref, reactive, onMounted} from 'vue'
 import BlogCard from '../page_components/blogCard.vue'
 import axios from 'axios'
 
-const posts = reactive([])
+const posts = ref([])
 
 const working_posts = ref([])
 
@@ -32,7 +32,8 @@ const allCategories = reactive([])
 onMounted(() => {
     try {
     posts.value = getDataFromApi()
-    working_posts.value = posts
+    working_posts.value = posts.value
+    console.log(posts.value)
     posts.forEach(post => {
         if (!allCategories.includes(post.category)){
             allCategories.push(post.category)
@@ -75,7 +76,7 @@ const filterPosts = (category) => {
 
     <div id="blogs" class = "row justify-content-evenly flex-wrap mb-5 py-3 gy-3">
         <TransitionGroup name = "list">
-        <BlogCard v-for="(item, index) in working_posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`" :category="item.category" :border="true" :size="3">
+        <BlogCard v-for="(item, index) in working_posts.slice(((currentPage - 1) * itemsPerPage), ((currentPage - 1) * itemsPerPage) + itemsPerPage)" :key="`${item.id}--${index}`"  :border="true" :title = "post.title" :link="post.slug" :fimg = "post.featuredImage" :category = "post.category" :excerpt="post.excerpt" :size="3">
             <template #content>{{ item }}</template>
         </BlogCard>
         </TransitionGroup>
