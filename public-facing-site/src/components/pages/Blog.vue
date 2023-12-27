@@ -36,9 +36,11 @@ onMounted(async () => {
 
 <template>
   <main class="container py-4">
-    <div class="row">
-      <div class="col-12">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-8 col-md-6">
         <h1 class="text-center">{{ blog.title }}</h1>
+        <p class="text-center text-small text-muted">{{ blog.date }}</p>
+        <hr/>
         <div id="quill-content"></div>
       </div>
     </div>
