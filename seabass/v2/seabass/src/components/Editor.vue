@@ -110,6 +110,14 @@ export default {
   category.value = selectedCategory.name
 }
 
+const createCategory =  () => {
+  let newCategory = prompt("Enter new category name")
+  if (newCategory) {
+    categories.value.push({id: categories.value.length + 1, name: newCategory})
+    category.value = newCategory
+  }
+}
+
     const modules = [
       {
         name: 'quillImageCompress',
@@ -148,6 +156,8 @@ export default {
             <li v-for="category in categories" :key="category.id">
               <a class="dropdown-item" @click="selectCategory(category)">{{ category.name }}</a>
             </li>
+            <li class="dropdown-divider"></li>
+            <li><a class="dropdown-item" @click="createCategory()">Create new category</a></li>
           </ul>
         </div>
       </div>
