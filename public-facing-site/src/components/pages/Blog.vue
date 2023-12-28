@@ -1,10 +1,10 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, watchEffect } from 'vue'
 import Quill from 'quill/dist/quill'
 import { Delta } from 'quill'
 import BubbleTheme from 'quill/themes/bubble'
 import { formatRelative } from 'date-fns'
-import { useHead } from 'vue-head'
+
 
 import axios from 'axios'
 
@@ -37,7 +37,7 @@ onMounted(async () => {
   quillContent.setContents(blog.value.content)
 })
 
-const meta = useHead(reactive({
+const meta = reactive({
   title: blog.value.title,
   meta: [
     {
@@ -89,7 +89,28 @@ const meta = useHead(reactive({
       content: blog.value.metaKeywords
     }
   ]
-}))
+})
+
+watchEffect(() => {
+  document.title = meta.title
+  meta.meta.forEach(m => {
+    let metaEl = document.querySelector(`meta[name="${m.name}"], meta[property="${m.property}"]`)
+    if (metaEl) {
+      metaEl.setAttribute('content', m.content)
+    } else {
+      metaEl = document.createElement('meta')
+      if (m.name) {
+        metaEl.setAttribute('name', m.name)
+      }
+      if (m.property) {
+        metaEl.setAttribute('property', m.property)
+      }
+      metaEl.setAttribute('content', m.content)
+      document.getElementsByTagName('head')[0].appendChild(metaEl)
+    }
+  })
+})
+
 </script>
 
 <template>

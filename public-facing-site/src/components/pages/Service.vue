@@ -1,6 +1,6 @@
 <script setup>
-import { useHead } from 'vue-head'
-const meta = useHead({
+import {ref, reactive, onMounted, watchEffect} from 'vue'
+const meta = reactive({
     title: 'Service Opportunities | OKC South Stake',
     meta: [
         {
@@ -49,6 +49,35 @@ const meta = useHead({
         }
     ]
 
+})
+
+onBeforeMount(async () => {
+    const internal_missionaries_response = await axios.get('https://weasel.okcsouthstake.org/api/missionaries/internal')
+    internal_missionaries.value = internal_missionaries_response.data
+    const external_missionaries_response = await axios.get('https://weasel.okcsouthstake.org/api/missionaries/external')
+    external_missionaries.value = external_missionaries_response.data
+})
+
+
+
+watchEffect(() => {
+  document.title = meta.title
+  meta.meta.forEach(m => {
+    let metaEl = document.querySelector(`meta[name="${m.name}"], meta[property="${m.property}"]`)
+    if (metaEl) {
+      metaEl.setAttribute('content', m.content)
+    } else {
+      metaEl = document.createElement('meta')
+      if (m.name) {
+        metaEl.setAttribute('name', m.name)
+      }
+      if (m.property) {
+        metaEl.setAttribute('property', m.property)
+      }
+      metaEl.setAttribute('content', m.content)
+      document.getElementsByTagName('head')[0].appendChild(metaEl)
+    }
+  })
 })
 </script>
 

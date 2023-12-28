@@ -1,12 +1,12 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, reactive, watchEffect } from 'vue'
 import '../../plugins/colortheme.js'
 import BlogCard from '../page_components/blogCard.vue'
 import axios from 'axios'
-import { useHead } from 'vue-head'
 
 
-const head = useHead({
+
+const meta = reactive({
     title: 'OKC South Stake | The Church of Jesus Christ of Latter-day Saints',
     meta: [
         {
@@ -59,6 +59,26 @@ const head = useHead({
         }
     ]
 
+})
+
+watchEffect(() => {
+  document.title = meta.title
+  meta.meta.forEach(m => {
+    let metaEl = document.querySelector(`meta[name="${m.name}"], meta[property="${m.property}"]`)
+    if (metaEl) {
+      metaEl.setAttribute('content', m.content)
+    } else {
+      metaEl = document.createElement('meta')
+      if (m.name) {
+        metaEl.setAttribute('name', m.name)
+      }
+      if (m.property) {
+        metaEl.setAttribute('property', m.property)
+      }
+      metaEl.setAttribute('content', m.content)
+      document.getElementsByTagName('head')[0].appendChild(metaEl)
+    }
+  })
 })
 
 const props = defineProps({
