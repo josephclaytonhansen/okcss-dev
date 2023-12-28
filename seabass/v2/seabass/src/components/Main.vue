@@ -58,7 +58,7 @@
                             <input type = "password" class = "form-control my-3 col-6" id = "password" v-model = "password">
                         </div>
                         <div class = "row">
-                        <button type = "submit" class = "btn btn-primary my-3 col-6">Login</button>
+                        <button type = "submit" class = "btn btn-primary my-3 col-12">Login</button>
                     </div>
                     </form>
                 </div>
