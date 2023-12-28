@@ -45,18 +45,18 @@
             <div class = "container">
                 <div class = "row justify-content-center align-items-center">
                     <div class = "col-auto row justify-content-center align-items-center" style = "height:100vh;overflow-y: hidden;">
-                    <div class = "card p-3">
+                    <div class = "card p-5">
                     <h1>Seabass</h1>
                     <form @submit.prevent = "checkLogin">
                         <div class = "form-group">
                             <label for = "username">Username</label>
-                            <input type = "text" class = "form-control" id = "username" v-model = "username">
+                            <input type = "text" class = "form-control py-3" id = "username" v-model = "username">
                         </div>
                         <div class = "form-group">
                             <label for = "password">Password</label>
-                            <input type = "password" class = "form-control" id = "password" v-model = "password">
+                            <input type = "password" class = "form-control py-3" id = "password" v-model = "password">
                         </div>
-                        <button type = "submit" class = "btn btn-primary">Login</button>
+                        <button type = "submit" class = "btn btn-primary py-3">Login</button>
                     </form>
                 </div>
             </div>
