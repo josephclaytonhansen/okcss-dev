@@ -117,7 +117,7 @@ onMounted(async () => {
     <div class="row justify-content-center">
       <div class="col-12 col-sm-8 col-md-7">
         <h1 class="text-center">{{ blog.title }}</h1>
-        <p class="text-center text-small text-muted"><em>{{ blog.date }} | {{blog.category}}</em></p>
+        <p class="text-center text-small text-muted"><em>{{ blog.date }} – {{blog.category}}</em></p>
         <hr/>
         <div id="quill-content"></div>
       </div>

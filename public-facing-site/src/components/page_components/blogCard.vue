@@ -42,7 +42,7 @@ const date = computed(() => {
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ title }}</h5>
-                <h6 class="card-subtitle text-muted small mb-2"><em>{{category}} | {{date}}</em></h6>
+                <h6 class="card-subtitle text-muted small mb-2"><em>{{category}} – {{date}}</em></h6>
                 <p class="card-text">{{excerpt}}</p>
                 <a :href="link" class="btn btn-primary">Read more</a>
             </div>
