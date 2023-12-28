@@ -50,11 +50,11 @@
     currentURL.value = window.location.pathname.toLowerCase()
     let r
     if (currentURL.value === "/news") {
-        currentContent.value = "news"
+        r = "news"
     } else if (currentURL.value.startsWith('/news/')) {
         const parts = currentURL.value.split('/')
         const slug = parts[parts.length - 1]
-        currentContent.value = 'blog-' + slug
+        r = 'blog-' + slug
     } else {
         r = contentURLMappings[currentURL.value]
         if (r === undefined) {
@@ -64,10 +64,9 @@
             } else {
                 window.location.href = r
             }
-        } else {
-            currentContent.value = r
         }
     }
+    currentContent.value = r
     return r
 }
 
