@@ -53,8 +53,8 @@ onMounted(async () => {
         <meta property="og:title" content="OKC South Stake | The Church of Jesus Christ of Latter-day Saints">
         <meta property="og:description" content="The official website of the Oklahoma City South Stake of The Church of Jesus Christ of Latter-day Saints.">
         <meta property="title" content="OKC South Stake | The Church of Jesus Christ of Latter-day Saints">
-        <meta property="description" content="The official website of the Oklahoma City South Stake of The Church of Jesus Christ of Latter-day Saints.">
-        <meta property="keywords" content = "okc, oklahoma city, lds, mormon, church, stake, okc south stake, okc south, south okc, south oklahoma city, the church of jesus christ of latter-day saints, latter-day saints, latter day saints, latter day saints church, latter-day saints church, okc south stake, oklahoma christians, oklahoma church, oklahoma city church, choctaw church, midwest city church, oklahoma christian church">
+        <meta name="description" content="The official website of the Oklahoma City South Stake of The Church of Jesus Christ of Latter-day Saints.">
+        <meta name="keywords" content = "okc, oklahoma city, lds, mormon, church, stake, okc south stake, okc south, south okc, south oklahoma city, the church of jesus christ of latter-day saints, latter-day saints, latter day saints, latter day saints church, latter-day saints church, okc south stake, oklahoma christians, oklahoma church, oklahoma city church, choctaw church, midwest city church, oklahoma christian church">
         <meta property="og:image" content="https://okcsouthstake.org/assets/Pictures/Home/hero.png">
     </Head>
     <div class="row align-items-center py-5">

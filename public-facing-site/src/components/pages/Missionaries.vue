@@ -26,7 +26,7 @@ onBeforeMount(async () => {
         <meta property="twitter:image" content="https://okcsouthstake.org/assets/Pictures/Missionaries/hero.png">
         <meta property="twitter:url" content="https://okcsouthstake.org/missionaries">
         <meta property="twitter:card" content="summary_large_image">
-        <meta property="keywords" content="missionaries, missionaries in oklahoma, missionaries in oklahoma city, christian missionaries, oklahoma christian missionaries">
+        <meta name="keywords" content="missionaries, missionaries in oklahoma, missionaries in oklahoma city, christian missionaries, oklahoma christian missionaries">
     </Head>
     <div class = "row align-items-center py-5 gy-3" id = 'hero-row'>
         <div class = "col-12 col-md-6 col-sm-12">

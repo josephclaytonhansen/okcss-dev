@@ -49,7 +49,7 @@ onMounted(async () => {
     <meta v-if="blog.featuredImage" property="twitter:image" content="{{ blog.image }}">
     <meta property="og:url" content="https://okcsouthstake.org/news/{{ blog.slug }}">
     <meta property="twitter:url" content="https://okcsouthstake.org/news/{{ blog.slug }}">
-    <meta v-if="blog.metaKeywords" property="keywords" content="blog.metaKeywords">
+    <meta v-if="blog.metaKeywords" name="keywords" content="blog.metaKeywords">
     <meta property="og:type" content="article">
   </Head>
   <main class="container py-4">

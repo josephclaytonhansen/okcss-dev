@@ -15,7 +15,7 @@ import { Head } from '@vueuse/head'
         <meta property="og:url" content="https://okcsouthstake.org/service">
         <meta property="twitter:url" content="https://okcsouthstake.org/service">
         <meta property="og:type" content="article">
-        <meta property="keywords" content="service, service opportunities, service opportunities in oklahoma, service opportunities in oklahoma city, christian service opportunities, oklahoma christian service opportunities, just serve, oklahoma just serve">
+        <meta name="keywords" content="service, service opportunities, service opportunities in oklahoma, service opportunities in oklahoma city, christian service opportunities, oklahoma christian service opportunities, just serve, oklahoma just serve">
     </Head>
 <div class = "row align-items-center py-5 gy-3" id = 'hero-row'>
         <div class = "col-12 col-md-6 col-sm-12">
