@@ -49,12 +49,12 @@
     const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()
     let r
-    if (currentURL.value.startsWith('/news/') && window.location.href != "https://okcsouthstake.org/news") {
+    if (currentURL.value === "/news") {
+        currentContent.value = "news"
+    } else if (currentURL.value.startsWith('/news/')) {
         const parts = currentURL.value.split('/')
         const slug = parts[parts.length - 1]
         currentContent.value = 'blog-' + slug
-    } else if (window.location.href === "https://okcsouthstake.org/news") {
-        currentContent.value = "news"
     } else {
         r = contentURLMappings[currentURL.value]
         if (r === undefined) {
