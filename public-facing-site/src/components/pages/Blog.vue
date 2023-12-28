@@ -48,3 +48,65 @@ onMounted(async () => {
     </div>
   </main>
 </template>
+
+<style scoped>
+  .ql-font-serif {
+    font-family: 'Volkorn', serif;
+  }
+  .ql-size-small {
+    font-size: 0.75em;
+  }
+  .ql-size-large {
+    font-size: 1.5em;
+  }
+  .ql-size-huge {
+    font-size: 2.5em;
+  }
+  .ql-align-center {
+    text-align: center;
+  }
+  .ql-align-right {
+    text-align: right;
+  }
+  .ql-align-justify {
+    text-align: justify;
+  }
+  .ql-indent-1 {
+    padding-left: 3em;
+  }
+  .ql-indent-2 {
+    padding-left: 6em;
+  }
+  .ql-indent-3 {
+    padding-left: 9em;
+  }
+  .ql-editor h1 {
+    font-size: 2em;
+    font-family: 'Volkorn', serif;
+  }
+  .ql-editor h2 {
+    font-size: 1.5em;
+    font-family: 'Volkorn', serif;
+  }
+  .ql-editor h3 {
+    font-size: 1.17em;
+    font-family: 'Volkorn', serif;
+  }
+  .ql-editor h4 {
+    font-size: 1em;
+    font-family: 'Volkorn', serif;
+  }
+  .ql-editor h5 {
+    font-size: 0.83em;
+    font-family: 'Volkorn', serif;
+  }
+  .ql-editor h6 {
+    font-size: 0.67em;
+    font-family: 'Volkorn', serif;
+  }
+  .ql-editor a {
+    color: var(--bs-primary);
+    text-decoration: none;
+    font-weight: bold;
+  }
+</style>
