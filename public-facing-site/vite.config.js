@@ -4,6 +4,11 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@vue/server-renderer': '/dev/null'
+    }
+  },
   plugins: [vue()],
   server: {
     port: 5280,
