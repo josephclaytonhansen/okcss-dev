@@ -44,7 +44,7 @@
         <div v-if = "currentComponent === 'login'">
             <div class = "container">
                 <div class = "row justify-content-center align-items-center">
-                    <div class = "col-10 col-sm-8 col-md-7 row justify-content-center align-items-center" style = "height:100vh;overflow-y: hidden;">
+                    <div class = "col-10 col-sm-9 col-md-7 row justify-content-center align-items-center" style = "height:100vh;overflow-y: hidden;">
                     <div class = "card p-5">
                     <h1 class = "center text-center">Seabass</h1>
                     <hr/>
