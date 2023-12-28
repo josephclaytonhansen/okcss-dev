@@ -3,7 +3,7 @@ const internal_missionaries = ref([])
 const external_missionaries = ref([])
 import axios from 'axios'
 import { onBeforeMount, ref } from 'vue'
-import { Head } from '@unhead/vue/components'
+import { Head } from '@vueuse/head'
 onBeforeMount(async () => {
     const internal_missionaries_response = await axios.get('https://weasel.okcsouthstake.org/api/missionaries/internal')
     internal_missionaries.value = internal_missionaries_response.data

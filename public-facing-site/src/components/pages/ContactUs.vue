@@ -1,6 +1,6 @@
 <script setup>
     import {Mail, CalendarDays, Newspaper, MapPin, HeartHandshake } from 'lucide-vue-next'
-    import { Head } from '@unhead/vue/components'
+    import { Head } from '@vueuse/head'
     import bioCard from '../page_components/bioCard.vue'
 </script>
 

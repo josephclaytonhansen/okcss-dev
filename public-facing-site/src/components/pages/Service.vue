@@ -1,5 +1,5 @@
 <script setup>
-import { Head } from '@unhead/vue/components'
+import { Head } from '@vueuse/head'
 </script>
 
 <template>

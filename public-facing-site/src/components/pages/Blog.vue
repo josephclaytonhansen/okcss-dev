@@ -4,7 +4,7 @@ import Quill from 'quill/dist/quill'
 import { Delta } from 'quill'
 import BubbleTheme from 'quill/themes/bubble'
 import { formatRelative } from 'date-fns'
-import { Head } from '@unhead/vue/components'
+import { Head } from '@vueuse/head'
 
 import axios from 'axios'
 

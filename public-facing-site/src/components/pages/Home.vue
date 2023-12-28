@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import '../../plugins/colortheme.js'
 import BlogCard from '../page_components/blogCard.vue'
 import axios from 'axios'
-import { Head } from '@unhead/vue/components'
+import { Head } from '@vueuse/head'
 
 const props = defineProps({
     wards: Array,
