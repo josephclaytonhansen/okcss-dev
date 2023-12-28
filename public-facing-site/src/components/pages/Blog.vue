@@ -15,7 +15,7 @@ onMounted(async () => {
   blogs.value = await axios.post('https://weasel.okcsouthstake.org/api/seabass').then(response => response.data)
   let url = window.location.pathname
   let blogSlug = url.split('/')[2]
-  alert(blogSlug)
+  console.log(blogSlug)
   blog.value = blogs.value.find(blog => blog.slug === blogSlug)
   if (blog.value.status !== 'published') {
     window.location.href = '/'
@@ -37,7 +37,74 @@ onMounted(async () => {
   quillContent.setContents(blog.value.content)
 })
 
+const meta = reactive({
+  title: blog.value.title,
+  meta: [
+    {
+      name: 'description',
+      content: blog.value.description
+    },
+    {
+      property: 'og:title',
+      content: blog.value.title
+    },
+    {
+      property: 'og:description',
+      content: blog.value.description
+    },
+    {
+      property: 'og:image',
+      content: blog.value.featuredImage
+    },
+    {
+      property: 'og:url',
+      content: 'https://okcsouthstake.org/news/' + blog.value.slug
+    },
+    {
+      property: 'og:type',
+      content: 'article'
+    },
+    {
+      property: 'twitter:title',
+      content: blog.value.title
+    },
+    {
+      property: 'twitter:description',
+      content: blog.value.description
+    },
+    {
+      property: 'twitter:image',
+      content: blog.value.featuredImage
+    },
+    {
+      property: 'twitter:url',
+      content: 'https://okcsouthstake.org/news/' + blog.value.slug
+    },
+    {
+      property: 'twitter:card',
+      content: 'summary_large_image'
+    },
+    {
+      name: 'keywords',
+      content: blog.value.metaKeywords
+    }
+  ]
+})
 
+watchEffect(() => {
+  meta.meta.forEach(m => {
+    const meta = document.querySelector(`meta[name="${m.name}"]`)
+    if (meta) {
+      meta.setAttribute('content', m.content)
+    } else {
+      mEl = document.createElement('meta')
+      mEl.setAttribute('name', m.name)
+      mEl.setAttribute('content', m.content)
+
+    } 
+  }
+  )
+})
 
 </script>
 

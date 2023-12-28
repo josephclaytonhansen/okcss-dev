@@ -93,7 +93,7 @@ onMounted(() => {
             <OKCTemple v-else-if = "currentContent === 'okc-temple'"/>
             <WhatAreTemples v-else-if = "currentContent === 'what-are-temples'"/>
             <PrivacyPolicy v-else-if = "currentContent === 'privacy-policy'"/>
-            <Blog v-else-if = "currentContent === 'blog'" :slug="currentContent.split('-')[1]"/>
+            <Blog v-else-if = "currentContent.startsWith('blog')" :slug="currentContent.split('-')[1]"/>
             <Home v-else/>
         </Main>
         <Toast :toast="toast"/>
