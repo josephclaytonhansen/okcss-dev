@@ -1,6 +1,6 @@
 <script setup>
     import {Mail, CalendarDays, Newspaper, MapPin, HeartHandshake } from 'lucide-vue-next'
-    import { ref, reactive, onMounted, watchEffect } from 'vue'
+    import { ref, reactive, onBeforeMount, watchEffect } from 'vue'
     
     import bioCard from '../page_components/bioCard.vue'
 

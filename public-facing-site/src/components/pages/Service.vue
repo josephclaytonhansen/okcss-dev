@@ -1,5 +1,5 @@
 <script setup>
-import {ref, reactive, onMounted, watchEffect} from 'vue'
+import {ref, reactive, onBeforeMount, watchEffect} from 'vue'
 const meta = reactive({
     title: 'Service Opportunities | OKC South Stake',
     meta: [
