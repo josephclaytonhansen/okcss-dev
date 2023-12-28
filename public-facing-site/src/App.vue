@@ -46,24 +46,26 @@
     const currentURL = ref(window.location.pathname)
     const currentContent = ref("home")
 
-const getCurrentPage = () => {
+    const getCurrentPage = () => {
     currentURL.value = window.location.pathname.toLowerCase()
+    let r
     if (currentURL.value.startsWith('/news/') && window.location.href != "https://okcsouthstake.org/news") {
         currentContent.value = 'blog'
-    } else if (
-        window.location.href === "https://okcsouthstake.org/news"
-    ){
+    } else if (window.location.href === "https://okcsouthstake.org/news") {
         currentContent.value = "news"
-    }else {
-    let r = contentURLMappings[currentURL.value]
-
-    if (r === undefined) {
-        r = externalURLMappings[currentURL.value]
-        window.location.href = r
+    } else {
+        r = contentURLMappings[currentURL.value]
         if (r === undefined) {
-            window.location.href = "/"
+            r = externalURLMappings[currentURL.value]
+            if (r === undefined) {
+                window.location.href = "/"
+            } else {
+                window.location.href = r
+            }
+        } else {
+            currentContent.value = r
         }
-    }} 
+    }
     return r
 }
 
