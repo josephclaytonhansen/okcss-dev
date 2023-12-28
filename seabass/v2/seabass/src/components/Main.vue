@@ -48,11 +48,15 @@
                     <div class = "card p-3">
                     <h1>Seabass</h1>
                     <form @submit.prevent = "checkLogin">
-                        <label for = "username">Username</label>
-                        <input type = "text" id = "username" v-model = "username">
-                        <label for = "password">Password</label>
-                        <input type = "password" id = "password" v-model = "password">
-                        <button type = "submit">Login</button>
+                        <div class = "form-group">
+                            <label for = "username">Username</label>
+                            <input type = "text" class = "form-control" id = "username" v-model = "username">
+                        </div>
+                        <div class = "form-group">
+                            <label for = "password">Password</label>
+                            <input type = "password" class = "form-control" id = "password" v-model = "password">
+                        </div>
+                        <button type = "submit" class = "btn btn-primary">Login</button>
                     </form>
                 </div>
             </div>
