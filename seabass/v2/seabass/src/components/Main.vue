@@ -50,12 +50,12 @@
                     <hr/>
                     <form @submit.prevent = "checkLogin">
                         <div class = "form-group row align-items-center">
-                            <label for = "username" class = "col-3">Username</label>
-                            <input type = "text" class = "my-3 col-9" id = "username" v-model = "username">
+                            <label for = "username" class = "col-6 col-sm-4 col-md-3">Username</label>
+                            <input type = "text" class = "my-3 col-6 col-sm-8 col-md-9" id = "username" v-model = "username">
                         </div>
                         <div class = "form-group row align-items-center">
-                            <label for = "password" class = "col-3">Password</label>
-                            <input type = "password" class = "my-3 col-9" id = "password" v-model = "password">
+                            <label for = "password" class = "col-6 col-sm-4 col-md-3">Password</label>
+                            <input type = "password" class = "my-3 col-6 col-sm-8 col-md-9" id = "password" v-model = "password">
                         </div>
                         <div class = "row">
                         <button type = "submit" class = "btn btn-primary my-3 col-12">Login</button>
