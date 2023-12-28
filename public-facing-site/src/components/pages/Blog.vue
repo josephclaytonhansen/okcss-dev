@@ -37,79 +37,7 @@ onMounted(async () => {
   quillContent.setContents(blog.value.content)
 })
 
-const meta = reactive({
-  title: blog.value.title,
-  meta: [
-    {
-      name: 'description',
-      content: blog.value.description
-    },
-    {
-      property: 'og:title',
-      content: blog.value.title
-    },
-    {
-      property: 'og:description',
-      content: blog.value.description
-    },
-    {
-      property: 'og:image',
-      content: blog.value.featuredImage
-    },
-    {
-      property: 'og:url',
-      content: 'https://okcsouthstake.org/news/' + blog.value.slug
-    },
-    {
-      property: 'og:type',
-      content: 'article'
-    },
-    {
-      property: 'twitter:title',
-      content: blog.value.title
-    },
-    {
-      property: 'twitter:description',
-      content: blog.value.description
-    },
-    {
-      property: 'twitter:image',
-      content: blog.value.featuredImage
-    },
-    {
-      property: 'twitter:url',
-      content: 'https://okcsouthstake.org/news/' + blog.value.slug
-    },
-    {
-      property: 'twitter:card',
-      content: 'summary_large_image'
-    },
-    {
-      name: 'keywords',
-      content: blog.value.metaKeywords
-    }
-  ]
-})
 
-watchEffect(() => {
-  document.title = meta.title
-  meta.meta.forEach(m => {
-    let metaEl = document.querySelector(`meta[name="${m.name}"], meta[property="${m.property}"]`)
-    if (metaEl) {
-      metaEl.setAttribute('content', m.content)
-    } else {
-      metaEl = document.createElement('meta')
-      if (m.name) {
-        metaEl.setAttribute('name', m.name)
-      }
-      if (m.property) {
-        metaEl.setAttribute('property', m.property)
-      }
-      metaEl.setAttribute('content', m.content)
-      document.getElementsByTagName('head')[0].appendChild(metaEl)
-    }
-  })
-})
 
 </script>
 
