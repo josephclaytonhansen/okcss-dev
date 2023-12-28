@@ -35,6 +35,19 @@ onMounted(async () => {
     }
   })
   quillContent.setContents(blog.value.content)
+  
+  meta.meta.forEach(m => {
+    const meta = document.querySelector(`meta[name="${m.name}"]`)
+    if (meta) {
+      meta.setAttribute('content', m.content)
+    } else {
+      mEl = document.createElement('meta')
+      mEl.setAttribute('name', m.name)
+      mEl.setAttribute('content', m.content)
+
+    } 
+  }
+  )
 })
 
 const meta = reactive({
