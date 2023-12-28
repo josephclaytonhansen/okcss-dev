@@ -82,32 +82,26 @@ onMounted(async () => {
   }
   .ql-editor h1 {
     font-size: 2em;
-    font-family: 'Volkorn', serif;
     font-weight: bold;
   }
   .ql-editor h2 {
     font-size: 1.5em;
-    font-family: 'Volkorn', serif;
     font-weight: bold;
   }
   .ql-editor h3 {
     font-size: 1.17em;
-    font-family: 'Volkorn', serif;
     font-weight: bold;
   }
   .ql-editor h4 {
     font-size: 1em;
-    font-family: 'Volkorn', serif;
     font-weight: bold;
   }
   .ql-editor h5 {
     font-size: 0.83em;
-    font-family: 'Volkorn', serif;
     font-weight: bold;
   }
   .ql-editor h6 {
     font-size: 0.67em;
-    font-family: 'Volkorn', serif;
     font-weight: bold;
   }
   .ql-editor a {
