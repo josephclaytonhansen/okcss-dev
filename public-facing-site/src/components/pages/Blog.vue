@@ -1,10 +1,10 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import Quill from 'quill/dist/quill'
 import { Delta } from 'quill'
 import BubbleTheme from 'quill/themes/bubble'
 import { formatRelative } from 'date-fns'
-import { useMeta } from 'vue-meta'
+import { useHead } from 'vue-head'
 
 import axios from 'axios'
 
@@ -37,7 +37,7 @@ onMounted(async () => {
   quillContent.setContents(blog.value.content)
 })
 
-const meta = useMeta({
+const meta = useHead(reactive({
   title: blog.value.title,
   meta: [
     {
@@ -89,7 +89,7 @@ const meta = useMeta({
       content: blog.value.metaKeywords
     }
   ]
-})
+}))
 </script>
 
 <template>

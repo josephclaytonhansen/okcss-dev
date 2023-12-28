@@ -1,6 +1,6 @@
 <script setup>
-import { useMeta } from 'vue-meta'
-const meta = useMeta({
+import { useHead } from 'vue-head'
+const meta = useHead({
     title: 'Service Opportunities | OKC South Stake',
     meta: [
         {

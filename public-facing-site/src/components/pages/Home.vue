@@ -3,50 +3,10 @@ import { onMounted, ref } from 'vue'
 import '../../plugins/colortheme.js'
 import BlogCard from '../page_components/blogCard.vue'
 import axios from 'axios'
-import { useMeta } from 'vue-meta'
+import { useHead } from 'vue-head'
 
-const props = defineProps({
-    wards: Array,
-    weaselLoc: String,
-})
 
-function slugifyWard(ward){
-    return ward.toLowerCase().replace(/ /g, "-").replace(/'/g, "")
-}
-
-function wardURL(weaselLoc, ward){
-    return weaselLoc + slugifyWard(ward)
-}
-
-function filterWards(wards, filter){
-    return wards.filter(ward => !ward.includes(filter))
-}
-
-function recentPosts(posts){
-    let filteredPosts = posts.filter(post => post.date !== undefined)
-    filteredPosts.sort((a,b) => new Date(b.date) - new Date(a.date))
-    return filteredPosts.slice(0,3)
-}
-
-const posts = ref([])
-
-onMounted(async () => {
-    let igEmbed = document.createElement('script')
-    igEmbed.setAttribute('src', 'https://w.behold.so/widget.js')
-    igEmbed.setAttribute('type', 'module')
-    document.head.appendChild(igEmbed)
-
-    try {
-    let response = await axios.post('https://weasel.okcsouthstake.org/api/seabass')
-    posts.value = response.data
-    let recent_posts = recentPosts(posts.value)
-    posts.value = recent_posts
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-const meta = useMeta({
+const head = useHead({
     title: 'OKC South Stake | The Church of Jesus Christ of Latter-day Saints',
     meta: [
         {
@@ -99,6 +59,47 @@ const meta = useMeta({
         }
     ]
 
+})
+
+const props = defineProps({
+    wards: Array,
+    weaselLoc: String,
+})
+
+function slugifyWard(ward){
+    return ward.toLowerCase().replace(/ /g, "-").replace(/'/g, "")
+}
+
+function wardURL(weaselLoc, ward){
+    return weaselLoc + slugifyWard(ward)
+}
+
+function filterWards(wards, filter){
+    return wards.filter(ward => !ward.includes(filter))
+}
+
+function recentPosts(posts){
+    let filteredPosts = posts.filter(post => post.date !== undefined)
+    filteredPosts.sort((a,b) => new Date(b.date) - new Date(a.date))
+    return filteredPosts.slice(0,3)
+}
+
+const posts = ref([])
+
+onMounted(async () => {
+    let igEmbed = document.createElement('script')
+    igEmbed.setAttribute('src', 'https://w.behold.so/widget.js')
+    igEmbed.setAttribute('type', 'module')
+    document.head.appendChild(igEmbed)
+
+    try {
+    let response = await axios.post('https://weasel.okcsouthstake.org/api/seabass')
+    posts.value = response.data
+    let recent_posts = recentPosts(posts.value)
+    posts.value = recent_posts
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 </script>

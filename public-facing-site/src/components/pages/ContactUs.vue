@@ -1,9 +1,9 @@
 <script setup>
     import {Mail, CalendarDays, Newspaper, MapPin, HeartHandshake } from 'lucide-vue-next'
-    import { useMeta } from 'vue-meta'
+    import { useHead } from 'vue-head'
     import bioCard from '../page_components/bioCard.vue'
 
-    const meta = useMeta({
+    const meta = useHead({
         title: 'Contact Us | OKC South Stake',
         meta: [
             {
