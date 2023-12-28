@@ -180,4 +180,10 @@ public-facing-site/src/style.min.scss
 data.js
 data.min.js
 
-**/src/
+weasel/src/
+highcouncil/src/
+training/src/
+public-facing-site/src/
+seabass/v2/seabass/src/
+missionaries/src/
+
