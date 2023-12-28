@@ -50,9 +50,6 @@ onMounted(async () => {
 </template>
 
 <style>
-  .ql-font-serif {
-    font-family: 'Volkorn', serif;
-  }
   .ql-size-small {
     font-size: 0.75em;
   }
