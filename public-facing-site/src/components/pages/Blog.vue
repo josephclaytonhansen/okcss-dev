@@ -49,7 +49,7 @@ onMounted(async () => {
   </main>
 </template>
 
-<style scoped>
+<style>
   .ql-font-serif {
     font-family: 'Volkorn', serif;
   }
