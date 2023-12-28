@@ -1,15 +1,17 @@
 <script setup>
 import { ref, reactive, onMounted, watchEffect } from 'vue'
 import Quill from 'quill/dist/quill'
-import { Delta } from 'quill'
 import BubbleTheme from 'quill/themes/bubble'
 import { formatRelative } from 'date-fns'
-
-
 import axios from 'axios'
 
 const blogs = ref([])
 const blog = ref('')
+
+const meta = reactive({
+  title: '',
+  meta: []
+})
 
 onMounted(async () => {
   blogs.value = await axios.post('https://weasel.okcsouthstake.org/api/seabass').then(response => response.data)
@@ -35,26 +37,9 @@ onMounted(async () => {
     }
   })
   quillContent.setContents(blog.value.content)
-  
-  watchEffect(() => {
-  meta.meta.forEach(m => {
-    const meta = document.querySelector(`meta[name="${m.name}"]`)
-    if (meta) {
-      meta.setAttribute('content', m.content)
-    } else {
-      mEl = document.createElement('meta')
-      mEl.setAttribute('name', m.name)
-      mEl.setAttribute('content', m.content)
 
-    } 
-  }
-  )
-})
-})
-
-const meta = reactive({
-  title: blog.value.title,
-  meta: [
+  meta.title = blog.value.title
+  meta.meta = [
     {
       name: 'description',
       content: blog.value.description
@@ -104,10 +89,27 @@ const meta = reactive({
       content: blog.value.metaKeywords
     }
   ]
+
+  watchEffect(() => {
+    document.title = meta.title
+    meta.meta.forEach(m => {
+      let metaEl = document.querySelector(`meta[name="${m.name}"], meta[property="${m.property}"]`)
+      if (metaEl) {
+        metaEl.setAttribute('content', m.content)
+      } else {
+        metaEl = document.createElement('meta')
+        if (m.name) {
+          metaEl.setAttribute('name', m.name)
+        }
+        if (m.property) {
+          metaEl.setAttribute('property', m.property)
+        }
+        metaEl.setAttribute('content', m.content)
+        document.getElementsByTagName('head')[0].appendChild(metaEl)
+      }
+    })
+  })
 })
-
-
-
 </script>
 
 <template>
