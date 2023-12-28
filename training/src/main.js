@@ -1,6 +1,6 @@
 import './style.css'
 import { createApp } from 'vue'
-import { createHead } from '@unhead/vue'
+import { createHead } from '@vueuse/head'
 import App from './App.vue'
 const app = createApp(
     App
