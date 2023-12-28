@@ -55,7 +55,7 @@
                         </div>
                         <div class = "form-group row align-items-center">
                             <label for = "password" class = "col-3">Password</label>
-                            <input type = "password" class = "form-control my-3 col-9" id = "password" v-model = "password">
+                            <input type = "password" class = "my-3 col-9" id = "password" v-model = "password">
                         </div>
                         <div class = "row">
                         <button type = "submit" class = "btn btn-primary my-3 col-12">Login</button>
