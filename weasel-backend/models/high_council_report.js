@@ -1,44 +1,23 @@
+import createDOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
+
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
 const parse = (content) => {
-    try{
-    content = content.replace(/<script>/gi, '')
-    content = content.replace(/<\/script>/gi, '')
-    content = content.replace(/<\*script\*>/gi, '')
-    content = content.replace(/<\/\*script\*>/gi, '')
-    content = content.replace(/<\?php>/gi, '')
-    content = content.replace(/<\?php/gi, '')
-    content = content.replace(/<iframe>/gi, '')
-    content = content.replace(/<\/iframe>/gi, '')
-    content = content.replace(/<frame>/gi, '')
-    content = content.replace(/<\/frame>/gi, '')
-    content = content.replace(/<frameset>/gi, '')
-    content = content.replace(/<\/frameset>/gi, '')
-    content = content.replace(/<object>/gi, '')
-    content = content.replace(/<\/object>/gi, '')
-    content = content.replace(/<embed>/gi, '')
-    content = content.replace(/<\/embed>/gi, '')
-    content = content.replace(/<applet>/gi, '')
-    content = content.replace(/<\/applet>/gi, '')
-
-    content = content.replace(/style="[^"]*"/gi, '')
-    content = content.replace(/on\w+="[^"]*"/gi, '')
-    content = content.replace(/on\w+='[^']*'/gi, '')
-
-    content = content.replace(/<a href="[^"]*" download>/gi, '')
-    content = content.replace(/<a href='[^']*' download>/gi, '')
-
-    let headStart = content.indexOf('<head>')
-    let headEnd = content.indexOf('</head>')
-    if (headStart !== -1 && headEnd !== -1) {
-        let head = content.substring(headStart, headEnd + 7)
-        content = content.replace(head, '')
+    try {
+        let headStart = content.indexOf('<head>');
+        let headEnd = content.indexOf('</head>');
+        if (headStart !== -1 && headEnd !== -1) {
+            let head = content.substring(headStart, headEnd + 7);
+            content = content.replace(head, '');
+        }
+        content = DOMPurify.sanitize(content);
+        return content;
+    } catch (e) {
+        return content;
     }
-
-    return content
-} catch (e) {
-    return content
-
-}
-}
+};
 
 import mongoose from 'mongoose'
 
