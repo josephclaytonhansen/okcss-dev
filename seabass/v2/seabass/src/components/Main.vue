@@ -46,17 +46,20 @@
                 <div class = "row justify-content-center align-items-center">
                     <div class = "col-auto row justify-content-center align-items-center" style = "height:100vh;overflow-y: hidden;">
                     <div class = "card p-5">
-                    <h1>Seabass</h1>
+                    <h1 class = "center text-center">Seabass</h1>
+                    <hr/>
                     <form @submit.prevent = "checkLogin">
-                        <div class = "form-group">
-                            <label for = "username">Username</label>
-                            <input type = "text" class = "form-control my-3" id = "username" v-model = "username">
+                        <div class = "form-group row">
+                            <label for = "username" class = "col-6">Username</label>
+                            <input type = "text" class = "form-control my-3 col-6" id = "username" v-model = "username">
                         </div>
-                        <div class = "form-group">
-                            <label for = "password">Password</label>
-                            <input type = "password" class = "form-control my-3" id = "password" v-model = "password">
+                        <div class = "form-group row">
+                            <label for = "password" class = "col-6">Password</label>
+                            <input type = "password" class = "form-control my-3 col-6" id = "password" v-model = "password">
                         </div>
-                        <button type = "submit" class = "btn btn-primary my-3">Login</button>
+                        <div class = "row">
+                        <button type = "submit" class = "btn btn-primary my-3 col-6">Login</button>
+                    </div>
                     </form>
                 </div>
             </div>
