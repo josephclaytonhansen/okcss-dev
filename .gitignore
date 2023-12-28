@@ -180,6 +180,4 @@ public-facing-site/src/style.min.scss
 data.js
 data.min.js
 
-# ignore "src" folders in all subdirectories
-src
-**/src
+**/src/
