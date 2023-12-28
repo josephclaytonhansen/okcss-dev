@@ -50,13 +50,13 @@
                     <form @submit.prevent = "checkLogin">
                         <div class = "form-group">
                             <label for = "username">Username</label>
-                            <input type = "text" class = "form-control py-3" id = "username" v-model = "username">
+                            <input type = "text" class = "form-control my-3" id = "username" v-model = "username">
                         </div>
                         <div class = "form-group">
                             <label for = "password">Password</label>
-                            <input type = "password" class = "form-control py-3" id = "password" v-model = "password">
+                            <input type = "password" class = "form-control my-3" id = "password" v-model = "password">
                         </div>
-                        <button type = "submit" class = "btn btn-primary py-3">Login</button>
+                        <button type = "submit" class = "btn btn-primary my-3">Login</button>
                     </form>
                 </div>
             </div>
