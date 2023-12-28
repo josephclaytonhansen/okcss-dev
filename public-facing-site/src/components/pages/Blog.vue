@@ -15,6 +15,7 @@ onMounted(async () => {
   blogs.value = await axios.post('https://weasel.okcsouthstake.org/api/seabass').then(response => response.data)
   let url = window.location.pathname
   let blogSlug = url.split('/')[2]
+  console.log(blogSlug)
   blog.value = blogs.value.find(blog => blog.slug === blogSlug)
   if (blog.value.status !== 'published') {
     window.location.href = '/'
