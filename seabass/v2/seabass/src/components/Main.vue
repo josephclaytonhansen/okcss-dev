@@ -43,9 +43,9 @@
     <div>
         <div v-if = "currentComponent === 'login'">
             <div class = "container">
-                <div class = "card">
-                    <div class = "row justify-content-center align-items-center" style = "height:100vh;overflow-y: hidden;">
-                    <div class = "col-auto">
+                <div class = "row justify-content-center align-items-center">
+                    <div class = "col-auto" style = "height:100vh;overflow-y: hidden;">
+                    <div class = "card">
                     <h1>Seabass</h1>
                     <form @submit.prevent = "checkLogin">
                         <label for = "username">Username</label>
