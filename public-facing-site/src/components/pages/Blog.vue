@@ -4,6 +4,7 @@ import Quill from 'quill/dist/quill'
 import { Delta } from 'quill'
 import BubbleTheme from 'quill/themes/bubble'
 import { formatRelative } from 'date-fns'
+import { Head } from '@unhead/vue/components'
 
 import axios from 'axios'
 
@@ -37,6 +38,20 @@ onMounted(async () => {
 </script>
 
 <template>
+  <Head>
+    <title v-if="blog.title">{{ blog.title }} | OKC South Stake</title>
+    <meta v-if="blog.description" name="description" content="{{ blog.description }}">
+    <meta v-if="blog.title" property="og:title" content="{{ blog.title }} | OKC South Stake">
+    <meta v-if="blog.description" property="og:description" content="{{ blog.description }}">
+    <meta v-if="blog.featuredImage" property="og:image" content="{{ blog.image }}">
+    <meta v-if="blog.title" property="twitter:title" content="{{ blog.title }} | OKC South Stake">
+    <meta v-if="blog.description" property="twitter:description" content="{{ blog.description }}">
+    <meta v-if="blog.featuredImage" property="twitter:image" content="{{ blog.image }}">
+    <meta property="og:url" content="https://okcsouthstake.org/news/{{ blog.slug }}">
+    <meta property="twitter:url" content="https://okcsouthstake.org/news/{{ blog.slug }}">
+    <meta v-if="blog.metaKeywords" property="keywords" content="blog.metaKeywords">
+    <meta property="og:type" content="article">
+  </Head>
   <main class="container py-4">
     <div class="row justify-content-center">
       <div class="col-12 col-sm-8 col-md-7">

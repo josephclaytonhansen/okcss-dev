@@ -1,7 +1,22 @@
 <script setup>
+import { Head } from '@unhead/vue/components'
 </script>
 
 <template>
+    <Head>
+        <title>Service Opportunities | OKC South Stake</title>
+        <meta name="description" content="Loving God and loving our neighbor are the two great commandments (Matthew 22:37-40). Loving and serving our neighbor is how we can follow the example of Jesus Christ. There are always opportunities to serve—in our homes, our communities, and our world. As we serve those around us, we brighten hearts and lift burdens.">
+        <meta property="og:title" content="Service Opportunities | OKC South Stake">
+        <meta property="og:description" content="Loving God and loving our neighbor are the two great commandments (Matthew 22:37-40). Loving and serving our neighbor is how we can follow the example of Jesus Christ. There are always opportunities to serve—in our homes, our communities, and our world. As we serve those around us, we brighten hearts and lift burdens.">
+        <meta property="og:image" content="https://okcsouthstake.org/assets/Pictures/Service/service.jpg">
+        <meta property="twitter:title" content="Service Opportunities | OKC South Stake">
+        <meta property="twitter:description" content="Loving God and loving our neighbor are the two great commandments (Matthew 22:37-40). Loving and serving our neighbor is how we can follow the example of Jesus Christ. There are always opportunities to serve—in our homes, our communities, and our world. As we serve those around us, we brighten hearts and lift burdens.">
+        <meta property="twitter:image" content="https://okcsouthstake.org/assets/Pictures/Service/service.jpg">
+        <meta property="og:url" content="https://okcsouthstake.org/service">
+        <meta property="twitter:url" content="https://okcsouthstake.org/service">
+        <meta property="og:type" content="article">
+        <meta property="keywords" content="service, service opportunities, service opportunities in oklahoma, service opportunities in oklahoma city, christian service opportunities, oklahoma christian service opportunities, just serve, oklahoma just serve">
+    </Head>
 <div class = "row align-items-center py-5 gy-3" id = 'hero-row'>
         <div class = "col-12 col-md-6 col-sm-12">
             <div class = "square-img-container">

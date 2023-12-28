@@ -1,9 +1,24 @@
 <script setup>
-    import {Mail, CalendarDays, Newspaper, MapPin, HeartHandshake } from 'lucide-vue-next';
+    import {Mail, CalendarDays, Newspaper, MapPin, HeartHandshake } from 'lucide-vue-next'
+    import { Head } from '@unhead/vue/components'
     import bioCard from '../page_components/bioCard.vue'
 </script>
 
 <template>
+    <Head>
+        <title>Contact Us | OKC South Stake</title>
+        <meta name="description" content="Contact the Oklahoma City South Stake of The Church of Jesus Christ of Latter-Day Saints.">
+        <meta property="og:title" content="Contact Us | OKC South Stake">
+        <meta property="og:description" content="Contact the Oklahoma City South Stake of The Church of Jesus Christ of Latter-Day Saints.">
+        <meta property="og:image" content="https://okcsouthstake.org/assets/Pictures/ContactUs/hero.png">
+        <meta property="og:url" content="https://okcsouthstake.org/contact-us">
+        <meta property="og:type" content="website">
+        <meta property="twitter:title" content="Contact Us | OKC South Stake">
+        <meta property="twitter:description" content="Contact the Oklahoma City South Stake of The Church of Jesus Christ of Latter-Day Saints.">
+        <meta property="twitter:image" content="https://okcsouthstake.org/assets/Pictures/ContactUs/hero.png">
+        <meta property="twitter:url" content="https://okcsouthstake.org/contact-us">
+        <meta property="twitter:card" content="summary_large_image">
+    </Head>
     <div class = "row align-items-center py-5 gy-3" id = 'hero-row'>
         <div class = "col-12 col-md-6 col-sm-12">
             <div class = "hd-img-container">
