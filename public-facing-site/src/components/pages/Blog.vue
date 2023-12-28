@@ -113,4 +113,10 @@ onMounted(async () => {
     margin: 1em 0;
     color: whitesmoke;
   }
+  blockquote {
+    border-left: 0.25em solid #dfe2e5;
+    padding: 1rem;
+    color: #6a737d;
+    font-size: 1.25em;
+  }
 </style>
