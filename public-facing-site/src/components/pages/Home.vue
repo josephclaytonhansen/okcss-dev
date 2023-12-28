@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import '../../plugins/colortheme.js'
 import BlogCard from '../page_components/blogCard.vue'
 import axios from 'axios'
-import { Head } from '@vueuse/head'
+import { useMeta } from 'vue-meta'
 
 const props = defineProps({
     wards: Array,
@@ -46,17 +46,64 @@ onMounted(async () => {
     }
 })
 
+const meta = useMeta({
+    title: 'OKC South Stake | The Church of Jesus Christ of Latter-day Saints',
+    meta: [
+        {
+            name: 'description',
+            content: 'The official website of the Oklahoma City South Stake of The Church of Jesus Christ of Latter-day Saints.'
+        },
+        {
+            property: 'og:title',
+            content: 'OKC South Stake | The Church of Jesus Christ of Latter-day Saints'
+        },
+        {
+            property: 'og:description',
+            content: 'The official website of the Oklahoma City South Stake of The Church of Jesus Christ of Latter-day Saints.'
+        },
+        {
+            property: 'og:image',
+            content: 'https://okcsouthstake.org/assets/Pictures/Home/hero.png'
+        },
+        {
+            property: 'og:url',
+            content: 'https://okcsouthstake.org'
+        },
+        {
+            property: 'og:type',
+            content: 'website'
+        },
+        {
+            property: 'twitter:title',
+            content: 'OKC South Stake | The Church of Jesus Christ of Latter-day Saints'
+        },
+        {
+            property: 'twitter:description',
+            content: 'The official website of the Oklahoma City South Stake of The Church of Jesus Christ of Latter-day Saints.'
+        },
+        {
+            property: 'twitter:image',
+            content: 'https://okcsouthstake.org/assets/Pictures/Home/hero.png'
+        },
+        {
+            property: 'twitter:url',
+            content: 'https://okcsouthstake.org'
+        },
+        {
+            property: 'twitter:card',
+            content: 'summary_large_image'
+        },
+        {
+            name: 'keywords',
+            content: 'okc, oklahoma city, lds, mormon, church, stake, okc south stake, okc south, south okc, south oklahoma city, the church of jesus christ of latter-day saints, latter-day saints, latter day saints, latter day saints church, latter-day saints church, okc south stake, oklahoma christians, oklahoma church, oklahoma city church, choctaw church, midwest city church, oklahoma christian church'
+        }
+    ]
+
+})
+
 </script>
 
 <template>
-    <Head>
-        <meta property="og:title" content="OKC South Stake | The Church of Jesus Christ of Latter-day Saints">
-        <meta property="og:description" content="The official website of the Oklahoma City South Stake of The Church of Jesus Christ of Latter-day Saints.">
-        <meta property="title" content="OKC South Stake | The Church of Jesus Christ of Latter-day Saints">
-        <meta name="description" content="The official website of the Oklahoma City South Stake of The Church of Jesus Christ of Latter-day Saints.">
-        <meta name="keywords" content = "okc, oklahoma city, lds, mormon, church, stake, okc south stake, okc south, south okc, south oklahoma city, the church of jesus christ of latter-day saints, latter-day saints, latter day saints, latter day saints church, latter-day saints church, okc south stake, oklahoma christians, oklahoma church, oklahoma city church, choctaw church, midwest city church, oklahoma christian church">
-        <meta property="og:image" content="https://okcsouthstake.org/assets/Pictures/Home/hero.png">
-    </Head>
     <div class="row align-items-center py-5">
         <div class="col col-md-5 col-12 col-sm-12" id="hero-image" style = "height:526px">
             <div class = "square-img-container">

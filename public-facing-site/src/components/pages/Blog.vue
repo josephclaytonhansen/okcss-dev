@@ -4,7 +4,7 @@ import Quill from 'quill/dist/quill'
 import { Delta } from 'quill'
 import BubbleTheme from 'quill/themes/bubble'
 import { formatRelative } from 'date-fns'
-import { Head } from '@vueuse/head'
+import { useMeta } from 'vue-meta'
 
 import axios from 'axios'
 
@@ -36,23 +36,63 @@ onMounted(async () => {
   })
   quillContent.setContents(blog.value.content)
 })
+
+const meta = useMeta({
+  title: blog.value.title,
+  meta: [
+    {
+      name: 'description',
+      content: blog.value.description
+    },
+    {
+      property: 'og:title',
+      content: blog.value.title
+    },
+    {
+      property: 'og:description',
+      content: blog.value.description
+    },
+    {
+      property: 'og:image',
+      content: blog.value.featuredImage
+    },
+    {
+      property: 'og:url',
+      content: 'https://okcsouthstake.org/news/' + blog.value.slug
+    },
+    {
+      property: 'og:type',
+      content: 'article'
+    },
+    {
+      property: 'twitter:title',
+      content: blog.value.title
+    },
+    {
+      property: 'twitter:description',
+      content: blog.value.description
+    },
+    {
+      property: 'twitter:image',
+      content: blog.value.featuredImage
+    },
+    {
+      property: 'twitter:url',
+      content: 'https://okcsouthstake.org/news/' + blog.value.slug
+    },
+    {
+      property: 'twitter:card',
+      content: 'summary_large_image'
+    },
+    {
+      name: 'keywords',
+      content: blog.value.metaKeywords
+    }
+  ]
+})
 </script>
 
 <template>
-  <Head>
-    <title v-if="blog.title">{{ blog.title }} | OKC South Stake</title>
-    <meta v-if="blog.description" name="description" content="{{ blog.description }}">
-    <meta v-if="blog.title" property="og:title" content="{{ blog.title }} | OKC South Stake">
-    <meta v-if="blog.description" property="og:description" content="{{ blog.description }}">
-    <meta v-if="blog.featuredImage" property="og:image" content="{{ blog.image }}">
-    <meta v-if="blog.title" property="twitter:title" content="{{ blog.title }} | OKC South Stake">
-    <meta v-if="blog.description" property="twitter:description" content="{{ blog.description }}">
-    <meta v-if="blog.featuredImage" property="twitter:image" content="{{ blog.image }}">
-    <meta property="og:url" content="https://okcsouthstake.org/news/{{ blog.slug }}">
-    <meta property="twitter:url" content="https://okcsouthstake.org/news/{{ blog.slug }}">
-    <meta v-if="blog.metaKeywords" name="keywords" content="blog.metaKeywords">
-    <meta property="og:type" content="article">
-  </Head>
   <main class="container py-4">
     <div class="row justify-content-center">
       <div class="col-12 col-sm-8 col-md-7">

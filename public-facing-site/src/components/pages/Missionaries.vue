@@ -3,31 +3,71 @@ const internal_missionaries = ref([])
 const external_missionaries = ref([])
 import axios from 'axios'
 import { onBeforeMount, ref } from 'vue'
-import { Head } from '@vueuse/head'
+import { useMeta } from 'vue-meta'
 onBeforeMount(async () => {
     const internal_missionaries_response = await axios.get('https://weasel.okcsouthstake.org/api/missionaries/internal')
     internal_missionaries.value = internal_missionaries_response.data
     const external_missionaries_response = await axios.get('https://weasel.okcsouthstake.org/api/missionaries/external')
     external_missionaries.value = external_missionaries_response.data
 })
+
+const meta = useMeta({
+    title: 'Meet the Missionaries | OKC South Stake',
+    meta: [
+        {
+            name: 'description',
+            content: 'Meet the missionaries serving in the Oklahoma City South Stake of The Church of Jesus Christ of Latter-Day Saints.'
+        },
+        {
+            property: 'og:title',
+            content: 'Meet the Missionaries | OKC South Stake'
+        },
+        {
+            property: 'og:description',
+            content: 'Meet the missionaries serving in the Oklahoma City South Stake of The Church of Jesus Christ of Latter-Day Saints.'
+        },
+        {
+            property: 'og:image',
+            content: 'https://okcsouthstake.org/assets/Pictures/Missionaries/hero.png'
+        },
+        {
+            property: 'og:url',
+            content: 'https://okcsouthstake.org/missionaries'
+        },
+        {
+            property: 'og:type',
+            content: 'website'
+        },
+        {
+            property: 'twitter:title',
+            content: 'Meet the Missionaries | OKC South Stake'
+        },
+        {
+            property: 'twitter:description',
+            content: 'Meet the missionaries serving in the Oklahoma City South Stake of The Church of Jesus Christ of Latter-Day Saints.'
+        },
+        {
+            property: 'twitter:image',
+            content: 'https://okcsouthstake.org/assets/Pictures/Missionaries/hero.png'
+        },
+        {
+            property: 'twitter:url',
+            content: 'https://okcsouthstake.org/missionaries'
+        },
+        {
+            property: 'twitter:card',
+            content: 'summary_large_image'
+        },
+        {
+            name: 'keywords',
+            content: 'missionaries, missionaries in oklahoma, missionaries in oklahoma city, christian missionaries, oklahoma christian missionaries'
+        }
+    ]
+
+})
 </script>
 
 <template>
-    <Head>
-        <title>Meet the Missionaries | OKC South Stake</title>
-        <meta name="description" content="Meet the missionaries serving in the Oklahoma City South Stake of The Church of Jesus Christ of Latter-Day Saints.">
-        <meta property="og:title" content="Meet the Missionaries | OKC South Stake">
-        <meta property="og:description" content="Meet the missionaries serving in the Oklahoma City South Stake of The Church of Jesus Christ of Latter-Day Saints.">
-        <meta property="og:image" content="https://okcsouthstake.org/assets/Pictures/Missionaries/hero.png">
-        <meta property="og:url" content="https://okcsouthstake.org/missionaries">
-        <meta property="og:type" content="website">
-        <meta property="twitter:title" content="Meet the Missionaries | OKC South Stake">
-        <meta property="twitter:description" content="Meet the missionaries serving in the Oklahoma City South Stake of The Church of Jesus Christ of Latter-Day Saints.">
-        <meta property="twitter:image" content="https://okcsouthstake.org/assets/Pictures/Missionaries/hero.png">
-        <meta property="twitter:url" content="https://okcsouthstake.org/missionaries">
-        <meta property="twitter:card" content="summary_large_image">
-        <meta name="keywords" content="missionaries, missionaries in oklahoma, missionaries in oklahoma city, christian missionaries, oklahoma christian missionaries">
-    </Head>
     <div class = "row align-items-center py-5 gy-3" id = 'hero-row'>
         <div class = "col-12 col-md-6 col-sm-12">
             <div class = "square-img-container">
