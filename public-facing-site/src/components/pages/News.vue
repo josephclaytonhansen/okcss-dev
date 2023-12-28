@@ -58,7 +58,7 @@ const filterPosts = (category) => {
     let thisButton = document.getElementById('cat-'+category)
     thisButton.classList.add('btn-primary')
     if (category === "All"){
-        working_posts.value = posts
+        working_posts.value = posts.value
     } else {
         working_posts.value = posts.value.filter(post => post.category === category)
     }} catch (error) {
