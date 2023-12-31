@@ -48,7 +48,7 @@ app.use(express.urlencoded({
     extended: false
 }))
 
-app.use("/api/events",cors({origin: '*',credentials: true}))
+app.use("/api/events",cors({origin: ['https://wards.okcsouthstake.org', 'https://okcsouthstake.org/'],credentials: true}))
 app.use("/api/persons",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
 app.use("/api/worships",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
 app.use("/api/tools",cors({origin: 'https://wards.okcsouthstake.org',credentials: true}))
