@@ -59,7 +59,7 @@ app.use("/api/hc-reports",cors({origin: 'https://highcouncil.okcsouthstake.org',
 app.use("/api/training",cors({origin: 'https://training.okcsouthstake.org',credentials: true}))
 app.use("/api/seabass/",cors({origin: '*'}))
 
-/* const limiter = rate_limit({
+const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
     max: 400,
     standardHeaders: true,
@@ -67,7 +67,7 @@ app.use("/api/seabass/",cors({origin: '*'}))
 })
 
 
-app.use(limiter) */
+app.use(limiter)
 
 
 app.get('/', (req, res) => {
