@@ -10,8 +10,8 @@ import {
     toggleVisibilityNewsComment
 } from '../controllers/newsCommentController.js'
 
-router.route('/').post(getNewsComments)
-router.route('/:id').post(getNewsCommentById).delete(deleteNewsComment)
+router.route('/').get(getNewsComments)
+router.route('/:id').delete(deleteNewsComment)
 router.route('/post').post(getNewsCommentByPost)
 router.route('/create').post(createNewsComment)
 router.route('/toggle').post(toggleVisibilityNewsComment)
