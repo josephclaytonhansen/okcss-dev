@@ -13,3 +13,7 @@ const newsCommentSchema = new mongoose.Schema({
         default: false,
     }
 })
+
+const NewsComment = mongoose.model('NewsComment', newsCommentSchema)
+
+export default NewsComment
