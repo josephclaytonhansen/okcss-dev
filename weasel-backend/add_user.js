@@ -1,7 +1,15 @@
 import User from './models/user.js'
 import db from './mongo.js'
 
-import {users} from './data.js'
+let users = [
+    {
+        ward: 'mustang-2nd',
+        organization: 'ward',
+        email: 'carolineleigh',
+        password: 'CowboysForever00!',
+
+    }
+]
 
 const importData = async () => {
     try {
