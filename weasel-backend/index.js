@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import rate_limit from 'express-rate-limit'
 
 import nodemailer from 'nodemailer'
+import cron from 'node-cron'
 
 import passport from 'passport'
 
@@ -25,7 +26,7 @@ import seabass_routes from './routes/seabassRoutes.js'
 import comment_routes from './routes/newsCommentRoutes.js'
 
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
+    host: 'smtp.zoho.com',
     port: 465,
     secure: true,
     auth: {
@@ -140,6 +141,33 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use('/api/hc-reports', hc_report_routes)
 app.use('/api/seabass', seabass_routes)
+
+
+cron.schedule('0 0 * * SAT', function() {
+    let mailOptions = {
+      from: 'no-reply@okcsouthstake.org',
+      to: 'joseph@josephhansen.dev', 
+      subject: 'Please enter your high council report for the week',
+      text: 'Please enter your high council report for the week at https://highcouncil.okcsouthstake.org/. The current access PIN is 398504. Thank you!\nDO NOT REPLY TO THIS EMAIL'
+    }
+  
+    transporter.sendMail(mailOptions, function(error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    })
+  })
+
+
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  })
 
 app.listen(process.env.PORT, () => {
     console.log('Server is running on port ' + process.env.PORT)
