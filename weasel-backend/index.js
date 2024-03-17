@@ -25,6 +25,7 @@ import training_routes from './routes/trainingRoutes.js'
 import seabass_routes from './routes/seabassRoutes.js'
 import comment_routes from './routes/newsCommentRoutes.js'
 import high_council_email_routes from './routes/hcEmailRoutes.js'
+import createHighCouncilReport from './controllers/hc_reportController.js'
 
 
 const transporter = nodemailer.createTransport({
@@ -141,31 +142,23 @@ app.use('/api/missionaries/internal', internal_missionary_routes)
 app.use('/api/training', training_routes)
 app.use('/api/comments', comment_routes)
 app.use('/api/high-council-emails', high_council_email_routes)
+app.use('/api/hc-reports/create/new', (req, res, next) => {
+    db.getHighCouncilEmails().then((emails) => {
+        emails.forEach((email) => {
+            sendNewHcMail(email.email)
+        })
+        res.json({ message: 'Emails sent' })
+    }).catch(err => {
+        console.error(err)
+        res.status(500).json({ message: err })
+    })
+})
 
 app.use('/api/hc-reports', (req, res, next) => {
     if (req.headers.origin === 'https://highcouncil.okcsouthstake.org') {
         next()
     } else {
         res.status(403).send('Forbidden')
-    }
-})
-
-app.use('/api/hc-reports/create/new', (req, res, next) => {
-    try {
-        db.getHighCouncilEmails().then((emails) => {
-            Promise.all(emails.map((email) => sendNewHcMail(email.email)))
-                .then(() => next())
-                .catch((error) => {
-                    console.log(error)
-                    res.status(500).send(error)
-                })
-        }).catch((error) => {
-            console.log(error)
-            res.status(500).send(error)
-        })
-    } catch (error) {
-        console.log(error)
-        res.status(500).send(error)
     }
 })
 
