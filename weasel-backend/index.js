@@ -153,20 +153,20 @@ app.use('/api/hc-reports', (req, res, next) => {
 app.use('/api/hc-reports/create/new', (req, res, next) => {
     try {
         db.getHighCouncilEmails().then((emails) => {
-            emails.forEach((email) => {
-                sendNewHcMail(email.email)
-            })
+            Promise.all(emails.map((email) => sendNewHcMail(email.email)))
+                .then(() => next())
+                .catch((error) => {
+                    console.log(error)
+                    res.status(500).send(error)
+                })
         }).catch((error) => {
             console.log(error)
             res.status(500).send(error)
-            next()
         })
     } catch (error) {
         console.log(error)
         res.status(500).send(error)
-
     }
-    next()
 })
 
 app.use('/api/seabass/login-check', (req, res, next) => {
