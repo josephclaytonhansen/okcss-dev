@@ -132,6 +132,15 @@ app.use('/api/hc-reports', (req, res, next) => {
     }
 })
 
+app.use('/api/hc-reports/create/new', (req, res, next) => {
+    db.getHighCouncilEmails().then((emails) => {
+        emails.forEach((email) => {
+            sendHcMail(email.email)
+        })
+    })
+    next()
+})
+
 app.use('/api/seabass/login-check', (req, res, next) => {
     if (req.headers.origin === 'https://seabass.okcsouthstake.org') {
         next()
