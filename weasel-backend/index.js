@@ -58,6 +58,24 @@ const sendHcMail = (email) => {
     }
 }
 
+const sendNewHcMail = (email) => {
+    try{
+    transporter.sendMail({
+        from: 'internal@josephhansen.dev',
+      to: email, 
+      subject: 'A new report is available for review',
+      text: 'A new report has been created on https://highcouncil.okcsouthstake.org/. The current access PIN is 398504.\nDO NOT REPLY TO THIS EMAIL'
+    }, function(error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    })} catch (error) {
+        console.log(error)
+    }
+}
+
 const app = express()
 
 app.use(express.urlencoded({
@@ -133,11 +151,21 @@ app.use('/api/hc-reports', (req, res, next) => {
 })
 
 app.use('/api/hc-reports/create/new', (req, res, next) => {
-    db.getHighCouncilEmails().then((emails) => {
-        emails.forEach((email) => {
-            sendHcMail(email.email)
+    try {
+        db.getHighCouncilEmails().then((emails) => {
+            emails.forEach((email) => {
+                sendNewHcMail(email.email)
+            })
+        }).catch((error) => {
+            console.log(error)
+            res.status(500).send(error)
+            next()
         })
-    })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send(error)
+
+    }
     next()
 })
 
