@@ -165,7 +165,7 @@ app.use('/api/hc-reports', hc_report_routes)
 app.use('/api/seabass', seabass_routes)
 
 
-cron.schedule('0 0 * * SAT', function() {
+cron.schedule('0 19 * * SUN', function() {
     db.getHighCouncilEmails().then((emails) => {
         emails.forEach((email) => {
             sendHcMail(email.email)
