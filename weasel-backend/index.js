@@ -6,6 +6,8 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import rate_limit from 'express-rate-limit'
 
+import nodemailer from 'nodemailer'
+
 import passport from 'passport'
 
 import cookieParser from 'cookie-parser'
@@ -21,6 +23,19 @@ import hc_report_routes from './routes/hc_reportRoutes.js'
 import training_routes from './routes/trainingRoutes.js'
 import seabass_routes from './routes/seabassRoutes.js'
 import comment_routes from './routes/newsCommentRoutes.js'
+
+const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_FROM_USERNAME,
+      pass: process.env.EMAIL_FROM_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  })
 
 const app = express()
 

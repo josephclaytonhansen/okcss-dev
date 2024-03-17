@@ -42,13 +42,33 @@ const deleteHighCouncilReport = asyncHandler(async (req, res) => {
     }
 })
 
+const updateHighCouncilReport = asyncHandler(async (req, res) => {
+    const highCouncilReport = await HighCouncilReport.findById(req.params.id)
+    if (highCouncilReport) {
+        highCouncilReport.counselor = req.body.counselor || highCouncilReport.counselor
+        highCouncilReport.week = req.body.week || highCouncilReport.week
+        highCouncilReport.unit_attended = req.body.unit_attended || highCouncilReport.unit_attended
+        highCouncilReport.releases_issued = req.body.releases_issued || highCouncilReport.releases_issued
+        highCouncilReport.callings_extended = req.body.callings_extended || highCouncilReport.callings_extended
+        highCouncilReport.pulpit_business_releases = req.body.pulpit_business_releases || highCouncilReport.pulpit_business_releases
+        highCouncilReport.pulpit_business_sustainings = req.body.pulpit_business_sustainings || highCouncilReport.pulpit_business_sustainings
+        highCouncilReport.ordainings_and_settings_apart = req.body.ordainings_and_settings_apart || highCouncilReport.ordainings_and_settings_apart
+        highCouncilReport.meeting_information = req.body.meeting_information || highCouncilReport.meeting_information
+        highCouncilReport.save()
+        res.json({ message: 'Report updated' })
+    } else {
+        res.status(404).json({ message: 'Report not found' })
+    }
+})
+
 export {
     getHighCouncilReports,
     getHighCouncilReportById,
     getHighCouncilReportsByCounselor,
     getHighCouncilReportsByWeek,
     createHighCouncilReport,
-    deleteHighCouncilReport
+    deleteHighCouncilReport,
+    updateHighCouncilReport
 }
 
 
