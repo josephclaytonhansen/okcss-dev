@@ -24,6 +24,7 @@ import hc_report_routes from './routes/hc_reportRoutes.js'
 import training_routes from './routes/trainingRoutes.js'
 import seabass_routes from './routes/seabassRoutes.js'
 import comment_routes from './routes/newsCommentRoutes.js'
+import high_council_email_routes from './routes/hcEmailRoutes.js'
 
 
 const transporter = nodemailer.createTransport({
@@ -121,6 +122,7 @@ app.use('/api/missionaries/external', outgoing_missionary_routes)
 app.use('/api/missionaries/internal', internal_missionary_routes)
 app.use('/api/training', training_routes)
 app.use('/api/comments', comment_routes)
+app.use('/api/high-council-emails', high_council_email_routes)
 
 app.use('/api/hc-reports', (req, res, next) => {
     if (req.headers.origin === 'https://highcouncil.okcsouthstake.org') {
