@@ -25,7 +25,6 @@ import training_routes from './routes/trainingRoutes.js'
 import seabass_routes from './routes/seabassRoutes.js'
 import comment_routes from './routes/newsCommentRoutes.js'
 import high_council_email_routes from './routes/hcEmailRoutes.js'
-import {createHighCouncilReport} from './controllers/hc_reportController.js'
 
 
 const transporter = nodemailer.createTransport({
@@ -48,24 +47,6 @@ const sendHcMail = (email) => {
       to: email, 
       subject: 'Please enter your high council report for the week',
       text: 'Please enter your high council report for the week at https://highcouncil.okcsouthstake.org/. The current access PIN is 398504. Thank you!\nDO NOT REPLY TO THIS EMAIL'
-    }, function(error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    })} catch (error) {
-        console.log(error)
-    }
-}
-
-const sendNewHcMail = (email) => {
-    try{
-    transporter.sendMail({
-        from: 'internal@josephhansen.dev',
-      to: email, 
-      subject: 'A new report is available for review',
-      text: 'A new report has been created on https://highcouncil.okcsouthstake.org/. The current access PIN is 398504.\nDO NOT REPLY TO THIS EMAIL'
     }, function(error, info) {
       if (error) {
         console.log(error);
