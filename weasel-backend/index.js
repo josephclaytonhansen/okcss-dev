@@ -38,6 +38,24 @@ const transporter = nodemailer.createTransport({
     },
   })
 
+const sendHcMail = () => {
+    try{
+    transporter.sendMail({
+        from: 'no-reply@okcsouthstake.org',
+      to: 'joseph@josephhansen.dev', 
+      subject: 'Please enter your high council report for the week',
+      text: 'Please enter your high council report for the week at https://highcouncil.okcsouthstake.org/. The current access PIN is 398504. Thank you!\nDO NOT REPLY TO THIS EMAIL'
+    }, function(error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    })} catch (error) {
+        console.log(error)
+    }
+}
+
 const app = express()
 
 app.use(express.urlencoded({
@@ -144,36 +162,13 @@ app.use('/api/seabass', seabass_routes)
 
 
 cron.schedule('0 0 * * SAT', function() {
-
-      
+    sendHcMail()
   
-    transporter.sendMail({
-        from: 'no-reply@okcsouthstake.org',
-      to: 'joseph@josephhansen.dev', 
-      subject: 'Please enter your high council report for the week',
-      text: 'Please enter your high council report for the week at https://highcouncil.okcsouthstake.org/. The current access PIN is 398504. Thank you!\nDO NOT REPLY TO THIS EMAIL'
-    }, function(error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    })
+
   })
 
 
-  transporter.sendMail({
-    from: 'no-reply@okcsouthstake.org',
-  to: 'joseph@josephhansen.dev', 
-  subject: 'Please enter your high council report for the week',
-  text: 'Please enter your high council report for the week at https://highcouncil.okcsouthstake.org/. The current access PIN is 398504. Thank you!\nDO NOT REPLY TO THIS EMAIL'
-}, function(error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  })
+sendHcMail()
 
 app.listen(process.env.PORT, () => {
     console.log('Server is running on port ' + process.env.PORT)
