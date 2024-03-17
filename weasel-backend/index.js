@@ -25,7 +25,7 @@ import training_routes from './routes/trainingRoutes.js'
 import seabass_routes from './routes/seabassRoutes.js'
 import comment_routes from './routes/newsCommentRoutes.js'
 import high_council_email_routes from './routes/hcEmailRoutes.js'
-import createHighCouncilReport from './controllers/hc_reportController.js'
+import {createHighCouncilReport} from './controllers/hc_reportController.js'
 
 
 const transporter = nodemailer.createTransport({
@@ -147,6 +147,7 @@ app.use('/api/hc-reports/create/new', (req, res, next) => {
         emails.forEach((email) => {
             sendNewHcMail(email.email)
         })
+        createHighCouncilReport(req, res)
         res.json({ message: 'Emails sent' })
     }).catch(err => {
         console.error(err)
