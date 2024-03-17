@@ -144,14 +144,15 @@ app.use('/api/seabass', seabass_routes)
 
 
 cron.schedule('0 0 * * SAT', function() {
-    let mailOptions = {
-      from: 'no-reply@okcsouthstake.org',
+
+      
+  
+    transporter.sendMail({
+        from: 'no-reply@okcsouthstake.org',
       to: 'joseph@josephhansen.dev', 
       subject: 'Please enter your high council report for the week',
       text: 'Please enter your high council report for the week at https://highcouncil.okcsouthstake.org/. The current access PIN is 398504. Thank you!\nDO NOT REPLY TO THIS EMAIL'
-    }
-  
-    transporter.sendMail(mailOptions, function(error, info) {
+    }, function(error, info) {
       if (error) {
         console.log(error);
       } else {
