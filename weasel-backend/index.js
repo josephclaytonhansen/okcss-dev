@@ -41,7 +41,7 @@ const transporter = nodemailer.createTransport({
 const sendHcMail = () => {
     try{
     transporter.sendMail({
-        from: 'no-reply@okcsouthstake.org',
+        from: 'internal@josephhansen.dev',
       to: 'joseph@josephhansen.dev', 
       subject: 'Please enter your high council report for the week',
       text: 'Please enter your high council report for the week at https://highcouncil.okcsouthstake.org/. The current access PIN is 398504. Thank you!\nDO NOT REPLY TO THIS EMAIL'
