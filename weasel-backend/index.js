@@ -25,6 +25,7 @@ import training_routes from './routes/trainingRoutes.js'
 import seabass_routes from './routes/seabassRoutes.js'
 import comment_routes from './routes/newsCommentRoutes.js'
 
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
     port: 465,
@@ -38,11 +39,11 @@ const transporter = nodemailer.createTransport({
     },
   })
 
-const sendHcMail = () => {
+const sendHcMail = (email) => {
     try{
     transporter.sendMail({
         from: 'internal@josephhansen.dev',
-      to: 'joseph@josephhansen.dev', 
+      to: email, 
       subject: 'Please enter your high council report for the week',
       text: 'Please enter your high council report for the week at https://highcouncil.okcsouthstake.org/. The current access PIN is 398504. Thank you!\nDO NOT REPLY TO THIS EMAIL'
     }, function(error, info) {
@@ -94,6 +95,7 @@ app.use("/api/hc-reports",cors({origin: 'https://highcouncil.okcsouthstake.org',
 app.use("/api/training",cors({origin: 'https://training.okcsouthstake.org',credentials: true}))
 app.use("/api/seabass/",cors({origin: '*'}))
 app.use("/api/comments/",cors({origin: '*'}))
+app.use("/api/high-council-emails/",cors({origin: '*'}))
 
 const limiter = rate_limit({
     windowMs: 15 * 60 * 1000,
@@ -162,13 +164,13 @@ app.use('/api/seabass', seabass_routes)
 
 
 cron.schedule('0 0 * * SAT', function() {
-    sendHcMail()
-  
+    db.getHighCouncilEmails().then((emails) => {
+        emails.forEach((email) => {
+            sendHcMail(email.email)
+        })
+    })
 
   })
-
-
-sendHcMail()
 
 app.listen(process.env.PORT, () => {
     console.log('Server is running on port ' + process.env.PORT)
