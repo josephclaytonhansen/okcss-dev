@@ -43,7 +43,7 @@ const deleteHighCouncilReport = asyncHandler(async (req, res) => {
 })
 
 const updateHighCouncilReport = asyncHandler(async (req, res) => {
-    const highCouncilReport = await HighCouncilReport.findById(req.params.id)
+    const highCouncilReport = await HighCouncilReport.findById(req.body.id)
     if (highCouncilReport) {
         highCouncilReport.counselor = req.body.counselor || highCouncilReport.counselor
         highCouncilReport.week = req.body.week || highCouncilReport.week
