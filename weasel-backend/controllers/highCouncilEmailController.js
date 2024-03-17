@@ -1,5 +1,5 @@
 import asyncHandler from '../middleware/asyncHandler.min.js'
-import HighCouncilEmail from '../models/highCouncilEmail.js'
+import HighCouncilEmail from '../models/high_council_email.js'
 
 const getHighCouncilEmails = asyncHandler(async (req, res) => {
     const emails = await HighCouncilEmail.find()
