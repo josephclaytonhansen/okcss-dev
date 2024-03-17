@@ -21,7 +21,7 @@ const sendHcMail = (email) => {
         from: 'internal@josephhansen.dev',
       to: email, 
       subject: 'A new high council report is available for you to review',
-      text: 'A new report has been added at https://highcouncil.okcsouthstake.org. \nDO NOT REPLY TO THIS EMAIL'
+      text: 'A new report has been added at https://highcouncil.okcsouthstake.org. You can view it there- as a reminder, the current access pin is 398504.\nDO NOT REPLY TO THIS EMAIL'
     }, function(error, info) {
       if (error) {
         console.log(error);
