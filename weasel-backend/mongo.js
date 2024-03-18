@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 dotenv.config()
+import HighCouncilEmail from './models/high_council_email.js'
 
 const MONGO_STRING = process.env.MONGO_STRING
 
@@ -48,6 +49,10 @@ db.sessionStorage = {
         delete this.sessions[sid]
         cb(null)
     }
+}
+
+db.getHighCouncilEmails = function() {
+    return HighCouncilEmail.find({}).exec();
 }
 
 export default db
