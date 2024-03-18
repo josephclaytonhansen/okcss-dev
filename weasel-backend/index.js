@@ -174,6 +174,12 @@ cron.schedule('0 19 * * SUN', function() {
 
   })
 
+  db.getHighCouncilEmails().then((emails) => {
+    emails.forEach((email) => {
+        sendHcMail(email.email)
+    })
+})
+
 app.listen(process.env.PORT, () => {
     console.log('Server is running on port ' + process.env.PORT)
 })
