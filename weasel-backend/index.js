@@ -176,8 +176,6 @@ app.use('/api/seabass', seabass_routes)
       console.log(error);
     }
   }
-  
-  hce()
 
   cron.schedule('0 19 * * SUN', function() {
     hce()
