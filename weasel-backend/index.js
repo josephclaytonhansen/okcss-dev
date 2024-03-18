@@ -165,24 +165,24 @@ app.use('/api/hc-reports', hc_report_routes)
 app.use('/api/seabass', seabass_routes)
 
 
-cron.schedule('0 19 * * SUN', function() {
-    db.getHighCouncilEmails().then((emails) => {
-        emails.forEach((email) => {
-            sendHcMail(email.email)
-        })
-    })
 
+  async function hce() {
+    try {
+      const emails = await db.getHighCouncilEmails();
+      emails.forEach((email) => {
+        sendHcMail(email.email);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  hce()
+
+  cron.schedule('0 19 * * SUN', function() {
+    hce()
   })
 
-  try {
-  db.getHighCouncilEmails().then((emails) => {
-    emails.forEach((email) => {
-        sendHcMail(email.email)
-    })
-})} catch (error) {
-    console.log(error)
-
-}
 
 app.listen(process.env.PORT, () => {
     console.log('Server is running on port ' + process.env.PORT)
