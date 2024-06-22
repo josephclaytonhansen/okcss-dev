@@ -2,9 +2,8 @@ import express from 'express'
 const router = express.Router()
 
 
-import { getHighCouncilEmails, deleteHighCouncilEmail, createHighCouncilEmail } from '../controllers/highCouncilEmailController.js'
+import { getHighCouncilEmails, updateHighCouncilEmails } from '../controllers/highCouncilEmailController.js'
 
-router.route('/').get(getHighCouncilEmails).post(createHighCouncilEmail)
-router.route('/:id').delete(deleteHighCouncilEmail)
+router.route('/').get(getHighCouncilEmails)
 
 export default router
