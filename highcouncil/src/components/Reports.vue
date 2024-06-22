@@ -23,6 +23,9 @@ const MeetingInformation = ref('')
 const emails = ref([])
 
 
+const newEmail = ref('')
+
+
 const updateEmails = async () => {
     let response = axios.post('https://weasel.okcsouthstake.org/api/hc-reports/emails', emails.value).then(response => {
     })
@@ -102,6 +105,7 @@ onMounted(async () => {
     currentCounselor.value = 'All'
     try {
         emails.value = await axios.get('https://weasel.okcsouthstake.org/api/hc-reports/emails').then(response => {
+            console.log(response.data)
             return response.data
         })
     } catch {
@@ -389,7 +393,7 @@ const populateEditModal = (id) => {
             </table>
 
         </div>
-  <div class="emails">
+  <div class="emails" v-if="emails.length > 0">
     <div v-for="(email, index) in emails" :key="index">
       <input v-model="emails[index]" @input="updateEmails" />
       <button @click="deleteEmail(index)">Delete</button>
@@ -490,31 +494,31 @@ const populateEditModal = (id) => {
                     </div>
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="unit-attended">Unit Attended</label>
-                        <input type="text" class="form-control" id="unit-attended">
+                        <input type="text" class="form-control" id="unit-attended" v-model = "UnitAttended">
                     </div>
                     <div class="input-group">
                         <label class="input-group-text" for="releases-issued">Releases Issued</label>
-                        <input type="text" class="form-control" id="releases-issued">
+                        <input type="text" class="form-control" id="releases-issued" v-model="ReleasesIssued">
                     </div>
                     <div class="input-group">
                         <label class="input-group-text" for="callings-extended">Callings Extended</label>
-                        <input type="text" class="form-control" id="callings-extended">
+                        <input type="text" class="form-control" id="callings-extended" v-model="CallingsExtended">
                     </div>
                     <div class="input-group">
                         <label class="input-group-text" for="pulpit-business-releases">Pulpit Business (Releases)</label>
-                        <input type="text" class="form-control" id="pulpit-business-releases">
+                        <input type="text" class="form-control" id="pulpit-business-releases" v-model="PulpitBusinessReleases">
                     </div>
                     <div class="input-group">
                         <label class="input-group-text" for="pulpit-business-sustainings">Pulpit Business (Sustainings)</label>
-                        <input type="text" class="form-control" id="pulpit-business-sustainings">
+                        <input type="text" class="form-control" id="pulpit-business-sustainings" v-model="PulpitBusinessSustainings">
                     </div>
                     <div class="input-group">
                         <label class="input-group-text" for="ordainings-and-settings-apart">Ordainings and Settings Apart</label>
-                        <input type="text" class="form-control" id="ordainings-and-settings-apart">
+                        <input type="text" class="form-control" id="ordainings-and-settings-apart" v-model="OrdainingsAndSettingsApart">
                     </div>
                     <div class="input-group">
                         <label class="input-group-text" for="meeting-information">Meeting Information</label>
-                        <textarea class="form-control" id="meeting-information" rows="3"></textarea>
+                        <textarea class="form-control" id="meeting-information" rows="3" v-model="MeetingInformation"></textarea>
                     </div>
                 </form>
             </div>
